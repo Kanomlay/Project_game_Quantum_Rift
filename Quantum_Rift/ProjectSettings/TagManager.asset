@@ -44,14 +44,14 @@ TagManager:
   - name: bg
     uniqueID: 1172099445
     locked: 0
+  - name: bg2
+    uniqueID: 440367209
+    locked: 0
   - name: wall
     uniqueID: 2074330283
     locked: 0
   - name: object
     uniqueID: 1096051565
-    locked: 0
-  - name: New Layer 4
-    uniqueID: 440367209
     locked: 0
   - name: New Layer 5
     uniqueID: 1091057299
