@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a3bec0d7348d042aeeab20b4fbf77f, type: 3}
+  m_Name: Q
+  m_EditorClassIdentifier: Assembly-CSharp::DashSkill
+  skillName: Dash
+  skillIcon: {fileID: -8827122963694826374, guid: 77f3b14287253904d8ec5566fa3d5d2c, type: 3}
+  cooldown: 5
+  energyCost: 0
+  dashSpeed: 30
+  dashDuration: 0.2

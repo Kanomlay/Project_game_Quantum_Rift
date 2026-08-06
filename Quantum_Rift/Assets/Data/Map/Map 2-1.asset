@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca00dc606258847ad637796d83d938, type: 3}
+  m_Name: Map 2-1
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  mapName: Map 2-1
+  mapPrefab: {fileID: 4829623663102789463, guid: 1ba42beae3a08b04384a460aa22eb94b, type: 3}
+  spawnPosition: {x: 0, y: 0}
+  nextMap: {fileID: 11400000, guid: ffc95a6321025234cba4896ce95cf419, type: 2}
+  isBossRoom: 1
