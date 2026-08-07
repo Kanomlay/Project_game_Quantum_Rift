@@ -7,6 +7,7 @@ public abstract class SkillData : ScriptableObject
     public Sprite skillIcon;
     public float cooldown;
     public int energyCost;
+    public string Description;
 
     public abstract void ActivateSkill(GameObject player); 
 }
