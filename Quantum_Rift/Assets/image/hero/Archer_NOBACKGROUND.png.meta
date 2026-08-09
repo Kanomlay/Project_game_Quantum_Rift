@@ -1,67 +1,58 @@
 fileFormatVersion: 2
-guid: 68863131f42f82249a3a354f8a61ff17
+guid: 0e150127417c66e439023ea38beda849
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8255704691089433181
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_0"
+      213: 6882100610821475681
+    second: Archer_NOBACKGROUND_0
   - first:
-      213: -5809966086334880443
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_1"
+      213: 5220621626666547227
+    second: Archer_NOBACKGROUND_1
   - first:
-      213: 1106378533263611632
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_2"
+      213: -8923799102120870289
+    second: Archer_NOBACKGROUND_2
   - first:
-      213: 7066663916334580747
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_3"
+      213: -7629394638561522313
+    second: Archer_NOBACKGROUND_3
   - first:
-      213: 6453459523371150938
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_4"
+      213: 7492137432069728378
+    second: Archer_NOBACKGROUND_4
   - first:
-      213: 8206149881269671258
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_5"
+      213: 4030061227005568097
+    second: Archer_NOBACKGROUND_5
   - first:
-      213: 2003248951709177768
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_6"
+      213: -8843213863402674765
+    second: Archer_NOBACKGROUND_6
   - first:
-      213: 6515184901728633853
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_7"
+      213: 7771796555479282868
+    second: Archer_NOBACKGROUND_7
   - first:
-      213: -3065632715604947179
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_8"
+      213: 2438341749074647824
+    second: Archer_NOBACKGROUND_8
   - first:
-      213: -7495795810712207668
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_9"
+      213: -485418435343829897
+    second: Archer_NOBACKGROUND_9
   - first:
-      213: -3760242608747805699
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_10"
+      213: -8113038406472980223
+    second: Archer_NOBACKGROUND_10
   - first:
-      213: 5021801271056973425
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_11"
+      213: -6304184786265208823
+    second: Archer_NOBACKGROUND_11
   - first:
-      213: -4516513005157299580
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_12"
+      213: 1351030425649133497
+    second: Archer_NOBACKGROUND_12
   - first:
-      213: -6486864599928311028
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_13"
+      213: 2133077014132914899
+    second: Archer_NOBACKGROUND_13
   - first:
-      213: -5039834871645140088
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_14"
+      213: 5071343420414703308
+    second: Archer_NOBACKGROUND_14
   - first:
-      213: 6851642245100237757
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_15"
+      213: 6576581600251580012
+    second: Archer_NOBACKGROUND_15
   - first:
-      213: 6036582985786682736
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_16"
-  - first:
-      213: 8120542727477431280
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_17"
-  - first:
-      213: 2610350071123703531
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_18"
-  - first:
-      213: -3565796063916466481
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_19"
+      213: -6296183840004982595
+    second: Archer_NOBACKGROUND_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -157,12 +148,188 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Warrior_0
+      name: Archer_NOBACKGROUND_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 265
-        width: 90
+        x: 21
+        y: 276
+        width: 84
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d4388ea02228f50800000000000000
+      internalID: 6882100610821475681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 276
+        width: 84
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b187e2c95bf537840800000000000000
+      internalID: 5220621626666547227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_2
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 276
+        width: 84
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6eb2273ffb482480800000000000000
+      internalID: -8923799102120870289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_3
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 275
+        width: 79
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d454d9ff1fe1690800000000000000
+      internalID: -7629394638561522313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_4
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 275
+        width: 76
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a786ce6ac4b69f760800000000000000
+      internalID: 7492137432069728378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_5
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 276
+        width: 76
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 164edb27557ade730800000000000000
+      internalID: 4030061227005568097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_6
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 275
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5e21738d7964580800000000000000
+      internalID: -8843213863402674765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_7
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 275
+        width: 80
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b472fb5ac7fadb60800000000000000
+      internalID: 7771796555479282868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_NOBACKGROUND_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 147
+        width: 84
         height: 98
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -170,362 +337,186 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0fc54d5a7440d39498e639d4a6abefb1
-      internalID: -1432696976
+      spriteID: 01b5992e6eab6d120800000000000000
+      internalID: 2438341749074647824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_1
+      name: Archer_NOBACKGROUND_9
       rect:
         serializedVersion: 2
-        x: 145
-        y: 265
-        width: 90
-        height: 98
+        x: 146
+        y: 148
+        width: 84
+        height: 94
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9f954d27587ce734fb9a54bf97b4f9bf
-      internalID: -936732438
+      spriteID: 774b7e141827349f0800000000000000
+      internalID: -485418435343829897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_2
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25f8a620f5224fd458356c55f0764bb8
-      internalID: -510398613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_3
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 264
-        width: 90
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 081c04a5e32334a48b256313bd06120c
-      internalID: 118479709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_4
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 264
-        width: 90
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a38fcb972d13034fb9e7c2783c01070
-      internalID: -1488246470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_5
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55e5a5db21e408a45967724a0ec99ed9
-      internalID: -1308035414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_6
-      rect:
-        serializedVersion: 2
-        x: 785
-        y: 265
-        width: 89
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ebea09e8f9ecb545a92795468b415bd
-      internalID: -1181455326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_7
-      rect:
-        serializedVersion: 2
-        x: 914
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 561a1ead72ed65841a4e3414e9e6170b
-      internalID: -1955439427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 130
-        width: 90
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b01f199991a6b641ab59d047b251091
-      internalID: 1960921931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_9
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 130
-        width: 91
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed3dd512c944e4a42b63a638cafe4cf0
-      internalID: -349090676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_10
+      name: Archer_NOBACKGROUND_10
       rect:
         serializedVersion: 2
         x: 274
-        y: 130
-        width: 91
-        height: 108
+        y: 147
+        width: 84
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 234be21c0fb841346a60557e9a18a8df
-      internalID: -245023955
+      spriteID: 109a315dd82b86f80800000000000000
+      internalID: -8113038406472980223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_11
+      name: Archer_NOBACKGROUND_11
       rect:
         serializedVersion: 2
-        x: 402
-        y: 129
-        width: 91
-        height: 109
+        x: 405
+        y: 147
+        width: 81
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ed98a97b9caa91c43b418b25050c0a88
-      internalID: 488573408
+      spriteID: 9088d3086590388a0800000000000000
+      internalID: -6304184786265208823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_12
+      name: Archer_NOBACKGROUND_12
       rect:
         serializedVersion: 2
-        x: 530
-        y: 130
-        width: 92
-        height: 108
+        x: 535
+        y: 147
+        width: 79
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 84ff82b5d431bb84797abe8565789894
-      internalID: -287313304
+      spriteID: 9b7bf899303dfb210800000000000000
+      internalID: 1351030425649133497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_13
+      name: Archer_NOBACKGROUND_13
       rect:
         serializedVersion: 2
-        x: 658
-        y: 130
-        width: 91
-        height: 108
+        x: 663
+        y: 147
+        width: 79
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 39c9906955bd8f341ab2cac9a30cd677
-      internalID: 237139045
+      spriteID: 3da71f92e363a9d10800000000000000
+      internalID: 2133077014132914899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_14
+      name: Archer_NOBACKGROUND_14
       rect:
         serializedVersion: 2
-        x: 786
-        y: 130
-        width: 90
-        height: 108
+        x: 791
+        y: 147
+        width: 79
+        height: 98
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: deb54263295f0de44b9bae338129c9a8
-      internalID: 44355831
+      spriteID: cc635d3c8f7016640800000000000000
+      internalID: 5071343420414703308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_15
+      name: Archer_NOBACKGROUND_15
       rect:
         serializedVersion: 2
-        x: 915
-        y: 130
-        width: 90
-        height: 108
+        x: 917
+        y: 147
+        width: 82
+        height: 98
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4298a8d716fcd384e9592f299d3d2fba
-      internalID: -591652550
+      spriteID: c6e8d570f16b44b50800000000000000
+      internalID: 6576581600251580012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior_16
+      name: Archer_NOBACKGROUND_16
       rect:
         serializedVersion: 2
-        x: 23
-        y: 0
-        width: 83
-        height: 73
+        x: 6
+        y: 2
+        width: 115
+        height: 118
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 50a0493114ce7944ead28d416c8368fe
-      internalID: -538037872
+      spriteID: db8b2f7f7267f98a0800000000000000
+      internalID: -6296183840004982595
       vertices: []
       indices: 
       edges: []
@@ -534,7 +525,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3e837f38abe7fe0419b29833e74df2e7
+    spriteID: a04df73bc943f9b4b97ecb673e857a7f
     internalID: 0
     vertices: []
     indices: 
@@ -546,26 +537,23 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Warrior_0: -1432696976
-      Warrior_1: -936732438
-      Warrior_10: -245023955
-      Warrior_11: 488573408
-      Warrior_12: -287313304
-      Warrior_13: 237139045
-      Warrior_14: 44355831
-      Warrior_15: -591652550
-      Warrior_16: -538037872
-      Warrior_17: 1110101676
-      Warrior_18: 534950534
-      Warrior_19: 1521021103
-      Warrior_2: -510398613
-      Warrior_3: 118479709
-      Warrior_4: -1488246470
-      Warrior_5: -1308035414
-      Warrior_6: -1181455326
-      Warrior_7: -1955439427
-      Warrior_8: 1960921931
-      Warrior_9: -349090676
+      Archer_NOBACKGROUND_0: 6882100610821475681
+      Archer_NOBACKGROUND_1: 5220621626666547227
+      Archer_NOBACKGROUND_10: -8113038406472980223
+      Archer_NOBACKGROUND_11: -6304184786265208823
+      Archer_NOBACKGROUND_12: 1351030425649133497
+      Archer_NOBACKGROUND_13: 2133077014132914899
+      Archer_NOBACKGROUND_14: 5071343420414703308
+      Archer_NOBACKGROUND_15: 6576581600251580012
+      Archer_NOBACKGROUND_16: -6296183840004982595
+      Archer_NOBACKGROUND_2: -8923799102120870289
+      Archer_NOBACKGROUND_3: -7629394638561522313
+      Archer_NOBACKGROUND_4: 7492137432069728378
+      Archer_NOBACKGROUND_5: 4030061227005568097
+      Archer_NOBACKGROUND_6: -8843213863402674765
+      Archer_NOBACKGROUND_7: 7771796555479282868
+      Archer_NOBACKGROUND_8: 2438341749074647824
+      Archer_NOBACKGROUND_9: -485418435343829897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

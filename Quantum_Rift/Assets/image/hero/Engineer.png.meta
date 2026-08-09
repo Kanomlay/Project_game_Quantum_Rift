@@ -1,67 +1,58 @@
 fileFormatVersion: 2
-guid: 68863131f42f82249a3a354f8a61ff17
+guid: 99a65d9bcaca32549b9158c8374b8d86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8255704691089433181
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_0"
+      213: 1595982907714843850
+    second: Engineer_0
   - first:
-      213: -5809966086334880443
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_1"
+      213: 8990500200165734550
+    second: Engineer_1
   - first:
-      213: 1106378533263611632
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_2"
+      213: -2352024994645696844
+    second: Engineer_2
   - first:
-      213: 7066663916334580747
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_3"
+      213: 1793122157173168027
+    second: Engineer_3
   - first:
-      213: 6453459523371150938
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_4"
+      213: -8507582930033106367
+    second: Engineer_4
   - first:
-      213: 8206149881269671258
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_5"
+      213: -108375393647570834
+    second: Engineer_5
   - first:
-      213: 2003248951709177768
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_6"
+      213: 5367806484380279552
+    second: Engineer_6
   - first:
-      213: 6515184901728633853
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_7"
+      213: -7585582138226216863
+    second: Engineer_7
   - first:
-      213: -3065632715604947179
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_8"
+      213: 8653171277889920987
+    second: Engineer_8
   - first:
-      213: -7495795810712207668
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_9"
+      213: -338893158742587362
+    second: Engineer_9
   - first:
-      213: -3760242608747805699
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_10"
+      213: 8427318611949727933
+    second: Engineer_10
   - first:
-      213: 5021801271056973425
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_11"
+      213: 7821621830254815850
+    second: Engineer_11
   - first:
-      213: -4516513005157299580
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_12"
+      213: -2839174222963352668
+    second: Engineer_12
   - first:
-      213: -6486864599928311028
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_13"
+      213: 2144281202929646806
+    second: Engineer_13
   - first:
-      213: -5039834871645140088
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_14"
+      213: -4673958941445058099
+    second: Engineer_14
   - first:
-      213: 6851642245100237757
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_15"
+      213: 4583559622803311028
+    second: Engineer_15
   - first:
-      213: 6036582985786682736
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_16"
-  - first:
-      213: 8120542727477431280
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_17"
-  - first:
-      213: 2610350071123703531
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_18"
-  - first:
-      213: -3565796063916466481
-    second: "\u0E14\u0E35\u0E44\u0E0B\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E0A\u0E37\u0E48\u0E2D_19"
+      213: 182453050316403655
+    second: Engineer_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -157,375 +148,375 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Warrior_0
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fc54d5a7440d39498e639d4a6abefb1
-      internalID: -1432696976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_1
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f954d27587ce734fb9a54bf97b4f9bf
-      internalID: -936732438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_2
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25f8a620f5224fd458356c55f0764bb8
-      internalID: -510398613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_3
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 264
-        width: 90
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 081c04a5e32334a48b256313bd06120c
-      internalID: 118479709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_4
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 264
-        width: 90
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a38fcb972d13034fb9e7c2783c01070
-      internalID: -1488246470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_5
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55e5a5db21e408a45967724a0ec99ed9
-      internalID: -1308035414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_6
-      rect:
-        serializedVersion: 2
-        x: 785
-        y: 265
-        width: 89
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ebea09e8f9ecb545a92795468b415bd
-      internalID: -1181455326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_7
-      rect:
-        serializedVersion: 2
-        x: 914
-        y: 265
-        width: 90
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 561a1ead72ed65841a4e3414e9e6170b
-      internalID: -1955439427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 130
-        width: 90
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b01f199991a6b641ab59d047b251091
-      internalID: 1960921931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_9
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 130
-        width: 91
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed3dd512c944e4a42b63a638cafe4cf0
-      internalID: -349090676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_10
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 130
-        width: 91
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 234be21c0fb841346a60557e9a18a8df
-      internalID: -245023955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_11
-      rect:
-        serializedVersion: 2
-        x: 402
-        y: 129
-        width: 91
-        height: 109
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed98a97b9caa91c43b418b25050c0a88
-      internalID: 488573408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_12
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 130
-        width: 92
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84ff82b5d431bb84797abe8565789894
-      internalID: -287313304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_13
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 130
-        width: 91
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39c9906955bd8f341ab2cac9a30cd677
-      internalID: 237139045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_14
-      rect:
-        serializedVersion: 2
-        x: 786
-        y: 130
-        width: 90
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: deb54263295f0de44b9bae338129c9a8
-      internalID: 44355831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_15
-      rect:
-        serializedVersion: 2
-        x: 915
-        y: 130
-        width: 90
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4298a8d716fcd384e9592f299d3d2fba
-      internalID: -591652550
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior_16
+      name: Engineer_0
       rect:
         serializedVersion: 2
         x: 23
-        y: 0
-        width: 83
-        height: 73
+        y: 250
+        width: 98
+        height: 120
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 50a0493114ce7944ead28d416c8368fe
-      internalID: -538037872
+      spriteID: ac430f9aff1162610800000000000000
+      internalID: 1595982907714843850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 250
+        width: 99
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698f4ff5c4ca4cc70800000000000000
+      internalID: 8990500200165734550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_2
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 250
+        width: 98
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be9d4b9abdeb5fd0800000000000000
+      internalID: -2352024994645696844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_3
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 250
+        width: 99
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9750310a1372e810800000000000000
+      internalID: 1793122157173168027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 250
+        width: 98
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1422336766efee980800000000000000
+      internalID: -8507582930033106367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_5
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 250
+        width: 98
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e605e375729fe7ef0800000000000000
+      internalID: -108375393647570834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_6
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 250
+        width: 99
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0036684ce874e7a40800000000000000
+      internalID: 5367806484380279552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_7
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 250
+        width: 98
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1607a744c399ab690800000000000000
+      internalID: -7585582138226216863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 122
+        width: 97
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdfdd374e6d361870800000000000000
+      internalID: 8653171277889920987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_9
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 126
+        width: 97
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e188658b7720c4bf0800000000000000
+      internalID: -338893158742587362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_10
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 129
+        width: 97
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db03d42b0a9d3f470800000000000000
+      internalID: 8427318611949727933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_11
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 122
+        width: 98
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6a67c72d9bfb8c60800000000000000
+      internalID: 7821621830254815850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 122
+        width: 98
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4abd2d8361a3998d0800000000000000
+      internalID: -2839174222963352668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_13
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 126
+        width: 97
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc3b27a46402cd10800000000000000
+      internalID: 2144281202929646806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_14
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 125
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc118604b13c22fb0800000000000000
+      internalID: -4673958941445058099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_15
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 122
+        width: 97
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b9c30431331c9f30800000000000000
+      internalID: 4583559622803311028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engineer_16
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 129
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3bb442514388200800000000000000
+      internalID: 182453050316403655
       vertices: []
       indices: 
       edges: []
@@ -534,7 +525,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3e837f38abe7fe0419b29833e74df2e7
+    spriteID: 4fb8b8bcb9ff41047a981d06d49b9b45
     internalID: 0
     vertices: []
     indices: 
@@ -546,26 +537,23 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Warrior_0: -1432696976
-      Warrior_1: -936732438
-      Warrior_10: -245023955
-      Warrior_11: 488573408
-      Warrior_12: -287313304
-      Warrior_13: 237139045
-      Warrior_14: 44355831
-      Warrior_15: -591652550
-      Warrior_16: -538037872
-      Warrior_17: 1110101676
-      Warrior_18: 534950534
-      Warrior_19: 1521021103
-      Warrior_2: -510398613
-      Warrior_3: 118479709
-      Warrior_4: -1488246470
-      Warrior_5: -1308035414
-      Warrior_6: -1181455326
-      Warrior_7: -1955439427
-      Warrior_8: 1960921931
-      Warrior_9: -349090676
+      Engineer_0: 1595982907714843850
+      Engineer_1: 8990500200165734550
+      Engineer_10: 8427318611949727933
+      Engineer_11: 7821621830254815850
+      Engineer_12: -2839174222963352668
+      Engineer_13: 2144281202929646806
+      Engineer_14: -4673958941445058099
+      Engineer_15: 4583559622803311028
+      Engineer_16: 182453050316403655
+      Engineer_2: -2352024994645696844
+      Engineer_3: 1793122157173168027
+      Engineer_4: -8507582930033106367
+      Engineer_5: -108375393647570834
+      Engineer_6: 5367806484380279552
+      Engineer_7: -7585582138226216863
+      Engineer_8: 8653171277889920987
+      Engineer_9: -338893158742587362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
