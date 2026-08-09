@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: d0aaea45366067147876d8f8e0e67394
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6728101932235257614
+    second: Rift-Drained Worker_0
+  - first:
+      213: -1938910964843801091
+    second: Rift-Drained Worker_1
+  - first:
+      213: -831459597760470532
+    second: Rift-Drained Worker_2
+  - first:
+      213: 1573480583492202220
+    second: Rift-Drained Worker_3
+  - first:
+      213: 5539615200720865275
+    second: Rift-Drained Worker_4
+  - first:
+      213: 1858766599029977016
+    second: Rift-Drained Worker_5
+  - first:
+      213: -6903436558300022758
+    second: Rift-Drained Worker_6
+  - first:
+      213: 6282780279247143909
+    second: Rift-Drained Worker_7
+  - first:
+      213: 2960946152679462452
+    second: Rift-Drained Worker_8
+  - first:
+      213: -4374699418681054092
+    second: Rift-Drained Worker_9
+  - first:
+      213: -3687613923668955770
+    second: Rift-Drained Worker_10
+  - first:
+      213: -3337591855098013779
+    second: Rift-Drained Worker_11
+  - first:
+      213: 4956413044718326934
+    second: Rift-Drained Worker_12
+  - first:
+      213: -235136738096516731
+    second: Rift-Drained Worker_13
+  - first:
+      213: 8069689449123906373
+    second: Rift-Drained Worker_14
+  - first:
+      213: -3326257522524981712
+    second: Rift-Drained Worker_15
+  - first:
+      213: -8984762487803980165
+    second: Rift-Drained Worker_16
+  - first:
+      213: -6855236986422429984
+    second: Rift-Drained Worker_17
+  - first:
+      213: 6284499399263132050
+    second: Rift-Drained Worker_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rift-Drained Worker_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 246
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0770837f050f5d50800000000000000
+      internalID: 6728101932235257614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_1
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 246
+        width: 69
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df5106110ca9715e0800000000000000
+      internalID: -1938910964843801091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_2
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 246
+        width: 68
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1e56ea6ef0674f0800000000000000
+      internalID: -831459597760470532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 246
+        width: 67
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceee608014026d510800000000000000
+      internalID: 1573480583492202220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_4
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 246
+        width: 68
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf74257ccaaa0ec40800000000000000
+      internalID: 5539615200720865275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_5
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 247
+        width: 70
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bfea87af5aabc910800000000000000
+      internalID: 1858766599029977016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_6
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 246
+        width: 73
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18f415b6011230a0800000000000000
+      internalID: -6903436558300022758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_7
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 246
+        width: 68
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e30b5a506be03750800000000000000
+      internalID: 6282780279247143909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_8
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 116
+        width: 66
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436d48d86d4671920800000000000000
+      internalID: 2960946152679462452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_9
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 116
+        width: 69
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c686e8e02f943c0800000000000000
+      internalID: -4374699418681054092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_10
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 118
+        width: 69
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68d6dea9ca6f2dcc0800000000000000
+      internalID: -3687613923668955770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_11
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 116
+        width: 67
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da755af14ed7ea1d0800000000000000
+      internalID: -3337591855098013779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_12
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 116
+        width: 69
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6945c8a6767b8c440800000000000000
+      internalID: 4956413044718326934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_13
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 116
+        width: 67
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581fc1ce160acbcf0800000000000000
+      internalID: -235136738096516731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_14
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 116
+        width: 68
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5438fb68ccb4dff60800000000000000
+      internalID: 8069689449123906373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_15
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 116
+        width: 66
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0367d621862c6d1d0800000000000000
+      internalID: -3326257522524981712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_16
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 0
+        width: 104
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b765033ee16bf4380800000000000000
+      internalID: -8984762487803980165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_17
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 8
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6fb2d084e4dd0a0800000000000000
+      internalID: -6855236986422429984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_18
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 8
+        width: 63
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2991c3c28e6073750800000000000000
+      internalID: 6284499399263132050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rift-Drained Worker_0: 6728101932235257614
+      Rift-Drained Worker_1: -1938910964843801091
+      Rift-Drained Worker_10: -3687613923668955770
+      Rift-Drained Worker_11: -3337591855098013779
+      Rift-Drained Worker_12: 4956413044718326934
+      Rift-Drained Worker_13: -235136738096516731
+      Rift-Drained Worker_14: 8069689449123906373
+      Rift-Drained Worker_15: -3326257522524981712
+      Rift-Drained Worker_16: -8984762487803980165
+      Rift-Drained Worker_17: -6855236986422429984
+      Rift-Drained Worker_18: 6284499399263132050
+      Rift-Drained Worker_2: -831459597760470532
+      Rift-Drained Worker_3: 1573480583492202220
+      Rift-Drained Worker_4: 5539615200720865275
+      Rift-Drained Worker_5: 1858766599029977016
+      Rift-Drained Worker_6: -6903436558300022758
+      Rift-Drained Worker_7: 6282780279247143909
+      Rift-Drained Worker_8: 2960946152679462452
+      Rift-Drained Worker_9: -4374699418681054092
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

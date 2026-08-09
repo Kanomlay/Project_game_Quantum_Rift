@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 3ba03d34e19f8504cb632d50d4480161
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3327031152089419074
+    second: Mutated Heavy_0
+  - first:
+      213: -4108364077102496384
+    second: Mutated Heavy_1
+  - first:
+      213: -3125677921022887479
+    second: Mutated Heavy_2
+  - first:
+      213: 3495782018918236316
+    second: Mutated Heavy_3
+  - first:
+      213: -8441402094792317414
+    second: Mutated Heavy_4
+  - first:
+      213: 5010416977869920214
+    second: Mutated Heavy_5
+  - first:
+      213: -3370859205629032084
+    second: Mutated Heavy_6
+  - first:
+      213: 7505525157556524388
+    second: Mutated Heavy_7
+  - first:
+      213: 2373010819174207114
+    second: Mutated Heavy_8
+  - first:
+      213: -8739180601614671225
+    second: Mutated Heavy_9
+  - first:
+      213: 7754199256500761410
+    second: Mutated Heavy_10
+  - first:
+      213: 2790845992188807828
+    second: Mutated Heavy_11
+  - first:
+      213: -8931338081663220037
+    second: Mutated Heavy_12
+  - first:
+      213: -1813340426767492596
+    second: Mutated Heavy_13
+  - first:
+      213: -7312976937187146353
+    second: Mutated Heavy_14
+  - first:
+      213: -8366513952035873414
+    second: Mutated Heavy_15
+  - first:
+      213: -499042949233908298
+    second: Mutated Heavy_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mutated Heavy_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 251
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb23d076bc204d1d0800000000000000
+      internalID: -3327031152089419074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_1
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 251
+        width: 103
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 085845093a82cf6c0800000000000000
+      internalID: -4108364077102496384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 251
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9362bcd7c5f94d0800000000000000
+      internalID: -3125677921022887479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_3
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 251
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c90c1d98933838030800000000000000
+      internalID: 3495782018918236316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_4
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 251
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a166aade48d1ada80800000000000000
+      internalID: -8441402094792317414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 251
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7d58ee1b3988540800000000000000
+      internalID: 5010416977869920214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_6
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 251
+        width: 103
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6940ac796d4831d0800000000000000
+      internalID: -3370859205629032084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_7
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 251
+        width: 103
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4651ae46d5bf82860800000000000000
+      internalID: 7505525157556524388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_8
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 124
+        width: 104
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e890d64c0aee020800000000000000
+      internalID: 2373010819174207114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 124
+        width: 104
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 782e5c48b8138b680800000000000000
+      internalID: -8739180601614671225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_10
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 124
+        width: 103
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2437359e3237c9b60800000000000000
+      internalID: 7754199256500761410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_11
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 124
+        width: 104
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a8c33b4a31bb620800000000000000
+      internalID: 2790845992188807828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_12
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 124
+        width: 104
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb68b81c5538d0480800000000000000
+      internalID: -8931338081663220037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_13
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 124
+        width: 104
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a1ba54d78b5d6e0800000000000000
+      internalID: -1813340426767492596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_14
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 124
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f850650b836138a90800000000000000
+      internalID: -7312976937187146353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_15
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 124
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d5d8863eb24eb80800000000000000
+      internalID: -8366513952035873414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mutated Heavy_16
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1
+        width: 128
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b5ef3be41b0319f0800000000000000
+      internalID: -499042949233908298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mutated Heavy_0: -3327031152089419074
+      Mutated Heavy_1: -4108364077102496384
+      Mutated Heavy_10: 7754199256500761410
+      Mutated Heavy_11: 2790845992188807828
+      Mutated Heavy_12: -8931338081663220037
+      Mutated Heavy_13: -1813340426767492596
+      Mutated Heavy_14: -7312976937187146353
+      Mutated Heavy_15: -8366513952035873414
+      Mutated Heavy_16: -499042949233908298
+      Mutated Heavy_2: -3125677921022887479
+      Mutated Heavy_3: 3495782018918236316
+      Mutated Heavy_4: -8441402094792317414
+      Mutated Heavy_5: 5010416977869920214
+      Mutated Heavy_6: -3370859205629032084
+      Mutated Heavy_7: 7505525157556524388
+      Mutated Heavy_8: 2373010819174207114
+      Mutated Heavy_9: -8739180601614671225
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

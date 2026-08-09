@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 8ea5ed30e5f0f3c4baabe7a7d443a8ec
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -225398027633850233
+    second: Echo Stalker_0
+  - first:
+      213: -8622382423150793885
+    second: Echo Stalker_1
+  - first:
+      213: 5817294824236007290
+    second: Echo Stalker_2
+  - first:
+      213: -289084971941623941
+    second: Echo Stalker_3
+  - first:
+      213: 1452563131968936564
+    second: Echo Stalker_4
+  - first:
+      213: 8988314251557368357
+    second: Echo Stalker_5
+  - first:
+      213: 910486224693217396
+    second: Echo Stalker_6
+  - first:
+      213: -5677986109277199465
+    second: Echo Stalker_7
+  - first:
+      213: 7516638948212011649
+    second: Echo Stalker_8
+  - first:
+      213: -2951874675450104312
+    second: Echo Stalker_9
+  - first:
+      213: 1771256146057862178
+    second: Echo Stalker_10
+  - first:
+      213: -3134446570457452347
+    second: Echo Stalker_11
+  - first:
+      213: -4524432111770195534
+    second: Echo Stalker_12
+  - first:
+      213: -6877727359158082135
+    second: Echo Stalker_13
+  - first:
+      213: 1141156338149687955
+    second: Echo Stalker_14
+  - first:
+      213: 8524630868541232523
+    second: Echo Stalker_15
+  - first:
+      213: 7112817085634533308
+    second: Echo Stalker_16
+  - first:
+      213: -4663402615488623028
+    second: Echo Stalker_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Echo Stalker_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 253
+        width: 93
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7888fc520b93fdcf0800000000000000
+      internalID: -225398027633850233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 253
+        width: 93
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b66869ed4275880800000000000000
+      internalID: -8622382423150793885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 253
+        width: 92
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f3e4042de2bb050800000000000000
+      internalID: 5817294824236007290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 253
+        width: 93
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b770489efb6fcfbf0800000000000000
+      internalID: -289084971941623941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_4
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 253
+        width: 92
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a56d6f87a882410800000000000000
+      internalID: 1452563131968936564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_5
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 252
+        width: 93
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52278ad8038ecbc70800000000000000
+      internalID: 8988314251557368357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_6
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 253
+        width: 93
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478c9bbb562b2ac00800000000000000
+      internalID: 910486224693217396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_7
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 252
+        width: 93
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7932ee487bdb331b0800000000000000
+      internalID: -5677986109277199465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 125
+        width: 89
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 182fa0d6c47705860800000000000000
+      internalID: 7516638948212011649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_9
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 125
+        width: 90
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80633545f95d807d0800000000000000
+      internalID: -2951874675450104312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_10
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 125
+        width: 86
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c91009414c49810800000000000000
+      internalID: 1771256146057862178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_11
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 125
+        width: 91
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0317083753084d0800000000000000
+      internalID: -3134446570457452347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 125
+        width: 92
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9219f37fcf531c0800000000000000
+      internalID: -4524432111770195534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_13
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 173
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5a56718676d80a0800000000000000
+      internalID: -6877727359158082135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_14
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 125
+        width: 89
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3920998b4a336df00800000000000000
+      internalID: 1141156338149687955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_15
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 127
+        width: 90
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85dab80c929d4670800000000000000
+      internalID: 8524630868541232523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_16
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 125
+        width: 92
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7539d347dc5b260800000000000000
+      internalID: 7112817085634533308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Echo Stalker_17
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 8
+        width: 109
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e4c2b6704484fb0800000000000000
+      internalID: -4663402615488623028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Echo Stalker_0: -225398027633850233
+      Echo Stalker_1: -8622382423150793885
+      Echo Stalker_10: 1771256146057862178
+      Echo Stalker_11: -3134446570457452347
+      Echo Stalker_12: -4524432111770195534
+      Echo Stalker_13: -6877727359158082135
+      Echo Stalker_14: 1141156338149687955
+      Echo Stalker_15: 8524630868541232523
+      Echo Stalker_16: 7112817085634533308
+      Echo Stalker_17: -4663402615488623028
+      Echo Stalker_2: 5817294824236007290
+      Echo Stalker_3: -289084971941623941
+      Echo Stalker_4: 1452563131968936564
+      Echo Stalker_5: 8988314251557368357
+      Echo Stalker_6: 910486224693217396
+      Echo Stalker_7: -5677986109277199465
+      Echo Stalker_8: 7516638948212011649
+      Echo Stalker_9: -2951874675450104312
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

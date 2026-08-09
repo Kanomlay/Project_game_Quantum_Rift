@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 208ff9c8ea5efed4f933a4477318971d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2808146458243349246
+    second: Dimensional Wolf_0
+  - first:
+      213: -3901622203005104369
+    second: Dimensional Wolf_1
+  - first:
+      213: 6138163747751861731
+    second: Dimensional Wolf_2
+  - first:
+      213: 5884961493868566839
+    second: Dimensional Wolf_3
+  - first:
+      213: -8081570940854028164
+    second: Dimensional Wolf_4
+  - first:
+      213: -7879049185019372826
+    second: Dimensional Wolf_5
+  - first:
+      213: -8181770569703744358
+    second: Dimensional Wolf_6
+  - first:
+      213: 3782987162347598231
+    second: Dimensional Wolf_7
+  - first:
+      213: -9147860712616155071
+    second: Dimensional Wolf_8
+  - first:
+      213: 2501386044337979813
+    second: Dimensional Wolf_9
+  - first:
+      213: 6764506895208223637
+    second: Dimensional Wolf_10
+  - first:
+      213: 4381800021829809680
+    second: Dimensional Wolf_11
+  - first:
+      213: -437435462311503166
+    second: Dimensional Wolf_12
+  - first:
+      213: 8837498065611892241
+    second: Dimensional Wolf_13
+  - first:
+      213: 1238662704770313810
+    second: Dimensional Wolf_14
+  - first:
+      213: 7743032755670855507
+    second: Dimensional Wolf_15
+  - first:
+      213: -2478394005675669437
+    second: Dimensional Wolf_16
+  - first:
+      213: 291472810019445994
+    second: Dimensional Wolf_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dimensional Wolf_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 251
+        width: 117
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efabdd8535a88f620800000000000000
+      internalID: 2808146458243349246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 251
+        width: 116
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f8a1e2747aad9c0800000000000000
+      internalID: -3901622203005104369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_2
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 251
+        width: 116
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ed1eed38632f2550800000000000000
+      internalID: 6138163747751861731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_3
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 252
+        width: 115
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73953ee7c459ba150800000000000000
+      internalID: 5884961493868566839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_4
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 252
+        width: 116
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78b64b1c0e78df80800000000000000
+      internalID: -8081570940854028164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_5
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 252
+        width: 116
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ead61fd28ef7a290800000000000000
+      internalID: -7879049185019372826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_6
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 252
+        width: 117
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c10170403847e80800000000000000
+      internalID: -8181770569703744358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_7
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 252
+        width: 116
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7917791f7cedf7430800000000000000
+      internalID: 3782987162347598231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 127
+        width: 118
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14823c936254c0180800000000000000
+      internalID: -9147860712616155071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_9
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 128
+        width: 120
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a182eaba55b6b220800000000000000
+      internalID: 2501386044337979813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_10
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 128
+        width: 119
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59311996e2b50ed50800000000000000
+      internalID: 6764506895208223637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_11
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 127
+        width: 120
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016f6f177e74fcc30800000000000000
+      internalID: 4381800021829809680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_12
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 125
+        width: 117
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca93c0c3caede9f0800000000000000
+      internalID: -437435462311503166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_13
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 124
+        width: 118
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 116aff7eaa915aa70800000000000000
+      internalID: 8837498065611892241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_14
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 125
+        width: 117
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25eeb52da2d903110800000000000000
+      internalID: 1238662704770313810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_15
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 124
+        width: 116
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35fa9f55447c47b60800000000000000
+      internalID: 7743032755670855507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_16
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 119
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3488e3e68c9fa9dd0800000000000000
+      internalID: -2478394005675669437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dimensional Wolf_17
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 10
+        width: 117
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aecd4e6f9f48b0400800000000000000
+      internalID: 291472810019445994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Dimensional Wolf_0: 2808146458243349246
+      Dimensional Wolf_1: -3901622203005104369
+      Dimensional Wolf_10: 6764506895208223637
+      Dimensional Wolf_11: 4381800021829809680
+      Dimensional Wolf_12: -437435462311503166
+      Dimensional Wolf_13: 8837498065611892241
+      Dimensional Wolf_14: 1238662704770313810
+      Dimensional Wolf_15: 7743032755670855507
+      Dimensional Wolf_16: -2478394005675669437
+      Dimensional Wolf_17: 291472810019445994
+      Dimensional Wolf_2: 6138163747751861731
+      Dimensional Wolf_3: 5884961493868566839
+      Dimensional Wolf_4: -8081570940854028164
+      Dimensional Wolf_5: -7879049185019372826
+      Dimensional Wolf_6: -8181770569703744358
+      Dimensional Wolf_7: 3782987162347598231
+      Dimensional Wolf_8: -9147860712616155071
+      Dimensional Wolf_9: 2501386044337979813
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 5ab349fba948fcb408695ce572a31361
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7283994306875830920
+    second: Forest Wraith_0
+  - first:
+      213: -977409983952370623
+    second: Forest Wraith_1
+  - first:
+      213: 6747545725184258396
+    second: Forest Wraith_2
+  - first:
+      213: -5288213740850262831
+    second: Forest Wraith_3
+  - first:
+      213: 2060643536110676062
+    second: Forest Wraith_4
+  - first:
+      213: -7686840536247859192
+    second: Forest Wraith_5
+  - first:
+      213: -4742522377343569837
+    second: Forest Wraith_6
+  - first:
+      213: 4961596845537322500
+    second: Forest Wraith_7
+  - first:
+      213: -2299234062511314983
+    second: Forest Wraith_8
+  - first:
+      213: -2538846098901101287
+    second: Forest Wraith_9
+  - first:
+      213: -693071262589685281
+    second: Forest Wraith_10
+  - first:
+      213: 247796690706017632
+    second: Forest Wraith_11
+  - first:
+      213: -2366372494061413630
+    second: Forest Wraith_12
+  - first:
+      213: 206118511475600573
+    second: Forest Wraith_13
+  - first:
+      213: 2923255042583846245
+    second: Forest Wraith_14
+  - first:
+      213: -8305694164233421996
+    second: Forest Wraith_15
+  - first:
+      213: -7426072761667159539
+    second: Forest Wraith_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Forest Wraith_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 243
+        width: 97
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87dc2b825cd0aea90800000000000000
+      internalID: -7283994306875830920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 243
+        width: 98
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14449925cca8f62f0800000000000000
+      internalID: -977409983952370623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 243
+        width: 96
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c513057461914ad50800000000000000
+      internalID: 6747545725184258396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_3
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 243
+        width: 97
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dcc740fe9d7c96b0800000000000000
+      internalID: -5288213740850262831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_4
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 243
+        width: 97
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58e49ad060e89c10800000000000000
+      internalID: 2060643536110676062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 243
+        width: 99
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8088fd7424bd25590800000000000000
+      internalID: -7686840536247859192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_6
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 244
+        width: 96
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3507817560d2f2eb0800000000000000
+      internalID: -4742522377343569837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_7
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 244
+        width: 97
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40663f81b022bd440800000000000000
+      internalID: 4961596845537322500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 118
+        width: 91
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d7e8805dca7710e0800000000000000
+      internalID: -2299234062511314983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 118
+        width: 95
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9151d97ace434ccd0800000000000000
+      internalID: -2538846098901101287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_10
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 117
+        width: 94
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd17f45db57b166f0800000000000000
+      internalID: -693071262589685281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_11
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 118
+        width: 95
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06dac0ef6c9507300800000000000000
+      internalID: 247796690706017632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_12
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 120
+        width: 96
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20bd63511c4f82fd0800000000000000
+      internalID: -2366372494061413630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_13
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 120
+        width: 96
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbca222b1b74cd200800000000000000
+      internalID: 206118511475600573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_14
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 120
+        width: 99
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d541129fc719820800000000000000
+      internalID: 2923255042583846245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_15
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 118
+        width: 95
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45bf4dfb92f3cbc80800000000000000
+      internalID: -8305694164233421996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_16
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 117
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0aff941b2a41f890800000000000000
+      internalID: -7426072761667159539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Forest Wraith_0: -7283994306875830920
+      Forest Wraith_1: -977409983952370623
+      Forest Wraith_10: -693071262589685281
+      Forest Wraith_11: 247796690706017632
+      Forest Wraith_12: -2366372494061413630
+      Forest Wraith_13: 206118511475600573
+      Forest Wraith_14: 2923255042583846245
+      Forest Wraith_15: -8305694164233421996
+      Forest Wraith_16: -7426072761667159539
+      Forest Wraith_2: 6747545725184258396
+      Forest Wraith_3: -5288213740850262831
+      Forest Wraith_4: 2060643536110676062
+      Forest Wraith_5: -7686840536247859192
+      Forest Wraith_6: -4742522377343569837
+      Forest Wraith_7: 4961596845537322500
+      Forest Wraith_8: -2299234062511314983
+      Forest Wraith_9: -2538846098901101287
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

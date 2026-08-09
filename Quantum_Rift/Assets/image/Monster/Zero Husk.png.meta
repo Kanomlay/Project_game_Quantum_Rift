@@ -1,0 +1,793 @@
+fileFormatVersion: 2
+guid: b45f98be58a868f4c8d40b2a06a8b1d3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6371944353702339822
+    second: Zero Husk_0
+  - first:
+      213: 5400198828319570680
+    second: Zero Husk_1
+  - first:
+      213: 5066806238803611656
+    second: Zero Husk_2
+  - first:
+      213: -9059427171996464288
+    second: Zero Husk_3
+  - first:
+      213: -6057601986757375866
+    second: Zero Husk_4
+  - first:
+      213: -5111409233568908071
+    second: Zero Husk_5
+  - first:
+      213: -8151026439884229336
+    second: Zero Husk_6
+  - first:
+      213: -4863323502869176404
+    second: Zero Husk_7
+  - first:
+      213: -9165453387278927809
+    second: Zero Husk_8
+  - first:
+      213: 1398425942310775736
+    second: Zero Husk_9
+  - first:
+      213: -1701331002856626928
+    second: Zero Husk_10
+  - first:
+      213: -2186519570525187365
+    second: Zero Husk_11
+  - first:
+      213: 6963051838022842372
+    second: Zero Husk_12
+  - first:
+      213: -8346358442452925303
+    second: Zero Husk_13
+  - first:
+      213: 8332708333343444496
+    second: Zero Husk_14
+  - first:
+      213: -131330181212020616
+    second: Zero Husk_15
+  - first:
+      213: -5169956162790619199
+    second: Zero Husk_16
+  - first:
+      213: 8718543060774142934
+    second: Zero Husk_17
+  - first:
+      213: -4786075998487233613
+    second: Zero Husk_18
+  - first:
+      213: 4420031025299920332
+    second: Zero Husk_19
+  - first:
+      213: -5994591603502955429
+    second: Zero Husk_20
+  - first:
+      213: -4391019502475864042
+    second: Zero Husk_21
+  - first:
+      213: 9064112898590306965
+    second: Zero Husk_22
+  - first:
+      213: -8220599754427443277
+    second: Zero Husk_23
+  - first:
+      213: 2611340483282420372
+    second: Zero Husk_24
+  - first:
+      213: 2677544591267892975
+    second: Zero Husk_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Zero Husk_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 231
+        width: 100
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b140dce5e4297a0800000000000000
+      internalID: -6371944353702339822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 231
+        width: 99
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8faf77e093c51fa40800000000000000
+      internalID: 5400198828319570680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_2
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 232
+        width: 100
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8005f99dd69e05640800000000000000
+      internalID: 5066806238803611656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_3
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 292
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b01a86cf2764280800000000000000
+      internalID: -9059427171996464288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_4
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 230
+        width: 94
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68840ac66131feba0800000000000000
+      internalID: -6057601986757375866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_5
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 229
+        width: 100
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dc397b2260a019b0800000000000000
+      internalID: -5111409233568908071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_6
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 230
+        width: 99
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82532ef83acb1ee80800000000000000
+      internalID: -8151026439884229336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_7
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 292
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf9ca78a01028cb0800000000000000
+      internalID: -4863323502869176404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_8
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 230
+        width: 93
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f38b6d574b4cdc080800000000000000
+      internalID: -9165453387278927809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_9
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 292
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bbef104cf4386310800000000000000
+      internalID: 1398425942310775736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_10
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 230
+        width: 93
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0152f598778a368e0800000000000000
+      internalID: -1701331002856626928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 156
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd21868090ce7a1e0800000000000000
+      internalID: -2186519570525187365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 90
+        width: 104
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4087bfd31cab1a060800000000000000
+      internalID: 6963051838022842372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_13
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 90
+        width: 107
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 984c28da737cb2c80800000000000000
+      internalID: -8346358442452925303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_14
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 156
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e8fd1a41ab3a370800000000000000
+      internalID: 8332708333343444496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_15
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 90
+        width: 103
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 870e19065eb6d2ef0800000000000000
+      internalID: -131330181212020616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_16
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 156
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c70684f240a048b0800000000000000
+      internalID: -5169956162790619199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_17
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 90
+        width: 105
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3c36098bc7ef870800000000000000
+      internalID: 8718543060774142934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_18
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 90
+        width: 107
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb3522bc31749db0800000000000000
+      internalID: -4786075998487233613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_19
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 156
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc515379cca175d30800000000000000
+      internalID: 4420031025299920332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_20
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 90
+        width: 103
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b54caa382beeecca0800000000000000
+      internalID: -5994591603502955429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_21
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 156
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6181d11f607ff03c0800000000000000
+      internalID: -4391019502475864042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 90
+        width: 105
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 592f28458a23acd70800000000000000
+      internalID: 9064112898590306965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_23
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 156
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b750b4f3109aed80800000000000000
+      internalID: -8220599754427443277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_24
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 90
+        width: 101
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49245a585585d3420800000000000000
+      internalID: 2611340483282420372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zero Husk_25
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1
+        width: 134
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee8ac89e9c882520800000000000000
+      internalID: 2677544591267892975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Zero Husk_0: -6371944353702339822
+      Zero Husk_1: 5400198828319570680
+      Zero Husk_10: -1701331002856626928
+      Zero Husk_11: -2186519570525187365
+      Zero Husk_12: 6963051838022842372
+      Zero Husk_13: -8346358442452925303
+      Zero Husk_14: 8332708333343444496
+      Zero Husk_15: -131330181212020616
+      Zero Husk_16: -5169956162790619199
+      Zero Husk_17: 8718543060774142934
+      Zero Husk_18: -4786075998487233613
+      Zero Husk_19: 4420031025299920332
+      Zero Husk_2: 5066806238803611656
+      Zero Husk_20: -5994591603502955429
+      Zero Husk_21: -4391019502475864042
+      Zero Husk_22: 9064112898590306965
+      Zero Husk_23: -8220599754427443277
+      Zero Husk_24: 2611340483282420372
+      Zero Husk_25: 2677544591267892975
+      Zero Husk_3: -9059427171996464288
+      Zero Husk_4: -6057601986757375866
+      Zero Husk_5: -5111409233568908071
+      Zero Husk_6: -8151026439884229336
+      Zero Husk_7: -4863323502869176404
+      Zero Husk_8: -9165453387278927809
+      Zero Husk_9: 1398425942310775736
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

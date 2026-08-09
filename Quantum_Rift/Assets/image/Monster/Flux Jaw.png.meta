@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 74bb4cc9b46424646873916e92298165
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6017390421494023330
+    second: Flux Jaw_0
+  - first:
+      213: -939840438377175605
+    second: Flux Jaw_1
+  - first:
+      213: -3865050800648902546
+    second: Flux Jaw_2
+  - first:
+      213: 7523151072393622172
+    second: Flux Jaw_3
+  - first:
+      213: 3858277719205513438
+    second: Flux Jaw_4
+  - first:
+      213: -5203261366650082767
+    second: Flux Jaw_5
+  - first:
+      213: -5005456215471801960
+    second: Flux Jaw_6
+  - first:
+      213: 4301707325105678694
+    second: Flux Jaw_7
+  - first:
+      213: 6947151305699842599
+    second: Flux Jaw_8
+  - first:
+      213: 4556899087226301032
+    second: Flux Jaw_9
+  - first:
+      213: -581483808763099598
+    second: Flux Jaw_10
+  - first:
+      213: 2434561548373288898
+    second: Flux Jaw_11
+  - first:
+      213: 8546823449431449123
+    second: Flux Jaw_12
+  - first:
+      213: 1903761479724610340
+    second: Flux Jaw_13
+  - first:
+      213: -7072066602196248508
+    second: Flux Jaw_14
+  - first:
+      213: -8758756061918329633
+    second: Flux Jaw_15
+  - first:
+      213: 4309769570965777677
+    second: Flux Jaw_16
+  - first:
+      213: -5453038039294340032
+    second: Flux Jaw_17
+  - first:
+      213: 314096017824202345
+    second: Flux Jaw_18
+  - first:
+      213: -5139737807304197707
+    second: Flux Jaw_19
+  - first:
+      213: -6340063185686523997
+    second: Flux Jaw_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Flux Jaw_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 251
+        width: 100
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5bb20c0b4fed7ca0800000000000000
+      internalID: -6017390421494023330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_1
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 251
+        width: 101
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc52bfcc91405f2f0800000000000000
+      internalID: -939840438377175605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_2
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 251
+        width: 100
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e68ab7456c49c5ac0800000000000000
+      internalID: -3865050800648902546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_3
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 251
+        width: 101
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c92fe9d7a0a976860800000000000000
+      internalID: 7523151072393622172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_4
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 251
+        width: 100
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed88c02c42b5b8530800000000000000
+      internalID: 3858277719205513438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_5
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 251
+        width: 100
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13aee47ea5d4ac7b0800000000000000
+      internalID: -5203261366650082767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_6
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 251
+        width: 93
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8993802971c098ab0800000000000000
+      internalID: -5005456215471801960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_7
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 251
+        width: 91
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 669ae90550cb2bb30800000000000000
+      internalID: 4301707325105678694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_8
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 126
+        width: 100
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a51211e4d396060800000000000000
+      internalID: 6947151305699842599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_9
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86aec6b839b5d3f30800000000000000
+      internalID: 4556899087226301032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_10
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 132
+        width: 101
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 236c8088e872ee7f0800000000000000
+      internalID: -581483808763099598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_11
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 133
+        width: 100
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c76d9254dc49c120800000000000000
+      internalID: 2434561548373288898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_12
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 126
+        width: 101
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e175de4aa6c9670800000000000000
+      internalID: 8546823449431449123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_13
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 126
+        width: 98
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423be00baf48b6a10800000000000000
+      internalID: 1903761479724610340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_14
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 126
+        width: 100
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 448503c05e8fadd90800000000000000
+      internalID: -7072066602196248508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_15
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 126
+        width: 100
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd40f0f74c5a27680800000000000000
+      internalID: -8758756061918329633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_16
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 14
+        width: 104
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0de33537906fcb30800000000000000
+      internalID: 4309769570965777677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_17
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 5
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0441b217bcae254b0800000000000000
+      internalID: -5453038039294340032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_18
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1
+        width: 27
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96eb6cff9a4eb5400800000000000000
+      internalID: 314096017824202345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_19
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 16
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b9fcfc12bbfba8b0800000000000000
+      internalID: -5139737807304197707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_20
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 5
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3af8f9baf129308a0800000000000000
+      internalID: -6340063185686523997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Flux Jaw_0: -6017390421494023330
+      Flux Jaw_1: -939840438377175605
+      Flux Jaw_10: -581483808763099598
+      Flux Jaw_11: 2434561548373288898
+      Flux Jaw_12: 8546823449431449123
+      Flux Jaw_13: 1903761479724610340
+      Flux Jaw_14: -7072066602196248508
+      Flux Jaw_15: -8758756061918329633
+      Flux Jaw_16: 4309769570965777677
+      Flux Jaw_17: -5453038039294340032
+      Flux Jaw_18: 314096017824202345
+      Flux Jaw_19: -5139737807304197707
+      Flux Jaw_2: -3865050800648902546
+      Flux Jaw_20: -6340063185686523997
+      Flux Jaw_3: 7523151072393622172
+      Flux Jaw_4: 3858277719205513438
+      Flux Jaw_5: -5203261366650082767
+      Flux Jaw_6: -5005456215471801960
+      Flux Jaw_7: 4301707325105678694
+      Flux Jaw_8: 6947151305699842599
+      Flux Jaw_9: 4556899087226301032
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

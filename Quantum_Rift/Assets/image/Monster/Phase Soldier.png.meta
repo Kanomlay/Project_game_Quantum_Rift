@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 3535e16558ba14049a0b4cfeb6e45f72
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8151335894887483761
+    second: Phase Soldier_0
+  - first:
+      213: -4999522865956974117
+    second: Phase Soldier_1
+  - first:
+      213: -6927643649754852951
+    second: Phase Soldier_2
+  - first:
+      213: -8040569785256993186
+    second: Phase Soldier_3
+  - first:
+      213: -2729731723953265242
+    second: Phase Soldier_4
+  - first:
+      213: -8729769548744184661
+    second: Phase Soldier_5
+  - first:
+      213: -8200621791663863653
+    second: Phase Soldier_6
+  - first:
+      213: -5557049056284675927
+    second: Phase Soldier_7
+  - first:
+      213: -1991838117935334581
+    second: Phase Soldier_8
+  - first:
+      213: 2276760072819006150
+    second: Phase Soldier_9
+  - first:
+      213: 7077695308395854719
+    second: Phase Soldier_10
+  - first:
+      213: 1569178702236221505
+    second: Phase Soldier_11
+  - first:
+      213: -5945546101956382528
+    second: Phase Soldier_12
+  - first:
+      213: 8993399319240015616
+    second: Phase Soldier_13
+  - first:
+      213: 7392506159521110645
+    second: Phase Soldier_14
+  - first:
+      213: 5996297189033452153
+    second: Phase Soldier_15
+  - first:
+      213: -5960425899552023862
+    second: Phase Soldier_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Phase Soldier_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 239
+        width: 89
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 179c8ab0fcc5f1170800000000000000
+      internalID: 8151335894887483761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 239
+        width: 86
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd1113821702e9ab0800000000000000
+      internalID: -4999522865956974117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 239
+        width: 88
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a11fd50ec01cdf90800000000000000
+      internalID: -6927643649754852951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_3
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 239
+        width: 86
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e940e81682a6090800000000000000
+      internalID: -8040569785256993186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 239
+        width: 86
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a5a6a5b57b0e1ad0800000000000000
+      internalID: -2729731723953265242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_5
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 239
+        width: 87
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baca41409d0a9d680800000000000000
+      internalID: -8729769548744184661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_6
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 239
+        width: 87
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b984c82ede9813e80800000000000000
+      internalID: -8200621791663863653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_7
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 239
+        width: 87
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a07bb8635561e2b0800000000000000
+      internalID: -5557049056284675927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4bb162f8c19b54e0800000000000000
+      internalID: -1991838117935334581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 100
+        width: 86
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca5b23393da89f10800000000000000
+      internalID: 2276760072819006150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_10
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b326d3266093260800000000000000
+      internalID: 7077695308395854719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_11
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14006ef37b7d6c510800000000000000
+      internalID: 1569178702236221505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_12
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c07e25325d2d7da0800000000000000
+      internalID: -5945546101956382528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_13
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f7a822809fecc70800000000000000
+      internalID: 8993399319240015616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_14
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a94265f25779660800000000000000
+      internalID: 7392506159521110645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_15
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 100
+        width: 87
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97223001680273350800000000000000
+      internalID: 5996297189033452153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_16
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1
+        width: 121
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acad92b5930584da0800000000000000
+      internalID: -5960425899552023862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Phase Soldier_0: 8151335894887483761
+      Phase Soldier_1: -4999522865956974117
+      Phase Soldier_10: 7077695308395854719
+      Phase Soldier_11: 1569178702236221505
+      Phase Soldier_12: -5945546101956382528
+      Phase Soldier_13: 8993399319240015616
+      Phase Soldier_14: 7392506159521110645
+      Phase Soldier_15: 5996297189033452153
+      Phase Soldier_16: -5960425899552023862
+      Phase Soldier_2: -6927643649754852951
+      Phase Soldier_3: -8040569785256993186
+      Phase Soldier_4: -2729731723953265242
+      Phase Soldier_5: -8729769548744184661
+      Phase Soldier_6: -8200621791663863653
+      Phase Soldier_7: -5557049056284675927
+      Phase Soldier_8: -1991838117935334581
+      Phase Soldier_9: 2276760072819006150
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
