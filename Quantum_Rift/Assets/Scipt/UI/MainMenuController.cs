@@ -55,9 +55,4 @@ public class MainMenuController : MonoBehaviour
         mainMenuUI.SetActive(true);
     }
 
-    public void StartGame()
-    {
-        Debug.Log("เข้าเกมแล้วจ้า!");
-        SceneManager.LoadScene("GameScene"); 
-    }
 }
