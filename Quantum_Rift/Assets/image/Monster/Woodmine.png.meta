@@ -1,0 +1,729 @@
+fileFormatVersion: 2
+guid: 6e45289dab716ee4db0434ebbf0e1d8d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5811754655862087333
+    second: Woodmine_0
+  - first:
+      213: 8577425812966508728
+    second: Woodmine_1
+  - first:
+      213: -467071734945682074
+    second: Woodmine_2
+  - first:
+      213: 6962047809181073309
+    second: Woodmine_3
+  - first:
+      213: 8688599994348990228
+    second: Woodmine_4
+  - first:
+      213: 779208264016451339
+    second: Woodmine_5
+  - first:
+      213: -4958341823034382331
+    second: Woodmine_6
+  - first:
+      213: -3990480753076486814
+    second: Woodmine_7
+  - first:
+      213: -607274184029637866
+    second: Woodmine_8
+  - first:
+      213: 1466484520021378970
+    second: Woodmine_9
+  - first:
+      213: -5864244219460248083
+    second: Woodmine_10
+  - first:
+      213: 9188473306714780614
+    second: Woodmine_11
+  - first:
+      213: -306608278591147987
+    second: Woodmine_12
+  - first:
+      213: 5890820568887762330
+    second: Woodmine_13
+  - first:
+      213: -6389965436748217576
+    second: Woodmine_14
+  - first:
+      213: 2355957157425655159
+    second: Woodmine_15
+  - first:
+      213: -2510545806522058399
+    second: Woodmine_16
+  - first:
+      213: 7688773192821687569
+    second: Woodmine_17
+  - first:
+      213: 7681399336095367379
+    second: Woodmine_18
+  - first:
+      213: -5957686578545074195
+    second: Woodmine_19
+  - first:
+      213: -9150838851329944069
+    second: Woodmine_20
+  - first:
+      213: -7833231203049502913
+    second: Woodmine_21
+  - first:
+      213: 7490820512422745508
+    second: Woodmine_22
+  - first:
+      213: -6171591917289186860
+    second: Woodmine_23
+  - first:
+      213: -3419522250142475226
+    second: Woodmine_24
+  - first:
+      213: 1903957166163011894
+    second: Woodmine_25
+  - first:
+      213: -4234493926635935714
+    second: Woodmine_26
+  - first:
+      213: -1082655387677929312
+    second: Woodmine_27
+  - first:
+      213: -2390021406534397286
+    second: Woodmine_28
+  - first:
+      213: 1344118551925525550
+    second: Woodmine_29
+  - first:
+      213: 3033296055227131669
+    second: Woodmine_30
+  - first:
+      213: -3462774897786844381
+    second: Woodmine_31
+  - first:
+      213: 5656811894814554003
+    second: Woodmine_32
+  - first:
+      213: 1154032559784638241
+    second: Woodmine_33
+  - first:
+      213: 3856899114721559800
+    second: Woodmine_34
+  - first:
+      213: 905544004640698711
+    second: Woodmine_35
+  - first:
+      213: 1620708166995773254
+    second: Woodmine_36
+  - first:
+      213: -8202877642600358076
+    second: Woodmine_37
+  - first:
+      213: -4228359449483416939
+    second: Woodmine_38
+  - first:
+      213: 6273005768339228453
+    second: Woodmine_39
+  - first:
+      213: -6776333635870400418
+    second: Woodmine_40
+  - first:
+      213: 1799239627514296114
+    second: Woodmine_41
+  - first:
+      213: 6364271092303131824
+    second: Woodmine_42
+  - first:
+      213: -9016938605005853421
+    second: Woodmine_43
+  - first:
+      213: -5933944985557667021
+    second: Woodmine_44
+  - first:
+      213: -2099532955878462998
+    second: Woodmine_45
+  - first:
+      213: 1428506607620698342
+    second: Woodmine_46
+  - first:
+      213: 5121334813190173011
+    second: Woodmine_47
+  - first:
+      213: -1162214325490055929
+    second: Woodmine_48
+  - first:
+      213: -9205897866814595243
+    second: Woodmine_49
+  - first:
+      213: 8335718718118576069
+    second: Woodmine_50
+  - first:
+      213: -9046840962764705028
+    second: Woodmine_51
+  - first:
+      213: 4014831919723419111
+    second: Woodmine_52
+  - first:
+      213: -2295743647805447742
+    second: Woodmine_53
+  - first:
+      213: 2549118756335572092
+    second: Woodmine_54
+  - first:
+      213: 6134925976715458740
+    second: Woodmine_55
+  - first:
+      213: 8812992224835655820
+    second: Woodmine_56
+  - first:
+      213: -1960369517877075043
+    second: Woodmine_57
+  - first:
+      213: -4431288267621639578
+    second: Woodmine_58
+  - first:
+      213: 7481476386355574317
+    second: Woodmine_59
+  - first:
+      213: -7609451417197340291
+    second: Woodmine_60
+  - first:
+      213: 3017747952000980068
+    second: Woodmine_61
+  - first:
+      213: 1307610852945909169
+    second: Woodmine_62
+  - first:
+      213: -5756226329333935162
+    second: Woodmine_63
+  - first:
+      213: -5835729843471604296
+    second: Woodmine_64
+  - first:
+      213: -4695203095239327264
+    second: Woodmine_65
+  - first:
+      213: 3967338566638899197
+    second: Woodmine_66
+  - first:
+      213: -8595388609934047852
+    second: Woodmine_67
+  - first:
+      213: -5202531741209951182
+    second: Woodmine_68
+  - first:
+      213: -158042846430522916
+    second: Woodmine_69
+  - first:
+      213: -7493036259587933329
+    second: Woodmine_70
+  - first:
+      213: 8626466406303724020
+    second: Woodmine_71
+  - first:
+      213: -4266797994601337878
+    second: Woodmine_72
+  - first:
+      213: 8114278092811283848
+    second: Woodmine_73
+  - first:
+      213: 337278077495051891
+    second: Woodmine_74
+  - first:
+      213: -2771893992131686501
+    second: Woodmine_75
+  - first:
+      213: -8193003671596554736
+    second: Woodmine_76
+  - first:
+      213: 1675899724833358670
+    second: Woodmine_77
+  - first:
+      213: 3640945943245262218
+    second: Woodmine_78
+  - first:
+      213: 8910336120624356576
+    second: Woodmine_79
+  - first:
+      213: 1775991166108486891
+    second: Woodmine_80
+  - first:
+      213: -792399272417308416
+    second: Woodmine_81
+  - first:
+      213: 1067911767864198738
+    second: Woodmine_82
+  - first:
+      213: -5683071320055265348
+    second: Woodmine_83
+  - first:
+      213: -7852740475511678973
+    second: Woodmine_84
+  - first:
+      213: -5457016825201260384
+    second: Woodmine_85
+  - first:
+      213: -3053687636368949579
+    second: Woodmine_86
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Woodmine_0
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 491
+        width: 205
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b512e97beef785fa0800000000000000
+      internalID: -5811754655862087333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_1
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 475
+        width: 235
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b8822de453290770800000000000000
+      internalID: 8577425812966508728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_2
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 496
+        width: 219
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66defe15bb0a489f0800000000000000
+      internalID: -467071734945682074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_3
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 493
+        width: 216
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f368f88992e9060800000000000000
+      internalID: 6962047809181073309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_4
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 502
+        width: 213
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41fe1a229ab149870800000000000000
+      internalID: 8688599994348990228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_5
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 508
+        width: 229
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07dfb6a9cd40da00800000000000000
+      internalID: 779208264016451339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_6
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 517
+        width: 189
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508a213e16e603bb0800000000000000
+      internalID: -4958341823034382331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_7
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 128
+        width: 239
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26db7d5c5e6fe98c0800000000000000
+      internalID: -3990480753076486814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_8
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 137
+        width: 228
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 613f5abd8578297f0800000000000000
+      internalID: -607274184029637866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_11
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 478
+        width: 209
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c3b4e23ac3048f70800000000000000
+      internalID: 9188473306714780614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 213
+        height: 279
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127b231bf72f30010800000000000000
+      internalID: 1154032559784638241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodmine_35
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 132
+        width: 215
+        height: 275
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 751f7157973219c00800000000000000
+      internalID: 905544004640698711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 191caa66a11200642bc404ba068ba5fc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Woodmine_0: -5811754655862087333
+      Woodmine_1: 8577425812966508728
+      Woodmine_10: -5864244219460248083
+      Woodmine_11: 9188473306714780614
+      Woodmine_12: -306608278591147987
+      Woodmine_13: 5890820568887762330
+      Woodmine_14: -6389965436748217576
+      Woodmine_15: 2355957157425655159
+      Woodmine_16: -2510545806522058399
+      Woodmine_17: 7688773192821687569
+      Woodmine_18: 7681399336095367379
+      Woodmine_19: -5957686578545074195
+      Woodmine_2: -467071734945682074
+      Woodmine_20: -9150838851329944069
+      Woodmine_21: -7833231203049502913
+      Woodmine_22: 7490820512422745508
+      Woodmine_23: -6171591917289186860
+      Woodmine_24: -3419522250142475226
+      Woodmine_25: 1903957166163011894
+      Woodmine_26: -4234493926635935714
+      Woodmine_27: -1082655387677929312
+      Woodmine_28: -2390021406534397286
+      Woodmine_29: 1344118551925525550
+      Woodmine_3: 6962047809181073309
+      Woodmine_30: 3033296055227131669
+      Woodmine_31: -3462774897786844381
+      Woodmine_32: 5656811894814554003
+      Woodmine_33: 1154032559784638241
+      Woodmine_34: 3856899114721559800
+      Woodmine_35: 905544004640698711
+      Woodmine_36: 1620708166995773254
+      Woodmine_37: -8202877642600358076
+      Woodmine_38: -4228359449483416939
+      Woodmine_39: 6273005768339228453
+      Woodmine_4: 8688599994348990228
+      Woodmine_40: -6776333635870400418
+      Woodmine_41: 1799239627514296114
+      Woodmine_42: 6364271092303131824
+      Woodmine_43: -9016938605005853421
+      Woodmine_44: -5933944985557667021
+      Woodmine_45: -2099532955878462998
+      Woodmine_46: 1428506607620698342
+      Woodmine_47: 5121334813190173011
+      Woodmine_48: -1162214325490055929
+      Woodmine_49: -9205897866814595243
+      Woodmine_5: 779208264016451339
+      Woodmine_50: 8335718718118576069
+      Woodmine_51: -9046840962764705028
+      Woodmine_52: 4014831919723419111
+      Woodmine_53: -2295743647805447742
+      Woodmine_54: 2549118756335572092
+      Woodmine_55: 6134925976715458740
+      Woodmine_56: 8812992224835655820
+      Woodmine_57: -1960369517877075043
+      Woodmine_58: -4431288267621639578
+      Woodmine_59: 7481476386355574317
+      Woodmine_6: -4958341823034382331
+      Woodmine_60: -7609451417197340291
+      Woodmine_61: 3017747952000980068
+      Woodmine_62: 1307610852945909169
+      Woodmine_63: -5756226329333935162
+      Woodmine_64: -5835729843471604296
+      Woodmine_65: -4695203095239327264
+      Woodmine_66: 3967338566638899197
+      Woodmine_67: -8595388609934047852
+      Woodmine_68: -5202531741209951182
+      Woodmine_69: -158042846430522916
+      Woodmine_7: -3990480753076486814
+      Woodmine_70: -7493036259587933329
+      Woodmine_71: 8626466406303724020
+      Woodmine_72: -4266797994601337878
+      Woodmine_73: 8114278092811283848
+      Woodmine_74: 337278077495051891
+      Woodmine_75: -2771893992131686501
+      Woodmine_76: -8193003671596554736
+      Woodmine_77: 1675899724833358670
+      Woodmine_78: 3640945943245262218
+      Woodmine_79: 8910336120624356576
+      Woodmine_8: -607274184029637866
+      Woodmine_80: 1775991166108486891
+      Woodmine_81: -792399272417308416
+      Woodmine_82: 1067911767864198738
+      Woodmine_83: -5683071320055265348
+      Woodmine_84: -7852740475511678973
+      Woodmine_85: -5457016825201260384
+      Woodmine_86: -3053687636368949579
+      Woodmine_9: 1466484520021378970
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,749 @@
+fileFormatVersion: 2
+guid: 2ef1e9bb1aadc7f4281782733139fb38
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2040791299992771969
+    second: Rootlings-3Heads_0
+  - first:
+      213: 4672371587370716879
+    second: Rootlings-3Heads_1
+  - first:
+      213: 6504028743580412909
+    second: Rootlings-3Heads_2
+  - first:
+      213: 1757045967486360443
+    second: Rootlings-3Heads_3
+  - first:
+      213: -3167815848785296138
+    second: Rootlings-3Heads_4
+  - first:
+      213: -328136571747862233
+    second: Rootlings-3Heads_5
+  - first:
+      213: 1351357579051463305
+    second: Rootlings-3Heads_6
+  - first:
+      213: 7470243430954562383
+    second: Rootlings-3Heads_7
+  - first:
+      213: 2231638123044088612
+    second: Rootlings-3Heads_8
+  - first:
+      213: -3699684041848316821
+    second: Rootlings-3Heads_9
+  - first:
+      213: 6858226860287215416
+    second: Rootlings-3Heads_10
+  - first:
+      213: 6785859486401870280
+    second: Rootlings-3Heads_11
+  - first:
+      213: -8548697880470160579
+    second: Rootlings-3Heads_12
+  - first:
+      213: 5539031785019251363
+    second: Rootlings-3Heads_13
+  - first:
+      213: 2839929033013665754
+    second: Rootlings-3Heads_14
+  - first:
+      213: -786924641499133370
+    second: Rootlings-3Heads_15
+  - first:
+      213: 45729064320677040
+    second: Rootlings-3Heads_16
+  - first:
+      213: 5458862423869204154
+    second: Rootlings-3Heads_17
+  - first:
+      213: -6584050736455859570
+    second: Rootlings-3Heads_18
+  - first:
+      213: -3907610927351642228
+    second: Rootlings-3Heads_19
+  - first:
+      213: -2240227380929661220
+    second: Rootlings-3Heads_20
+  - first:
+      213: -5324036513307885915
+    second: Rootlings-3Heads_21
+  - first:
+      213: 5803155777483201009
+    second: Rootlings-3Heads_22
+  - first:
+      213: -592838547718487593
+    second: Rootlings-3Heads_23
+  - first:
+      213: -159579689637616015
+    second: Rootlings-3Heads_24
+  - first:
+      213: 8224106673187263958
+    second: Rootlings-3Heads_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rootlings-3Heads_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 632
+        width: 182
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72293f0027ada3e0800000000000000
+      internalID: -2040791299992771969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_1
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 634
+        width: 178
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fce0cd3143997d040800000000000000
+      internalID: 4672371587370716879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_2
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 619
+        width: 194
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb6a06bea3f24a50800000000000000
+      internalID: 6504028743580412909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_3
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 634
+        width: 182
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b9e0a8ff7426810800000000000000
+      internalID: 1757045967486360443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_4
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 609
+        width: 184
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4cc43f448a904d0800000000000000
+      internalID: -3167815848785296138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_5
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 571
+        width: 194
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 729772bc689327bf0800000000000000
+      internalID: -328136571747862233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_6
+      rect:
+        serializedVersion: 2
+        x: 1268
+        y: 632
+        width: 181
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 982f4efee8cf0c210800000000000000
+      internalID: 1351357579051463305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_7
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 633
+        width: 180
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f43fdb742d2aba760800000000000000
+      internalID: 7470243430954562383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 374
+        width: 184
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b23479c0f58fe10800000000000000
+      internalID: 2231638123044088612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_9
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 370
+        width: 189
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6c137837f418acc0800000000000000
+      internalID: -3699684041848316821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_10
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 369
+        width: 181
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83746743ef05d2f50800000000000000
+      internalID: 6858226860287215416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_11
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 370
+        width: 185
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c9b2b6ff373c2e50800000000000000
+      internalID: 6785859486401870280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_12
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 366
+        width: 185
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bf076129cec5980800000000000000
+      internalID: -8548697880470160579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_13
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 329
+        width: 202
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa9ba9bf089edc40800000000000000
+      internalID: 5539031785019251363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_14
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 360
+        width: 192
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf1910b864796720800000000000000
+      internalID: 2839929033013665754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_15
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 328
+        width: 183
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a417635384415f0800000000000000
+      internalID: -786924641499133370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 47
+        width: 189
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b4beba775672a000800000000000000
+      internalID: 45729064320677040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_17
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 48
+        width: 194
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab6a374c376c1cb40800000000000000
+      internalID: 5458862423869204154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_18
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 48
+        width: 203
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e82466e2db0c0a4a0800000000000000
+      internalID: -6584050736455859570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_20
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 46
+        width: 191
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd67597f01d19e0e0800000000000000
+      internalID: -2240227380929661220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_21
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 47
+        width: 189
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aef215cff83d16b0800000000000000
+      internalID: -5324036513307885915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_23
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 31
+        width: 192
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1c41a5b70d5c7f0800000000000000
+      internalID: -592838547718487593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_24
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 43
+        width: 181
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17668c52e1f09cdf0800000000000000
+      internalID: -159579689637616015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rootlings-3Heads_25
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 47
+        width: 180
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d51f323275e12270800000000000000
+      internalID: 8224106673187263958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4c4b09d72614c784b9dc754e8c3cdb07
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rootlings-3Heads_0: -2040791299992771969
+      Rootlings-3Heads_1: 4672371587370716879
+      Rootlings-3Heads_10: 6858226860287215416
+      Rootlings-3Heads_11: 6785859486401870280
+      Rootlings-3Heads_12: -8548697880470160579
+      Rootlings-3Heads_13: 5539031785019251363
+      Rootlings-3Heads_14: 2839929033013665754
+      Rootlings-3Heads_15: -786924641499133370
+      Rootlings-3Heads_16: 45729064320677040
+      Rootlings-3Heads_17: 5458862423869204154
+      Rootlings-3Heads_18: -6584050736455859570
+      Rootlings-3Heads_19: -3907610927351642228
+      Rootlings-3Heads_2: 6504028743580412909
+      Rootlings-3Heads_20: -2240227380929661220
+      Rootlings-3Heads_21: -5324036513307885915
+      Rootlings-3Heads_22: 5803155777483201009
+      Rootlings-3Heads_23: -592838547718487593
+      Rootlings-3Heads_24: -159579689637616015
+      Rootlings-3Heads_25: 8224106673187263958
+      Rootlings-3Heads_3: 1757045967486360443
+      Rootlings-3Heads_4: -3167815848785296138
+      Rootlings-3Heads_5: -328136571747862233
+      Rootlings-3Heads_6: 1351357579051463305
+      Rootlings-3Heads_7: 7470243430954562383
+      Rootlings-3Heads_8: 2231638123044088612
+      Rootlings-3Heads_9: -3699684041848316821
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
