@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   className: Archer
   characterSprite: {fileID: 6882100610821475681, guid: 0e150127417c66e439023ea38beda849, type: 3}
-  characterPrefab: {fileID: 0}
+  characterPrefab: {fileID: 6796246386342514675, guid: 411f699cf7b2f804e9a1199a4876c2f8, type: 3}
   maxHealth: 5
   maxEnergy: 1
   moveSpeed: 1

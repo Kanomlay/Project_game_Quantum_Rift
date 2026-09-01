@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
@@ -89,5 +90,16 @@ public class CharacterSelectionManager : MonoBehaviour
 
         // เปิดกล่องใหม่
         spawnedBoxes[currentIndex].SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        // 1. ส่งข้อมูล Data ตัวละครที่กำลังโชว์อยู่บนจอ ไปเก็บไว้ที่ GameManager
+        GameManager.selectedCharacter = allCharacters[currentIndex]; 
+
+        Debug.Log("เลือกตัวละคร: " + GameManager.selectedCharacter.className + " เข้าเกมแล้วจ้า!");
+
+        // 2. โหลดเข้าหน้าเกม (เปลี่ยน "GameScene" เป็นชื่อไฟล์ Scene ด่านของคุณ เช่น "map_1")
+        SceneManager.LoadScene("GameScene"); 
     }
 }
