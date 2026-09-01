@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4083411153145439761}
   - component: {fileID: 7611201873556325677}
   - component: {fileID: 1686358738724516004}
+  - component: {fileID: 8527322351544083418}
   m_Layer: 0
   m_Name: Warrior_0
   m_TagString: Untagged
@@ -204,3 +205,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &8527322351544083418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998758228612389446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915f5e484d495b04eb99305cee3ffb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  maxHP: 4
+  currentHP: 0
+  maxEnergy: 50
+  currentEnergy: 0
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
+  iframeDuration: 1
+  currentCurrency: 0
+  weaponController: {fileID: 0}
+  isDead: 0

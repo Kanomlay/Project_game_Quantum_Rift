@@ -15,8 +15,8 @@ MonoBehaviour:
   className: Warrior
   characterSprite: {fileID: -1432696976, guid: 68863131f42f82249a3a354f8a61ff17, type: 3}
   characterPrefab: {fileID: 2998758228612389446, guid: c0c7056e87cfc3244ad8ef5a3bb19109, type: 3}
-  maxHealth: 8
-  maxEnergy: 150
+  maxHealth: 4
+  maxEnergy: 100
   moveSpeed: 100
   skill1Name: "\u0E1E\u0E38\u0E48\u0E07\u0E0A\u0E19\u0E01\u0E23\u0E30\u0E41\u0E17\u0E01"
   skill2Name: "\u0E40\u0E01\u0E23\u0E32\u0E30\u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A"
