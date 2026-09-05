@@ -5,15 +5,13 @@ using System.Collections;
 
 public class HUDManager : MonoBehaviour
 {
-    [Header("ระบบหลอดเลือด (Rect Mask 2D)")]
-    public RectMask2D hpMask;
-    public TMP_Text hpText; 
-    private float maxHpPaddingRight = 410f; 
+    [Header("ระบบหลอดเลือด")]
+    public Image hpFillImage;
+    public TMP_Text hpText;
 
-    [Header("ระบบพลังงาน (Rect Mask 2D)")]
-    public RectMask2D energyMask;
+    [Header("ระบบพลังงาน")]
+    public Image energyFillImage;
     public TMP_Text energyText;
-    private float maxEnergyPaddingRight = 410f; 
 
     [Header("ระบบอาวุธ")]
     public Image activeWeaponIcon; 
@@ -34,30 +32,20 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateHP(float currentHP, float maxHP)
     {
-        float hpPercent = currentHP / maxHP;
-        float currentPadding = maxHpPaddingRight * (1f - hpPercent);
-
-        Vector4 currentPaddingVector = hpMask.padding;
-        currentPaddingVector.z = currentPadding;
-        hpMask.padding = currentPaddingVector;
+        if (hpFillImage != null) hpFillImage.fillAmount = currentHP / maxHP;
 
         if (hpText != null)
         {
-            hpText.text = "HP " + currentHP.ToString("F1") + "/" + maxHP.ToString("F1");
+            hpText.text = currentHP.ToString("F0") + "/" + maxHP.ToString("F0");
         }
     }
     public void UpdateEnergy(int currentEnergy, int maxEnergy)
     {
-        float energyPercent = (float)currentEnergy / maxEnergy;
-        float currentPadding = maxEnergyPaddingRight * (1f - energyPercent);
-
-        Vector4 currentPaddingVector = energyMask.padding;
-        currentPaddingVector.z = currentPadding;
-        energyMask.padding = currentPaddingVector;
+        if (energyFillImage != null) energyFillImage.fillAmount = (float)currentEnergy / maxEnergy;
 
         if (energyText != null)
         {
-            energyText.text = "Energy " + currentEnergy + "/" + maxEnergy;
+            energyText.text = currentEnergy + "/" + maxEnergy;
         }
     }
     public void UpdateWeaponIcon(Sprite weaponSprite)
