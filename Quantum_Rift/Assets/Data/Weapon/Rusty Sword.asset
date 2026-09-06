@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
-  m_Name: Old_Sword
+  m_Name: Rusty Sword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: Old_Sword
-  weaponIcon: {fileID: 127397387470684367, guid: a3edc19a4116c71438d290add2bba525, type: 3}
-  weaponPrefab: {fileID: 7842415614476813621, guid: eb5d74fd0e8de924ebc90c9c136c6a53, type: 3}
+  weaponName: Rusty Sword
+  weaponIcon: {fileID: 21300000, guid: 4ce79017d15a76e4c980f47376a59936, type: 3}
+  weaponPrefab: {fileID: 7777550296153586313, guid: 1dc86d4b3f6598b478a44f5a2342e1e3, type: 3}
+  weaponType: 0
   rarity: 0
-  attackDamage: 8
+  attackDamage: 4
   attackSpeed: 1
-  attackRange: 4
+  attackRange: 1.5
   attackAngle: 90
   energyCost: 0
+  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
   abilityDescription: 
   specialEffectPrefab: {fileID: 0}

@@ -53,8 +53,14 @@ TagManager:
   - name: object
     uniqueID: 1096051565
     locked: 0
+  - name: Weapon
+    uniqueID: 4026590389
+    locked: 0
   - name: New Layer 5
     uniqueID: 1091057299
+    locked: 0
+  - name: Effect
+    uniqueID: 831001825
     locked: 0
   m_RenderingLayers:
   - Default

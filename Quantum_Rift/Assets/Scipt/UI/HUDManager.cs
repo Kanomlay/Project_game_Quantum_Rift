@@ -50,26 +50,26 @@ public class HUDManager : MonoBehaviour
     }
     public void UpdateWeaponIcon(Sprite weaponSprite)
     {
-        if (weaponSprite != null)
+        if (weaponSprite != null && activeWeaponIcon != null)
         {
             activeWeaponIcon.sprite = weaponSprite;
-            activeWeaponIcon.color = Color.white; 
+            activeWeaponIcon.color = Color.white;
         }
     }
 
     public void SetupSkillIcons(Sprite qIcon, Sprite eIcon)
     {
-        if (qIcon != null) { skillQIcon.sprite = qIcon; skillQIcon.color = Color.white; }
-        if (eIcon != null) { skillEIcon.sprite = eIcon; skillEIcon.color = Color.white; }
+        if (qIcon != null && skillQIcon != null) { skillQIcon.sprite = qIcon; skillQIcon.color = Color.white; }
+        if (eIcon != null && skillEIcon != null) { skillEIcon.sprite = eIcon; skillEIcon.color = Color.white; }
     }
 
     public void UpdateSkillCooldown(string skillKey, float currentCooldown)
     {
-        if (skillKey == "Q")
+        if (skillKey == "Q" && skillQCooldownText != null)
         {
             skillQCooldownText.text = currentCooldown > 0 ? Mathf.Ceil(currentCooldown).ToString() : "";
         }
-        else if (skillKey == "E")
+        else if (skillKey == "E" && skillECooldownText != null)
         {
             skillECooldownText.text = currentCooldown > 0 ? Mathf.Ceil(currentCooldown).ToString() : "";
         }
