@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ca00dc606258847ad637796d83d938, type: 3}
   m_Name: MapData_2_2
   m_EditorClassIdentifier: Assembly-CSharp::MapData
-  mapName: MapData_2_2
+  mapName: Map 2-2
   mapPrefab: {fileID: 5816553234696213029, guid: be756058bde9d75419b3196831225107, type: 3}
   spawnPosition: {x: 0, y: 0}
   nextMap: {fileID: 11400000, guid: 57906349bc8c62f459788ef408f0ccac, type: 2}

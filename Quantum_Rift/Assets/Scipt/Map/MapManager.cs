@@ -32,6 +32,15 @@ public class MapManager : MonoBehaviour
 
         if (firstMap != null)
         {
+            // ด่านแรกยังไม่มีอะไรให้ค่อยๆ มืด ถ้าปล่อยให้เฟดตามปกติจะเห็นฉากเปล่าแว็บนึงก่อนแมพโหลด
+            // จึงบังคับให้ดำสนิทตั้งแต่เฟรมแรก แล้วปล่อยให้ LoadMapRoutine เฟดออกตอนแมพพร้อมแล้ว
+            HUDManager hud = FindObjectOfType<HUDManager>();
+            if (hud != null && hud.transitionCanvas != null)
+            {
+                hud.transitionCanvas.gameObject.SetActive(true);
+                hud.transitionCanvas.alpha = 1f;
+            }
+
             LoadMap(firstMap);
         }
     }

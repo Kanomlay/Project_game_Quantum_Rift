@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ca00dc606258847ad637796d83d938, type: 3}
   m_Name: MapData_1_bossroom
   m_EditorClassIdentifier: Assembly-CSharp::MapData
-  mapName: MapData_1_bossroom
+  mapName: Map 1 - BossRoom
   mapPrefab: {fileID: 7737823583330586644, guid: be61dcdf759df844cb171aaceef7f1ae, type: 3}
   spawnPosition: {x: -100, y: -140}
   nextMap: {fileID: 11400000, guid: 0da5f1f2845df4642840ccd26ffbe411, type: 2}
