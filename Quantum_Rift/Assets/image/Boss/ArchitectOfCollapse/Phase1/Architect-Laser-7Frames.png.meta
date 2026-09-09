@@ -1,0 +1,341 @@
+fileFormatVersion: 2
+guid: 01e00bff7f9b8dd41aab303216ffeaf3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9203273963085774198
+    second: Architect-Laser-7Frames_0
+  - first:
+      213: 9019666688777620608
+    second: Architect-Laser-7Frames_1
+  - first:
+      213: 519554445858592684
+    second: Architect-Laser-7Frames_2
+  - first:
+      213: -7693786852814514621
+    second: Architect-Laser-7Frames_3
+  - first:
+      213: -2656427439845370154
+    second: Architect-Laser-7Frames_4
+  - first:
+      213: -838110608518394803
+    second: Architect-Laser-7Frames_5
+  - first:
+      213: -4118406366420937853
+    second: Architect-Laser-7Frames_6
+  - first:
+      213: -8854790253137064555
+    second: Architect-Laser-7Frames_7
+  - first:
+      213: -3409488010368954142
+    second: Architect-Laser-7Frames_8
+  - first:
+      213: -1673477345417524267
+    second: Architect-Laser-7Frames_9
+  - first:
+      213: 2674055258635536474
+    second: Architect-Laser-7Frames_10
+  - first:
+      213: -8704812447368872356
+    second: Architect-Laser-7Frames_11
+  - first:
+      213: 5368901216353194755
+    second: Architect-Laser-7Frames_12
+  - first:
+      213: 6097727170715910754
+    second: Architect-Laser-7Frames_13
+  - first:
+      213: 722154064528933525
+    second: Architect-Laser-7Frames_14
+  - first:
+      213: 5018355503143489863
+    second: Architect-Laser-7Frames_15
+  - first:
+      213: 2892545604285840159
+    second: Architect-Laser-7Frames_16
+  - first:
+      213: -5929665511403678937
+    second: Architect-Laser-7Frames_17
+  - first:
+      213: -6241974986208554184
+    second: Architect-Laser-7Frames_18
+  - first:
+      213: -5684021025385927503
+    second: Architect-Laser-7Frames_19
+  - first:
+      213: 2008179288935285610
+    second: Architect-Laser-7Frames_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LaserBeam_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9b98bd42ac421459f275e60f291568
+      internalID: -1404008633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2d085052d805e4e803e6a4ae3710cc
+      internalID: -1740647446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_02
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8705f1256c51746939f610543a6c4d
+      internalID: 702666721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c54cea6850e8442bace5cc91d94316
+      internalID: -565659868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f282cc276830e4f8cc88abb8cbecd0
+      internalID: 1261225680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_05
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4318789fd4f256e47833e917849c9b24
+      internalID: -570520350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 256
+      alignment: 9
+      pivot: {x: 0.09765625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa79e1cc63cafa54894dd6acc1c1afed
+      internalID: -164856279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 494065b2f7706d249a06c1f629448fe1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LaserBeam_00: -1404008633
+      LaserBeam_01: -1740647446
+      LaserBeam_02: 702666721
+      LaserBeam_03: -565659868
+      LaserBeam_04: 1261225680
+      LaserBeam_05: -570520350
+      LaserBeam_06: -164856279
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

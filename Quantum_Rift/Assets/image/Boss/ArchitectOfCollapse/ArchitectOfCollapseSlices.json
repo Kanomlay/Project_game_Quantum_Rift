@@ -1,0 +1,1003 @@
+{
+  "sheets": [
+    {
+      "key": "Phase1Body",
+      "file": "Phase1/Architect-Body-35Frames.png",
+      "width": 3136,
+      "height": 2240,
+      "ppu": 100,
+      "frames": [
+        {
+          "name": "Idle_00",
+          "x": 0,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_01",
+          "x": 448,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_02",
+          "x": 896,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_03",
+          "x": 1344,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_04",
+          "x": 1792,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_05",
+          "x": 2240,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Idle_06",
+          "x": 2688,
+          "y": 1792,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_00",
+          "x": 0,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_01",
+          "x": 448,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_02",
+          "x": 896,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_03",
+          "x": 1344,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_04",
+          "x": 1792,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_05",
+          "x": 2240,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletPose_06",
+          "x": 2688,
+          "y": 1344,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_00",
+          "x": 0,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_01",
+          "x": 448,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_02",
+          "x": 896,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_03",
+          "x": 1344,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_04",
+          "x": 1792,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_05",
+          "x": 2240,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserPose_06",
+          "x": 2688,
+          "y": 896,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_00",
+          "x": 0,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_01",
+          "x": 448,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_02",
+          "x": 896,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_03",
+          "x": 1344,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_04",
+          "x": 1792,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_05",
+          "x": 2240,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "MixedPose_06",
+          "x": 2688,
+          "y": 448,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_00",
+          "x": 0,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_01",
+          "x": 448,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_02",
+          "x": 896,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_03",
+          "x": 1344,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_04",
+          "x": 1792,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_05",
+          "x": 2240,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "Phase2Charge_06",
+          "x": 2688,
+          "y": 0,
+          "width": 448,
+          "height": 448,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        }
+      ]
+    },
+    {
+      "key": "Phase1Bullet",
+      "file": "Phase1/Architect-Bullet-7Frames.png",
+      "width": 2240,
+      "height": 320,
+      "ppu": 300,
+      "frames": [
+        {
+          "name": "BulletSpin_00",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_01",
+          "x": 320,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_02",
+          "x": 640,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_03",
+          "x": 960,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_04",
+          "x": 1280,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_05",
+          "x": 1600,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "BulletSpin_06",
+          "x": 1920,
+          "y": 0,
+          "width": 320,
+          "height": 320,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        }
+      ]
+    },
+    {
+      "key": "Phase1Laser",
+      "file": "Phase1/Architect-Laser-7Frames.png",
+      "width": 1024,
+      "height": 1792,
+      "ppu": 200,
+      "frames": [
+        {
+          "name": "LaserBeam_00",
+          "x": 0,
+          "y": 1536,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_01",
+          "x": 0,
+          "y": 1280,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_02",
+          "x": 0,
+          "y": 1024,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_03",
+          "x": 0,
+          "y": 768,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_04",
+          "x": 0,
+          "y": 512,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_05",
+          "x": 0,
+          "y": 256,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_06",
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.09765625,
+          "pivotY": 0.5
+        }
+      ]
+    },
+    {
+      "key": "Phase2Body",
+      "file": "Phase2/Architect2-Body-42Frames.png",
+      "width": 4480,
+      "height": 3840,
+      "ppu": 100,
+      "frames": [
+        {
+          "name": "Idle_00",
+          "x": 0,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_01",
+          "x": 640,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_02",
+          "x": 1280,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_03",
+          "x": 1920,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_04",
+          "x": 2560,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_05",
+          "x": 3200,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Idle_06",
+          "x": 3840,
+          "y": 3200,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_00",
+          "x": 0,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_01",
+          "x": 640,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_02",
+          "x": 1280,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_03",
+          "x": 1920,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_04",
+          "x": 2560,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_05",
+          "x": 3200,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "Float_06",
+          "x": 3840,
+          "y": 2560,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_00",
+          "x": 0,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_01",
+          "x": 640,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_02",
+          "x": 1280,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_03",
+          "x": 1920,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_04",
+          "x": 2560,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_05",
+          "x": 3200,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "AuraDash_06",
+          "x": 3840,
+          "y": 1920,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_00",
+          "x": 0,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_01",
+          "x": 640,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_02",
+          "x": 1280,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_03",
+          "x": 1920,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_04",
+          "x": 2560,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_05",
+          "x": 3200,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ReturnSlash_06",
+          "x": 3840,
+          "y": 1280,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_00",
+          "x": 0,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_01",
+          "x": 640,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_02",
+          "x": 1280,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_03",
+          "x": 1920,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_04",
+          "x": 2560,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_05",
+          "x": 3200,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "LaserPose_06",
+          "x": 3840,
+          "y": 640,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_00",
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_01",
+          "x": 640,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_02",
+          "x": 1280,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_03",
+          "x": 1920,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_04",
+          "x": 2560,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_05",
+          "x": 3200,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        },
+        {
+          "name": "ScytheSlash_06",
+          "x": 3840,
+          "y": 0,
+          "width": 640,
+          "height": 640,
+          "pivotX": 0.5,
+          "pivotY": 0.25
+        }
+      ]
+    },
+    {
+      "key": "Phase2Wave",
+      "file": "Phase2/Architect2-ScytheWave-7Frames.png",
+      "width": 2688,
+      "height": 384,
+      "ppu": 200,
+      "frames": [
+        {
+          "name": "ScytheWave_00",
+          "x": 0,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_01",
+          "x": 384,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_02",
+          "x": 768,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_03",
+          "x": 1152,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_04",
+          "x": 1536,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_05",
+          "x": 1920,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        {
+          "name": "ScytheWave_06",
+          "x": 2304,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        }
+      ]
+    },
+    {
+      "key": "Phase2Laser",
+      "file": "Phase2/Architect2-Laser-7Frames.png",
+      "width": 1024,
+      "height": 1792,
+      "ppu": 200,
+      "frames": [
+        {
+          "name": "LaserBeam_00",
+          "x": 0,
+          "y": 1536,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_01",
+          "x": 0,
+          "y": 1280,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_02",
+          "x": 0,
+          "y": 1024,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_03",
+          "x": 0,
+          "y": 768,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_04",
+          "x": 0,
+          "y": 512,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_05",
+          "x": 0,
+          "y": 256,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        },
+        {
+          "name": "LaserBeam_06",
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 256,
+          "pivotX": 0.109375,
+          "pivotY": 0.5
+        }
+      ]
+    }
+  ]
+}

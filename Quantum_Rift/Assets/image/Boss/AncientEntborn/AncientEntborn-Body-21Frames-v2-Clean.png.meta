@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: b8f0230a083bd5f479c014cf7dc10b75
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7677651681256589416
+    second: AncientEntborn-Body-21Frames-v2-Clean_0
+  - first:
+      213: -103651484187611388
+    second: AncientEntborn-Body-21Frames-v2-Clean_1
+  - first:
+      213: -1196755707371824437
+    second: AncientEntborn-Body-21Frames-v2-Clean_2
+  - first:
+      213: 4485249095393615905
+    second: AncientEntborn-Body-21Frames-v2-Clean_3
+  - first:
+      213: -6103903500148450693
+    second: AncientEntborn-Body-21Frames-v2-Clean_4
+  - first:
+      213: -6864260569853752098
+    second: AncientEntborn-Body-21Frames-v2-Clean_5
+  - first:
+      213: 7463575738404951938
+    second: AncientEntborn-Body-21Frames-v2-Clean_6
+  - first:
+      213: -4914960386407843257
+    second: AncientEntborn-Body-21Frames-v2-Clean_7
+  - first:
+      213: 3411698695379888267
+    second: AncientEntborn-Body-21Frames-v2-Clean_8
+  - first:
+      213: 7031536542368948756
+    second: AncientEntborn-Body-21Frames-v2-Clean_9
+  - first:
+      213: -6959615514296551282
+    second: AncientEntborn-Body-21Frames-v2-Clean_10
+  - first:
+      213: -1125644306233893479
+    second: AncientEntborn-Body-21Frames-v2-Clean_11
+  - first:
+      213: -297213632193777228
+    second: AncientEntborn-Body-21Frames-v2-Clean_12
+  - first:
+      213: -3289790072303853707
+    second: AncientEntborn-Body-21Frames-v2-Clean_13
+  - first:
+      213: -8000501466961277389
+    second: AncientEntborn-Body-21Frames-v2-Clean_14
+  - first:
+      213: -1758173067896162089
+    second: AncientEntborn-Body-21Frames-v2-Clean_15
+  - first:
+      213: 3313105278951900364
+    second: AncientEntborn-Body-21Frames-v2-Clean_16
+  - first:
+      213: -7001438569077424558
+    second: AncientEntborn-Body-21Frames-v2-Clean_17
+  - first:
+      213: -7501386969787381136
+    second: AncientEntborn-Body-21Frames-v2-Clean_18
+  - first:
+      213: -5992292998207563443
+    second: AncientEntborn-Body-21Frames-v2-Clean_19
+  - first:
+      213: -7829285575050511366
+    second: AncientEntborn-Body-21Frames-v2-Clean_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Walk_00
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 655
+        width: 222
+        height: 231
+      alignment: 9
+      pivot: {x: 0.518018, y: 0.008658009}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470f4e4a0e74c2945bc5f56ed0eab9f8
+      internalID: -47663104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_01
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 656
+        width: 221
+        height: 230
+      alignment: 9
+      pivot: {x: 0.5339367, y: 0.004347826}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb68a4d2f5485184e88d1f9a5517ebb1
+      internalID: 1967886256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_02
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 656
+        width: 201
+        height: 229
+      alignment: 9
+      pivot: {x: 0.51741296, y: 0.0043668123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39e358e89aa489d4c8731a7cd76f5fc5
+      internalID: 1900807103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_03
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 656
+        width: 222
+        height: 225
+      alignment: 9
+      pivot: {x: 0.527027, y: 0.0044444446}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 247dbe2b8bf0beb4f99f9c2c64626d1e
+      internalID: -655574425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_04
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 656
+        width: 215
+        height: 235
+      alignment: 9
+      pivot: {x: 0.4511628, y: 0.004255319}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa6954b1bd706a42b0c598b0313bf99
+      internalID: 2139324180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_05
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 655
+        width: 215
+        height: 225
+      alignment: 9
+      pivot: {x: 0.46976745, y: 0.008888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0b88095796f7c4398a5565746c612c
+      internalID: -2084576018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_06
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 652
+        width: 217
+        height: 226
+      alignment: 9
+      pivot: {x: 0.52073735, y: 0.022123894}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 373ae2ca228c69c41a0e66135feacee1
+      internalID: -109297051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_00
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 371
+        width: 234
+        height: 225
+      alignment: 9
+      pivot: {x: 0.46581197, y: 0.008888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4450f2a9bdc66b547991cae77858a348
+      internalID: 225094627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_01
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 371
+        width: 223
+        height: 222
+      alignment: 9
+      pivot: {x: 0.48430493, y: 0.009009009}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17a48915fa99684d8ec3de6bbceab89
+      internalID: 2042162579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_02
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 372
+        width: 195
+        height: 232
+      alignment: 9
+      pivot: {x: 0.42051283, y: 0.004310345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff14262e182dc3b4ba218bf29f221b7f
+      internalID: -1399363308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_03
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 371
+        width: 211
+        height: 219
+      alignment: 9
+      pivot: {x: 0.35545024, y: 0.00913242}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad073e2e90011e48b4fda46a4c3c6e1
+      internalID: 1851355141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_04
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 371
+        width: 199
+        height: 217
+      alignment: 9
+      pivot: {x: 0.38190955, y: 0.00921659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7cfea86ef7d834d9fb3cd032452153
+      internalID: 819082770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_05
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 371
+        width: 191
+        height: 214
+      alignment: 9
+      pivot: {x: 0.38743454, y: 0.009345794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12295562c8b2c940b7850d0ed04bc7f
+      internalID: 100291882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserCast_06
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 366
+        width: 211
+        height: 218
+      alignment: 9
+      pivot: {x: 0.47393364, y: 0.03211009}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c894a9cb583fdec409854701ace0f2c1
+      internalID: -650191205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_00
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 83
+        width: 198
+        height: 224
+      alignment: 9
+      pivot: {x: 0.52020204, y: 0.008928572}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2816872b9574a64bb0ed61a811cc1e8
+      internalID: -1641213134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_01
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 81
+        width: 223
+        height: 238
+      alignment: 9
+      pivot: {x: 0.49775785, y: 0.016806724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f05ae991f4b594ba4b602bf4428c68
+      internalID: -1649130473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_02
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 81
+        width: 186
+        height: 257
+      alignment: 9
+      pivot: {x: 0.48924732, y: 0.015564202}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f960a9c25f101ca4e8fab7cc92d4fbc8
+      internalID: -236903159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_03
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 81
+        width: 196
+        height: 214
+      alignment: 9
+      pivot: {x: 0.52040815, y: 0.018691588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f7df2193360cc4db2e11172279a8ca
+      internalID: -1081535117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_04
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 81
+        width: 201
+        height: 192
+      alignment: 9
+      pivot: {x: 0.50248754, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdf985df30875b4a884f11681f7d0d7
+      internalID: 1488297929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_05
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 81
+        width: 193
+        height: 215
+      alignment: 9
+      pivot: {x: 0.50259066, y: 0.018604651}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a10a6c5ca3ca743b7293c604f4f85c
+      internalID: -1720623400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stomp_06
+      rect:
+        serializedVersion: 2
+        x: 1430
+        y: 81
+        width: 203
+        height: 222
+      alignment: 9
+      pivot: {x: 0.5073892, y: 0.018018018}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33386ce28a17d948bd1e314f9e44391
+      internalID: -1654715534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e559b61fb8d93cc4cad79aa3ea2d2203
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LaserCast_00: 225094627
+      LaserCast_01: 2042162579
+      LaserCast_02: -1399363308
+      LaserCast_03: 1851355141
+      LaserCast_04: 819082770
+      LaserCast_05: 100291882
+      LaserCast_06: -650191205
+      Stomp_00: -1641213134
+      Stomp_01: -1649130473
+      Stomp_02: -236903159
+      Stomp_03: -1081535117
+      Stomp_04: 1488297929
+      Stomp_05: -1720623400
+      Stomp_06: -1654715534
+      Walk_00: -47663104
+      Walk_01: 1967886256
+      Walk_02: 1900807103
+      Walk_03: -655574425
+      Walk_04: 2139324180
+      Walk_05: -2084576018
+      Walk_06: -109297051
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

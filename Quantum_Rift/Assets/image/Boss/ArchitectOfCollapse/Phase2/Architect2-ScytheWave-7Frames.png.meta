@@ -1,0 +1,374 @@
+fileFormatVersion: 2
+guid: c4c9067b2f3d5cd409f7214ca01e78cf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2770635496115922796
+    second: Architect2-ScytheWave-7Frames_0
+  - first:
+      213: -6877267916116706877
+    second: Architect2-ScytheWave-7Frames_1
+  - first:
+      213: 2856255258009475627
+    second: Architect2-ScytheWave-7Frames_2
+  - first:
+      213: 7090584009442508283
+    second: Architect2-ScytheWave-7Frames_3
+  - first:
+      213: -7702079853281758308
+    second: Architect2-ScytheWave-7Frames_4
+  - first:
+      213: 2622940181762254022
+    second: Architect2-ScytheWave-7Frames_5
+  - first:
+      213: 809220876530513347
+    second: Architect2-ScytheWave-7Frames_6
+  - first:
+      213: -1709630903355364119
+    second: Architect2-ScytheWave-7Frames_7
+  - first:
+      213: 1211791847701802951
+    second: Architect2-ScytheWave-7Frames_8
+  - first:
+      213: -1492470498304033196
+    second: Architect2-ScytheWave-7Frames_9
+  - first:
+      213: -5285017940458113826
+    second: Architect2-ScytheWave-7Frames_10
+  - first:
+      213: 6804056254801404510
+    second: Architect2-ScytheWave-7Frames_11
+  - first:
+      213: 261218778137283833
+    second: Architect2-ScytheWave-7Frames_12
+  - first:
+      213: -1373286580060251801
+    second: Architect2-ScytheWave-7Frames_13
+  - first:
+      213: -3327445712593958526
+    second: Architect2-ScytheWave-7Frames_14
+  - first:
+      213: 4047225751568487267
+    second: Architect2-ScytheWave-7Frames_15
+  - first:
+      213: 1759901731765581961
+    second: Architect2-ScytheWave-7Frames_16
+  - first:
+      213: -5902862771792798702
+    second: Architect2-ScytheWave-7Frames_17
+  - first:
+      213: -8445381954911712500
+    second: Architect2-ScytheWave-7Frames_18
+  - first:
+      213: -2350481616787415220
+    second: Architect2-ScytheWave-7Frames_19
+  - first:
+      213: 6086669347815179277
+    second: Architect2-ScytheWave-7Frames_20
+  - first:
+      213: 8440117811737573224
+    second: Architect2-ScytheWave-7Frames_21
+  - first:
+      213: -9086107747531774828
+    second: Architect2-ScytheWave-7Frames_22
+  - first:
+      213: 6137782599854807924
+    second: Architect2-ScytheWave-7Frames_23
+  - first:
+      213: 4964558949202251901
+    second: Architect2-ScytheWave-7Frames_24
+  - first:
+      213: 2599571013899068729
+    second: Architect2-ScytheWave-7Frames_25
+  - first:
+      213: 5263212847381284916
+    second: Architect2-ScytheWave-7Frames_26
+  - first:
+      213: -7372387796556267493
+    second: Architect2-ScytheWave-7Frames_27
+  - first:
+      213: 2977144503873533006
+    second: Architect2-ScytheWave-7Frames_28
+  - first:
+      213: 1798587867020860398
+    second: Architect2-ScytheWave-7Frames_29
+  - first:
+      213: 5141457669321866702
+    second: Architect2-ScytheWave-7Frames_30
+  - first:
+      213: -5250877149312608548
+    second: Architect2-ScytheWave-7Frames_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ScytheWave_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce2e4407f2d05d548ad6117bffe53c3a
+      internalID: 1213871212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_01
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc047871f6ba0b44be214e658c8c70e
+      internalID: -1472520281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_02
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76540953757ed034e80e8f4054e68390
+      internalID: -599091569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_03
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb63c029f19d1342bfd1af7ab763c7d
+      internalID: 1954109316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_04
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65193e8b6df72df4cafdd7b191d09fff
+      internalID: 31481965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_05
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3c7dd614f214b46b878c6b9e14a950
+      internalID: 1590402677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScytheWave_06
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 384
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08fd3e1697b7f5f4aa755d608fc58ff9
+      internalID: 1524781115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2f26e2bb19d88914aa8d70587d462402
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ScytheWave_00: 1213871212
+      ScytheWave_01: -1472520281
+      ScytheWave_02: -599091569
+      ScytheWave_03: 1954109316
+      ScytheWave_04: 31481965
+      ScytheWave_05: 1590402677
+      ScytheWave_06: 1524781115
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

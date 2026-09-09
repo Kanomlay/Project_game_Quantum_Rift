@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: 8f984c16ab39b0e45a3738ab96a7f7c4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5827815095980791502
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_0
+  - first:
+      213: 4841657201112327177
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_1
+  - first:
+      213: 9053707438474224883
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_2
+  - first:
+      213: 8659377651900855955
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_3
+  - first:
+      213: 2693020316888593745
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_4
+  - first:
+      213: 4323890260603034076
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_5
+  - first:
+      213: 2303769655642171962
+    second: AncientEntborn-RootPillar-7Frames-v2-Clean_6
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 150
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RootErupt_00
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 213
+        width: 170
+        height: 119
+      alignment: 9
+      pivot: {x: 0.5058824, y: 0.016806724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b590bbc0169b7428051528815a38c1
+      internalID: -1014400044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_01
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 211
+        width: 184
+        height: 264
+      alignment: 9
+      pivot: {x: 0.51086956, y: 0.015151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd382ac28aaff746b2d37bcf125d675
+      internalID: -1397243213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_02
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 211
+        width: 202
+        height: 367
+      alignment: 9
+      pivot: {x: 0.5, y: 0.010899182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b749e4a2ea0f59e43b133b39b8fb742f
+      internalID: 1637072285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_03
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 211
+        width: 217
+        height: 554
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.0072202166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46042ed77721474eba45283bbece33e
+      internalID: -1090520683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_04
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 211
+        width: 205
+        height: 542
+      alignment: 9
+      pivot: {x: 0.502439, y: 0.007380074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7820437ca2801584cbd06a76617329e7
+      internalID: 195620891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_05
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 211
+        width: 206
+        height: 278
+      alignment: 9
+      pivot: {x: 0.49029127, y: 0.01438849}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b6defc170143f4a9b1c03a8d99704c
+      internalID: -143867851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootErupt_06
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 211
+        width: 197
+        height: 121
+      alignment: 9
+      pivot: {x: 0.49238577, y: 0.03305785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0112084f59c45634eb06bbb303c18d64
+      internalID: 590623747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 45d45c9d9d6dc3a4fbc3a6c4dee650ad
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RootErupt_00: -1014400044
+      RootErupt_01: -1397243213
+      RootErupt_02: 1637072285
+      RootErupt_03: -1090520683
+      RootErupt_04: 195620891
+      RootErupt_05: -143867851
+      RootErupt_06: 590623747
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

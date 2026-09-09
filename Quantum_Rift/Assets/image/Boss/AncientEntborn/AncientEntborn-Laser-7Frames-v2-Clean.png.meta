@@ -1,0 +1,362 @@
+fileFormatVersion: 2
+guid: 0a3193cc399899540a52d34f47d3272d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8870741632151195510
+    second: AncientEntborn-Laser-7Frames-v2-Clean_0
+  - first:
+      213: 8898995270235946920
+    second: AncientEntborn-Laser-7Frames-v2-Clean_1
+  - first:
+      213: 6439474445755828020
+    second: AncientEntborn-Laser-7Frames-v2-Clean_2
+  - first:
+      213: -8778102026764400240
+    second: AncientEntborn-Laser-7Frames-v2-Clean_3
+  - first:
+      213: -4220254259095944356
+    second: AncientEntborn-Laser-7Frames-v2-Clean_4
+  - first:
+      213: 5426506663906701082
+    second: AncientEntborn-Laser-7Frames-v2-Clean_5
+  - first:
+      213: -3557360509998574422
+    second: AncientEntborn-Laser-7Frames-v2-Clean_6
+  - first:
+      213: 7097692243311444986
+    second: AncientEntborn-Laser-7Frames-v2-Clean_7
+  - first:
+      213: 3097370797594015463
+    second: AncientEntborn-Laser-7Frames-v2-Clean_8
+  - first:
+      213: 527161929555838302
+    second: AncientEntborn-Laser-7Frames-v2-Clean_9
+  - first:
+      213: 5067458699323841494
+    second: AncientEntborn-Laser-7Frames-v2-Clean_10
+  - first:
+      213: 6721007953336146
+    second: AncientEntborn-Laser-7Frames-v2-Clean_11
+  - first:
+      213: 2645187025463254444
+    second: AncientEntborn-Laser-7Frames-v2-Clean_12
+  - first:
+      213: 6995224205941424354
+    second: AncientEntborn-Laser-7Frames-v2-Clean_13
+  - first:
+      213: -5263362521994938937
+    second: AncientEntborn-Laser-7Frames-v2-Clean_14
+  - first:
+      213: -3573362962071187208
+    second: AncientEntborn-Laser-7Frames-v2-Clean_15
+  - first:
+      213: -2411436327821835008
+    second: AncientEntborn-Laser-7Frames-v2-Clean_16
+  - first:
+      213: -3360639285164544612
+    second: AncientEntborn-Laser-7Frames-v2-Clean_17
+  - first:
+      213: -2151580742580543530
+    second: AncientEntborn-Laser-7Frames-v2-Clean_18
+  - first:
+      213: -7198670469056909330
+    second: AncientEntborn-Laser-7Frames-v2-Clean_19
+  - first:
+      213: 5589911232401096805
+    second: AncientEntborn-Laser-7Frames-v2-Clean_20
+  - first:
+      213: -7745942694767322512
+    second: AncientEntborn-Laser-7Frames-v2-Clean_21
+  - first:
+      213: 1664300124942919728
+    second: AncientEntborn-Laser-7Frames-v2-Clean_22
+  - first:
+      213: -4671985634131702614
+    second: AncientEntborn-Laser-7Frames-v2-Clean_23
+  - first:
+      213: -1743691196182829694
+    second: AncientEntborn-Laser-7Frames-v2-Clean_24
+  - first:
+      213: -5245976832683859317
+    second: AncientEntborn-Laser-7Frames-v2-Clean_25
+  - first:
+      213: -7586083119729195643
+    second: AncientEntborn-Laser-7Frames-v2-Clean_26
+  - first:
+      213: 258478370156858635
+    second: AncientEntborn-Laser-7Frames-v2-Clean_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LaserBeam_00
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1389
+        width: 913
+        height: 52
+      alignment: 9
+      pivot: {x: 0.004381161, y: 0.48076922}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b51263ab7f7a549ae5e27cb3e02ab2
+      internalID: -1604814577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1200
+        width: 913
+        height: 84
+      alignment: 9
+      pivot: {x: 0.004381161, y: 0.4642857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe3526a5d21b6a42afe67cee7b3cc46
+      internalID: -763525398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_02
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1000
+        width: 913
+        height: 108
+      alignment: 9
+      pivot: {x: 0.004381161, y: 0.46296296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f72c549e2afd812468cc80ebf0da74f1
+      internalID: -616998192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_03
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 769
+        width: 913
+        height: 157
+      alignment: 9
+      pivot: {x: 0.004381161, y: 0.45859873}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef53c93165c7085458dfcc15068aa1bb
+      internalID: 362091537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_04
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 548
+        width: 913
+        height: 144
+      alignment: 9
+      pivot: {x: 0.004381161, y: 0.47916666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fa30f8aa4b32e41bf3a3f234fde4e8
+      internalID: 756700573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_05
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 366
+        width: 896
+        height: 97
+      alignment: 9
+      pivot: {x: 0.004464286, y: 0.46391752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86821bfe4dbdec84faf3bd4252840121
+      internalID: 602035138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBeam_06
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 183
+        width: 812
+        height: 90
+      alignment: 9
+      pivot: {x: 0.0049261083, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec0508a02a51bd4bb9c0b1d1e9db62a
+      internalID: 681281081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 289e55568d7d7c34da47b010f59256c7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LaserBeam_00: -1604814577
+      LaserBeam_01: -763525398
+      LaserBeam_02: -616998192
+      LaserBeam_03: 362091537
+      LaserBeam_04: 756700573
+      LaserBeam_05: 602035138
+      LaserBeam_06: 681281081
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
