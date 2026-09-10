@@ -23,10 +23,16 @@ public class WeaponController : MonoBehaviour
     private bool isAttacking = false;
     private bool nextSwingDownward = true; // true = บนลงล่าง, false = ล่างขึ้นบน (สลับกันทุกครั้งที่คอมโบต่อติด)
     private float lastAttackTime = -999f;
-    private float currentSwingAngle; // มุมดาบปัจจุบันเทียบแนวเล็ง (+ = ปลายชี้ขึ้น, - = ปลายชี้ลง)
+    private float currentSwingAngle; // มุมดาบปัจจุบันเทียบแนวเล็ง (0 = ปลายดาบชี้ตรงเมาส์, + = เชิดขึ้น, - = กดลง)
+    private bool bladeEdgeUp;        // ฟันขึ้นต้องพลิกดาบเอาคมขึ้น
 
     private float AttackInterval => 1f / Mathf.Max(0.01f, currentWeaponData.attackSpeed);
     private float ComboWindow => AttackInterval * 1.5f;
+    private const float RestAngle = 0f; // ท่าพัก = ปลายดาบชี้ตรงไปทางเมาส์
+
+    // WeaponHolder พลิกแกน Y ตอนเล็งไปทางซ้าย ทั้งมุมสวิงและด้านคมดาบต้องกลับเครื่องหมายตาม
+    // ไม่งั้นทิศฟันกับด้านคมจะสลับกันเวลาหันซ้าย
+    private float AimMirror => (transform.localScale.y < 0f) ? -1f : 1f;
 
     void Update()
     {
@@ -92,8 +98,8 @@ public class WeaponController : MonoBehaviour
                 Debug.LogWarning("ระวัง! อาวุธ " + currentWeaponData.weaponName + " ยังไม่มี AttackPoint ใน Prefab นะ!");
             }
 
-            // เริ่มที่ท่าพัก (ชูดาบขึ้นด้านบน) รอสวิงแรกที่เป็นบนลงล่าง
-            currentSwingAngle = currentWeaponData.attackAngle / 2f;
+            // ท่าพักให้ปลายดาบชี้ตรงแนวเล็ง รอสวิงแรกที่เป็นบนลงล่าง
+            currentSwingAngle = RestAngle;
             nextSwingDownward = true;
             SetBladeEdgeUp(false);
             ApplySwingRotation();
@@ -154,14 +160,20 @@ public class WeaponController : MonoBehaviour
         isAttacking = false;
     }
 
-    // ใส่มุมสวิงให้ตัวดาบ (คนละตัวกับ WeaponHolder ที่เล็งตามเมาส์) ดาบจึงค้างมุมไว้ต่อสวิงถัดไปได้
+    // ใส่มุมสวิงกับด้านคมให้ตัวดาบ (คนละตัวกับ WeaponHolder ที่เล็งตามเมาส์) ดาบจึงค้างมุมไว้ต่อสวิงถัดไปได้
+    // ต้องทำทุกเฟรมเพราะทิศเล็งเปลี่ยนได้ตลอด ถ้าไปทำแค่ตอนเริ่มสวิงคมดาบจะค้างผิดด้านเมื่อเมาส์ข้ามไปอีกฝั่ง
     private void ApplySwingRotation()
     {
         if (currentWeaponObject == null) return;
 
-        // WeaponHolder พลิกแกน Y ตอนเล็งไปทางซ้าย ต้องกลับเครื่องหมายมุมด้วย ไม่งั้นทิศฟันจะสลับบน-ล่าง
-        float mirror = (transform.localScale.y < 0f) ? -1f : 1f;
-        currentWeaponObject.transform.localEulerAngles = new Vector3(0f, 0f, currentSwingAngle * mirror);
+        float mirror = AimMirror;
+        Transform weapon = currentWeaponObject.transform;
+
+        weapon.localEulerAngles = new Vector3(0f, 0f, currentSwingAngle * mirror);
+
+        Vector3 scale = weapon.localScale;
+        scale.y = (bladeEdgeUp ? -1f : 1f) * mirror * Mathf.Abs(scale.y);
+        weapon.localScale = scale;
     }
 
     // เสกคลื่นดาบไว้กลางวงสวิง หันตามทิศที่เล็ง และพลิกตามทิศฟัน
@@ -177,18 +189,14 @@ public class WeaponController : MonoBehaviour
         slash.transform.localRotation = Quaternion.identity;
 
         Vector3 scale = slash.transform.localScale * slashEffectScale;
-        scale.y = downward ? Mathf.Abs(scale.y) : -Mathf.Abs(scale.y); // ฟันขึ้นให้พลิกคลื่นกลับด้านตามดาบ
+        scale.y = (downward ? 1f : -1f) * AimMirror * Mathf.Abs(scale.y); // ฟันขึ้นให้พลิกคลื่นกลับด้านตามดาบ
         slash.transform.localScale = scale;
     }
 
-    // พลิกดาบตามแกน Y เพื่อสลับด้านคม (ฟันลงคมชี้ลง / ฟันขึ้นคมชี้ขึ้น)
+    // สลับด้านคมดาบ (ฟันลงคมชี้ลง / ฟันขึ้นคมชี้ขึ้น) ตัวพลิกจริงอยู่ใน ApplySwingRotation ที่ทำทุกเฟรม
     private void SetBladeEdgeUp(bool edgeUp)
     {
-        if (currentWeaponObject == null) return;
-
-        Vector3 scale = currentWeaponObject.transform.localScale;
-        scale.y = edgeUp ? -Mathf.Abs(scale.y) : Mathf.Abs(scale.y);
-        currentWeaponObject.transform.localScale = scale;
+        bladeEdgeUp = edgeUp;
     }
 
     // คอมโบขาดแล้วให้ดาบค่อยๆ กลับไปท่าพัก (ชูขึ้นด้านบน) พร้อมคืนด้านคมดาบเป็นปกติ
@@ -197,11 +205,10 @@ public class WeaponController : MonoBehaviour
         if (currentWeaponData == null || currentWeaponObject == null) return;
         if (Time.time - lastAttackTime <= ComboWindow) return; // ยังอยู่ในช่วงคอมโบ ค้างท่าไว้รอกดต่อ
 
-        float restAngle = currentWeaponData.attackAngle / 2f;
         float returnSpeed = currentWeaponData.attackAngle / Mathf.Max(0.01f, restReturnDuration);
-        currentSwingAngle = Mathf.MoveTowards(currentSwingAngle, restAngle, returnSpeed * Time.deltaTime);
+        currentSwingAngle = Mathf.MoveTowards(currentSwingAngle, RestAngle, returnSpeed * Time.deltaTime);
 
-        if (Mathf.Approximately(currentSwingAngle, restAngle)) SetBladeEdgeUp(false);
+        if (Mathf.Approximately(currentSwingAngle, RestAngle)) SetBladeEdgeUp(false);
     }
 
     private void CheckSwingHit(HashSet<MonsterController> alreadyHit)

@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: efc3c53610772054391dc0ad5a4c0b25
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5569311203476195615
+    second: Buttons-TH-EN-Transparent_0
+  - first:
+      213: 1015304005071841413
+    second: Buttons-TH-EN-Transparent_1
+  - first:
+      213: -3172492451906912800
+    second: Buttons-TH-EN-Transparent_2
+  - first:
+      213: -1938087336212840516
+    second: Buttons-TH-EN-Transparent_3
+  - first:
+      213: -3735884878760644759
+    second: Buttons-TH-EN-Transparent_4
+  - first:
+      213: 5066388685640995875
+    second: Buttons-TH-EN-Transparent_5
+  - first:
+      213: 144358069280987896
+    second: Buttons-TH-EN-Transparent_6
+  - first:
+      213: -169916217925869648
+    second: Buttons-TH-EN-Transparent_7
+  - first:
+      213: 1843167012814918604
+    second: Buttons-TH-EN-Transparent_8
+  - first:
+      213: -1812579333368055268
+    second: Buttons-TH-EN-Transparent_9
+  - first:
+      213: 3511136336386611572
+    second: Buttons-TH-EN-Transparent_10
+  - first:
+      213: 2163907324099932654
+    second: Buttons-TH-EN-Transparent_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_0
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 822
+        width: 632
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e6b239c7f4d5b2b0800000000000000
+      internalID: -5569311203476195615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_1
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 822
+        width: 631
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 588a6510d95171e00800000000000000
+      internalID: 1015304005071841413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 662
+        width: 633
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0edfa7f6cea09f3d0800000000000000
+      internalID: -3172492451906912800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_3
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 662
+        width: 631
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfb95d06d78a15e0800000000000000
+      internalID: -1938087336212840516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 502
+        width: 633
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96fe7bf0f78772cc0800000000000000
+      internalID: -3735884878760644759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_5
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 502
+        width: 631
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32490bdaaad6f4640800000000000000
+      internalID: 5066388685640995875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_6
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 342
+        width: 633
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa54ff26ecd00200800000000000000
+      internalID: 144358069280987896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_7
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 342
+        width: 631
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf53fc991654adf0800000000000000
+      internalID: -169916217925869648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_8
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 182
+        width: 633
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc31d84f1ae349910800000000000000
+      internalID: 1843167012814918604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_9
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 182
+        width: 631
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1af16323bc68d6e0800000000000000
+      internalID: -1812579333368055268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_10
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 23
+        width: 633
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4795a4825ef0ab030800000000000000
+      internalID: 3511136336386611572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons-TH-EN-Transparent_11
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 23
+        width: 631
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1b7d31f3eb70e10800000000000000
+      internalID: 2163907324099932654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buttons-TH-EN-Transparent_0: -5569311203476195615
+      Buttons-TH-EN-Transparent_1: 1015304005071841413
+      Buttons-TH-EN-Transparent_10: 3511136336386611572
+      Buttons-TH-EN-Transparent_11: 2163907324099932654
+      Buttons-TH-EN-Transparent_2: -3172492451906912800
+      Buttons-TH-EN-Transparent_3: -1938087336212840516
+      Buttons-TH-EN-Transparent_4: -3735884878760644759
+      Buttons-TH-EN-Transparent_5: 5066388685640995875
+      Buttons-TH-EN-Transparent_6: 144358069280987896
+      Buttons-TH-EN-Transparent_7: -169916217925869648
+      Buttons-TH-EN-Transparent_8: 1843167012814918604
+      Buttons-TH-EN-Transparent_9: -1812579333368055268
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

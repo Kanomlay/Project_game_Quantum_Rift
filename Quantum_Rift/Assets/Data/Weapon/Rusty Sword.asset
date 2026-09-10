@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 7777550296153586313, guid: 1dc86d4b3f6598b478a44f5a2342e1e3, type: 3}
   weaponType: 0
   rarity: 0
-  attackDamage: 4
+  attackDamage: 20
   attackSpeed: 1
   attackRange: 1.5
   attackAngle: 90

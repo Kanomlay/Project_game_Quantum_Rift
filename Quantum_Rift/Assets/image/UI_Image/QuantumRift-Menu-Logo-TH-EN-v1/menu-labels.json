@@ -1,0 +1,26 @@
+{
+  "start": {
+    "en": "START",
+    "th": "เริ่มเกม"
+  },
+  "continue": {
+    "en": "CONTINUE",
+    "th": "เล่นต่อ"
+  },
+  "settings": {
+    "en": "SETTINGS",
+    "th": "ตั้งค่า"
+  },
+  "resume": {
+    "en": "RESUME",
+    "th": "กลับสู่เกม"
+  },
+  "back": {
+    "en": "BACK",
+    "th": "ย้อนกลับ"
+  },
+  "quit": {
+    "en": "QUIT",
+    "th": "ออกจากเกม"
+  }
+}

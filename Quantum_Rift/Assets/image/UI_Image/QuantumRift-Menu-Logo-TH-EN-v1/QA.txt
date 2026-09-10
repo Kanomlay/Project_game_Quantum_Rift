@@ -1,0 +1,22 @@
+Buttons-TH-EN.png: background=632291, fringe=2898, dust=0, retained components=12; enclosed white text protected.
+EN-Start: 78500 pixels retained, padded.
+TH-Start: 78087 pixels retained, padded.
+EN-Continue: 78487 pixels retained, padded.
+TH-Continue: 78404 pixels retained, padded.
+EN-Settings: 78431 pixels retained, padded.
+TH-Settings: 78489 pixels retained, padded.
+EN-Resume: 78645 pixels retained, padded.
+TH-Resume: 78419 pixels retained, padded.
+EN-Back: 78107 pixels retained, padded.
+TH-Back: 77861 pixels retained, padded.
+EN-Quit: 78621 pixels retained, padded.
+TH-Quit: 78522 pixels retained, padded.
+Controls-States.png: background=1143517, fringe=1471, dust=23, retained components=8; enclosed white text protected.
+Button-Normal: 56147 pixels retained, padded.
+Icon-Settings: 49145 pixels retained, padded.
+Button-Focused: 58578 pixels retained, padded.
+Icon-Pause-Focused: 52525 pixels retained, padded.
+Button-Pressed: 56676 pixels retained, padded.
+Icon-Sound: 50347 pixels retained, padded.
+Button-Disabled: 56388 pixels retained, padded.
+Icon-Close-Disabled: 50192 pixels retained, padded.

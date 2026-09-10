@@ -48,7 +48,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   swingDuration: 0.12
   restReturnDuration: 0.15
   slashEffectDistance: 0.75

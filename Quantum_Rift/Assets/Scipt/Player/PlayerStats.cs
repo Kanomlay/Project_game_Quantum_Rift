@@ -99,7 +99,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
 
-        if (isInvincible) return; 
+        if (isInvincible || isDead) return;
 
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
@@ -137,7 +137,16 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        SummaryManager.instance.ShowSummary(false, "");
+        isDead = true;
+
+        if (SummaryManager.instance != null)
+        {
+            SummaryManager.instance.ShowSummary(false, "");
+        }
+        else
+        {
+            Debug.LogWarning("ผู้เล่นตายแล้ว แต่ยังไม่มี SummaryManager ในฉาก เลยยังไม่มีหน้าสรุปให้แสดง");
+        }
     }
 
 
