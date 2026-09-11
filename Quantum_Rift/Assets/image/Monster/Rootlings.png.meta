@@ -112,7 +112,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,12 +123,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 93.1624
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -147,10 +147,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -178,15 +178,19 @@ TextureImporter:
       name: Rootlings-3Heads_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 632
-        width: 182
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -200,15 +204,19 @@ TextureImporter:
       name: Rootlings-3Heads_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 634
-        width: 178
-        height: 110
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -222,15 +230,19 @@ TextureImporter:
       name: Rootlings-3Heads_2
       rect:
         serializedVersion: 2
-        x: 426
-        y: 619
-        width: 194
-        height: 245
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -244,15 +256,19 @@ TextureImporter:
       name: Rootlings-3Heads_3
       rect:
         serializedVersion: 2
-        x: 637
-        y: 634
-        width: 182
-        height: 196
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -266,15 +282,19 @@ TextureImporter:
       name: Rootlings-3Heads_4
       rect:
         serializedVersion: 2
-        x: 846
-        y: 609
-        width: 184
-        height: 246
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -288,15 +308,19 @@ TextureImporter:
       name: Rootlings-3Heads_5
       rect:
         serializedVersion: 2
-        x: 1056
-        y: 571
-        width: 194
-        height: 309
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -310,15 +334,19 @@ TextureImporter:
       name: Rootlings-3Heads_6
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 632
-        width: 181
-        height: 265
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -332,15 +360,19 @@ TextureImporter:
       name: Rootlings-3Heads_7
       rect:
         serializedVersion: 2
-        x: 1477
-        y: 633
-        width: 180
-        height: 264
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -354,15 +386,19 @@ TextureImporter:
       name: Rootlings-3Heads_8
       rect:
         serializedVersion: 2
-        x: 16
-        y: 374
-        width: 184
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -376,15 +412,19 @@ TextureImporter:
       name: Rootlings-3Heads_9
       rect:
         serializedVersion: 2
-        x: 224
-        y: 370
-        width: 189
-        height: 138
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -398,15 +438,19 @@ TextureImporter:
       name: Rootlings-3Heads_10
       rect:
         serializedVersion: 2
-        x: 435
-        y: 369
-        width: 181
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -420,15 +464,19 @@ TextureImporter:
       name: Rootlings-3Heads_11
       rect:
         serializedVersion: 2
-        x: 642
-        y: 370
-        width: 185
-        height: 150
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -442,15 +490,19 @@ TextureImporter:
       name: Rootlings-3Heads_12
       rect:
         serializedVersion: 2
-        x: 850
-        y: 366
-        width: 185
-        height: 123
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -464,15 +516,19 @@ TextureImporter:
       name: Rootlings-3Heads_13
       rect:
         serializedVersion: 2
-        x: 1052
-        y: 329
-        width: 202
-        height: 174
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -486,15 +542,19 @@ TextureImporter:
       name: Rootlings-3Heads_14
       rect:
         serializedVersion: 2
-        x: 1264
-        y: 360
-        width: 192
-        height: 139
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -508,15 +568,19 @@ TextureImporter:
       name: Rootlings-3Heads_15
       rect:
         serializedVersion: 2
-        x: 1476
-        y: 328
-        width: 183
-        height: 170
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -530,15 +594,19 @@ TextureImporter:
       name: Rootlings-3Heads_16
       rect:
         serializedVersion: 2
-        x: 16
-        y: 47
-        width: 189
-        height: 267
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -552,15 +620,19 @@ TextureImporter:
       name: Rootlings-3Heads_17
       rect:
         serializedVersion: 2
-        x: 223
-        y: 48
-        width: 194
-        height: 264
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -574,15 +646,19 @@ TextureImporter:
       name: Rootlings-3Heads_18
       rect:
         serializedVersion: 2
-        x: 431
-        y: 48
-        width: 203
-        height: 230
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -596,15 +672,19 @@ TextureImporter:
       name: Rootlings-3Heads_20
       rect:
         serializedVersion: 2
-        x: 642
-        y: 46
-        width: 191
-        height: 230
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -618,15 +698,19 @@ TextureImporter:
       name: Rootlings-3Heads_21
       rect:
         serializedVersion: 2
-        x: 846
-        y: 47
-        width: 189
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -640,15 +724,19 @@ TextureImporter:
       name: Rootlings-3Heads_23
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 31
-        width: 192
-        height: 187
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -662,15 +750,19 @@ TextureImporter:
       name: Rootlings-3Heads_24
       rect:
         serializedVersion: 2
-        x: 1267
-        y: 43
-        width: 181
-        height: 166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -684,15 +776,19 @@ TextureImporter:
       name: Rootlings-3Heads_25
       rect:
         serializedVersion: 2
-        x: 1477
-        y: 47
-        width: 180
-        height: 100
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5121795, y: 0.3462206}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -727,11 +823,9 @@ TextureImporter:
       Rootlings-3Heads_16: 45729064320677040
       Rootlings-3Heads_17: 5458862423869204154
       Rootlings-3Heads_18: -6584050736455859570
-      Rootlings-3Heads_19: -3907610927351642228
       Rootlings-3Heads_2: 6504028743580412909
       Rootlings-3Heads_20: -2240227380929661220
       Rootlings-3Heads_21: -5324036513307885915
-      Rootlings-3Heads_22: 5803155777483201009
       Rootlings-3Heads_23: -592838547718487593
       Rootlings-3Heads_24: -159579689637616015
       Rootlings-3Heads_25: 8224106673187263958

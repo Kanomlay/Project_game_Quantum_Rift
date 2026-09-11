@@ -85,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,12 +96,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 153.38983
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -120,10 +120,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,15 +151,19 @@ TextureImporter:
       name: Phase Soldier_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 239
-        width: 89
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -173,15 +177,19 @@ TextureImporter:
       name: Phase Soldier_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 239
-        width: 86
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -195,15 +203,19 @@ TextureImporter:
       name: Phase Soldier_2
       rect:
         serializedVersion: 2
-        x: 274
-        y: 239
-        width: 88
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -217,15 +229,19 @@ TextureImporter:
       name: Phase Soldier_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 239
-        width: 86
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -239,15 +255,19 @@ TextureImporter:
       name: Phase Soldier_4
       rect:
         serializedVersion: 2
-        x: 527
-        y: 239
-        width: 86
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -261,15 +281,19 @@ TextureImporter:
       name: Phase Soldier_5
       rect:
         serializedVersion: 2
-        x: 654
-        y: 239
-        width: 87
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -283,15 +307,19 @@ TextureImporter:
       name: Phase Soldier_6
       rect:
         serializedVersion: 2
-        x: 779
-        y: 239
-        width: 87
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -305,15 +333,19 @@ TextureImporter:
       name: Phase Soldier_7
       rect:
         serializedVersion: 2
-        x: 905
-        y: 239
-        width: 87
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -327,15 +359,19 @@ TextureImporter:
       name: Phase Soldier_8
       rect:
         serializedVersion: 2
-        x: 24
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -349,15 +385,19 @@ TextureImporter:
       name: Phase Soldier_9
       rect:
         serializedVersion: 2
-        x: 151
-        y: 100
-        width: 86
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -371,15 +411,19 @@ TextureImporter:
       name: Phase Soldier_10
       rect:
         serializedVersion: 2
-        x: 276
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -393,15 +437,19 @@ TextureImporter:
       name: Phase Soldier_11
       rect:
         serializedVersion: 2
-        x: 402
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -415,15 +463,19 @@ TextureImporter:
       name: Phase Soldier_12
       rect:
         serializedVersion: 2
-        x: 530
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -437,15 +489,19 @@ TextureImporter:
       name: Phase Soldier_13
       rect:
         serializedVersion: 2
-        x: 656
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -459,15 +515,19 @@ TextureImporter:
       name: Phase Soldier_14
       rect:
         serializedVersion: 2
-        x: 781
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -481,15 +541,19 @@ TextureImporter:
       name: Phase Soldier_15
       rect:
         serializedVersion: 2
-        x: 908
-        y: 100
-        width: 87
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -503,15 +567,19 @@ TextureImporter:
       name: Phase Soldier_16
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1
-        width: 121
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -521,11 +589,141 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_17
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1da60891b4361804cb816e7945da2e57
+      internalID: -2064824018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_18
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d55db8405f10a4d92e4e86730ea5a8
+      internalID: -50793942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_19
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5311c0dfa294a4ea76fb96c05afeeb
+      internalID: 1989660334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e61ebdc5d5a9094a9d9665394764fde
+      internalID: 653566182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Phase Soldier_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.465625, y: 0.38041577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ed263e7a061fb4db7ffac3ea081934
+      internalID: 1534974555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 36398b14746257e4bbe275fbf6cba949
     internalID: 0
     vertices: []
     indices: 
@@ -544,7 +742,12 @@ TextureImporter:
       Phase Soldier_14: 7392506159521110645
       Phase Soldier_15: 5996297189033452153
       Phase Soldier_16: -5960425899552023862
+      Phase Soldier_17: -2064824018
+      Phase Soldier_18: -50793942
+      Phase Soldier_19: 1989660334
       Phase Soldier_2: -6927643649754852951
+      Phase Soldier_20: 653566182
+      Phase Soldier_21: 1534974555
       Phase Soldier_3: -8040569785256993186
       Phase Soldier_4: -2729731723953265242
       Phase Soldier_5: -8729769548744184661

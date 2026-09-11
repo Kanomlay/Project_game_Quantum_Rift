@@ -112,7 +112,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,12 +123,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 146.61653
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -147,10 +147,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -178,15 +178,19 @@ TextureImporter:
       name: Zero Husk_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 231
-        width: 100
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -200,15 +204,19 @@ TextureImporter:
       name: Zero Husk_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 231
-        width: 99
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -222,15 +230,19 @@ TextureImporter:
       name: Zero Husk_2
       rect:
         serializedVersion: 2
-        x: 267
-        y: 232
-        width: 100
-        height: 132
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -244,15 +256,19 @@ TextureImporter:
       name: Zero Husk_3
       rect:
         serializedVersion: 2
-        x: 392
-        y: 292
-        width: 12
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -266,15 +282,19 @@ TextureImporter:
       name: Zero Husk_4
       rect:
         serializedVersion: 2
-        x: 398
-        y: 230
-        width: 94
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -288,15 +308,19 @@ TextureImporter:
       name: Zero Husk_5
       rect:
         serializedVersion: 2
-        x: 518
-        y: 229
-        width: 100
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -310,15 +334,19 @@ TextureImporter:
       name: Zero Husk_6
       rect:
         serializedVersion: 2
-        x: 645
-        y: 230
-        width: 99
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -332,15 +360,19 @@ TextureImporter:
       name: Zero Husk_7
       rect:
         serializedVersion: 2
-        x: 770
-        y: 292
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -354,15 +386,19 @@ TextureImporter:
       name: Zero Husk_8
       rect:
         serializedVersion: 2
-        x: 775
-        y: 230
-        width: 93
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -376,15 +412,19 @@ TextureImporter:
       name: Zero Husk_9
       rect:
         serializedVersion: 2
-        x: 895
-        y: 292
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -398,15 +438,19 @@ TextureImporter:
       name: Zero Husk_10
       rect:
         serializedVersion: 2
-        x: 902
-        y: 230
-        width: 93
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -420,15 +464,19 @@ TextureImporter:
       name: Zero Husk_11
       rect:
         serializedVersion: 2
-        x: 16
-        y: 156
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -442,15 +490,19 @@ TextureImporter:
       name: Zero Husk_12
       rect:
         serializedVersion: 2
-        x: 20
-        y: 90
-        width: 104
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -464,15 +516,19 @@ TextureImporter:
       name: Zero Husk_13
       rect:
         serializedVersion: 2
-        x: 142
-        y: 90
-        width: 107
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -486,15 +542,19 @@ TextureImporter:
       name: Zero Husk_14
       rect:
         serializedVersion: 2
-        x: 269
-        y: 156
-        width: 9
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -508,15 +568,19 @@ TextureImporter:
       name: Zero Husk_15
       rect:
         serializedVersion: 2
-        x: 272
-        y: 90
-        width: 103
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -530,15 +594,19 @@ TextureImporter:
       name: Zero Husk_16
       rect:
         serializedVersion: 2
-        x: 395
-        y: 156
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -552,15 +620,19 @@ TextureImporter:
       name: Zero Husk_17
       rect:
         serializedVersion: 2
-        x: 397
-        y: 90
-        width: 105
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -574,15 +646,19 @@ TextureImporter:
       name: Zero Husk_18
       rect:
         serializedVersion: 2
-        x: 521
-        y: 90
-        width: 107
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -596,15 +672,19 @@ TextureImporter:
       name: Zero Husk_19
       rect:
         serializedVersion: 2
-        x: 646
-        y: 156
-        width: 8
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -618,15 +698,19 @@ TextureImporter:
       name: Zero Husk_20
       rect:
         serializedVersion: 2
-        x: 649
-        y: 90
-        width: 103
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -640,15 +724,19 @@ TextureImporter:
       name: Zero Husk_21
       rect:
         serializedVersion: 2
-        x: 773
-        y: 156
-        width: 8
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -662,15 +750,19 @@ TextureImporter:
       name: Zero Husk_22
       rect:
         serializedVersion: 2
-        x: 774
-        y: 90
-        width: 105
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -684,15 +776,19 @@ TextureImporter:
       name: Zero Husk_23
       rect:
         serializedVersion: 2
-        x: 897
-        y: 156
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -706,15 +802,19 @@ TextureImporter:
       name: Zero Husk_24
       rect:
         serializedVersion: 2
-        x: 903
-        y: 90
-        width: 101
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -728,15 +828,19 @@ TextureImporter:
       name: Zero Husk_25
       rect:
         serializedVersion: 2
-        x: 10
-        y: 1
-        width: 134
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.434375, y: 0.4046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -750,7 +854,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7fb717e7a1dec8d4185619488d69fba8
     internalID: 0
     vertices: []
     indices: 

@@ -91,7 +91,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -102,12 +102,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 169.81133
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -126,10 +126,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -157,15 +157,19 @@ TextureImporter:
       name: Rift-Drained Worker_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 246
-        width: 66
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -179,15 +183,19 @@ TextureImporter:
       name: Rift-Drained Worker_1
       rect:
         serializedVersion: 2
-        x: 165
-        y: 246
-        width: 69
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -201,15 +209,19 @@ TextureImporter:
       name: Rift-Drained Worker_2
       rect:
         serializedVersion: 2
-        x: 294
-        y: 246
-        width: 68
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -223,15 +235,19 @@ TextureImporter:
       name: Rift-Drained Worker_3
       rect:
         serializedVersion: 2
-        x: 424
-        y: 246
-        width: 67
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -245,15 +261,19 @@ TextureImporter:
       name: Rift-Drained Worker_4
       rect:
         serializedVersion: 2
-        x: 552
-        y: 246
-        width: 68
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -267,15 +287,19 @@ TextureImporter:
       name: Rift-Drained Worker_5
       rect:
         serializedVersion: 2
-        x: 678
-        y: 247
-        width: 70
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -289,15 +313,19 @@ TextureImporter:
       name: Rift-Drained Worker_6
       rect:
         serializedVersion: 2
-        x: 795
-        y: 246
-        width: 73
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -311,15 +339,19 @@ TextureImporter:
       name: Rift-Drained Worker_7
       rect:
         serializedVersion: 2
-        x: 922
-        y: 246
-        width: 68
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -333,15 +365,19 @@ TextureImporter:
       name: Rift-Drained Worker_8
       rect:
         serializedVersion: 2
-        x: 38
-        y: 116
-        width: 66
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -355,15 +391,19 @@ TextureImporter:
       name: Rift-Drained Worker_9
       rect:
         serializedVersion: 2
-        x: 165
-        y: 116
-        width: 69
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -377,15 +417,19 @@ TextureImporter:
       name: Rift-Drained Worker_10
       rect:
         serializedVersion: 2
-        x: 294
-        y: 118
-        width: 69
-        height: 109
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -399,15 +443,19 @@ TextureImporter:
       name: Rift-Drained Worker_11
       rect:
         serializedVersion: 2
-        x: 424
-        y: 116
-        width: 67
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -421,15 +469,19 @@ TextureImporter:
       name: Rift-Drained Worker_12
       rect:
         serializedVersion: 2
-        x: 551
-        y: 116
-        width: 69
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -443,15 +495,19 @@ TextureImporter:
       name: Rift-Drained Worker_13
       rect:
         serializedVersion: 2
-        x: 671
-        y: 116
-        width: 67
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -465,15 +521,19 @@ TextureImporter:
       name: Rift-Drained Worker_14
       rect:
         serializedVersion: 2
-        x: 790
-        y: 116
-        width: 68
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -487,15 +547,19 @@ TextureImporter:
       name: Rift-Drained Worker_15
       rect:
         serializedVersion: 2
-        x: 919
-        y: 116
-        width: 66
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -509,15 +573,19 @@ TextureImporter:
       name: Rift-Drained Worker_16
       rect:
         serializedVersion: 2
-        x: 23
-        y: 0
-        width: 104
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -531,15 +599,19 @@ TextureImporter:
       name: Rift-Drained Worker_17
       rect:
         serializedVersion: 2
-        x: 123
-        y: 8
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -553,15 +625,19 @@ TextureImporter:
       name: Rift-Drained Worker_18
       rect:
         serializedVersion: 2
-        x: 140
-        y: 8
-        width: 63
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -571,11 +647,89 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_19
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417a4360bfef98d4eaf941c20d63e25d
+      internalID: -2042699671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a977b08230542404a9fe6dd27a457f6d
+      internalID: 1334857980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rift-Drained Worker_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3785967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386ebf06bdbdec448a1cc1865e3eb1b3
+      internalID: -1975006223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e735e1b157f4ebf4ca9b255ac34eb729
     internalID: 0
     vertices: []
     indices: 
@@ -596,7 +750,10 @@ TextureImporter:
       Rift-Drained Worker_16: -8984762487803980165
       Rift-Drained Worker_17: -6855236986422429984
       Rift-Drained Worker_18: 6284499399263132050
+      Rift-Drained Worker_19: -2042699671
       Rift-Drained Worker_2: -831459597760470532
+      Rift-Drained Worker_20: 1334857980
+      Rift-Drained Worker_21: -1975006223
       Rift-Drained Worker_3: 1573480583492202220
       Rift-Drained Worker_4: 5539615200720865275
       Rift-Drained Worker_5: 1858766599029977016

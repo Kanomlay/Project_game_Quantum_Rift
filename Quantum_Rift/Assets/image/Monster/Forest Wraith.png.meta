@@ -85,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,12 +96,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 155.08475
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -120,10 +120,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,15 +151,19 @@ TextureImporter:
       name: Forest Wraith_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 243
-        width: 97
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -173,15 +177,19 @@ TextureImporter:
       name: Forest Wraith_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 243
-        width: 98
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -195,15 +203,19 @@ TextureImporter:
       name: Forest Wraith_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 243
-        width: 96
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -217,15 +229,19 @@ TextureImporter:
       name: Forest Wraith_3
       rect:
         serializedVersion: 2
-        x: 399
-        y: 243
-        width: 97
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -239,15 +255,19 @@ TextureImporter:
       name: Forest Wraith_4
       rect:
         serializedVersion: 2
-        x: 525
-        y: 243
-        width: 97
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -261,15 +281,19 @@ TextureImporter:
       name: Forest Wraith_5
       rect:
         serializedVersion: 2
-        x: 650
-        y: 243
-        width: 99
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -283,15 +307,19 @@ TextureImporter:
       name: Forest Wraith_6
       rect:
         serializedVersion: 2
-        x: 778
-        y: 244
-        width: 96
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -305,15 +333,19 @@ TextureImporter:
       name: Forest Wraith_7
       rect:
         serializedVersion: 2
-        x: 904
-        y: 244
-        width: 97
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -327,15 +359,19 @@ TextureImporter:
       name: Forest Wraith_8
       rect:
         serializedVersion: 2
-        x: 23
-        y: 118
-        width: 91
-        height: 114
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -349,15 +385,19 @@ TextureImporter:
       name: Forest Wraith_9
       rect:
         serializedVersion: 2
-        x: 145
-        y: 118
-        width: 95
-        height: 113
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -371,15 +411,19 @@ TextureImporter:
       name: Forest Wraith_10
       rect:
         serializedVersion: 2
-        x: 273
-        y: 117
-        width: 94
-        height: 114
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -393,15 +437,19 @@ TextureImporter:
       name: Forest Wraith_11
       rect:
         serializedVersion: 2
-        x: 398
-        y: 118
-        width: 95
-        height: 113
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -415,15 +463,19 @@ TextureImporter:
       name: Forest Wraith_12
       rect:
         serializedVersion: 2
-        x: 523
-        y: 120
-        width: 96
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -437,15 +489,19 @@ TextureImporter:
       name: Forest Wraith_13
       rect:
         serializedVersion: 2
-        x: 648
-        y: 120
-        width: 96
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -459,15 +515,19 @@ TextureImporter:
       name: Forest Wraith_14
       rect:
         serializedVersion: 2
-        x: 773
-        y: 120
-        width: 99
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -481,15 +541,19 @@ TextureImporter:
       name: Forest Wraith_15
       rect:
         serializedVersion: 2
-        x: 902
-        y: 118
-        width: 95
-        height: 113
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -503,15 +567,19 @@ TextureImporter:
       name: Forest Wraith_16
       rect:
         serializedVersion: 2
-        x: 10
-        y: 0
-        width: 117
-        height: 93
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -521,11 +589,141 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_17
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecabdb74e4d80fb4b9345940f16c1dd1
+      internalID: 1600410360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_18
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03a8bf8d5a347c478ff73edf53b4475
+      internalID: 1301372888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_19
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a436580f2919c4bbc42fe7657113c9
+      internalID: 1957161715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0200d26b45ca440beeaaf64f82e963
+      internalID: 1841904135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Wraith_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.4852357, y: 0.3859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ab0663460f03c47b090df6b53d25f5
+      internalID: 1292515891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d4a5257674f8d734d94d5d9213fbb6ce
     internalID: 0
     vertices: []
     indices: 
@@ -544,7 +742,12 @@ TextureImporter:
       Forest Wraith_14: 2923255042583846245
       Forest Wraith_15: -8305694164233421996
       Forest Wraith_16: -7426072761667159539
+      Forest Wraith_17: 1600410360
+      Forest Wraith_18: 1301372888
+      Forest Wraith_19: 1957161715
       Forest Wraith_2: 6747545725184258396
+      Forest Wraith_20: 1841904135
+      Forest Wraith_21: 1292515891
       Forest Wraith_3: -5288213740850262831
       Forest Wraith_4: 2060643536110676062
       Forest Wraith_5: -7686840536247859192

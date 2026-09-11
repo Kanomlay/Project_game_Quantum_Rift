@@ -97,7 +97,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -108,12 +108,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 182.19177
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -132,10 +132,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -163,15 +163,19 @@ TextureImporter:
       name: Flux Jaw_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 251
-        width: 100
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -185,15 +189,19 @@ TextureImporter:
       name: Flux Jaw_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 251
-        width: 101
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -207,15 +215,19 @@ TextureImporter:
       name: Flux Jaw_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 251
-        width: 100
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -229,15 +241,19 @@ TextureImporter:
       name: Flux Jaw_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 251
-        width: 101
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -251,15 +267,19 @@ TextureImporter:
       name: Flux Jaw_4
       rect:
         serializedVersion: 2
-        x: 532
-        y: 251
-        width: 100
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -273,15 +293,19 @@ TextureImporter:
       name: Flux Jaw_5
       rect:
         serializedVersion: 2
-        x: 659
-        y: 251
-        width: 100
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -295,15 +319,19 @@ TextureImporter:
       name: Flux Jaw_6
       rect:
         serializedVersion: 2
-        x: 784
-        y: 251
-        width: 93
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 960
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -317,15 +345,19 @@ TextureImporter:
       name: Flux Jaw_7
       rect:
         serializedVersion: 2
-        x: 910
-        y: 251
-        width: 91
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -339,15 +371,19 @@ TextureImporter:
       name: Flux Jaw_8
       rect:
         serializedVersion: 2
-        x: 29
-        y: 126
-        width: 100
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -361,15 +397,19 @@ TextureImporter:
       name: Flux Jaw_9
       rect:
         serializedVersion: 2
-        x: 161
-        y: 129
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -383,15 +423,19 @@ TextureImporter:
       name: Flux Jaw_10
       rect:
         serializedVersion: 2
-        x: 286
-        y: 132
-        width: 101
-        height: 77
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -405,15 +449,19 @@ TextureImporter:
       name: Flux Jaw_11
       rect:
         serializedVersion: 2
-        x: 413
-        y: 133
-        width: 100
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -427,15 +475,19 @@ TextureImporter:
       name: Flux Jaw_12
       rect:
         serializedVersion: 2
-        x: 537
-        y: 126
-        width: 101
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -449,15 +501,19 @@ TextureImporter:
       name: Flux Jaw_13
       rect:
         serializedVersion: 2
-        x: 664
-        y: 126
-        width: 98
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -471,15 +527,19 @@ TextureImporter:
       name: Flux Jaw_14
       rect:
         serializedVersion: 2
-        x: 786
-        y: 126
-        width: 100
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -493,15 +553,19 @@ TextureImporter:
       name: Flux Jaw_15
       rect:
         serializedVersion: 2
-        x: 909
-        y: 126
-        width: 100
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -515,15 +579,19 @@ TextureImporter:
       name: Flux Jaw_16
       rect:
         serializedVersion: 2
-        x: 23
-        y: 14
-        width: 104
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -537,15 +605,19 @@ TextureImporter:
       name: Flux Jaw_17
       rect:
         serializedVersion: 2
-        x: 46
-        y: 5
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -559,15 +631,19 @@ TextureImporter:
       name: Flux Jaw_18
       rect:
         serializedVersion: 2
-        x: 63
-        y: 1
-        width: 27
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -581,15 +657,19 @@ TextureImporter:
       name: Flux Jaw_19
       rect:
         serializedVersion: 2
-        x: 123
-        y: 16
-        width: 21
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -603,15 +683,19 @@ TextureImporter:
       name: Flux Jaw_20
       rect:
         serializedVersion: 2
-        x: 101
-        y: 5
-        width: 16
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
       physicsShape: []
       tessellationDetail: -1
       bones: []
@@ -621,11 +705,37 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Flux Jaw_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5419093, y: 0.30809075}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -160, y: -160}
+        - {x: -160, y: 160}
+        - {x: 160, y: 160}
+        - {x: 160, y: -160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 826febe9253cf154f9090d643a05a6fc
+      internalID: 1268021898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 53b148bc7272bb64a9ea5fb3252bb016
     internalID: 0
     vertices: []
     indices: 
@@ -649,6 +759,7 @@ TextureImporter:
       Flux Jaw_19: -5139737807304197707
       Flux Jaw_2: -3865050800648902546
       Flux Jaw_20: -6340063185686523997
+      Flux Jaw_21: 1268021898
       Flux Jaw_3: 7523151072393622172
       Flux Jaw_4: 3858277719205513438
       Flux Jaw_5: -5203261366650082767
