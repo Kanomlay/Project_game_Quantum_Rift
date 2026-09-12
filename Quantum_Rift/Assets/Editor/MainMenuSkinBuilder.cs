@@ -42,6 +42,7 @@ public static class MainMenuSkinBuilder
         ApplyButtonSprite(canvas.transform, "Background/MenuButtonContainer/Button_Exit", "Quit");
         ApplyButtonSprite(canvas.transform, "CharacterSelect_Panel/BACK", "Back");
 
+        MainMenuColorStatesBuilder.ApplyToScene(scene);
         EditorSceneManager.MarkSceneDirty(scene);
         Debug.Log("แต่งหน้าเมนูด้วยชุดภาพใหม่เรียบร้อย ตรวจใน Scene แล้วกด Ctrl+S เพื่อบันทึก");
     }
@@ -71,23 +72,7 @@ public static class MainMenuSkinBuilder
             return;
         }
 
-        var image = Ensure<Image>(target.gameObject);
-        image.sprite = MenuUIPack.LoadButton(word);
-        image.preserveAspect = true;
-        image.type = Image.Type.Simple;
-
-        // ภาพปุ่มมีตัวหนังสือในตัวแล้ว ถ้าใช้ Sprite Swap ไปปุ่มเปล่าตอน hover ตัวหนังสือจะหายไป จึงใช้ไล่สีแทน
-        var button = target.GetComponent<Button>();
-        if (button != null) button.transition = Selectable.Transition.ColorTint;
-
-        // คงความกว้างเดิมไว้ แล้วคำนวณความสูงตามสัดส่วนภาพ ปุ่มจะได้ไม่ยืด
-        var rect = (RectTransform)target;
-        float width = rect.sizeDelta.x;
-        rect.sizeDelta = new Vector2(width, width / MenuUIPack.ButtonAspect);
-
-        // ตัวหนังสือเดิมซ้ำกับที่อยู่ในภาพปุ่ม ปิดไว้เฉยๆ เผื่ออยากกลับไปใช้ปุ่มเปล่า
-        foreach (var label in target.GetComponentsInChildren<TMP_Text>(true))
-            label.gameObject.SetActive(false);
+        MainMenuColorStatesBuilder.ApplyWideButton(target, word);
     }
 
     static RectTransform EnsureRect(Transform parent, string name)
