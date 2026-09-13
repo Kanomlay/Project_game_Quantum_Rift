@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapData
   mapName: Map 1-3
   mapPrefab: {fileID: 6326965817631159630, guid: f9fc0559694f5ed4db8a6b805ac6a674, type: 3}
-  spawnPosition: {x: 780, y: 130}
+  spawnPosition: {x: 0, y: 0}
   nextMap: {fileID: 11400000, guid: bd88113ea26639b4ba33b795bb73bb25, type: 2}
   isBossRoom: 0
