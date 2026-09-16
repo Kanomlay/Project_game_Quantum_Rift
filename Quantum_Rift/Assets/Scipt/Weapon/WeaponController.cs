@@ -134,7 +134,7 @@ public class WeaponController : MonoBehaviour
     private IEnumerator SwordSwingRoutine(bool downward)
     {
         isAttacking = true;
-        HashSet<MonsterController> hitEnemies = new HashSet<MonsterController>();
+        HashSet<Component> hitEnemies = new HashSet<Component>();
 
         SetBladeEdgeUp(!downward); // ฟันขึ้นต้องพลิกดาบเอาคมขึ้นด้วย
         SpawnSlashEffect(downward);
@@ -211,7 +211,7 @@ public class WeaponController : MonoBehaviour
         if (Mathf.Approximately(currentSwingAngle, RestAngle)) SetBladeEdgeUp(false);
     }
 
-    private void CheckSwingHit(HashSet<MonsterController> alreadyHit)
+    private void CheckSwingHit(HashSet<Component> alreadyHit)
     {
         if (attackPoint == null) return;
 
@@ -225,6 +225,12 @@ public class WeaponController : MonoBehaviour
                 alreadyHit.Add(monster);
                 monster.TakeDamage(currentWeaponData.attackDamage);
                 Debug.Log("ฟาดโดนเข้าให้!: " + enemy.name + " โดนดาเมจไป " + currentWeaponData.attackDamage);
+            }
+            else if (monster == null)
+            {
+                // บอสใช้ระบบเลือดแยกจาก AI มอนสเตอร์เดิม และรับหนึ่งฮิตต่อการฟันหนึ่งครั้ง
+                ArchitectBossHealth boss = enemy.GetComponentInParent<ArchitectBossHealth>();
+                if (boss != null && alreadyHit.Add(boss)) boss.TakeDamage(currentWeaponData.attackDamage);
             }
         }
     }
