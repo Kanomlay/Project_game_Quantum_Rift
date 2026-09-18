@@ -12,7 +12,8 @@ public enum WeaponType
 {
     Sword,  // ฟันด้วยการหมุน sprite
     Gun,    // ยิงกระสุน (ยังไม่ได้ทำ)
-    Bow     // ยิงลูกธนู (ยังไม่ได้ทำ)
+    Bow,    // ยิงลูกธนู (ยังไม่ได้ทำ)
+    Claw    // กรงเล็บ ฟันระยะประชิดด้วยท่าเดียวกับดาบ (ต้องต่อท้ายเสมอ ค่าเดิมใน asset เก็บเป็นตัวเลข)
 }
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Game Data/Weapon Data")]

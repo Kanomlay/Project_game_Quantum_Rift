@@ -139,6 +139,13 @@ public class PlayerStats : MonoBehaviour
     {
         isDead = true;
 
+        // ตัวละครชุดใหม่มีท่าตายมาให้ ส่วนตัวเก่าที่ไม่มีสคริปต์นี้ก็แค่ข้ามไป
+        HeroNoHandsAnimation heroAnim = GetComponent<HeroNoHandsAnimation>();
+        if (heroAnim != null) heroAnim.PlayDeath();
+
+        // ตายแล้วต้องฟันต่อไม่ได้
+        if (weaponController != null) weaponController.enabled = false;
+
         if (SummaryManager.instance != null)
         {
             SummaryManager.instance.ShowSummary(false, "");

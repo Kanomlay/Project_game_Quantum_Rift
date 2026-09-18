@@ -34,6 +34,15 @@ public class WeaponController : MonoBehaviour
     // ไม่งั้นทิศฟันกับด้านคมจะสลับกันเวลาหันซ้าย
     private float AimMirror => (transform.localScale.y < 0f) ? -1f : 1f;
 
+    // ตัวละครแต่ละตัวถูกย่อ/ขยายไม่เท่ากัน WeaponHolder จึงต้องมี scale ชดเชยของตัวเองไว้ให้ดาบขนาดเท่าเดิม
+    // ต้องจำไว้ตั้งแต่แรก ไม่งั้นตอนพลิกซ้าย/ขวาจะถูกรีเซ็ตกลับเป็น 1
+    private Vector3 baseScale = Vector3.one;
+
+    void Awake()
+    {
+        baseScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), transform.localScale.z);
+    }
+
     void Update()
     {
         if (PauseManager.isGamePaused) return;
@@ -61,14 +70,10 @@ public class WeaponController : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0, 0, angle);
 
-        Vector3 localScale = Vector3.one;
+        Vector3 localScale = baseScale;
         if (angle > 90 || angle < -90)
         {
-            localScale.y = -1f;
-        }
-        else
-        {
-            localScale.y = 1f;
+            localScale.y = -baseScale.y;
         }
         transform.localScale = localScale;
     }
@@ -109,7 +114,7 @@ public class WeaponController : MonoBehaviour
    void AttemptAttack()
     {
         if (currentWeaponData == null || Time.time < nextAttackTime) return;
-        if (currentWeaponData.weaponType != WeaponType.Sword) return; // ปืน/ธนู ต้องใช้ระบบกระสุนแยก เดี๋ยวค่อยทำ
+        if (!IsMelee(currentWeaponData.weaponType)) return; // ปืน/ธนู ต้องใช้ระบบกระสุนแยก เดี๋ยวค่อยทำ
 
         // ถ้าทิ้งช่วงนานเกินคอมโบ (สวิงก่อนหน้าเล่นจบไปนานแล้ว) ให้เริ่มใหม่ด้วยท่าบนลงล่างเสมอ
         if (Time.time - lastAttackTime > ComboWindow)
@@ -128,6 +133,9 @@ public class WeaponController : MonoBehaviour
 
         nextAttackTime = Time.time + AttackInterval;
     }
+
+    // อาวุธระยะประชิดใช้ท่าฟันชุดเดียวกันหมด ต่างกันแค่ภาพ ดาเมจ และความเร็ว
+    private static bool IsMelee(WeaponType type) => type == WeaponType.Sword || type == WeaponType.Claw;
 
     // หมุน sprite ดาบกวาดผ่านมุม attackAngle รอบทิศที่เล็งอยู่ แทนการสลับเฟรมอนิเมชัน
     // downward = บนลงล่าง, !downward = ล่างขึ้นบน โดยเริ่มต่อจากมุมที่ดาบค้างอยู่จากสวิงก่อนหน้า
