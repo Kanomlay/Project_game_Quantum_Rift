@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u0E19\u0E31\u0E01\u0E18\u0E19\u0E39"
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   className: Archer
+  classNameThai: "\u0E19\u0E31\u0E01\u0E18\u0E19\u0E39"
   characterSprite: {fileID: 1805267155, guid: 8f044f0b8aefb6742ad798a9c42502f8, type: 3}
   characterPrefab: {fileID: 2330737598767356069, guid: 48f6035ffab981348a72cad5218dbe4c, type: 3}
   maxHealth: 6

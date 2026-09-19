@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u0E19\u0E31\u0E01\u0E23\u0E1A"
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   className: Warrior
+  classNameThai: "\u0E19\u0E31\u0E01\u0E23\u0E1A"
   characterSprite: {fileID: 1565236547, guid: e5274b59037d70e4398fcedbc9f91df6, type: 3}
   characterPrefab: {fileID: 1563398821653274402, guid: 3dc1073fc1105e1489a619b2bb2429ed, type: 3}
   maxHealth: 8

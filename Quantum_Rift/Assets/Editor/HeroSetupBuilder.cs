@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -18,6 +19,7 @@ public static class HeroSetupBuilder
     const string HeroFolder = "Assets/Prefab/Hero/Heroes-BlondeStyle-NoHands-v2";
     const string CharacterFolder = "Assets/Data/Character/Hero";
     const string MainMenuScenePath = "Assets/Scenes/MainMenu.unity";
+    const string CharacterBoxPrefabPath = "Assets/Prefab/Template/CharacterBox_Template.prefab";
 
     // วัดจากภาพจริง: ลำตัวกว้าง ~1.6 สูง ~2.0 หน่วย (ก่อนย่อ) และ pivot อยู่ที่เท้า ทั้งสี่ตัวใช้โครงร่างเดียวกัน
     // collider เอาแค่ช่วงลำตัวถึงเท้า ไม่รวมผม/ผ้าคลุม/ปีก หัวจะได้ซ้อนกำแพงด้านบนได้แบบเกม top-down และเดินผ่านประตูแคบได้
@@ -53,6 +55,7 @@ public static class HeroSetupBuilder
         GuardEditorState(needsMainMenu: true);
 
         var characters = Heroes.Select(SetupHero).ToList();
+        WireCharacterBox();
         AssetDatabase.SaveAssets();
 
         RegisterInCharacterSelect(characters);
@@ -69,6 +72,42 @@ public static class HeroSetupBuilder
 
     [MenuItem("Tools/Quantum Rift/Setup Hero/Hero04 WhiteHair (มนุษย์กลายพันธุ์)")]
     public static void SetupWhiteHair() => SetupSingle(3);
+
+    // กล่องตัวละครมีช่องสกิลสองช่องที่ยังโชว์คำว่า Button อยู่ ต่อให้ไปแสดงชื่อทักษะประจำอาชีพแทน
+    [MenuItem("Tools/Quantum Rift/Setup Hero/Wire Character Box")]
+    public static void WireCharacterBox()
+    {
+        var root = PrefabUtility.LoadPrefabContents(CharacterBoxPrefabPath);
+        try
+        {
+            var box = root.GetComponent<CharacterBoxUI>();
+            if (box == null)
+            {
+                Debug.LogWarning($"{CharacterBoxPrefabPath} ไม่มี CharacterBoxUI ข้ามไป");
+                return;
+            }
+
+            box.skill1Text = FindLabel(root.transform, "Skill/SkillQ");
+            box.skill2Text = FindLabel(root.transform, "Skill/SkillE");
+
+            PrefabUtility.SaveAsPrefabAsset(root, CharacterBoxPrefabPath);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+    }
+
+    static TextMeshProUGUI FindLabel(Transform root, string path)
+    {
+        var slot = root.Find(path);
+        if (slot == null)
+        {
+            Debug.LogWarning($"ไม่เจอช่องสกิล {path} ในกล่องตัวละคร");
+            return null;
+        }
+        return slot.GetComponentInChildren<TextMeshProUGUI>(true);
+    }
 
     static void SetupSingle(int index)
     {
@@ -156,6 +195,7 @@ public static class HeroSetupBuilder
         // หน้าเลือกตัวละครกับ MapManager อ่านจาก CharacterData ต้องชี้มาที่ prefab ใหม่ถึงจะได้ตัวนี้ในเกม
         var data = LoadOrCreateCharacter(spec.Character);
         data.className = spec.ClassName;
+        data.classNameThai = spec.Character;
         data.characterPrefab = Load<GameObject>(heroPath);
         data.characterSprite = heroSprite;
         data.maxHealth = spec.MaxHealth;

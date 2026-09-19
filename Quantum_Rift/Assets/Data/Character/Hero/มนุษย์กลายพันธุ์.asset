@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u0E21\u0E19\u0E38\u0E29\u0E22\u0E4C\u0E01\u0E25\u0E32\u0E22\u0E1E\u0E31\u0E19\u0E18\u0E38\u0E4C"
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   className: Mutant
+  classNameThai: "\u0E21\u0E19\u0E38\u0E29\u0E22\u0E4C\u0E01\u0E25\u0E32\u0E22\u0E1E\u0E31\u0E19\u0E18\u0E38\u0E4C"
   characterSprite: {fileID: 238270445, guid: c0ff5937df9e94c418f7a957c0ba7c6c, type: 3}
   characterPrefab: {fileID: 6224402762915404491, guid: c98f03357638cfd4f90bce5d58ac2292, type: 3}
   maxHealth: 9

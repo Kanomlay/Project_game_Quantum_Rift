@@ -238,6 +238,7 @@ MonoBehaviour:
   weapon1: {fileID: 11400000, guid: d3d0854cf11709346b25117b5bfeb071, type: 2}
   weapon2: {fileID: 0}
   iframeDuration: 1
+  deathSummaryDelay: 1
   currentCurrency: 0
   weaponController: {fileID: 2847710833131715432}
   isDead: 0

@@ -28,7 +28,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnSettingClicked()
     {
-        Debug.Log("Open Settings Panel");
+        if (SettingsMenu.instance != null) SettingsMenu.instance.Open();
+        else Debug.LogWarning("ยังไม่มีหน้าตั้งค่าในฉาก สั่ง Tools > Quantum Rift > Build Settings Screen ก่อน");
     }
 
     public void OpenCharacterDetail()

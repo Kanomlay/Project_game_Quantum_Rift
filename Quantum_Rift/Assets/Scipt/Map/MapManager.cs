@@ -77,10 +77,10 @@ public class MapManager : MonoBehaviour
     }
     public void GoToNextMap()
     {
-        if (currentMap.isBossRoom)
+        if (currentMap.isBossRoom && SummaryManager.instance != null)
         {
             string nextMapName = (currentMap.nextMap != null) ? currentMap.nextMap.mapName : "จบเกม!";
-            SummaryManager.instance.ShowSummary(true, nextMapName); 
+            SummaryManager.instance.ShowSummary(true, nextMapName);
         }
         else if (currentMap.nextMap != null)
         {

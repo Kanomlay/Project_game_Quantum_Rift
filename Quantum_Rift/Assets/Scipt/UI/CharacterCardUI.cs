@@ -25,7 +25,7 @@ public class CharacterCardUI : MonoBehaviour
     {
         if (characterData != null)
         {
-            nameText.text = characterData.className;
+            nameText.text = characterData.DisplayName;
             hpText.text = "Health: " + characterData.maxHealth.ToString();
             energyText.text = "Energy: " + characterData.maxEnergy.ToString(); 
 

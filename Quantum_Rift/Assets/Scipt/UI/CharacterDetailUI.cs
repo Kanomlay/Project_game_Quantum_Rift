@@ -21,7 +21,7 @@ public class CharacterDetailUI : MonoBehaviour
         {
             currentCharacter = data;
 
-            nameText.text = data.className;
+            nameText.text = data.DisplayName;
             hpText.text = data.maxHealth.ToString();
             energyText.text = data.maxEnergy.ToString();
             skill1Text.text = data.skill1Name;

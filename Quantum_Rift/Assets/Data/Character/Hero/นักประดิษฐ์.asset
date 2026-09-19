@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u0E19\u0E31\u0E01\u0E1B\u0E23\u0E30\u0E14\u0E34\u0E29\u0E10\u0E4C"
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   className: Engineer
+  classNameThai: "\u0E19\u0E31\u0E01\u0E1B\u0E23\u0E30\u0E14\u0E34\u0E29\u0E10\u0E4C"
   characterSprite: {fileID: -212865980, guid: eb66fd5f0d0fd8b4e9550d1f10af6aea, type: 3}
   characterPrefab: {fileID: 350881936589629030, guid: 9e715f6062386ce4ab66f084ba0cbdbc, type: 3}
   maxHealth: 7
