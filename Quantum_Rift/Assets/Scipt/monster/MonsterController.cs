@@ -6,16 +6,17 @@ public class MonsterController : MonoBehaviour
     [Header("ข้อมูลมอนสเตอร์ (Data-Driven)")]
     public MonsterData myData;
 
-    private float currentHealth;
-    private Transform player;
-    private Animator anim;
-    private SpriteRenderer sr; 
-    private Rigidbody2D rb; 
-    private float nextAttackTime = 0f;
-    private bool isKnockedBack = false;     
+    // เปิดให้บอสที่สืบทอดไปใช้ต่อได้ (ดู EchoCommanderBoss)
+    protected float currentHealth;
+    protected Transform player;
+    protected Animator anim;
+    protected SpriteRenderer sr; 
+    protected Rigidbody2D rb; 
+    protected float nextAttackTime = 0f;
+    protected bool isKnockedBack = false;     
     [HideInInspector] public RoomController currentRoom;
 
-    void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>(); 
@@ -27,7 +28,7 @@ public class MonsterController : MonoBehaviour
         if (hero != null) player = hero.transform;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         
         if (isKnockedBack) return; 
@@ -72,7 +73,7 @@ public class MonsterController : MonoBehaviour
     }
 
     
-    private void HitPlayer(float damage, float knockbackForce)
+    protected void HitPlayer(float damage, float knockbackForce)
     {
         if (player != null)
         {
@@ -115,7 +116,7 @@ public class MonsterController : MonoBehaviour
         isKnockedBack = false; 
     }
 
-    void Die()
+    protected virtual void Die()
     {
         SummaryManager.enemiesDefeatedCount++;
         if (currentRoom != null) currentRoom.OnMonsterDied(); 

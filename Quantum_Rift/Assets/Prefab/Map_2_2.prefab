@@ -30624,6 +30624,8 @@ MonoBehaviour:
   - {fileID: 3762246091254089905}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &7981832521482331251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50104,6 +50106,8 @@ MonoBehaviour:
   - {fileID: 4730878483470965526}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &3853543191286215174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53738,6 +53742,8 @@ MonoBehaviour:
   - {fileID: 235746799038701663}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &4091727426023075184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54293,6 +54299,8 @@ MonoBehaviour:
   - {fileID: 8800254580464288081}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &186571347876130171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54461,6 +54469,8 @@ MonoBehaviour:
   - {fileID: 1416185410766382235}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &1567268754736673286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56328,6 +56338,8 @@ MonoBehaviour:
   - {fileID: 7885683261161080720}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
+  canHostEvent: 1
+  eventAnchor: {fileID: 0}
 --- !u!61 &1020856986013317154
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -15,5 +15,7 @@ MonoBehaviour:
   mapName: Map 1-2
   mapPrefab: {fileID: 454819187629868823, guid: e13e1c2b44690754b946f17a35c42592, type: 3}
   spawnPosition: {x: 0, y: 0}
+  possibleEvents:
+  - {fileID: 11400000, guid: 55a9e6f22ccb36f468c209d771d88f7a, type: 2}
   nextMap: {fileID: 11400000, guid: 59f861cd60d50dc41b21e7cc04b5a706, type: 2}
   isBossRoom: 0

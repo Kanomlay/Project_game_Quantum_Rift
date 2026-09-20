@@ -61,7 +61,12 @@ public class MapManager : MonoBehaviour
         
         currentMap = mapToLoad;
         
-        if (currentMap.mapPrefab != null) currentMapInstance = Instantiate(currentMap.mapPrefab, Vector3.zero, Quaternion.identity);
+        if (currentMap.mapPrefab != null)
+        {
+            currentMapInstance = Instantiate(currentMap.mapPrefab, Vector3.zero, Quaternion.identity);
+            // สุ่มเหตุการณ์พิเศษของแมพนี้ (ร้านค้า ฯลฯ) หนึ่งอย่างต่อการเข้าหนึ่งครั้ง
+            MapEventDirector.PlaceEvent(currentMapInstance, currentMap);
+        }
         
         if (player != null)
         {
