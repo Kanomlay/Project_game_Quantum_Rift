@@ -8,7 +8,7 @@ using UnityEngine.UI;
 // Blank state sprites and an independent label prevent text disappearing on press.
 public static class MainMenuColorStatesBuilder
 {
-    public const string Folder="Assets/image/UI_Image/QuantumRift-Button-ColorStates-v2";
+    public const string Folder="Assets/image/UI_Image/QuantumRift-Button-Approved-v3";
     public const string ScenePath="Assets/Scenes/MainMenu.unity";
     static Sprite Load(string state){var s=AssetDatabase.LoadAssetAtPath<Sprite>(Folder+"/Button-"+state+".png");if(s==null)throw new InvalidOperationException("Missing button state: "+state);return s;}
     [MenuItem("Tools/Quantum Rift/Apply Main Menu Color States")]
@@ -54,6 +54,10 @@ public static class MainMenuColorStatesBuilder
         float h=parent.rect.height;float w=parent.rect.width;
         rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f);rect.anchoredPosition=Vector2.zero;rect.sizeDelta=new Vector2(w*.61f,h*.46f);rect.localScale=Vector3.one;
         rect.SetAsLastSibling();
+        var feedback=target.GetComponent<MenuButtonLabelFeedback>();
+        if(feedback==null)feedback=target.gameObject.AddComponent<MenuButtonLabelFeedback>();
+        feedback.button=b;feedback.label=label;feedback.restingPosition=rect.anchoredPosition;feedback.pressedOffset=2;
+        feedback.Refresh();
     }
     static void ApplyIconButton(Button b)
     {

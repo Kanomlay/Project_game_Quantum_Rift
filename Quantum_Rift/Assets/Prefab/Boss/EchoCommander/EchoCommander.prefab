@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8737877743374962782}
   - component: {fileID: 2163731414880920842}
   - component: {fileID: 7321655722810894619}
+  - component: {fileID: 3099375803573281338}
   m_Layer: 0
   m_Name: EchoCommander
   m_TagString: Untagged
@@ -127,3 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68be9045cca2b734b961ce48d51c7fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EchoCommanderAnimation
+--- !u!114 &3099375803573281338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766217442127868141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f994f445695fbc4895617600f8d4f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealthHudLink
+  hudPrefab: {fileID: 4545750781933497462, guid: 8a4e972e119f1774e9350e0751045faf, type: 3}

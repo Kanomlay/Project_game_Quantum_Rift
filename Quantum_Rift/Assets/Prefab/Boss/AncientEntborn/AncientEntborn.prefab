@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5853735261099162001}
   - component: {fileID: 8859622179955220774}
   - component: {fileID: 344005420229715171}
+  - component: {fileID: 5992876304810605605}
   m_Layer: 0
   m_Name: AncientEntborn
   m_TagString: Untagged
@@ -127,3 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8360cc810a024994aad3b25b49d0b2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AncientEntbornAnimation
+--- !u!114 &5992876304810605605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781510104032678745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f994f445695fbc4895617600f8d4f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealthHudLink
+  hudPrefab: {fileID: 2082870198467914239, guid: e4b04fa21cdfeae4ea80b4014f472fe0, type: 3}
