@@ -9,12 +9,20 @@ public class RoomController : MonoBehaviour
     public Transform[] monsterSpawnPoints;
     public Transform chestSpawnPoint;
     public GameObject chestPrefab;
+
+    [Header("เหตุการณ์พิเศษ (ร้านค้า ฯลฯ)")]
+    public bool canHostEvent;       // ห้องนี้ยอมให้สุ่มเหตุการณ์มาลงไหม (ห้องบอสควรปิดไว้)
+    public Transform eventAnchor;   // จุดวางของ ถ้าไม่ใส่จะใช้กลางห้อง
+
     public bool HasStarted => hasStarted;
     public bool IsCleared => isCleared;
     public int AliveMonstersCount => aliveMonstersCount;
     private bool hasStarted;
     private bool isCleared;
     private int aliveMonstersCount;
+
+    // เหตุการณ์ที่ MapEventDirector เลือกให้ห้องนี้ รอจังหวะเสก
+    private GameObject pendingEventPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,17 +33,21 @@ public class RoomController : MonoBehaviour
     {
         if (hasStarted || isCleared) return;
         hasStarted = true;
-        var entries = roomData != null ? roomData.monstersToSpawn : null;
-        if (entries != null)
+
+        int slots = monsterSpawnPoints != null ? monsterSpawnPoints.Length : 0;
+        var wave = roomData != null ? roomData.BuildWave(slots) : null;
+        // สุ่มลำดับจุดเกิด มอนสเตอร์จะได้ไม่มายืนที่เดิมทุกครั้งที่เข้าด่าน
+        var points = ShuffledSpawnPoints();
+
+        if (wave != null)
         {
-            for (int i = 0; i < entries.Length; i++)
+            for (int i = 0; i < wave.Count; i++)
             {
-                var data = entries[i];
+                var data = wave[i];
                 // Missing/animation-only prefabs cannot report deaths; do not soft-lock.
                 if (data == null || data.monsterPrefab == null ||
                     data.monsterPrefab.GetComponent<MonsterController>() == null) continue;
-                Transform point = monsterSpawnPoints != null && i < monsterSpawnPoints.Length &&
-                    monsterSpawnPoints[i] != null ? monsterSpawnPoints[i] : transform;
+                Transform point = points != null && points.Length > 0 ? points[i % points.Length] : transform;
                 // Map unloading also removes its spawned enemies.
                 var obj = Instantiate(data.monsterPrefab, point.position, Quaternion.identity, transform);
                 var monster = obj.GetComponent<MonsterController>();
@@ -53,6 +65,32 @@ public class RoomController : MonoBehaviour
         if (!hasStarted || isCleared || aliveMonstersCount <= 0) return;
         aliveMonstersCount--;
         if (aliveMonstersCount == 0) ClearRoom();
+    }
+
+    // MapEventDirector เรียกตอนแมพโหลดเสร็จ เพื่อจองห้องนี้ให้เป็นห้องเหตุการณ์ของแมพ
+    public void AssignEvent(GameObject prefab, bool afterCleared)
+    {
+        if (prefab == null) return;
+
+        if (!afterCleared || isCleared)
+        {
+            SpawnEvent(prefab);
+            return;
+        }
+        pendingEventPrefab = prefab;
+    }
+
+    private Transform[] ShuffledSpawnPoints()
+    {
+        if (monsterSpawnPoints == null || monsterSpawnPoints.Length == 0) return null;
+
+        var points = (Transform[])monsterSpawnPoints.Clone();
+        for (int i = points.Length - 1; i > 0; i--)
+        {
+            int swap = Random.Range(0, i + 1);
+            (points[i], points[swap]) = (points[swap], points[i]);
+        }
+        return points;
     }
 
     private void SetDoors(bool closed)
@@ -75,5 +113,18 @@ public class RoomController : MonoBehaviour
         if (chestPrefab != null)
             Instantiate(chestPrefab, chestSpawnPoint != null ? chestSpawnPoint.position : transform.position,
                 Quaternion.identity, transform);
+
+        if (pendingEventPrefab != null)
+        {
+            SpawnEvent(pendingEventPrefab);
+            pendingEventPrefab = null;
+        }
+    }
+
+    private void SpawnEvent(GameObject prefab)
+    {
+        Transform anchor = eventAnchor != null ? eventAnchor : transform;
+        // เป็นลูกของห้อง พอเปลี่ยนด่านแล้วแมพถูกทำลาย เหตุการณ์จะหายตามไปด้วย
+        Instantiate(prefab, anchor.position, Quaternion.identity, transform);
     }
 }

@@ -20,6 +20,8 @@ public static class MenuUIPack
     public static readonly Color Surface = new Color32(0x21, 0x16, 0x37, 0xFF);  // ผิวหน้าต่าง
     public static readonly Color Border = new Color32(0x66, 0x51, 0x85, 0xFF);   // กรอบโลหะม่วง
     public static readonly Color TextMain = new Color32(0xF3, 0xF3, 0xFF, 0xFF); // ข้อความหลัก
+    public static readonly Color Accent = new Color32(0x24, 0xE4, 0xFA, 0xFF);   // สีเลือก/โฟกัส
+    public static readonly Color Sunken = new Color32(0x11, 0x0B, 0x1E, 0xFF);   // ร่องที่จมลงไป เช่น รางของแถบเลื่อน
 
     // แพ็กมาแบบ Sprite Mode = Multiple ทำให้ Logo โดน auto-slice หั่นเป็นหลายชิ้นจนใช้เป็นภาพเดียวไม่ได้
     // และ Filter Mode = Bilinear ทำให้ขอบพิกเซลเบลอ ต้องแก้ก่อนถึงจะเอามาใช้ได้
@@ -53,5 +55,8 @@ public static class MenuUIPack
     }
 
     // word = Start / Continue / Settings / Resume / Back / Quit (ตามชื่อไฟล์ในแพ็ก)
-    public static Sprite LoadButton(string word) => Load($"{SpriteFolder}/{Language}-{word}.png");
+    public static Sprite LoadButton(string word) => LoadButton(word, Language);
+
+    // ระบุภาษาเองได้ ใช้ตอนใส่ภาพทั้งสองภาษาให้ LocalizedImage เก็บไว้สลับตอนเล่น
+    public static Sprite LoadButton(string word, string language) => Load($"{SpriteFolder}/{language}-{word}.png");
 }

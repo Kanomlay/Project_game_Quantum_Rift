@@ -5,6 +5,12 @@ public class CharacterData : ScriptableObject
 {
     [Header("ข้อมูลพื้นฐาน (Basic Info)")]
     public string className;
+    public string classNameThai;
+
+    // ชื่ออาชีพตามภาษาที่เลือกอยู่ ถ้ายังไม่ได้ใส่ชื่อไทยก็ใช้ชื่ออังกฤษไปก่อน
+    public string DisplayName =>
+        (LanguageSettings.IsThai && !string.IsNullOrEmpty(classNameThai)) ? classNameThai : className;
+
     public Sprite characterSprite;
     public GameObject characterPrefab;
 

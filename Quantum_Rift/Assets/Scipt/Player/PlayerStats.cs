@@ -25,6 +25,9 @@ public class PlayerStats : MonoBehaviour
 
     [Header("ระบบอมตะ (I-Frames)")]
     public float iframeDuration = 1.0f;
+
+    [Header("ตอนตาย")]
+    public float deathSummaryDelay = 1.0f; // รอให้ท่าตายเล่นจบก่อนค่อยเด้งหน้าสรุป (ท่าตายยาว ~0.9 วิ)
     private bool isInvincible = false;
     private SpriteRenderer sr; 
 
@@ -139,14 +142,29 @@ public class PlayerStats : MonoBehaviour
     {
         isDead = true;
 
+        // ตัวละครชุดใหม่มีท่าตายมาให้ ส่วนตัวเก่าที่ไม่มีสคริปต์นี้ก็แค่ข้ามไป
+        HeroNoHandsAnimation heroAnim = GetComponent<HeroNoHandsAnimation>();
+        if (heroAnim != null) heroAnim.PlayDeath();
+
+        // ตายแล้วต้องฟันต่อไม่ได้
+        if (weaponController != null) weaponController.enabled = false;
+
         if (SummaryManager.instance != null)
         {
-            SummaryManager.instance.ShowSummary(false, "");
+            StartCoroutine(ShowSummaryAfterDeathRoutine());
         }
         else
         {
             Debug.LogWarning("ผู้เล่นตายแล้ว แต่ยังไม่มี SummaryManager ในฉาก เลยยังไม่มีหน้าสรุปให้แสดง");
         }
+    }
+
+    // หน้าสรุปหยุดเวลาเป็น 0 ถ้าเด้งขึ้นทันทีท่าตายจะค้างอยู่เฟรมแรก
+    // จึงรอด้วยเวลาจริง (Realtime) ที่ไม่ขึ้นกับ timeScale ให้ท่าตายเล่นจบก่อน
+    private IEnumerator ShowSummaryAfterDeathRoutine()
+    {
+        yield return new WaitForSecondsRealtime(deathSummaryDelay);
+        SummaryManager.instance.ShowSummary(false, "");
     }
 
 

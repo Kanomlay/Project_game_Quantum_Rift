@@ -14,11 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isDashing = false;
     private bool isKnockedBack = false;
+    private PlayerStats stats;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
+        stats = GetComponent<PlayerStats>();
 
         if (GameManager.selectedCharacter != null)
         {
@@ -31,6 +33,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (PauseManager.isGamePaused) return;
+
+        // ตายแล้วยืนนิ่งค้างท่าตาย ไม่งั้นศพจะเดินตามปุ่มได้
+        if (stats != null && stats.isDead)
+        {
+            movement = Vector2.zero;
+            return;
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

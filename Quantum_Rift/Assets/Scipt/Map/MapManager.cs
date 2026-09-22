@@ -61,7 +61,12 @@ public class MapManager : MonoBehaviour
         
         currentMap = mapToLoad;
         
-        if (currentMap.mapPrefab != null) currentMapInstance = Instantiate(currentMap.mapPrefab, Vector3.zero, Quaternion.identity);
+        if (currentMap.mapPrefab != null)
+        {
+            currentMapInstance = Instantiate(currentMap.mapPrefab, Vector3.zero, Quaternion.identity);
+            // สุ่มเหตุการณ์พิเศษของแมพนี้ (ร้านค้า ฯลฯ) หนึ่งอย่างต่อการเข้าหนึ่งครั้ง
+            MapEventDirector.PlaceEvent(currentMapInstance, currentMap);
+        }
         
         if (player != null)
         {
@@ -77,10 +82,10 @@ public class MapManager : MonoBehaviour
     }
     public void GoToNextMap()
     {
-        if (currentMap.isBossRoom)
+        if (currentMap.isBossRoom && SummaryManager.instance != null)
         {
             string nextMapName = (currentMap.nextMap != null) ? currentMap.nextMap.mapName : "จบเกม!";
-            SummaryManager.instance.ShowSummary(true, nextMapName); 
+            SummaryManager.instance.ShowSummary(true, nextMapName);
         }
         else if (currentMap.nextMap != null)
         {

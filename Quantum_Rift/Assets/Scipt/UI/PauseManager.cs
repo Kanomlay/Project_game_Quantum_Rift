@@ -19,6 +19,16 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
+        // ระหว่างโชว์หน้าสรุป (ตาย/ผ่านด่าน) ห้ามกด ESC หนีกลับไปเล่นต่อ
+        if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return;
+
+        // เปิดหน้าตั้งค่าอยู่ ให้ ESC ปิดหน้าตั้งค่าก่อน ไม่ใช่เล่นเกมต่อทั้งที่หน้าตั้งค่ายังค้าง
+        if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape)) SettingsMenu.instance.Close();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SetPaused(!isGamePaused);
@@ -48,8 +58,8 @@ public class PauseManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        // TODO: สั่งเปิดหน้า UI Settings
-        Debug.Log("ยังไม่มีหน้า Settings เดี๋ยวค่อยทำ");
+        if (SettingsMenu.instance != null) SettingsMenu.instance.Open();
+        else Debug.LogWarning("ยังไม่มีหน้าตั้งค่าในฉาก สั่ง Tools > Quantum Rift > Build Settings Screen ก่อน");
     }
 
     public void ExitToMainMenu()

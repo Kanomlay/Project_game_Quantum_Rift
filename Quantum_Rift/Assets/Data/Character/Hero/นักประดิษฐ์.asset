@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b728195f10d204e959a3678dbf58e3, type: 3}
+  m_Name: "\u0E19\u0E31\u0E01\u0E1B\u0E23\u0E30\u0E14\u0E34\u0E29\u0E10\u0E4C"
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  className: Engineer
+  classNameThai: "\u0E19\u0E31\u0E01\u0E1B\u0E23\u0E30\u0E14\u0E34\u0E29\u0E10\u0E4C"
+  characterSprite: {fileID: -212865980, guid: eb66fd5f0d0fd8b4e9550d1f10af6aea, type: 3}
+  characterPrefab: {fileID: 350881936589629030, guid: 9e715f6062386ce4ab66f084ba0cbdbc, type: 3}
+  maxHealth: 7
+  maxEnergy: 100
+  moveSpeed: 100
+  skill1Name: "\u0E42\u0E14\u0E23\u0E19\u0E08\u0E39\u0E48\u0E42\u0E08\u0E21"
+  skill2Name: "\u0E01\u0E31\u0E1A\u0E14\u0E31\u0E01\u0E41\u0E21\u0E48\u0E40\u0E2B\u0E25\u0E47\u0E01\u0E44\u0E1F\u0E1F\u0E49\u0E32"
+  skillQ: {fileID: 0}
+  skillE: {fileID: 0}
