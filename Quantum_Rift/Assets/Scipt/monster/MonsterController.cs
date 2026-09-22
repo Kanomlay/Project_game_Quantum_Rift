@@ -13,6 +13,7 @@ public class MonsterController : MonoBehaviour
     private Rigidbody2D rb; 
     private float nextAttackTime = 0f;
     private bool isKnockedBack = false;     
+    private MonsterCombatActions combatActions;
     [HideInInspector] public RoomController currentRoom;
 
     void Start()
@@ -25,12 +26,20 @@ public class MonsterController : MonoBehaviour
 
         GameObject hero = GameObject.FindGameObjectWithTag("Player");
         if (hero != null) player = hero.transform;
+        combatActions = GetComponent<MonsterCombatActions>();
+        if (combatActions != null) combatActions.Initialize(myData, player);
     }
 
     void Update()
     {
         
         if (isKnockedBack) return; 
+
+        if (combatActions != null)
+        {
+            combatActions.Tick();
+            return;
+        }
 
         if (player != null && myData != null)
         {
@@ -65,7 +74,7 @@ public class MonsterController : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isKnockedBack)
+        if (combatActions == null && myData != null && collision.gameObject.CompareTag("Player") && !isKnockedBack)
         {
             HitPlayer(myData.attackDamage, 6f); 
         }
@@ -87,6 +96,7 @@ public class MonsterController : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (!gameObject.activeInHierarchy || currentHealth <= 0) return;
         currentHealth -= damageAmount;
         
     
@@ -98,6 +108,7 @@ public class MonsterController : MonoBehaviour
     
     private IEnumerator DamageEffectRoutine()
     {
+        if (combatActions != null) combatActions.CancelAttack();
         isKnockedBack = true; 
         sr.color = Color.red; 
 
