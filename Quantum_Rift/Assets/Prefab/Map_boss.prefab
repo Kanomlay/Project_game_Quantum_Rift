@@ -15786,7 +15786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &32485548267448667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20571,6 +20571,7 @@ GameObject:
   - component: {fileID: 8989620832848148021}
   - component: {fileID: 281955910956638748}
   - component: {fileID: 5382202226133518293}
+  - component: {fileID: 235440829729920862}
   m_Layer: 8
   m_Name: ArchitectBoss
   m_TagString: Untagged
@@ -20653,6 +20654,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 1.3}
   m_Radius: 1.6
+--- !u!114 &235440829729920862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668448617302832106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b308416aff624e24b98972aeb39f5625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArchitectBossHudLink
+  boss: {fileID: 281955910956638748}
+  arena: {fileID: 7660107701492402366}
+  hudPrefab: {fileID: 6064929958651746132, guid: 7c395859d1a68e24b9ef689fedcde168, type: 3}
 --- !u!1 &7714767174651886745
 GameObject:
   m_ObjectHideFlags: 0
