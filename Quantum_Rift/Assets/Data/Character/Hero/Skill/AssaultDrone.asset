@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514a443c56bd0d14992de874abd926e8, type: 3}
+  m_Name: AssaultDrone
+  m_EditorClassIdentifier: Assembly-CSharp::AssaultDroneSkill
+  skillName: "\u0E42\u0E14\u0E23\u0E19\u0E08\u0E39\u0E48\u0E42\u0E08\u0E21"
+  skillIcon: {fileID: 21300000, guid: 7af1ea20b6891ce41847e1f47c8cf49f, type: 3}
+  cooldown: 14
+  energyCost: 0
+  Description: "\u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E42\u0E14\u0E23\u0E19\u0E25\u0E2D\u0E22\u0E15\u0E32\u0E21\u0E15\u0E31\u0E27
+    \u0E22\u0E34\u0E07\u0E28\u0E31\u0E15\u0E23\u0E39\u0E43\u0E01\u0E25\u0E49\u0E2A\u0E38\u0E14\u0E43\u0E2B\u0E49\u0E2D\u0E31\u0E15\u0E42\u0E19\u0E21\u0E31\u0E15\u0E34
+    10 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+  effectFrames:
+  - {fileID: 21300000, guid: af41df25237cb374aa2165c64e9437e4, type: 3}
+  - {fileID: 21300000, guid: f0544c961a79d5c44b2c2dea4f8c62f6, type: 3}
+  - {fileID: 21300000, guid: 3943d36b114d26e4093cd6987f156574, type: 3}
+  - {fileID: 21300000, guid: d6ca1915c0294b949a672982cd322e43, type: 3}
+  - {fileID: 21300000, guid: 200ccd28a8e976642ace665ccb3c75ca, type: 3}
+  - {fileID: 21300000, guid: 5565202062b22f74e82e9be415c2723e, type: 3}
+  - {fileID: 21300000, guid: 5a1b3399d9e81e440a0728fc9a1de553, type: 3}
+  effectScale: 0.7
+  effectOffset: {x: 0, y: 0}
+  duration: 10
+  fireInterval: 0.6
+  range: 6
+  damage: 1.5
+  bulletSpeed: 14
+  bulletPrefab: {fileID: 2087013766297248480, guid: 5a1e97311d55ed545a1289d02a258931, type: 3}

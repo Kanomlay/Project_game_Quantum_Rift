@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private bool isKnockedBack = false;
     private PlayerStats stats;
+    private float speedBoost = 1f;     // ตัวคูณความเร็วจากสกิล (กระตุ้นเซลล์)
+    private float speedBoostUntil;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentSpeed = baseSpeed;
         }
+        if (Time.time < speedBoostUntil) currentSpeed *= speedBoost;
 
     }
 
@@ -77,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing) return;
         if (isKnockedBack) return;
         rb.MovePosition(rb.position + movement.normalized * currentSpeed * Time.fixedDeltaTime);
+    }
+
+    public void BoostSpeed(float multiplier, float seconds)
+    {
+        speedBoost = multiplier;
+        speedBoostUntil = Time.time + seconds;
     }
 
     public void StartDash(Vector2 direction, float dashSpeed, float dashDuration)

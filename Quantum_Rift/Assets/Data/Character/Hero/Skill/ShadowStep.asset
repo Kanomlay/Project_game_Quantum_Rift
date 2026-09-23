@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8fa864b3635174c932820e0924bfd3, type: 3}
+  m_Name: ShadowStep
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowStepSkill
+  skillName: "\u0E22\u0E48\u0E32\u0E07\u0E01\u0E49\u0E32\u0E27\u0E40\u0E07\u0E32"
+  skillIcon: {fileID: 21300000, guid: 4b8d4e053c98df849ae9252fd7d871bb, type: 3}
+  cooldown: 6
+  energyCost: 0
+  Description: "\u0E2B\u0E32\u0E22\u0E15\u0E31\u0E27\u0E44\u0E1B\u0E42\u0E1C\u0E25\u0E48\u0E17\u0E32\u0E07\u0E40\u0E21\u0E32\u0E2A\u0E4C
+    \u0E02\u0E49\u0E32\u0E21\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E43\u0E19\u0E41\u0E21\u0E1E\u0E44\u0E14\u0E49\u0E41\u0E15\u0E48\u0E44\u0E21\u0E48\u0E2D\u0E2D\u0E01\u0E19\u0E2D\u0E01\u0E41\u0E21\u0E1E
+    \u0E2D\u0E21\u0E15\u0E30\u0E0A\u0E31\u0E48\u0E27\u0E04\u0E23\u0E39\u0E48"
+  effectFrames:
+  - {fileID: 21300000, guid: 8de22360cab750241a84eddfb75d6b6b, type: 3}
+  - {fileID: 21300000, guid: ea83d51af0d4cf04c83d7fa30867be19, type: 3}
+  - {fileID: 21300000, guid: 14c8205e1d18ba24684e0fb1d36e309b, type: 3}
+  - {fileID: 21300000, guid: 9e558291798597b4e828aeabe0887275, type: 3}
+  - {fileID: 21300000, guid: 8adc27274bb18a54689a6ad98a61a743, type: 3}
+  - {fileID: 21300000, guid: 4cc21e51b74f49e41bfe364e57cb9a59, type: 3}
+  - {fileID: 21300000, guid: 9cdb9a3a2b1fce74884f29a6ca43e444, type: 3}
+  effectScale: 1.2
+  effectOffset: {x: -0.03, y: -0.22}
+  maxDistance: 4
+  invincibleTime: 0.4
+  bodyRadius: 0.3
+  searchStep: 0.2

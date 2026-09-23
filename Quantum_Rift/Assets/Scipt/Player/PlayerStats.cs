@@ -39,6 +39,11 @@ public class PlayerStats : MonoBehaviour
 
     public bool isDead = false;
 
+    // สถานะจากสกิล
+    private float invincibleUntil;  // อมตะชั่วคราวแบบไม่กะพริบ (พุ่งชน, ย่างก้าวเงา)
+    private float shieldUntil;      // เกราะกันดาเมจทั้งหมด (เกราะสะท้อนกลับ)
+    public event System.Action<float> DamageBlocked; // เกราะกันดาเมจได้ ส่งค่าดาเมจที่กันไว้
+
     void Start()
     {
         Time.timeScale = 1f;
@@ -80,16 +85,17 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         if (PauseManager.isGamePaused) return;
+        if (isDead) return; // ตายแล้วใช้สกิล/สลับอาวุธไม่ได้
 
         if (currentCooldownQ > 0)
         {
             currentCooldownQ -= Time.deltaTime;
-            hud.UpdateSkillCooldown("Q", currentCooldownQ);
+            if (hud != null) hud.UpdateSkillCooldown("Q", currentCooldownQ);
         }
         if (currentCooldownE > 0)
         {
             currentCooldownE -= Time.deltaTime;
-            hud.UpdateSkillCooldown("E", currentCooldownE);
+            if (hud != null) hud.UpdateSkillCooldown("E", currentCooldownE);
         }
 
         
@@ -102,7 +108,13 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
 
-        if (isInvincible || isDead) return;
+        if (isInvincible || isDead || Time.time < invincibleUntil) return;
+
+        if (Time.time < shieldUntil)
+        {
+            DamageBlocked?.Invoke(damage);
+            return;
+        }
 
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
@@ -232,6 +244,21 @@ public class PlayerStats : MonoBehaviour
             currentCooldownE = maxCooldownE;
         }
     }
+
+    // ---- ใช้โดยสกิล ----
+
+    public void Heal(float amount)
+    {
+        if (isDead || amount <= 0f) return;
+        currentHP = Mathf.Min(maxHP, currentHP + amount);
+        if (hud != null) hud.UpdateHP(currentHP, maxHP);
+    }
+
+    public void GrantInvincibility(float seconds) =>
+        invincibleUntil = Mathf.Max(invincibleUntil, Time.time + seconds);
+
+    public void RaiseShield(float seconds) =>
+        shieldUntil = Mathf.Max(shieldUntil, Time.time + seconds);
 
     public void AddCurrency(int amount)
     {

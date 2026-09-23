@@ -10,6 +10,8 @@ public class MapManager : MonoBehaviour
     
     private MapData currentMap; // จำว่าตอนนี้อยู่ด่านไหน
     private GameObject currentMapInstance; // ตัวแผนที่จริงๆ ที่กำลังโชว์อยู่ฉาก
+    // ของที่เสกลงแมพระหว่างเล่น (กับดัก ฯลฯ) ผูกกับตัวนี้ จะได้หายไปพร้อมแมพตอนเปลี่ยนด่าน
+    public Transform CurrentMapRoot => currentMapInstance != null ? currentMapInstance.transform : null;
     private GameObject player; // ตัวฮีโร่ของเรา
 
     void Awake()

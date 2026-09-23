@@ -16,6 +16,15 @@ public class MonsterController : MonoBehaviour
     protected bool isKnockedBack = false;     
     protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
 
+    // ยังสู้อยู่ (สกิลใช้เช็คก่อนทำดาเมจ/เล็งเป้า)
+    public bool IsAlive => !isDying && currentHealth > 0f && gameObject.activeInHierarchy;
+
+    // ติดสตัน (กับดักแม่เหล็กไฟฟ้า): หยุดเดิน/โจมตีชั่วคราว ตัวเป็นสีฟ้า
+    public bool IsStunned => Time.time < stunnedUntil;
+    private float stunnedUntil;
+    private bool stunTinted;
+    private static readonly Color StunTint = new Color(0.55f, 0.9f, 1f, 1f);
+
     [Header("ตอนตาย")]
     public float deathLinger = 0.6f; // นอนค้างท่าตายให้เห็นก่อนค่อยจางหาย
     public float deathFade = 0.4f;
@@ -45,6 +54,7 @@ public class MonsterController : MonoBehaviour
     protected virtual void Update()
     {
         if (isDying) return;
+        if (UpdateStun()) return;
         if (isKnockedBack) return; 
 
         if (combatActions != null)
@@ -104,6 +114,32 @@ public class MonsterController : MonoBehaviour
             
             if (pMove != null) pMove.TakeKnockback(transform.position, knockbackForce);
         }
+    }
+
+    public void Stun(float seconds)
+    {
+        if (!IsAlive || seconds <= 0f) return;
+        stunnedUntil = Mathf.Max(stunnedUntil, Time.time + seconds);
+        if (combatActions != null) combatActions.CancelAttack();
+        if (anim != null) anim.SetBool("isWalking", false);
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+    }
+
+    // คืน true ถ้ายังติดสตันอยู่ (ให้ Update หยุดตรงนั้น) และคุมสีตัวตอนติด/หลุดสตัน
+    protected bool UpdateStun()
+    {
+        if (IsStunned)
+        {
+            if (!isKnockedBack && sr != null) sr.color = StunTint; // โดนตีกะพริบแดงก่อน แล้วค่อยกลับเป็นสีสตัน
+            stunTinted = true;
+            return true;
+        }
+        if (stunTinted)
+        {
+            stunTinted = false;
+            if (sr != null) sr.color = Color.white;
+        }
+        return false;
     }
 
     public void TakeDamage(float damageAmount)

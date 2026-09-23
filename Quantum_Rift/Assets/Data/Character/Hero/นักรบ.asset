@@ -21,5 +21,5 @@ MonoBehaviour:
   moveSpeed: 100
   skill1Name: "\u0E1E\u0E38\u0E48\u0E07\u0E0A\u0E19\u0E01\u0E23\u0E30\u0E41\u0E17\u0E01"
   skill2Name: "\u0E40\u0E01\u0E23\u0E32\u0E30\u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A"
-  skillQ: {fileID: 11400000, guid: 0d5512f5080160b428a48fab0870ac16, type: 2}
-  skillE: {fileID: 0}
+  skillQ: {fileID: 11400000, guid: 597e82740f533c64d9a75022952da32e, type: 2}
+  skillE: {fileID: 11400000, guid: c0e8bff3f7219df4aa9d10b8d090567e, type: 2}
