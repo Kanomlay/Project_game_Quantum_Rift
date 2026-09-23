@@ -11,7 +11,7 @@ public sealed class MonsterAttackProjectile : MonoBehaviour
     public void Launch(MonsterCombatActions source,Vector2 heading,float velocity,float lifetime,float power,bool rock)
     {
         owner=source.transform;direction=heading.normalized;speed=velocity;remaining=lifetime;damage=power;IsRock=rock;
-        radius=rock?.18f:.09f;
+        radius=rock?.18f:.18f; // กระสุนปืน Phase Soldier ขยายเป็น 1.8 ให้เห็นชัด hitbox ขยายตามให้ตรงภาพ
         transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
     }
     void Update()

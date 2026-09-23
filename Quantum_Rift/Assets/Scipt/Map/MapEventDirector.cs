@@ -7,6 +7,8 @@ using UnityEngine;
 // ถ้าปล่อยให้แต่ละห้องสุ่มเอง จะได้ร้านค้าหลายร้านในแมพเดียว
 public static class MapEventDirector
 {
+    const float PortalRoomRadius = 3f;
+
     public static void PlaceEvent(GameObject mapInstance, MapData map)
     {
         if (mapInstance == null || map == null) return;
@@ -33,12 +35,13 @@ public static class MapEventDirector
         }
 
         var host = rooms[Random.Range(0, rooms.Count)];
-        host.AssignEvent(chosenEvent.eventPrefab, chosenEvent.spawnAfterRoomCleared);
+        host.AssignEvent(chosenEvent.eventPrefab, chosenEvent.spawnAfterRoomCleared, chosenEvent.safeRoom);
 
         // บอกไว้ใน Console ว่าเหตุการณ์ไปลงห้องไหน จะได้ไม่ต้องเดินหาทั้งแมพตอนทดสอบ
         Debug.Log($"เหตุการณ์ {chosenEvent.eventName} ของแมพ {map.mapName} ไปลงที่ห้อง {host.name} " +
                   $"(ตำแหน่ง {host.transform.position})" +
-                  (chosenEvent.spawnAfterRoomCleared ? " จะโผล่หลังเคลียร์ห้องนั้น" : ""));
+                  (chosenEvent.safeRoom ? " (ห้องปลอดภัย ไม่มีมอนสเตอร์)"
+                   : chosenEvent.spawnAfterRoomCleared ? " จะโผล่หลังเคลียร์ห้องนั้น" : ""));
     }
 
     // ใช้ขอบเขตของ trigger ห้องเป็นตัววัด เพราะพอร์ทัลไม่ได้เป็นลูกของห้อง แต่วางทับพื้นที่ห้องอยู่
@@ -47,12 +50,19 @@ public static class MapEventDirector
         if (portals == null || portals.Length == 0) return false;
 
         var area = room.GetComponent<Collider2D>();
-        if (area == null) return false;
 
-        // ใช้ OverlapPoint ไม่ใช่ bounds.Contains เพราะ collider 2D หนา 0 ตามแกน z
-        // ถ้าพอร์ทัลวางอยู่คนละ z นิดเดียวจะเช็คไม่เจอ
         foreach (var portal in portals)
-            if (portal != null && area.OverlapPoint(portal.transform.position)) return true;
+        {
+            if (portal == null) continue;
+
+            // ผังสุ่มแบบ Switchback/BranchAndLoop ใช้ trigger เป็นแถบบาง ๆ ตรงทางเข้าห้อง ไม่คลุมทั้งห้อง
+            // แต่พอร์ทัลวางไว้กลางห้องพอดี (ตำแหน่งเดียวกับ RoomController) จึงเช็คระยะจากกลางห้องด้วย
+            if (Vector2.Distance(portal.transform.position, room.transform.position) < PortalRoomRadius) return true;
+
+            // ใช้ OverlapPoint ไม่ใช่ bounds.Contains เพราะ collider 2D หนา 0 ตามแกน z
+            // ถ้าพอร์ทัลวางอยู่คนละ z นิดเดียวจะเช็คไม่เจอ
+            if (area != null && area.OverlapPoint(portal.transform.position)) return true;
+        }
 
         return false;
     }

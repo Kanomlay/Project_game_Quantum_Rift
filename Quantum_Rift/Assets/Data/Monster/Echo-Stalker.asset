@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4b5e08a71cad2f45b4cca9ba0040cfa, type: 3}
-  m_Name: Mutated-Heavy
+  m_Name: Echo-Stalker
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  monsterName: Mutated Heavy
-  monsterPrefab: {fileID: 4632906966567590585, guid: 7bd9802d46df7574182a376b622488c9, type: 3}
-  maxHealth: 100
-  attackDamage: 1
-  moveSpeed: 1.5
-  attackRange: 1.8
-  attackCooldown: 1.5
+  monsterName: Echo Stalker
+  monsterPrefab: {fileID: 3353223158399157029, guid: ad39d759e6b49a2439e708d7c29ef492, type: 3}
+  maxHealth: 15
+  attackDamage: 0.5
+  moveSpeed: 1.875
+  attackRange: 1.4
+  attackCooldown: 1

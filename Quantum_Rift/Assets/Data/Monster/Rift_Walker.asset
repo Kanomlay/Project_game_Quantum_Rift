@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b5e08a71cad2f45b4cca9ba0040cfa, type: 3}
   m_Name: Rift_Walker
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  monsterName: rift
+  monsterName: Rift-Drained Worker
   monsterPrefab: {fileID: 4280153679698805599, guid: 84c852119bd1a2042a8f61a044ae6ddf, type: 3}
   maxHealth: 22
-  attackDamage: 10
+  attackDamage: 0.5
   moveSpeed: 1.5
   attackRange: 1.5
-  attackCooldown: 1.2
+  attackCooldown: 2

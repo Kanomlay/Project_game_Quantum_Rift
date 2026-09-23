@@ -12,6 +12,9 @@ public class MapEventData : ScriptableObject
     [Header("โอกาสถูกสุ่ม")]
     [Min(0f)] public float weight = 1f; // ยิ่งมากยิ่งออกบ่อย เทียบกับเหตุการณ์อื่นในแมพเดียวกัน
 
-    [Header("จังหวะที่จะโผล่")]
+    [Header("ห้องของเหตุการณ์")]
+    public bool safeRoom = true; // ห้องนี้เป็นของเหตุการณ์อย่างเดียว ไม่มีมอนสเตอร์เกิด (ร้านค้า)
+
+    [Header("จังหวะที่จะโผล่ (ใช้เมื่อไม่ใช่ห้องปลอดภัย)")]
     public bool spawnAfterRoomCleared = true; // รอให้เคลียร์มอนสเตอร์ในห้องนั้นก่อน จะได้ไม่ต้องซื้อของกลางวงต่อสู้
 }

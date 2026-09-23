@@ -43,6 +43,7 @@ public class EchoCommanderBoss : MonsterController
 
     protected override void Update()
     {
+        if (isDying) return;
         if (isCasting) return;
         if (isKnockedBack) return;
 

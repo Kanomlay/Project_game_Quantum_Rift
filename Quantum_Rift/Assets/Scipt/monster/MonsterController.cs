@@ -14,6 +14,11 @@ public class MonsterController : MonoBehaviour
     protected Rigidbody2D rb; 
     protected float nextAttackTime = 0f;
     protected bool isKnockedBack = false;     
+    protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
+
+    [Header("ตอนตาย")]
+    public float deathLinger = 0.6f; // นอนค้างท่าตายให้เห็นก่อนค่อยจางหาย
+    public float deathFade = 0.4f;
     // คงชุดโจมตีเฉพาะตัวจาก Boss_main พร้อมรองรับบอสที่สืบทอดจาก MainMenu
     private MonsterCombatActions combatActions;
     private BossHealthHudLink bossHud;
@@ -39,7 +44,7 @@ public class MonsterController : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        if (isDying) return;
         if (isKnockedBack) return; 
 
         if (combatActions != null)
@@ -137,7 +142,52 @@ public class MonsterController : MonoBehaviour
     protected virtual void Die()
     {
         SummaryManager.enemiesDefeatedCount++;
+        // นับว่าตายทันที ประตูห้องจะได้เปิดตอนตัวสุดท้ายล้ม ไม่ต้องรอท่าตายจบ
         if (currentRoom != null) currentRoom.OnMonsterDied(); 
-        gameObject.SetActive(false); 
+        StartCoroutine(DeathRoutine());
+    }
+
+    // เล่นท่าตาย (Animator ของมอนสเตอร์มี isDead → state die) แล้วค่อยจางหายและปิดตัว
+    // ปิด collider ก่อน ศพจะได้ไม่ขวางทางหรือรับดาเมจต่อ
+    private IEnumerator DeathRoutine()
+    {
+        isDying = true;
+        if (combatActions != null)
+        {
+            combatActions.CancelAttack();
+            combatActions.enabled = false;
+        }
+        foreach (var col in GetComponents<Collider2D>()) col.enabled = false;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+        if (anim != null && HasParameter(anim, "isDead"))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isDead", true);
+        }
+
+        yield return new WaitForSeconds(deathLinger);
+
+        if (sr != null && deathFade > 0f)
+        {
+            Color start = Color.white;
+            for (float t = 0f; t < deathFade; t += Time.deltaTime)
+            {
+                sr.color = new Color(start.r, start.g, start.b, 1f - t / deathFade);
+                yield return null;
+            }
+        }
+        gameObject.SetActive(false);
+    }
+
+    // บอสบางตัวยังไม่มีท่าตาย (ไม่มีพารามิเตอร์ isDead) ถ้าสั่งไปจะมีคำเตือนเต็ม Console
+    private static bool HasParameter(Animator animator, string name)
+    {
+        foreach (var parameter in animator.parameters)
+            if (parameter.name == name) return true;
+        return false;
     }
 }

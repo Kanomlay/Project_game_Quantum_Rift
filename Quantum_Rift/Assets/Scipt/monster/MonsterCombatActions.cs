@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>รูปแบบโจมตีเฉพาะสามตัว ไม่เปลี่ยน AI ของมอนสเตอร์ที่ไม่มีคอมโพเนนต์นี้</summary>
+/// <summary>รูปแบบโจมตีเฉพาะตัว ไม่เปลี่ยน AI ของมอนสเตอร์ที่ไม่มีคอมโพเนนต์นี้</summary>
 [RequireComponent(typeof(MonsterController), typeof(Animator), typeof(Rigidbody2D))]
 public sealed class MonsterCombatActions : MonoBehaviour
 {
-    public enum Style { Rifle, Wrench, RockAndSlam }
+    // Lunge ต่อท้ายเสมอ ค่าใน prefab เก็บเป็นตัวเลข (Wrench = ประชิดทั่วไป ใช้กับ Flux Jaw ด้วย)
+    public enum Style { Rifle, Wrench, RockAndSlam, Lunge }
     public Style style;
     public Sprite projectileSprite;
     public float rangedDistance = 7f;
@@ -13,6 +14,15 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public float projectileSpeed = 9f;
     public float projectileLifetime = 3f;
     public float projectileSize = .45f;
+    public float lungeTriggerDistance = 3f; // Lunge: เริ่มพุ่งเมื่อผู้เล่นอยู่ในระยะนี้
+    public float lungeSpeed = 6.5f;         // Lunge: ความเร็วพุ่งช่วงง้างท่า ก่อนเฟรมกระทบ
+    [Header("Rifle แบบตั้งท่าเล็งค้าง (Phase Soldier)")]
+    public bool holdAim;                  // ยกปืนค้างยิงต่อเนื่อง ไม่ลดปืนทุกนัด (ต้องมี isAiming/Fire ใน Animator)
+    public float keepAwayDistance = 2.5f; // ผู้เล่นเข้าใกล้กว่านี้ ลดปืนแล้วถอยออกไปตั้งหลัก
+    public float aimRaiseTime = .25f;     // เวลายกปืนก่อนยิงนัดแรก (ท่ายก 3 เฟรม)
+    public float aimLowerTime = .17f;     // เวลาลดปืนก่อนเริ่มเดิน (ท่าลด 2 เฟรม)
+    public float fireTime = .25f;         // ท่ายิง 3 เฟรม
+    public Color projectileTint = Color.white; // ย้อมสีกระสุน ใช้ภาพกระสุนชุดเดียวกันได้หลายตัว (Woodmine ย้อมเขียว)
     public bool IsAttacking { get; private set; }
     public int AttacksStarted { get; private set; }
     public int ShotsReleased { get; private set; }
@@ -27,6 +37,8 @@ public sealed class MonsterCombatActions : MonoBehaviour
     Vector2 move, aim;
     float nextAttack;
     Coroutine attack;
+    bool aiming;
+    float aimReadyAt,moveBlockedUntil;
     const float Duration = 7f / 12f;
 
     public void Initialize(MonsterData monsterData, Transform player)
@@ -44,8 +56,10 @@ public sealed class MonsterCombatActions : MonoBehaviour
         Vector2 delta=target.position-transform.position;
         float distance=delta.magnitude;
         if(Mathf.Abs(delta.x)>.01f)display.flipX=delta.x<0;
-        bool close=distance<=meleeDistance;
-        bool ranged=style!=Style.Wrench && !close && distance<=rangedDistance;
+        if(style==Style.Rifle&&holdAim){TickHoldAim(delta,distance);return;}
+        bool lunge=style==Style.Lunge;
+        bool close=distance<=(lunge?lungeTriggerDistance:meleeDistance);
+        bool ranged=style!=Style.Wrench && !lunge && !close && distance<=rangedDistance;
         if(style==Style.Rifle)ranged=distance<=rangedDistance;
         bool canAttack=(style==Style.Rifle?ranged:close||ranged)&&ClearLine(transform.position,target.position);
         if(canAttack&&Time.time>=nextAttack)
@@ -63,6 +77,46 @@ public sealed class MonsterCombatActions : MonoBehaviour
         else body.linearVelocity=Vector2.zero;
     }
 
+    // ยืนเล็งค้างยิงเป็นชุดตราบที่ผู้เล่นอยู่ในระยะและไม่มีกำแพงบัง
+    // ผู้เล่นเข้ามาใกล้เกิน → ลดปืนแล้วถอยหนี, หลุดระยะ/โดนบัง → ลดปืนแล้วเดินตาม แล้วค่อยกลับมายกปืนใหม่
+    void TickHoldAim(Vector2 delta,float distance)
+    {
+        bool tooClose=distance<keepAwayDistance;
+        bool canShoot=!tooClose&&distance<=rangedDistance&&ClearLine(transform.position,target.position);
+        if(canShoot)
+        {
+            if(!aiming){aiming=true;aimReadyAt=Time.time+aimRaiseTime;animator.SetBool("isAiming",true);}
+            animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;
+            if(Time.time>=aimReadyAt&&Time.time>=nextAttack)
+            {
+                aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
+                LastAttackWasRanged=true;
+                nextAttack=Time.time+Mathf.Max(fireTime,data.attackCooldown);
+                attack=StartCoroutine(FireFromStance());
+            }
+            return;
+        }
+        if(aiming){aiming=false;animator.SetBool("isAiming",false);moveBlockedUntil=Time.time+aimLowerTime;}
+        // ห้ามเดินจนกว่า Animator จะลดปืนจบจริง (ท่ายก/เล็ง/ยิง/ลด ติด tag Aim) ไม่ใช่แค่นับเวลา
+        if(Time.time<moveBlockedUntil||GunUp()){animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;return;}
+        animator.SetBool("isWalking",true);
+        move=(tooClose?-delta:delta).normalized*data.moveSpeed;
+    }
+
+    public const string AimTag="Aim";
+    bool GunUp()=>animator.GetCurrentAnimatorStateInfo(0).IsTag(AimTag)||
+        (animator.IsInTransition(0)&&animator.GetNextAnimatorStateInfo(0).IsTag(AimTag));
+
+    // ท่ายิงเริ่มที่เฟรมไฟแลบ ปล่อยกระสุนทันที แล้วกลับไปท่าเล็งค้าง (Animator พากลับเอง)
+    IEnumerator FireFromStance()
+    {
+        IsAttacking=true;AttacksStarted++;move=Vector2.zero;
+        animator.SetTrigger("Fire");
+        ReleaseProjectile();
+        yield return new WaitForSeconds(fireTime);
+        IsAttacking=false;attack=null;
+    }
+
     void FixedUpdate()
     {
         if(body!=null&&move.sqrMagnitude>0&&!IsAttacking)
@@ -77,7 +131,14 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(style==Style.RockAndSlam)animator.ResetTrigger("Throw");
         animator.SetTrigger(style==Style.RockAndSlam&&ranged?"Throw":"Attack");
         float impact=style==Style.RockAndSlam&&ranged?5f/12f:3f/12f;
-        yield return new WaitForSeconds(impact);
+        if(style==Style.Lunge&&!ranged)
+        {
+            // Echo Stalker พุ่งเข้าหาช่วงง้างท่า แล้วค่อยฟันที่เฟรมกระทบ (ชนกำแพงก็หยุดเองเพราะใช้ความเร็ว)
+            body.linearVelocity=aim*lungeSpeed;
+            yield return new WaitForSeconds(impact);
+            body.linearVelocity=Vector2.zero;
+        }
+        else yield return new WaitForSeconds(impact);
         if(target!=null && data!=null)
         {
             if(ranged)ReleaseProjectile();
@@ -102,7 +163,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         var obj=new GameObject(style==Style.Rifle?"PhasePurpleBullet":"HeavyThrownRock");
         // ผูกกับห้อง/แมพ ไม่ผูกกับตัวที่กำลังเดิน และลบพร้อมแมพเมื่อเปลี่ยนด่าน
         obj.transform.SetParent(transform.parent,true);obj.transform.position=origin;
-        var renderer=obj.AddComponent<SpriteRenderer>();renderer.sprite=projectileSprite;
+        var renderer=obj.AddComponent<SpriteRenderer>();renderer.sprite=projectileSprite;renderer.color=projectileTint;
         renderer.sortingLayerName="Effect";
         float scale=projectileSize/Mathf.Max(projectileSprite.bounds.size.x,projectileSprite.bounds.size.y);
         obj.transform.localScale=Vector3.one*scale;
@@ -138,10 +199,12 @@ public sealed class MonsterCombatActions : MonoBehaviour
         move=Vector2.zero;
         if(attack!=null)StopCoroutine(attack);
         attack=null;IsAttacking=false;
+        if(body!=null)body.linearVelocity=Vector2.zero; // หยุดพุ่งถ้าโดนตีกลางท่า
         if(animator!=null)
         {
             animator.ResetTrigger("Attack");
             if(style==Style.RockAndSlam)animator.ResetTrigger("Throw");
+            if(holdAim)animator.ResetTrigger("Fire");
             animator.SetBool("isWalking",false);
         }
     }

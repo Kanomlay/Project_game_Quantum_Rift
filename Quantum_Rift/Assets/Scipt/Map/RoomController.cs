@@ -15,11 +15,14 @@ public class RoomController : MonoBehaviour
     public Transform eventAnchor;   // จุดวางของ ถ้าไม่ใส่จะใช้กลางห้อง
 
     public bool HasStarted => hasStarted;
+    public event System.Action Cleared; // ประตูมิติในห้องรอฟังเพื่อโผล่ตอนเคลียร์
+    public bool IsSafeRoom => isSafeRoom;
     public bool IsCleared => isCleared;
     public int AliveMonstersCount => aliveMonstersCount;
     private bool hasStarted;
     private bool isCleared;
     private int aliveMonstersCount;
+    private bool isSafeRoom; // ห้องของเหตุการณ์ (ร้านค้า) ไม่มีมอนสเตอร์ ประตูไม่ปิด
 
     // เหตุการณ์ที่ MapEventDirector เลือกให้ห้องนี้ รอจังหวะเสก
     private GameObject pendingEventPrefab;
@@ -68,9 +71,20 @@ public class RoomController : MonoBehaviour
     }
 
     // MapEventDirector เรียกตอนแมพโหลดเสร็จ เพื่อจองห้องนี้ให้เป็นห้องเหตุการณ์ของแมพ
-    public void AssignEvent(GameObject prefab, bool afterCleared)
+    // safeRoom = ห้องนี้เป็นของเหตุการณ์อย่างเดียว (ร้านค้า): เสกของทันที ไม่มีมอนสเตอร์ ไม่ปิดประตู ไม่มีหีบ
+    public void AssignEvent(GameObject prefab, bool afterCleared, bool safeRoom = false)
     {
         if (prefab == null) return;
+
+        if (safeRoom && !hasStarted)
+        {
+            isSafeRoom = true;
+            hasStarted = true;
+            isCleared = true;
+            SpawnEvent(prefab);
+            Cleared?.Invoke();
+            return;
+        }
 
         if (!afterCleared || isCleared)
         {
@@ -110,6 +124,7 @@ public class RoomController : MonoBehaviour
         if (isCleared) return;
         isCleared = true;
         SetDoors(false);
+        Cleared?.Invoke();
         if (chestPrefab != null)
             Instantiate(chestPrefab, chestSpawnPoint != null ? chestSpawnPoint.position : transform.position,
                 Quaternion.identity, transform);

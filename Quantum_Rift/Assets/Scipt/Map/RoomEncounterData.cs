@@ -12,6 +12,10 @@ public class RoomEncounterData : ScriptableObject
     [Min(0)] public int minMonsters = 2;
     [Min(1)] public int maxMonsters = 4;
 
+    [Header("หัวหน้าหน่วย (ตาราง 1.7) แทรกในกองแบบสุ่ม นับรวมใน min/max")]
+    public MonsterData[] leaderMonsters; // สุ่มมา 1 ตัวจากชุดนี้
+    [Range(0f, 1f)] public float leaderChance; // โอกาสที่เข้าห้องแล้วจะเจอหัวหน้าหน่วย (1 = เจอทุกครั้ง)
+
     [Header("ของรางวัลเมื่อเคลียร์ห้อง (ตู้สมบัติ)")]
     public WeaponData[] possibleWeaponDrops; // รายชื่ออาวุธที่มีโอกาสดรอป
     // (อนาคตสามารถเพิ่ม public ItemData[] possiblePotions; ได้ตรงนี้)
@@ -35,10 +39,20 @@ public class RoomEncounterData : ScriptableObject
         int count = Random.Range(Mathf.Min(minMonsters, highest), highest + 1);
         count = Mathf.Min(count, Mathf.Max(1, limit));
 
-        for (int i = 0; i < count; i++)
+        // Random.value ออก 1 ได้ จึงต้องเช็ค >= 1 แยก ไม่งั้นตั้ง 1 แล้วยังพลาดได้บางครั้ง
+        bool hasLeader = leaderMonsters != null && leaderMonsters.Length > 0 &&
+                         (leaderChance >= 1f || Random.value < leaderChance);
+        if (hasLeader)
+        {
+            var leader = leaderMonsters[Random.Range(0, leaderMonsters.Length)];
+            if (leader != null) wave.Add(leader);
+        }
+
+        while (wave.Count < count)
         {
             var pick = possibleMonsters[Random.Range(0, possibleMonsters.Length)];
-            if (pick != null) wave.Add(pick);
+            if (pick == null) break;
+            wave.Add(pick);
         }
         return wave;
     }

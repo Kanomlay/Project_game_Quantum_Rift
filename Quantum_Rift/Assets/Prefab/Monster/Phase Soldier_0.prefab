@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
   myData: {fileID: 11400000, guid: 543334e2ab04e2d4abb159194385a0cf, type: 2}
+  deathLinger: 0.6
+  deathFade: 0.4
   currentRoom: {fileID: 0}
 --- !u!50 &731272108650749417
 Rigidbody2D:
@@ -223,4 +225,12 @@ MonoBehaviour:
   meleeDistance: 7
   projectileSpeed: 9
   projectileLifetime: 3
-  projectileSize: 0.5
+  projectileSize: 1.8
+  lungeTriggerDistance: 3
+  lungeSpeed: 6.5
+  holdAim: 1
+  keepAwayDistance: 2.5
+  aimRaiseTime: 0.25
+  aimLowerTime: 0.17
+  fireTime: 0.25
+  projectileTint: {r: 1, g: 1, b: 1, a: 1}
