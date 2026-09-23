@@ -16,10 +16,13 @@ public static class MapEventDirector
 
         // พอร์ทัลออกด่านมักวางไว้กลางห้องพอดี ถ้าเหตุการณ์ไปลงห้องนั้นจะทับกัน
         // เดินไปหาร้านค้าแล้วโดนดูดไปด่านต่อไปแทน จึงตัดห้องที่มีพอร์ทัลออกก่อน
-        var portals = mapInstance.GetComponentsInChildren<MapPortal>(true);
+        // นับเฉพาะของที่เปิดอยู่: แมพสุ่มผังไว้ 3 แบบ (MapLayoutRandomizer) แล้วปิดผังที่ไม่ได้ใช้ทิ้ง
+        // ถ้ารวมห้องในผังที่ปิดอยู่ด้วย ร้านค้ามีโอกาส 2 ใน 3 ไปลงห้องที่ผู้เล่นไม่มีทางเดินเข้าไป
+        // ตัวสุ่มผังทำงานใน Awake ระหว่าง Instantiate แมพ ตอนมาถึงตรงนี้ผังที่ไม่ใช้จึงถูกปิดไปแล้ว
+        var portals = mapInstance.GetComponentsInChildren<MapPortal>(false);
 
         var rooms = new List<RoomController>();
-        foreach (var room in mapInstance.GetComponentsInChildren<RoomController>(true))
+        foreach (var room in mapInstance.GetComponentsInChildren<RoomController>(false))
             if (room.canHostEvent && !HasPortalInside(room, portals)) rooms.Add(room);
 
         if (rooms.Count == 0)

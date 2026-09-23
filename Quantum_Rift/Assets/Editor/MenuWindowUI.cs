@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 // ตัวช่วยสร้างหน้าต่างเมนูในเกม (Pause, หน้าสรุป, ตั้งค่า) ให้หน้าตาเหมือนกันทุกหน้า
-// ใช้สีกับภาพปุ่มจาก MenuUIPack
+// ใช้สีจาก MenuUIPack และภาพปุ่มชุด v3 ชุดเดียวกับที่เพื่อนใช้ในเมนูหลัก
 //
 // จำไว้ว่าชิ้นไหนเพิ่งสร้างใหม่ในรอบนี้ คนเรียกจึงตั้งตำแหน่ง/ขนาด/สี ให้เฉพาะของใหม่ได้
 // ของที่มีอยู่แล้วจะไม่โดนทับ ผู้ใช้ลากปรับเองใน Scene view ได้โดยสั่ง build ซ้ำกี่ครั้งก็ไม่หาย
@@ -61,29 +61,73 @@ public sealed class MenuWindowUI
         return window;
     }
 
+    // คำบนปุ่มตามที่เพื่อนใช้ในฉากจริง (Code-Game) ให้ปุ่มที่สร้างใหม่พูดคำเดียวกับปุ่มเดิม
+    static readonly Dictionary<string, (string english, string thai)> ButtonLabels = new Dictionary<string, (string, string)>
+    {
+        { "Start", ("START", "เริ่มเกม") },
+        { "Continue", ("CONTINUE", "ดำเนินการต่อ") },
+        { "Settings", ("SETTINGS", "ตั้งค่า") },
+        { "Resume", ("RESUME", "เล่นต่อ") },
+        { "Back", ("BACK", "ย้อนกลับ") },
+        { "Quit", ("QUIT", "ออกจากเกม") },
+    };
+
     public Button EnsureMenuButton(Transform parent, string name, string word, float y, float width)
     {
         var image = EnsureImage(parent, name);
-
-        // ภาพปุ่มผูกกับค่า Language ในแพ็ก ตรงนี้จึงเซ็ตทุกครั้ง สลับ EN/TH แล้วสั่งซ้ำได้เลย
-        image.sprite = MenuUIPack.LoadButton(word);
-        image.type = Image.Type.Simple;
-        image.preserveAspect = true;
-
-        // คำนวณความสูงจากสัดส่วนภาพ ปุ่มจะได้ไม่ยืดเพี้ยน
-        if (IsNew(image)) Place(image.rectTransform, new Vector2(0f, y), new Vector2(width, width / MenuUIPack.ButtonAspect));
-
         var button = EnsureComponent<Button>(image.gameObject);
         button.targetGraphic = image;
-        // ภาพปุ่มมีตัวหนังสือในตัว ถ้าใช้ Sprite Swap ไปปุ่มเปล่าตอน hover ตัวหนังสือจะหายไป จึงใช้ไล่สีแทน
-        button.transition = Selectable.Transition.ColorTint;
 
-        // เก็บภาพทั้งสองภาษาไว้ที่ปุ่ม ตอนเล่นจะสลับเองเมื่อผู้เล่นเปลี่ยนภาษาในหน้าตั้งค่า
-        var localized = EnsureComponent<LocalizedImage>(image.gameObject);
-        localized.englishSprite = MenuUIPack.LoadButton(word, "EN");
-        localized.thaiSprite = MenuUIPack.LoadButton(word, "TH");
+        // ปุ่มที่มีอยู่แล้วห้ามแตะหน้าตา: เพื่อนเปลี่ยนเป็นปุ่มชุด v3 + ป้าย TMP ไว้ในฉากแล้ว
+        // ถ้าเขียนทับด้วยภาพแบบเก่าจะได้ตัวหนังสือซ้อนสองชั้นและสถานะชี้/กดหาย
+        // คืนปุ่มไปให้ต่อสาย onClick อย่างเดียวพอ
+        if (!IsNew(image)) return button;
 
+        ApplyApprovedButtonStyle(image, button, word, y, width);
         return button;
+    }
+
+    // สร้างปุ่มใหม่ให้หน้าตาเหมือนที่ MainMenuColorStatesBuilder ของเพื่อนทำ:
+    // ภาพปุ่มเปล่า 4 สถานะแบบ Sprite Swap + ป้ายข้อความแยกที่สลับภาษาได้
+    void ApplyApprovedButtonStyle(Image image, Button button, string word, float y, float width)
+    {
+        var normal = LoadButtonState("Normal");
+        image.sprite = normal;
+        image.type = Image.Type.Simple;
+        image.preserveAspect = false;
+
+        float aspect = normal.rect.height / Mathf.Max(1f, normal.rect.width);
+        Place(image.rectTransform, new Vector2(0f, y), new Vector2(width, width * aspect));
+
+        button.transition = Selectable.Transition.SpriteSwap;
+        button.spriteState = new SpriteState
+        {
+            highlightedSprite = LoadButtonState("Hover"),
+            selectedSprite = LoadButtonState("Hover"),
+            pressedSprite = LoadButtonState("Pressed"),
+            disabledSprite = LoadButtonState("Disabled"),
+        };
+
+        (string english, string thai) words = ButtonLabels.TryGetValue(word, out var pair) ? pair : (word.ToUpperInvariant(), word);
+        var label = EnsureText(image.transform, "StateLabel", words.english, words.thai, 42f);
+        label.fontStyle = FontStyles.Bold;
+        label.enableAutoSizing = true; // คำไทยยาวกว่าอังกฤษ ปล่อยให้ย่อเองไม่ล้นปุ่ม
+        label.fontSizeMin = 14f;
+        label.fontSizeMax = 42f;
+        Place(label.rectTransform, Vector2.zero, new Vector2(width * 0.61f, width * aspect * 0.46f));
+
+        var feedback = EnsureComponent<MenuButtonLabelFeedback>(image.gameObject);
+        feedback.button = button;
+        feedback.label = label;
+        feedback.restingPosition = Vector2.zero;
+    }
+
+    static Sprite LoadButtonState(string state)
+    {
+        string path = $"{MainMenuColorStatesBuilder.Folder}/Button-{state}.png";
+        var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        if (sprite == null) throw new System.InvalidOperationException($"ไม่เจอภาพปุ่ม {path}");
+        return sprite;
     }
 
     // ป้ายที่มีคำแปลไทย จะติด LocalizedText ให้ด้วย เปลี่ยนภาษาในหน้าตั้งค่าแล้วสลับเอง
