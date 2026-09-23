@@ -1,0 +1,324 @@
+[
+  {
+    "id": "01-rusty-sword",
+    "thai_name": "ดาบขึ้นสนิม",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/01-rusty-sword.png",
+    "alpha": true
+  },
+  {
+    "id": "02-rusty-bow",
+    "thai_name": "ธนูขึ้นสนิม",
+    "weapon_frames": 3,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/02-rusty-bow.png",
+    "alpha": true
+  },
+  {
+    "id": "03-rusty-pistol",
+    "thai_name": "ปืนขึ้นสนิม",
+    "weapon_frames": 2,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/03-rusty-pistol.png",
+    "alpha": true
+  },
+  {
+    "id": "04-rusty-claw",
+    "thai_name": "กรงเล็บขึ้นสนิม",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/04-rusty-claw.png",
+    "alpha": true
+  },
+  {
+    "id": "05-old-iron-sword",
+    "thai_name": "ดาบเหล็กเก่า",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/05-old-iron-sword.png",
+    "alpha": true
+  },
+  {
+    "id": "06-rusty-dagger",
+    "thai_name": "มีดสั้นสนิม",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/06-rusty-dagger.png",
+    "alpha": true
+  },
+  {
+    "id": "07-starter-spear",
+    "thai_name": "หอกเริ่มต้น",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/07-starter-spear.png",
+    "alpha": true
+  },
+  {
+    "id": "08-wooden-bow",
+    "thai_name": "ธนูไม้",
+    "weapon_frames": 3,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/08-wooden-bow.png",
+    "alpha": true
+  },
+  {
+    "id": "09-old-rifle",
+    "thai_name": "ปืนไรเฟิลเก่า",
+    "weapon_frames": 2,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/09-old-rifle.png",
+    "alpha": true
+  },
+  {
+    "id": "10-iron-hammer",
+    "thai_name": "ค้อนเหล็ก",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/10-iron-hammer.png",
+    "alpha": true
+  },
+  {
+    "id": "11-steel-sword",
+    "thai_name": "ดาบเหล็กกล้า",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/11-steel-sword.png",
+    "alpha": true
+  },
+  {
+    "id": "12-twin-steel-daggers",
+    "thai_name": "มีดคู่เหล็ก",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/12-twin-steel-daggers.png",
+    "alpha": true
+  },
+  {
+    "id": "13-reinforced-spear",
+    "thai_name": "หอกเสริมแกร่ง",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/13-reinforced-spear.png",
+    "alpha": true
+  },
+  {
+    "id": "14-wooden-bow-mk2",
+    "thai_name": "ธนูไม้ รุ่น 2",
+    "weapon_frames": 3,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/14-wooden-bow-mk2.png",
+    "alpha": true
+  },
+  {
+    "id": "15-energy-gun",
+    "thai_name": "ปืนพลังงาน",
+    "weapon_frames": 2,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/15-energy-gun.png",
+    "alpha": true
+  },
+  {
+    "id": "16-ion-blaster",
+    "thai_name": "ปืนไอออนบลาสเตอร์",
+    "weapon_frames": 2,
+    "projectile_frames": 1,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/16-ion-blaster.png",
+    "alpha": true
+  },
+  {
+    "id": "17-gravity-hammer",
+    "thai_name": "ค้อนแรงโน้มถ่วง",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/17-gravity-hammer.png",
+    "alpha": true
+  },
+  {
+    "id": "18-nano-baton",
+    "thai_name": "กระบองนาโน",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 0,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/18-nano-baton.png",
+    "alpha": true
+  },
+  {
+    "id": "19-rift-sword",
+    "thai_name": "ดาบผ่ามิติ",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 3,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/19-rift-sword.png",
+    "alpha": true
+  },
+  {
+    "id": "20-scatter-bow",
+    "thai_name": "ธนูยิงกระจาย",
+    "weapon_frames": 3,
+    "projectile_frames": 1,
+    "effect_frames": 3,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/20-scatter-bow.png",
+    "alpha": true
+  },
+  {
+    "id": "21-ion-spear-x",
+    "thai_name": "หอกไอออน-X",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 3,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/21-ion-spear-x.png",
+    "alpha": true
+  },
+  {
+    "id": "22-rocket-launcher",
+    "thai_name": "เครื่องยิงจรวด",
+    "weapon_frames": 2,
+    "projectile_frames": 1,
+    "effect_frames": 3,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/22-rocket-launcher.png",
+    "alpha": true
+  },
+  {
+    "id": "23-quantum-hammer",
+    "thai_name": "ค้อนควอนตัม",
+    "weapon_frames": 1,
+    "projectile_frames": 0,
+    "effect_frames": 3,
+    "frame_size": [
+      192,
+      128
+    ],
+    "facing": "right",
+    "source": "raw/23-quantum-hammer.png",
+    "alpha": true
+  }
+]

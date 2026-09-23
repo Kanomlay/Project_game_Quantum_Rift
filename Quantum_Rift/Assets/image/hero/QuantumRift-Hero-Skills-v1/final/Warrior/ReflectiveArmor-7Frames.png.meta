@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: eeb3b83b491f22747ae1c4a86c6c2322
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2008340716822857706
+    second: ReflectiveArmor-7Frames_0
+  - first:
+      213: -730721020153193252
+    second: ReflectiveArmor-7Frames_1
+  - first:
+      213: -6319285404136408710
+    second: ReflectiveArmor-7Frames_2
+  - first:
+      213: -360858883208682164
+    second: ReflectiveArmor-7Frames_3
+  - first:
+      213: 7918922556144033602
+    second: ReflectiveArmor-7Frames_4
+  - first:
+      213: 9094028440921996554
+    second: ReflectiveArmor-7Frames_5
+  - first:
+      213: -2788812136134017385
+    second: ReflectiveArmor-7Frames_6
+  - first:
+      213: 3169187179052240736
+    second: ReflectiveArmor-7Frames_7
+  - first:
+      213: -2487991013472997283
+    second: ReflectiveArmor-7Frames_8
+  - first:
+      213: -6475187982437237913
+    second: ReflectiveArmor-7Frames_9
+  - first:
+      213: -8149339723316791824
+    second: ReflectiveArmor-7Frames_10
+  - first:
+      213: -8118399816082801016
+    second: ReflectiveArmor-7Frames_11
+  - first:
+      213: -1482825525669820987
+    second: ReflectiveArmor-7Frames_12
+  - first:
+      213: -4593994512065210693
+    second: ReflectiveArmor-7Frames_13
+  - first:
+      213: -1622776655250201454
+    second: ReflectiveArmor-7Frames_14
+  - first:
+      213: -2929145512823301137
+    second: ReflectiveArmor-7Frames_15
+  - first:
+      213: 6981922462983411039
+    second: ReflectiveArmor-7Frames_16
+  - first:
+      213: -3748060398976484578
+    second: ReflectiveArmor-7Frames_17
+  - first:
+      213: 7690284645726341772
+    second: ReflectiveArmor-7Frames_18
+  - first:
+      213: -5097419350039183253
+    second: ReflectiveArmor-7Frames_19
+  - first:
+      213: 8918425782110976360
+    second: ReflectiveArmor-7Frames_20
+  - first:
+      213: 4053337135924324624
+    second: ReflectiveArmor-7Frames_21
+  - first:
+      213: -7483492869498469283
+    second: ReflectiveArmor-7Frames_22
+  - first:
+      213: 8508986766176209291
+    second: ReflectiveArmor-7Frames_23
+  - first:
+      213: -982432446210391744
+    second: ReflectiveArmor-7Frames_24
+  - first:
+      213: -7493975699237284378
+    second: ReflectiveArmor-7Frames_25
+  - first:
+      213: -5768146969056063569
+    second: ReflectiveArmor-7Frames_26
+  - first:
+      213: 8228470325249254291
+    second: ReflectiveArmor-7Frames_27
+  - first:
+      213: 2364287874245071456
+    second: ReflectiveArmor-7Frames_28
+  - first:
+      213: -1820272897130216205
+    second: ReflectiveArmor-7Frames_29
+  - first:
+      213: -6459343597929456685
+    second: ReflectiveArmor-7Frames_30
+  - first:
+      213: -4186254212280457605
+    second: ReflectiveArmor-7Frames_31
+  - first:
+      213: -6718361331924543302
+    second: ReflectiveArmor-7Frames_32
+  - first:
+      213: -4575839143282793675
+    second: ReflectiveArmor-7Frames_33
+  - first:
+      213: 6968561628240365343
+    second: ReflectiveArmor-7Frames_34
+  - first:
+      213: 6945553221811976187
+    second: ReflectiveArmor-7Frames_35
+  - first:
+      213: 1829234714968124898
+    second: ReflectiveArmor-7Frames_36
+  - first:
+      213: -26993141371505974
+    second: ReflectiveArmor-7Frames_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae70e26cd3f0fdb10800000000000000
+      internalID: 2008340716822857706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc9bdb8a15fbd5f0800000000000000
+      internalID: -730721020153193252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a79732ce7636d48a0800000000000000
+      internalID: -6319285404136408710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c456d44f1c8fdfaf0800000000000000
+      internalID: -360858883208682164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f1bcacb1aa5ed60800000000000000
+      internalID: 7918922556144033602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0d747e4faa743e70800000000000000
+      internalID: 9094028440921996554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReflectiveArmor-7Frames_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79efe6053262c49d0800000000000000
+      internalID: -2788812136134017385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1250112b43a6bba4b8952a15b18e848c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ReflectiveArmor-7Frames_0: 2008340716822857706
+      ReflectiveArmor-7Frames_1: -730721020153193252
+      ReflectiveArmor-7Frames_2: -6319285404136408710
+      ReflectiveArmor-7Frames_3: -360858883208682164
+      ReflectiveArmor-7Frames_4: 7918922556144033602
+      ReflectiveArmor-7Frames_5: 9094028440921996554
+      ReflectiveArmor-7Frames_6: -2788812136134017385
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

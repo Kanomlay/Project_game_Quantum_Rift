@@ -1,0 +1,374 @@
+fileFormatVersion: 2
+guid: 8ace05f3e2d067742adb010f45897153
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 438951856673036410
+    second: AbsorbingFangs-7Frames_0
+  - first:
+      213: -4175034516726045950
+    second: AbsorbingFangs-7Frames_1
+  - first:
+      213: 9054536643576541065
+    second: AbsorbingFangs-7Frames_2
+  - first:
+      213: -169765691200627466
+    second: AbsorbingFangs-7Frames_3
+  - first:
+      213: 3177575527262472190
+    second: AbsorbingFangs-7Frames_4
+  - first:
+      213: 4685637083424895682
+    second: AbsorbingFangs-7Frames_5
+  - first:
+      213: 7520885317651402165
+    second: AbsorbingFangs-7Frames_6
+  - first:
+      213: 5328356144572264591
+    second: AbsorbingFangs-7Frames_7
+  - first:
+      213: 5747834165662581787
+    second: AbsorbingFangs-7Frames_8
+  - first:
+      213: -2392311416793470041
+    second: AbsorbingFangs-7Frames_9
+  - first:
+      213: -7307200755503941889
+    second: AbsorbingFangs-7Frames_10
+  - first:
+      213: -8986945411060297599
+    second: AbsorbingFangs-7Frames_11
+  - first:
+      213: 4481726490333280101
+    second: AbsorbingFangs-7Frames_12
+  - first:
+      213: -4110236256714886180
+    second: AbsorbingFangs-7Frames_13
+  - first:
+      213: 2372889625657167874
+    second: AbsorbingFangs-7Frames_14
+  - first:
+      213: -6212287990865578989
+    second: AbsorbingFangs-7Frames_15
+  - first:
+      213: 2708989914741109715
+    second: AbsorbingFangs-7Frames_16
+  - first:
+      213: -7422403515158068824
+    second: AbsorbingFangs-7Frames_17
+  - first:
+      213: 2541316572716765047
+    second: AbsorbingFangs-7Frames_18
+  - first:
+      213: -7093609634236220338
+    second: AbsorbingFangs-7Frames_19
+  - first:
+      213: -891959769909025874
+    second: AbsorbingFangs-7Frames_20
+  - first:
+      213: -1026337227095456209
+    second: AbsorbingFangs-7Frames_21
+  - first:
+      213: 601010715280329990
+    second: AbsorbingFangs-7Frames_22
+  - first:
+      213: 3897687558332870625
+    second: AbsorbingFangs-7Frames_23
+  - first:
+      213: 1111272963688225305
+    second: AbsorbingFangs-7Frames_24
+  - first:
+      213: 5831363782090122078
+    second: AbsorbingFangs-7Frames_25
+  - first:
+      213: 5519062688555339856
+    second: AbsorbingFangs-7Frames_26
+  - first:
+      213: 2160928464769721360
+    second: AbsorbingFangs-7Frames_27
+  - first:
+      213: 1363793871503889842
+    second: AbsorbingFangs-7Frames_28
+  - first:
+      213: 1670876850483613099
+    second: AbsorbingFangs-7Frames_29
+  - first:
+      213: 3662709655098774600
+    second: AbsorbingFangs-7Frames_30
+  - first:
+      213: 6150663884156073097
+    second: AbsorbingFangs-7Frames_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a789e725368771600800000000000000
+      internalID: 438951856673036410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 203ac813a3c4f06c0800000000000000
+      internalID: -4175034516726045950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98f2326ba1d28ad70800000000000000
+      internalID: 9054536643576541065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc10f8d00fd4adf0800000000000000
+      internalID: -169765691200627466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef744754b14091c20800000000000000
+      internalID: 3177575527262472190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c230ff0a1ab60140800000000000000
+      internalID: 4685637083424895682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbsorbingFangs-7Frames_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd001b595d8f5860800000000000000
+      internalID: 7520885317651402165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f69aa91ae4e7cc04e8e1b0a48e1e88d4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AbsorbingFangs-7Frames_0: 438951856673036410
+      AbsorbingFangs-7Frames_1: -4175034516726045950
+      AbsorbingFangs-7Frames_2: 9054536643576541065
+      AbsorbingFangs-7Frames_3: -169765691200627466
+      AbsorbingFangs-7Frames_4: 3177575527262472190
+      AbsorbingFangs-7Frames_5: 4685637083424895682
+      AbsorbingFangs-7Frames_6: 7520885317651402165
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

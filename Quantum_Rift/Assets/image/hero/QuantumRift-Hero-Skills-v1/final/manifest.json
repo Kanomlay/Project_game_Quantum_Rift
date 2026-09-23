@@ -1,0 +1,178 @@
+[
+  {
+    "hero": "Warrior",
+    "skill": "ImpactDash",
+    "thai": "พุ่งชนกระแทก",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      827,
+      1094,
+      1368,
+      1641,
+      1915
+    ],
+    "scale": 0.5463414634146342
+  },
+  {
+    "hero": "Warrior",
+    "skill": "ReflectiveArmor",
+    "thai": "เกราะสะท้อนกลับ",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1094,
+      1375,
+      1641,
+      1915
+    ],
+    "scale": 0.5450121654501217
+  },
+  {
+    "hero": "Archer",
+    "skill": "DimensionalArrow",
+    "thai": "ลูกศรทะลวงมิติ",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1095,
+      1374,
+      1643,
+      1916
+    ],
+    "scale": 0.5463414634146342
+  },
+  {
+    "hero": "Archer",
+    "skill": "ShadowStep",
+    "thai": "ย่างก้าวเงา",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1095,
+      1369,
+      1642,
+      1916
+    ],
+    "scale": 0.5450121654501217
+  },
+  {
+    "hero": "Inventor",
+    "skill": "AssaultDrone",
+    "thai": "โดรนจู่โจม",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1116,
+      1383,
+      1642,
+      1916
+    ],
+    "scale": 0.5463414634146342
+  },
+  {
+    "hero": "Inventor",
+    "skill": "ElectromagneticTrap",
+    "thai": "กับดักแม่เหล็กไฟฟ้า",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1091,
+      1395,
+      1642,
+      1916
+    ],
+    "scale": 0.5450121654501217
+  },
+  {
+    "hero": "Mutant",
+    "skill": "AbsorbingFangs",
+    "thai": "คมเขี้ยวดูดกลืน",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1095,
+      1369,
+      1642,
+      1916
+    ],
+    "scale": 0.5463414634146342
+  },
+  {
+    "hero": "Mutant",
+    "skill": "CellStimulation",
+    "thai": "กระตุ้นเซลล์",
+    "frames": 7,
+    "frameSize": [
+      256,
+      256
+    ],
+    "fpsPreview": 10,
+    "sourceCuts": [
+      0,
+      274,
+      547,
+      821,
+      1095,
+      1369,
+      1642,
+      1916
+    ],
+    "scale": 0.5450121654501217
+  }
+]

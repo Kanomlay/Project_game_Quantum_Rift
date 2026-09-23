@@ -1,0 +1,167 @@
+{
+  "skills": 8,
+  "icons": 8,
+  "animationFrames": 56,
+  "checks": [
+    {
+      "skill": "ImpactDash",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "df6e99ebce835cc420ea33b83692e1e0ac948d316b27fab068ed36c4544ae45a",
+        "baa10c9cd056b39faf1078140287972a93ee2c621767412084876c8c8334238e",
+        "976f5d2c56c3029d3c058096be5fa6afb60381a5fab5c690545e8830ad6c52df",
+        "48b14be70dc89fa8be0fef397930c5d513060e0ca659d19476b8ef3e705ddf4c",
+        "767b4c753950d049ffb4355c778d7ad8e1e2ab141f125da17fe346f8b345f2c4",
+        "933acf1e57fcdbb94bcb2d4f6ae58bb3eefd663cdbea01530649b39a955d5cb2",
+        "88333d470f6e71c2484f708ef0636b7fe9d78dd6edb6b091f5ff1c6dd728fa27"
+      ]
+    },
+    {
+      "skill": "ReflectiveArmor",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "412fdb724556ecaed74d91c8a5e45d9743dc54e262a9f1c41379ccfdbd3f633d",
+        "5cbeeac53f8bce6b8c9619d8eb8d3a3b8c27d93fafc96ef0353371fef05fb38f",
+        "c4c4a4cff903effee0bc2e5e05da56eb16513b51ce843234aeb0c5e6a412e8eb",
+        "370237c4a525938d0a541438908582b25797c5fc7b0d2bad59fc17cf12136726",
+        "d59bf0ef4cd9d9d16089989cf7c8e5323a3b8824f1aa393f18dfe4ad08516888",
+        "1165ae985365b26e84c7b224f3417c9d5eb662180be493262c8a56a0d69ff835",
+        "563e264f7669b2ab10bd7c1dc336a2f71b0de2000d58de1e352be81996a4f7ac"
+      ]
+    },
+    {
+      "skill": "DimensionalArrow",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "0f973328da1c67375cccf5a43ebea6a559741d5fa3479bb92e9d1bd3fc81d860",
+        "844cb2195f4088a31341716df76bf475d476b3a14d83cee8f144e43d32a43428",
+        "93208983a567369d117b007c92a51af3daeb46d68a05f61242064aebbb048f08",
+        "8f026eff9c3bd581508878e78a9f4699fa1092fe8945a5f0703ea6e45ffa45d8",
+        "64324affad91b433c532fd76732f4b82fc139e08cf6b276b5d3e5c347a071e51",
+        "0c3c791c229884785764c27f830e3f3d2e31680c4379a832fe89c93c3b8bc4d0",
+        "ba0253acbffb84b4d159e458fde5dae503b1002eaf185374fcb576e7ee274406"
+      ]
+    },
+    {
+      "skill": "ShadowStep",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "fc340bfd18bd8c2742ce051ebb5be42e418367ea7a0b3e9cc143ad8102f43de8",
+        "78d0ab235afd7ff5517f940e5fb47aff9883f540739882c74b7a857e0dd8468a",
+        "0964ad1c667886235639da5addf393163a78612456452c2e4d4009a964c6b47e",
+        "120c681eba28ad43f277d6432dfd8f6785965bb281e9e68d222bd64c21681eaa",
+        "3665472d4f50e35bddda72ba1c028ec24f87841a7b34045255ab8af97169e4bd",
+        "212d2e7ad4c93445b88f5c47a8845b945c2516c38ffcabb8de559fc515462771",
+        "3f463f298d61fdf72a74b99c55d2f6022a6a2a992ff0e2c92871a3905495da2c"
+      ]
+    },
+    {
+      "skill": "AssaultDrone",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "05f3bcbc81b7ea5648cbb780c8f2a31f14ee35fea24319f1bb3c7ac7073a399a",
+        "3b0fc047e89c7c22461f95762e2b3a1277737c0a46a59fd3775103229b230d09",
+        "4ed63f8148165c601cbfe6a5ae71a19c211280c485a12d79023284f61402c170",
+        "981d96257d3e742d4bce0c4e266f614533f8dfdcc2999767c8cb3064ce504669",
+        "79b59d95c192decdda8123b0ca72445d5968d13576b45d3e9fcfff53ba3d90c2",
+        "6ee6c3db75f2b82c15c1f976522266bd28d018915aa68d4b173e9bced3dd704b",
+        "33e03c0566d8075ebbb87abbefcfb8627fc3b6829632dc83f3b3e79b83196545"
+      ]
+    },
+    {
+      "skill": "ElectromagneticTrap",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "326bed844ba970091d03540967ec7c21bd2c1f2c14951823b7ce37a0ec3c900e",
+        "ff8f2c59806cc321036b0cc5691db1273e9fd508d0de7b5d8c91ce255528946c",
+        "d49693716c82e3963d07a8a3d0a20c5d941e4fe2db0e551b4b7475865aa590cc",
+        "c3b16910806982fcb9864836a6f9d0dedae211364ce5e3b90da5ceb67832a87f",
+        "0405bf72f3e3d673cc488c5da2cab812df5a5f509b34c89cd91631ec29083fb7",
+        "3ee42c4b725e070bf1279ff1b8f62718ee8f0717c0f34c3226881cc80eca4b4b",
+        "60f37b9c3b9aec3103dc85975856b409452d6441fec2f861563c7400b7d53016"
+      ]
+    },
+    {
+      "skill": "AbsorbingFangs",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "6c3b7b6784f0f635d64997571dc065ce67cebaabb8ea60b3ac909992bc0d442d",
+        "fd1cf3364a016e6cae46b0f599e5c30382227e4bf4c6d931e2f9bc86d9a087bb",
+        "95fca1b164b75c06a39f309c784544dfabc9ab765f28b9801aad6fb8f3cf6a67",
+        "6d5858b0a1eabb0ef4ac6e64eaf9ee1cdc79d853a2af1808838bb4b7246326b6",
+        "508c0dd1ebb141ff37525e9f548ec0cacccfebff511302bef9c4efef104bf3b4",
+        "b1fc463abb914dacd31f12229654860947824aa7a2e63e89b1c75c2c5c47690d",
+        "9885611a662c30df0a48db9e44d18d7aa275b14d9014c76255d8b203291b0109"
+      ]
+    },
+    {
+      "skill": "CellStimulation",
+      "frames": 7,
+      "distinctFrames": 7,
+      "alpha": "binary transparent RGBA",
+      "canvas": [
+        256,
+        256
+      ],
+      "clippedEdges": false,
+      "sha256": [
+        "f9f6a38ea4c9bd6fc500751f27d9e33afcf9896fddfe67cbf6345b3fe4c46630",
+        "a38a99f09b0838f030243a756183a3468eda3375c953dae838cebd7ca728105b",
+        "6da439d3a9e3ba094e449648caa353dfff9db2cfeb894f4ac3640a6a5df89d55",
+        "c5998eb6c4286676a819f90ce00ab39bbd4b85f841cdcb2e43e242db5e7dd48c",
+        "524b33d4ddd533571e12ab24b72fb5c5b9ffc074d79062904310885d0c3bd5f2",
+        "bc09f0ff8191b4546433d5df7f9698108ba58bf1dae381b36342585ad01c8f97",
+        "14e54ea31e51df1e37861d69caf628396534ae32dc7ea2b2791f332c299223ad"
+      ]
+    }
+  ]
+}
