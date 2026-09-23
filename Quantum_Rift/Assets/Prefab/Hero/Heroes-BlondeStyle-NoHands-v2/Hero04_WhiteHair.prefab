@@ -53,6 +53,7 @@ MonoBehaviour:
   restReturnDuration: 0.15
   slashEffectDistance: 0.75
   slashEffectScale: 8
+  slashReferenceBladeLength: 1.8
 --- !u!1 &6224402762915404491
 GameObject:
   m_ObjectHideFlags: 0

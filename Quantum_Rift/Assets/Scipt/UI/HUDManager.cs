@@ -48,6 +48,34 @@ public class HUDManager : MonoBehaviour
             energyText.text = currentEnergy + "/" + maxEnergy;
         }
     }
+    // พลังงานไม่พอยิง: กะพริบตัวเลขพลังงานเป็นสีแดงแวบหนึ่ง ผู้เล่นจะได้รู้ว่าทำไมกดแล้วไม่ยิง
+    private Coroutine energyFlash;
+    private Color energyTextColor;
+    private bool energyTextColorSaved;
+
+    public void FlashEnergyEmpty()
+    {
+        if (energyText == null) return;
+
+        // จำสีเดิมไว้ครั้งเดียว ถ้ากะพริบซ้อนกันจะได้ไม่จำสีแดงไปเป็นสีเดิม
+        if (!energyTextColorSaved)
+        {
+            energyTextColor = energyText.color;
+            energyTextColorSaved = true;
+        }
+
+        if (energyFlash != null) StopCoroutine(energyFlash);
+        energyFlash = StartCoroutine(FlashEnergyRoutine());
+    }
+
+    private IEnumerator FlashEnergyRoutine()
+    {
+        energyText.color = new Color(1f, 0.3f, 0.3f, energyTextColor.a);
+        yield return new WaitForSeconds(0.25f);
+        energyText.color = energyTextColor;
+        energyFlash = null;
+    }
+
     public void UpdateWeaponIcon(Sprite weaponSprite)
     {
         if (weaponSprite != null && activeWeaponIcon != null)

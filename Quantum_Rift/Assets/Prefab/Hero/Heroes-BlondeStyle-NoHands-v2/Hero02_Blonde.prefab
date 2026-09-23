@@ -235,7 +235,7 @@ MonoBehaviour:
   currentHP: 0
   maxEnergy: 170
   currentEnergy: 0
-  weapon1: {fileID: 11400000, guid: d3d0854cf11709346b25117b5bfeb071, type: 2}
+  weapon1: {fileID: 11400000, guid: 8966a3abd470b3144920c47277cf8c26, type: 2}
   weapon2: {fileID: 0}
   iframeDuration: 1
   deathSummaryDelay: 1
@@ -295,3 +295,4 @@ MonoBehaviour:
   restReturnDuration: 0.15
   slashEffectDistance: 0.75
   slashEffectScale: 8
+  slashReferenceBladeLength: 1.8

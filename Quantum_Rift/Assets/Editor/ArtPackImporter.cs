@@ -68,6 +68,14 @@ public static class ArtPackImporter
         return paths.Count;
     }
 
+    // ให้ builder อื่นเรียกตั้งค่าไฟล์เดียว เช่นภาพที่เพิ่งสร้างเพิ่มเข้าไปในโฟลเดอร์ชุดภาพ
+    public static void ConfigureFile(string path)
+    {
+        var factory = new SpriteDataProviderFactories();
+        factory.Init();
+        Configure(path, factory);
+    }
+
     static void Configure(string path, SpriteDataProviderFactories factory)
     {
         var importer = (TextureImporter)AssetImporter.GetAtPath(path);

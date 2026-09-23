@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rusty Claw
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: Rusty Claw
-  weaponIcon: {fileID: 21300000, guid: 20f464fd064cddd4b8687ebaff59d4e2, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 75b1e736a474fc44f95eaf05441a047f, type: 3}
   weaponPrefab: {fileID: 2348654446135055490, guid: 75cbc67674d82b341a639f6455570e90, type: 3}
   weaponType: 3
   rarity: 0
@@ -23,5 +23,8 @@ MonoBehaviour:
   attackAngle: 90
   energyCost: 0
   slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
   abilityDescription: 
   specialEffectPrefab: {fileID: 0}

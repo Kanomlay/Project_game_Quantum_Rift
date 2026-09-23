@@ -11,8 +11,8 @@ public enum WeaponRarity
 public enum WeaponType
 {
     Sword,  // ฟันด้วยการหมุน sprite
-    Gun,    // ยิงกระสุน (ยังไม่ได้ทำ)
-    Bow,    // ยิงลูกธนู (ยังไม่ได้ทำ)
+    Gun,    // ยิงกระสุนจาก AttackPoint (ปากกระบอก)
+    Bow,    // ง้างแล้วปล่อยลูกธนูจาก AttackPoint
     Claw    // กรงเล็บ ฟันระยะประชิดด้วยท่าเดียวกับดาบ (ต้องต่อท้ายเสมอ ค่าเดิมใน asset เก็บเป็นตัวเลข)
 }
 
@@ -35,6 +35,13 @@ public class WeaponData : ScriptableObject
 
     [Header("เอฟเฟกต์ตอนโจมตี")]
     public GameObject slashEffectPrefab; // คลื่นดาบที่เสกตอนฟัน (เว้นว่างไว้ได้ถ้าอาวุธนี้ไม่ต้องการ)
+
+    [Header("อาวุธยิง (ปืน / ธนู)")]
+    public GameObject projectilePrefab;   // กระสุนหรือลูกธนูที่ยิงออกไป ต้องมี PlayerProjectile
+    public float projectileSpeed = 14f;   // หน่วยต่อวินาที
+    public float projectileLifetime = 1.5f; // ระยะยิงไกลสุด = ความเร็ว × เวลานี้
+
+    public bool IsRanged => weaponType == WeaponType.Gun || weaponType == WeaponType.Bow;
 
     [Header("ความสามารถพิเศษ (Special Ability)")]
     [TextArea] public string abilityDescription; 

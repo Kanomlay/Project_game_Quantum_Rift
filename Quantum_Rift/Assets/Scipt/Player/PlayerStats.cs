@@ -168,6 +168,22 @@ public class PlayerStats : MonoBehaviour
     }
 
 
+    // หักพลังงานถ้าพอ คืน false ถ้าไม่พอ (ไม่หักอะไรเลย) พร้อมกะพริบแถบพลังงานบอกผู้เล่น
+    public bool TrySpendEnergy(int cost)
+    {
+        if (!HasEnergy(cost)) return false;
+        if (cost > 0) UseEnergy(cost);
+        return true;
+    }
+
+    // เช็คเฉย ๆ ยังไม่หัก (ธนูเช็คตอนเริ่มง้าง แต่หักตอนปล่อยยิง) ไม่พอก็กะพริบแถบพลังงาน
+    public bool HasEnergy(int cost)
+    {
+        if (cost <= 0 || currentEnergy >= cost) return true;
+        if (hud != null) hud.FlashEnergyEmpty();
+        return false;
+    }
+
     public void UseEnergy(int cost)
     {
         currentEnergy -= cost;

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
-  m_Name: Rusty Sword
+  m_Name: Rusty Bow
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: Rusty Sword
-  weaponIcon: {fileID: 21300000, guid: 54db34e5b1dbb2d4aa0b47644dd2714f, type: 3}
-  weaponPrefab: {fileID: 7777550296153586313, guid: 1dc86d4b3f6598b478a44f5a2342e1e3, type: 3}
-  weaponType: 0
+  weaponName: Rusty Bow
+  weaponIcon: {fileID: 21300000, guid: 06c7cd2df43750e49846d181369da60f, type: 3}
+  weaponPrefab: {fileID: 6914494532305295120, guid: 0ef89f5f5d022b6419259767a422844d, type: 3}
+  weaponType: 2
   rarity: 0
-  attackDamage: 4
-  attackSpeed: 1
+  attackDamage: 2.5
+  attackSpeed: 1.2
   attackRange: 1.5
   attackAngle: 90
-  energyCost: 0
-  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
-  projectilePrefab: {fileID: 0}
+  energyCost: 1
+  slashEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1003680541518883341, guid: 02cc6c419fe338c469ff1e89c7faac3f, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   abilityDescription: 
