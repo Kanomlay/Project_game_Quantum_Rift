@@ -40,7 +40,8 @@ public static class SkillBuilder
                    Configure = skill => ((ImpactDashSkill)skill).hitRadius = 1.2f },
         new Spec { Character = "นักรบ", IsQ = false, ClassFolder = "Warrior", Id = "ReflectiveArmor", Type = typeof(ReflectiveArmorSkill),
                    Thai = "เกราะสะท้อนกลับ", Description = "กางเกราะกันดาเมจทั้งหมด 4 วินาที กันได้เมื่อไหร่สะท้อนแรงใส่ศัตรูรอบตัว",
-                   Cooldown = 12f, Scale = 1.8f, Offset = new Vector2(-0.02f, 0.125f) },
+                   // วงเกราะรัศมีราว 1.39 หน่วย คลุมปลายดาบ (ยื่นจากกลางตัว ~1.26) ได้หมดตอนหมุนรอบตัว
+                   Cooldown = 12f, Scale = 2.6f, Offset = new Vector2(-0.02f, 0.125f) },
         new Spec { Character = "นักธนู", IsQ = true, ClassFolder = "Archer", Id = "DimensionalArrow", Type = typeof(DimensionalArrowSkill),
                    Thai = "ลูกศรทะลวงมิติ", Description = "ยิงลูกศรพลังงานทะลุศัตรูทุกตัวและทะลุกำแพง",
                    Cooldown = 4f, Scale = 1f, Offset = new Vector2(0.01f, -0.1f) },
@@ -62,7 +63,7 @@ public static class SkillBuilder
                    Cooldown = 6f, Scale = 1.6f, Offset = new Vector2(-0.045f, -0.115f) },
         new Spec { Character = "มนุษย์กลายพันธุ์", IsQ = false, ClassFolder = "Mutant", Id = "CellStimulation", Type = typeof(CellStimulationSkill),
                    Thai = "กระตุ้นเซลล์", Description = "ฟื้นพลังชีวิต 3 หน่วยใน 3 วินาที และวิ่งเร็วขึ้นชั่วคราว",
-                   Cooldown = 15f, Scale = 1.6f, Offset = new Vector2(-0.03f, 0.085f) },
+                   Cooldown = 15f, Scale = 2.2f, Offset = new Vector2(-0.03f, 0.085f) },
     };
 
     [MenuItem("Tools/Quantum Rift/Setup Skills (8 ท่า ตาราง 1.1)")]
