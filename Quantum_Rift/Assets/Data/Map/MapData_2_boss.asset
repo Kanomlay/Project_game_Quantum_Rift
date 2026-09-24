@@ -15,5 +15,7 @@ MonoBehaviour:
   mapName: Map 2-BossRoom
   mapPrefab: {fileID: 4409379168855331426, guid: 35f02c22cc6d207468b8b650fe3aa4b8, type: 3}
   spawnPosition: {x: 0, y: 0}
+  possibleEvents: []
+  chestLoot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
   nextMap: {fileID: 11400000, guid: 0fd8c6262a817654ea237f919e5447de, type: 2}
   isBossRoom: 0

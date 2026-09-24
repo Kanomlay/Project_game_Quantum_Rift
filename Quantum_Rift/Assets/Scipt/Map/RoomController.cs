@@ -23,6 +23,7 @@ public class RoomController : MonoBehaviour
     private bool isCleared;
     private int aliveMonstersCount;
     private bool isSafeRoom; // ห้องของเหตุการณ์ (ร้านค้า) ไม่มีมอนสเตอร์ ประตูไม่ปิด
+    private bool hadMonsters; // มีมอนสเตอร์ให้สู้จริง (ห้องว่างเคลียร์ทันทีแต่ไม่ได้กล่อง)
 
     // เหตุการณ์ที่ MapEventDirector เลือกให้ห้องนี้ รอจังหวะเสก
     private GameObject pendingEventPrefab;
@@ -59,7 +60,8 @@ public class RoomController : MonoBehaviour
                 aliveMonstersCount++;
             }
         }
-        if (aliveMonstersCount > 0) SetDoors(true);
+        hadMonsters = aliveMonstersCount > 0;
+        if (hadMonsters) SetDoors(true);
         else ClearRoom();
     }
 
@@ -128,6 +130,12 @@ public class RoomController : MonoBehaviour
         if (chestPrefab != null)
             Instantiate(chestPrefab, chestSpawnPoint != null ? chestSpawnPoint.position : transform.position,
                 Quaternion.identity, transform);
+        else if (hadMonsters)
+        {
+            // กล่องสมบัติตามแมพ (MapData.chestLoot) ไม่ต้องใส่ทีละห้อง
+            var map = MapManager.instance != null ? MapManager.instance.CurrentMap : null;
+            if (map != null) TreasureChest.Spawn(map.chestLoot, this);
+        }
 
         if (pendingEventPrefab != null)
         {

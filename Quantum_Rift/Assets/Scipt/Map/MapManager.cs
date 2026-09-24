@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     public MapData firstMap; // ใส่ข้อมูลด่าน 1-1 ไว้ตรงนี้
     
     private MapData currentMap; // จำว่าตอนนี้อยู่ด่านไหน
+    public MapData CurrentMap => currentMap;
     private GameObject currentMapInstance; // ตัวแผนที่จริงๆ ที่กำลังโชว์อยู่ฉาก
     // ของที่เสกลงแมพระหว่างเล่น (กับดัก ฯลฯ) ผูกกับตัวนี้ จะได้หายไปพร้อมแมพตอนเปลี่ยนด่าน
     public Transform CurrentMapRoot => currentMapInstance != null ? currentMapInstance.transform : null;

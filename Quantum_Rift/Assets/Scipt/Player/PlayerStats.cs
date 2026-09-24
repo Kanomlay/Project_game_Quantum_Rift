@@ -214,15 +214,33 @@ public class PlayerStats : MonoBehaviour
 
     private void SwapWeapon()
     {
-        currentWeaponIndex = (currentWeaponIndex == 1) ? 2 : 1; 
-        WeaponData activeWeapon = (currentWeaponIndex == 1) ? weapon1 : weapon2;
+        // อีกช่องยังว่าง ไม่ต้องสลับ (เดิมสลับเลขช่องไปทั้งที่มือยังถือของเดิม เก็บอาวุธทีหลังแล้วจะเข้าช่องผิด)
+        WeaponData other = (currentWeaponIndex == 1) ? weapon2 : weapon1;
+        if (other == null) return;
+        currentWeaponIndex = (currentWeaponIndex == 1) ? 2 : 1;
+        EquipCurrentWeapon();
+    }
 
-        if (activeWeapon != null)
-        {
-            if (hud != null) hud.UpdateWeaponIcon(activeWeapon.weaponIcon);
-            if (weaponController != null) weaponController.EquipWeapon(activeWeapon);
-            Debug.Log("สลับไปใช้อาวุธ: " + activeWeapon.weaponName);
-        }
+    private void EquipCurrentWeapon()
+    {
+        WeaponData activeWeapon = (currentWeaponIndex == 1) ? weapon1 : weapon2;
+        if (activeWeapon == null) return;
+        if (hud != null) hud.UpdateWeaponIcon(activeWeapon.weaponIcon);
+        if (weaponController != null) weaponController.EquipWeapon(activeWeapon);
+    }
+
+    // เก็บอาวุธจากพื้น: ช่อง 2 ยังว่างก็ใส่ช่อง 2 แล้วถือเลย ไม่ว่างก็แทนอาวุธในมือ
+    // คืนอาวุธที่ถูกแทน (ให้วางลงพื้น) หรือ null ถ้าไม่มีอะไรถูกแทน
+    public WeaponData PickUpWeapon(WeaponData weapon)
+    {
+        if (weapon == null || isDead) return null;
+        WeaponData replaced = null;
+        if (weapon1 == null) { weapon1 = weapon; currentWeaponIndex = 1; }
+        else if (weapon2 == null) { weapon2 = weapon; currentWeaponIndex = 2; }
+        else if (currentWeaponIndex == 1) { replaced = weapon1; weapon1 = weapon; }
+        else { replaced = weapon2; weapon2 = weapon; }
+        EquipCurrentWeapon();
+        return replaced;
     }
 
     private void UseSkillQ()
@@ -265,8 +283,14 @@ public class PlayerStats : MonoBehaviour
         currentCurrency += amount;
         
         if (hud != null) hud.UpdateCurrency(currentCurrency);
-        
-        Debug.Log("เก็บเงินได้ " + amount + " คริสตัล! รวมเป็น: " + currentCurrency);
+    }
+
+    // ขวดยาฟื้นฟูพลังงาน: เพิ่มทันที ไม่เกินค่าสูงสุด
+    public void RestoreEnergy(int amount)
+    {
+        if (isDead || amount <= 0) return;
+        currentEnergy = Mathf.Min(maxEnergy, currentEnergy + amount);
+        if (hud != null) hud.UpdateEnergy(currentEnergy, maxEnergy);
     }
 
 }

@@ -17,5 +17,6 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0}
   possibleEvents:
   - {fileID: 11400000, guid: 9e3f89712ec554840b9e82a6b7ffcb2f, type: 2}
+  chestLoot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
   nextMap: {fileID: 11400000, guid: b809ce7d65e628543a2b4832d988a2c7, type: 2}
   isBossRoom: 0
