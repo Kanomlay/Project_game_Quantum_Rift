@@ -15,6 +15,9 @@ public class HUDManager : MonoBehaviour
 
     [Header("ระบบอาวุธ")]
     public Image activeWeaponIcon; 
+    public TMP_Text weaponEnergyCostText;
+    private int weaponEnergyCost;
+    private int availableEnergy = int.MaxValue;
 
     [Header("ระบบสกิล")]
     public Image skillQIcon;
@@ -41,6 +44,8 @@ public class HUDManager : MonoBehaviour
     }
     public void UpdateEnergy(int currentEnergy, int maxEnergy)
     {
+        availableEnergy = currentEnergy;
+        RefreshWeaponCostColor();
         if (energyFillImage != null) energyFillImage.fillAmount = (float)currentEnergy / maxEnergy;
 
         if (energyText != null)
@@ -78,11 +83,53 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateWeaponIcon(Sprite weaponSprite)
     {
-        if (weaponSprite != null && activeWeaponIcon != null)
+        if (activeWeaponIcon != null)
         {
             activeWeaponIcon.sprite = weaponSprite;
             activeWeaponIcon.color = Color.white;
+            activeWeaponIcon.preserveAspect = true;
+            activeWeaponIcon.enabled = weaponSprite != null;
+            FitWeaponIcon(weaponSprite);
         }
+    }
+
+    private void FitWeaponIcon(Sprite sprite)
+    {
+        var clip = activeWeaponIcon.rectTransform.parent as RectTransform;
+        if (sprite == null || clip == null || clip.GetComponent<RectMask2D>() == null) return;
+        Canvas.ForceUpdateCanvases();
+        // ใช้ขอบรูปอาวุธจริงจาก tight mesh เพื่อลดผลของพื้นที่โปร่งใสในไฟล์ภาพ
+        Vector2 min = Vector2.positiveInfinity, max = Vector2.negativeInfinity;
+        var vertices = sprite.vertices;
+        foreach (Vector2 vertex in vertices) { min = Vector2.Min(min, vertex); max = Vector2.Max(max, vertex); }
+        if (vertices.Length == 0) return;
+        Vector2 content = (max - min) * sprite.pixelsPerUnit;
+        if (content.x <= 0 || content.y <= 0) return;
+        Vector2 available = clip.rect.size - Vector2.one * 8f;
+        float scale = Mathf.Min(available.x / content.x, available.y / content.y);
+        if (scale <= 0) return;
+        Vector2 centerOffset = (min + max) * .5f * sprite.pixelsPerUnit - (sprite.rect.size * .5f - sprite.pivot);
+        var rect = activeWeaponIcon.rectTransform;
+        rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one * .5f;
+        rect.sizeDelta = sprite.rect.size * scale;
+        rect.anchoredPosition = -centerOffset * scale;
+    }
+
+    // ใช้ข้อมูลอาวุธชิ้นเดียวกับระบบต่อสู้ เลขมุมกรอบคือพลังงานต่อการโจมตีหนึ่งครั้ง
+    public void UpdateWeapon(WeaponData weapon)
+    {
+        UpdateWeaponIcon(weapon != null ? weapon.weaponIcon : null);
+        weaponEnergyCost = weapon != null ? Mathf.Max(0, weapon.energyCost) : 0;
+        if (weaponEnergyCostText != null)
+            weaponEnergyCostText.text = weapon != null ? weaponEnergyCost.ToString() : "-";
+        RefreshWeaponCostColor();
+    }
+
+    private void RefreshWeaponCostColor()
+    {
+        if (weaponEnergyCostText != null)
+            weaponEnergyCostText.color = availableEnergy < weaponEnergyCost
+                ? new Color(1f, .36f, .36f) : new Color(.72f, .96f, 1f);
     }
 
     public void SetupSkillIcons(Sprite qIcon, Sprite eIcon)

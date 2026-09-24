@@ -35,6 +35,13 @@ public static class HUDBuilder
         if (hud == null)
             throw new InvalidOperationException("ไม่เจอ HUDManager ในฉาก");
 
+        if (canvas.transform.Find("GameplayHUD") != null)
+        {
+            GameplayPresentationBuilder.ConfigureHUD(hud, canvas.GetComponent<Canvas>());
+            EditorSceneManager.MarkSceneDirty(scene);
+            return;
+        }
+
         // 1) ไอคอนอาวุธ มุมซ้ายบน ใต้แถบ HP/Energy
         var weaponSlot = EnsureRect(canvas.transform, "WeaponSlot");
         Place(weaponSlot, new Vector2(0f, 1f), new Vector2(60f, -150f), new Vector2(64f, 64f));
@@ -77,6 +84,7 @@ public static class HUDBuilder
         hud.currencyText = currency;
         hud.transitionCanvas = group;
         hud.transitionMapNameText = mapName;
+        GameplayPresentationBuilder.ConfigureHUD(hud, canvas.GetComponent<Canvas>());
         EditorUtility.SetDirty(hud);
 
         EditorSceneManager.MarkSceneDirty(scene);

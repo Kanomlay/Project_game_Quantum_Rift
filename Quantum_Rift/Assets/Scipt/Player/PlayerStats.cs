@@ -71,7 +71,7 @@ public class PlayerStats : MonoBehaviour
             
             if (hud != null && weapon1 != null) 
             {
-                hud.UpdateWeaponIcon(weapon1.weaponIcon);
+                hud.UpdateWeapon(weapon1);
                 if (weaponController != null) weaponController.EquipWeapon(weapon1);
                 currentWeaponIndex = 1;
             }
@@ -225,7 +225,7 @@ public class PlayerStats : MonoBehaviour
     {
         WeaponData activeWeapon = (currentWeaponIndex == 1) ? weapon1 : weapon2;
         if (activeWeapon == null) return;
-        if (hud != null) hud.UpdateWeaponIcon(activeWeapon.weaponIcon);
+        if (hud != null) hud.UpdateWeapon(activeWeapon);
         if (weaponController != null) weaponController.EquipWeapon(activeWeapon);
     }
 
