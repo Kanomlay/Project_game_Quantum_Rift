@@ -37,6 +37,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     Vector2 move, aim;
     float nextAttack;
     Coroutine attack;
+    MonsterNavigator nav; // เดินอ้อมเสา/กำแพงแทนเดินตรงเข้าหาแล้วติด
     bool aiming;
     float aimReadyAt,moveBlockedUntil;
     const float Duration = 7f / 12f;
@@ -45,6 +46,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     {
         data=monsterData;target=player;animator=GetComponent<Animator>();
         body=GetComponent<Rigidbody2D>();display=GetComponent<SpriteRenderer>();
+        nav=new MonsterNavigator(transform,GetComponent<MonsterController>());
     }
 
     public void Tick()
@@ -61,7 +63,8 @@ public sealed class MonsterCombatActions : MonoBehaviour
         bool close=distance<=(lunge?lungeTriggerDistance:meleeDistance);
         bool ranged=style!=Style.Wrench && !lunge && !close && distance<=rangedDistance;
         if(style==Style.Rifle)ranged=distance<=rangedDistance;
-        bool canAttack=(style==Style.Rifle?ranged:close||ranged)&&ClearLine(transform.position,target.position);
+        bool lineClear=ClearLine(transform.position,target.position);
+        bool canAttack=(style==Style.Rifle?ranged:close||ranged)&&lineClear;
         if(canAttack&&Time.time>=nextAttack)
         {
             aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
@@ -71,9 +74,10 @@ public sealed class MonsterCombatActions : MonoBehaviour
             return;
         }
         // Heavy เดินเข้าหาหลังขว้างเสร็จ ระยะประชิดจะเปลี่ยนเป็นทุบแทน
-        bool shouldWalk=!close && !(style==Style.Rifle&&ranged&&canAttack);
+        // ใกล้แต่มีเสา/กำแพงคั่น ต้องเดินอ้อมไปหาก่อน ไม่ใช่ยืนนิ่งอยู่หลังกำแพง
+        bool shouldWalk=(!close||!lineClear) && !(style==Style.Rifle&&ranged&&canAttack);
         animator.SetBool("isWalking",shouldWalk);
-        if(shouldWalk)move=delta.normalized*data.moveSpeed;
+        if(shouldWalk)move=nav.DirectionTo(target.position)*data.moveSpeed;
         else body.linearVelocity=Vector2.zero;
     }
 
@@ -100,7 +104,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         // ห้ามเดินจนกว่า Animator จะลดปืนจบจริง (ท่ายก/เล็ง/ยิง/ลด ติด tag Aim) ไม่ใช่แค่นับเวลา
         if(Time.time<moveBlockedUntil||GunUp()){animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;return;}
         animator.SetBool("isWalking",true);
-        move=(tooClose?-delta:delta).normalized*data.moveSpeed;
+        move=(tooClose?-delta.normalized:nav.DirectionTo(target.position))*data.moveSpeed;
     }
 
     public const string AimTag="Aim";
@@ -209,4 +213,5 @@ public sealed class MonsterCombatActions : MonoBehaviour
         }
     }
     void OnDisable(){CancelAttack();}
+    void OnDrawGizmosSelected(){nav?.DrawGizmos();} // เส้นเหลือง = ทางที่กำลังเดินอ้อม
 }

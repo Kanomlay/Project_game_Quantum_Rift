@@ -15,6 +15,7 @@ public class MonsterController : MonoBehaviour
     protected float nextAttackTime = 0f;
     protected bool isKnockedBack = false;     
     protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
+    protected MonsterNavigator navigator; // เดินอ้อมเสา/กำแพง (ตัวที่มี MonsterCombatActions ใช้ของตัวเอง)
 
     // ยังสู้อยู่ (สกิลใช้เช็คก่อนทำดาเมจ/เล็งเป้า)
     public bool IsAlive => !isDying && currentHealth > 0f && gameObject.activeInHierarchy;
@@ -38,6 +39,7 @@ public class MonsterController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>(); 
         rb = GetComponent<Rigidbody2D>(); 
+        navigator = new MonsterNavigator(transform, this);
 
         if (myData != null) currentHealth = myData.maxHealth;
 
@@ -74,7 +76,8 @@ public class MonsterController : MonoBehaviour
             {
                 anim.SetBool("isWalking", true);
                 anim.ResetTrigger("Attack");
-                transform.position = Vector2.MoveTowards(transform.position, player.position, myData.moveSpeed * Time.deltaTime);
+                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * Time.deltaTime;
+                transform.position += (Vector3)step;
             }
             else 
             {
