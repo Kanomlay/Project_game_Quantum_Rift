@@ -46,6 +46,11 @@ public class WeaponData : ScriptableObject
     public float attackAngle = 90f;
     public int energyCost;
 
+    [Header("ท่าตีและความรู้สึกตอนโดน (เว้นว่าง = ค่าตั้งต้นตามชนิดอาวุธ)")]
+    public AttackMotion motion;
+
+    public AttackMotion Motion => motion != null ? motion : AttackMotion.Default(weaponType);
+
     [Header("เอฟเฟกต์ตอนโจมตี")]
     public GameObject slashEffectPrefab; // คลื่นดาบที่เสกตอนฟัน (เว้นว่างไว้ได้ถ้าอาวุธนี้ไม่ต้องการ)
 

@@ -124,8 +124,9 @@ public static class WeaponCollectionBuilder
             Damage = 10f, AttackSpeed = 1.2f, EnergyCost = 2 } },
 
         new RangedInfo { Thai = "ธนูยิงกระจาย", Rarity = WeaponRarity.Legendary, Special = WeaponSpecial.Ricochet,
-            Description = "ยิงลูกธนู 3 ลูกเป็นพัด ลูกธนูชิ่งกำแพง 1 ครั้ง",
-            Configure = d => { d.projectileCount = 3; d.spreadAngle = 12f; d.bounces = 1; d.specialScale = 0.45f; },
+            Description = "ยิงลูกธนู 3 ลูกเป็นพัด ลูกธนูชิ่งกำแพงได้ 3 ครั้ง ไม่จำกัดระยะ",
+            // ไม่จำกัดระยะ: บินจนชนศัตรูหรือชนกำแพงครบจำนวนชิ่ง (อายุ 10 วิ = ระยะ 150 หน่วย ไว้กันหลุดออกนอกแมพเท่านั้น)
+            Configure = d => { d.projectileCount = 3; d.spreadAngle = 12f; d.bounces = 3; d.projectileLifetime = 10f; d.specialScale = 0.45f; },
             Spec = new StarterWeaponBuilder.RangedSpec {
             Name = "Scatter Bow", Folder = "20-scatter-bow", Type = WeaponType.Bow,
             Idle = F("weapon-01.png", 95f, 64f), Attack = new[] { F("weapon-02.png", 100f, 64f), F("weapon-03.png", 100f, 64f) },
@@ -158,6 +159,8 @@ public static class WeaponCollectionBuilder
 
         foreach (var spec in Melee) BuildMelee(spec, sword, reference);
         foreach (var info in Ranged) BuildRanged(info, reference);
+
+        AttackMotionBuilder.AssignAll(); // ท่าตีตามชนิดอาวุธ (ใส่เฉพาะชิ้นที่ยังไม่มี)
 
         var loot = AssetDatabase.LoadAssetAtPath<LootTable>(LootBuilder.LootPath);
         if (loot != null) LootBuilder.RefillWeapons(loot);

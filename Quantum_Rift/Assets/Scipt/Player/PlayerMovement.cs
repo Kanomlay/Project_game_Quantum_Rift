@@ -79,7 +79,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDashing) return;
         if (isKnockedBack) return;
-        rb.MovePosition(rb.position + movement.normalized * currentSpeed * Time.fixedDeltaTime);
+        Vector2 velocity = movement.normalized * currentSpeed;
+        if (Time.time < attackStepUntil) velocity += attackStepVelocity;
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+    }
+
+    // ก้าวตามแรงตีสั้น ๆ (ติดลบ = ถอยจากแรงถีบปืน) บวกกับการเดินปกติ ชนกำแพงก็หยุดเองตามฟิสิกส์
+    private Vector2 attackStepVelocity;
+    private float attackStepUntil;
+
+    public void AttackStep(Vector2 direction, float distance, float duration)
+    {
+        if (Mathf.Approximately(distance, 0f) || duration <= 0f || (stats != null && stats.isDead)) return;
+        attackStepVelocity = direction.normalized * (distance / duration);
+        attackStepUntil = Time.time + duration;
     }
 
     public void BoostSpeed(float multiplier, float seconds)

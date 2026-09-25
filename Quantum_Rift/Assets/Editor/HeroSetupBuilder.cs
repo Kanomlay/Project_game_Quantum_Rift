@@ -228,7 +228,6 @@ public static class HeroSetupBuilder
 
         var weapon = Ensure<WeaponController>(holder.gameObject, out _);
         weapon.enemyLayers = refWeapon.enemyLayers;
-        weapon.swingDuration = refWeapon.swingDuration;
         weapon.restReturnDuration = refWeapon.restReturnDuration;
         weapon.slashEffectDistance = refWeapon.slashEffectDistance;
         weapon.slashEffectScale = refWeapon.slashEffectScale;

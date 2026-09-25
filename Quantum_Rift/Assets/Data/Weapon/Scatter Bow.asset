@@ -25,12 +25,10 @@ MonoBehaviour:
   slashEffectPrefab: {fileID: 0}
   projectilePrefab: {fileID: 2987526968256926368, guid: ca59e5b885880d1419fa215a83770886, type: 3}
   projectileSpeed: 15
-  projectileLifetime: 1.5
+  projectileLifetime: 10
   projectileCount: 3
   spreadAngle: 12
-  abilityDescription: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39 3 \u0E25\u0E39\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E31\u0E14
-    \u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E0A\u0E34\u0E48\u0E07\u0E01\u0E33\u0E41\u0E1E\u0E07
-    1 \u0E04\u0E23\u0E31\u0E49\u0E07"
+  abilityDescription: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39 3 \u0E25\u0E39\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E31\u0E14 \u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E0A\u0E34\u0E48\u0E07\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E44\u0E14\u0E49 3 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E44\u0E21\u0E48\u0E08\u0E33\u0E01\u0E31\u0E14\u0E23\u0E30\u0E22\u0E30"
   specialEffectPrefab: {fileID: 0}
   special: 3
   specialFrames:
@@ -45,4 +43,4 @@ MonoBehaviour:
   specialDuration: 0.5
   comboCount: 3
   chargeTime: 1
-  bounces: 1
+  bounces: 3

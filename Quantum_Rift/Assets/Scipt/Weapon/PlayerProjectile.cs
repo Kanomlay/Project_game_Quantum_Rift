@@ -25,6 +25,7 @@ public sealed class PlayerProjectile : MonoBehaviour
     private float explodeRadius;
     private Sprite[] explodeFrames;
     private float explodeScale = 1f;
+    private static readonly Color HitSparkColor = new Color(1f, 0.95f, 0.8f);
 
     public void Launch(Transform shooter, Vector2 heading, float velocity, float lifetime, float power)
     {
@@ -79,7 +80,11 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (monster != null)
             {
                 if (!monster.gameObject.activeInHierarchy || !monster.IsAlive) continue;
-                if (explodeRadius <= 0f) monster.TakeDamage(damage);
+                if (explodeRadius <= 0f)
+                {
+                    monster.TakeDamage(damage);
+                    ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
+                }
                 transform.position = hit.centroid;
                 Expire();
                 return;
@@ -89,7 +94,11 @@ public sealed class PlayerProjectile : MonoBehaviour
             var architect = other.GetComponentInParent<ArchitectBossHealth>();
             if (architect != null)
             {
-                if (explodeRadius <= 0f) architect.TakeDamage(damage);
+                if (explodeRadius <= 0f)
+                {
+                    architect.TakeDamage(damage);
+                    ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
+                }
                 transform.position = hit.centroid;
                 Expire();
                 return;
@@ -124,9 +133,13 @@ public sealed class PlayerProjectile : MonoBehaviour
         spent = true;
         if (explodeRadius > 0f)
         {
-            SkillCombat.DamageArea(transform.position, explodeRadius, damage);
+            int hits = SkillCombat.DamageArea(transform.position, explodeRadius, damage);
             if (explodeFrames != null && explodeFrames.Length > 0)
                 SkillVfx.Spawn(explodeFrames, transform.position, explodeScale, 0f, 14f);
+            // ระเบิด: กล้องสั่นแรง เศษไฟกระจายรอบทิศ โดนศัตรูแล้วหยุดภาพชั่วขณะ
+            CameraFollow.Shake(0.22f, 0.25f);
+            ImpactSparks.Spawn(transform.position, new Color(1f, 0.62f, 0.25f), 14, Vector2.zero, 6f);
+            if (hits > 0) HitStop.Freeze(0.05f);
         }
         Destroy(gameObject);
     }
