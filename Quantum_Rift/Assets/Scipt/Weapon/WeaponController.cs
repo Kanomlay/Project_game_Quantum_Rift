@@ -22,6 +22,13 @@ public class WeaponController : MonoBehaviour
     // 1.8 = ความยาวดาบสนิมภาพเก่าที่ slashEffectScale ถูกปรับไว้ให้พอดี
     public float slashReferenceBladeLength = 1.8f;
 
+    [Header("ท่าแทงหอก")]
+    [Range(0f, 1f)] public float spearThrustReach = 0.5f; // แทงพุ่งออกไปไกลเท่านี้ (สัดส่วนความยาวหอก)
+    public float spearThrustTime = 0.09f;
+    public float spearRecoverTime = 0.16f;
+    [Range(0f, 0.5f)] public float spearChargePullBack = 0.2f; // ง้างหอกไอออน-X ถอยหอกกลับเท่านี้ (สัดส่วนความยาว)
+    public Color spearChargedTint = new Color(0.55f, 0.95f, 1f); // ง้างครบเวลาแล้ว หอกเรืองแสง
+
     private float nextAttackTime = 0f;
     private bool isAttacking = false;
     private bool nextSwingDownward = true; // true = บนลงล่าง, false = ล่างขึ้นบน (สลับกันทุกครั้งที่คอมโบต่อติด)
@@ -46,6 +53,10 @@ public class WeaponController : MonoBehaviour
     private DualClawWeapon currentClaws; // มีเมื่อถือกรงเล็บคู่ ใช้ท่าตะปบสลับมือแทนท่าฟันดาบ
     private Coroutine clawRoutine;
     private WeaponSpriteAnimator chargedFrames; // ไม่ใช่ null = กำลังง้างธนูค้างไว้
+    private Coroutine spearRoutine;
+    private float spearChargeStart = -1f;       // >= 0 = กำลังง้างหอกไอออน-X ค้างไว้
+    private SpriteRenderer[] weaponRenderers;
+    private int comboSwings;                    // ฟันต่อเนื่องในคอมโบนี้ไปกี่ครั้งแล้ว (ดาบผ่ามิติปล่อยคลื่นครั้งที่ 3)
 
     // พลังงานไม่พอแล้วยังกดค้าง ให้รอสักพักก่อนลองใหม่ ไม่งั้นแถบพลังงานจะกะพริบทุกเฟรม
     private const float OutOfEnergyRetryDelay = 0.3f;
@@ -66,16 +77,21 @@ public class WeaponController : MonoBehaviour
             ReturnToRestPose();
         }
 
-        // ธนูง้างค้างอยู่ ปล่อยเมาส์เมื่อไหร่ค่อยยิง
+        // ธนู/หอกไอออน-X ง้างค้างอยู่ ปล่อยเมาส์เมื่อไหร่ค่อยยิง/แทง
         if (chargedFrames != null && !Input.GetMouseButton(0))
         {
             ReleaseChargedShot();
+        }
+        else if (spearChargeStart >= 0f && !Input.GetMouseButton(0))
+        {
+            ReleaseSpearCharge();
         }
         else if (Input.GetMouseButton(0))
         {
             AttemptAttack();
         }
 
+        if (spearChargeStart >= 0f) ShowSpearCharge();
         ApplySwingRotation();
     }
 
@@ -110,8 +126,16 @@ public class WeaponController : MonoBehaviour
             StopCoroutine(clawRoutine);
             clawRoutine = null;
         }
+        if (spearRoutine != null)
+        {
+            StopCoroutine(spearRoutine);
+            spearRoutine = null;
+        }
         currentClaws = null;
         chargedFrames = null; // สลับอาวุธระหว่างง้าง = ยกเลิก ไม่ยิงและไม่เสียพลังงาน
+        spearChargeStart = -1f;
+        isAttacking = false;
+        comboSwings = 0;
 
         if (currentWeaponObject != null)
         {
@@ -136,6 +160,7 @@ public class WeaponController : MonoBehaviour
 
             // ต้องรู้ก่อน ApplySwingRotation ว่าเป็นกรงเล็บคู่ จะได้ไม่พลิกแบบดาบ
             currentClaws = currentWeaponObject.GetComponent<DualClawWeapon>();
+            weaponRenderers = currentWeaponObject.GetComponentsInChildren<SpriteRenderer>(true);
 
             // ท่าพักให้ปลายดาบชี้ตรงแนวเล็ง รอสวิงแรกที่เป็นบนลงล่าง
             currentSwingAngle = RestAngle;
@@ -175,6 +200,19 @@ public class WeaponController : MonoBehaviour
         }
         if (chargedFrames != null) return; // ง้างค้างอยู่ รอปล่อยเมาส์
 
+        // หอกไอออน-X: กดค้าง = ง้าง (หักพลังงานตอนปล่อย) ปล่อยก่อนครบเวลา = แทงธรรมดา
+        if (IsSpear && currentWeaponData.special == WeaponSpecial.ChargeWave)
+        {
+            if (spearChargeStart >= 0f || spearRoutine != null) return;
+            if (owner != null && !owner.HasEnergy(currentWeaponData.energyCost))
+            {
+                nextAttackTime = Time.time + OutOfEnergyRetryDelay;
+                return;
+            }
+            spearChargeStart = Time.time;
+            return;
+        }
+
         // 1.3.2 ค่าพลังงาน: พลังงานไม่พอ ใช้อาวุธนั้นไม่ได้ชั่วคราว (อาวุธที่ใช้ 0 ผ่านตลอด)
         if (owner != null && !owner.TrySpendEnergy(currentWeaponData.energyCost))
         {
@@ -185,6 +223,13 @@ public class WeaponController : MonoBehaviour
         if (ranged)
         {
             FireRanged();
+            nextAttackTime = Time.time + AttackInterval;
+            return;
+        }
+
+        if (IsSpear)
+        {
+            StartThrust(false);
             nextAttackTime = Time.time + AttackInterval;
             return;
         }
@@ -202,22 +247,143 @@ public class WeaponController : MonoBehaviour
         if (Time.time - lastAttackTime > ComboWindow)
         {
             nextSwingDownward = true;
+            comboSwings = 0;
         }
         lastAttackTime = Time.time;
+        comboSwings++;
+        bool releaseWave = currentWeaponData.special == WeaponSpecial.ComboWave &&
+                           comboSwings % Mathf.Max(1, currentWeaponData.comboCount) == 0;
 
         if (currentWeaponAnim != null)
         {
             currentWeaponAnim.SetTrigger("Attack");
         }
 
-        StartCoroutine(SwordSwingRoutine(nextSwingDownward));
+        StartCoroutine(SwordSwingRoutine(nextSwingDownward, releaseWave));
         nextSwingDownward = !nextSwingDownward;
 
         nextAttackTime = Time.time + AttackInterval;
     }
 
-    // อาวุธระยะประชิดใช้ท่าฟันชุดเดียวกันหมด ต่างกันแค่ภาพ ดาเมจ และความเร็ว
-    private static bool IsMelee(WeaponType type) => type == WeaponType.Sword || type == WeaponType.Claw;
+    // ดาบ/กระบอง/ค้อน ใช้ท่าฟันชุดเดียวกัน (ค้อนรอแยกท่าทุบ), กรงเล็บ/มีดคู่ตะปบสลับมือ, หอกแทงตรง
+    private static bool IsMelee(WeaponType type) =>
+        type == WeaponType.Sword || type == WeaponType.Claw || type == WeaponType.Spear || type == WeaponType.Hammer;
+    private bool IsSpear => currentWeaponData != null && currentWeaponData.weaponType == WeaponType.Spear;
+
+    // ความยาวอาวุธ (มือถึง AttackPoint) ในพิกัดของ WeaponHolder
+    private float WeaponLength => attackPoint != null ? transform.InverseTransformPoint(attackPoint.position).magnitude : 1f;
+
+    private void StartThrust(bool releaseWave)
+    {
+        if (spearRoutine != null) StopCoroutine(spearRoutine);
+        if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
+        spearRoutine = StartCoroutine(SpearThrustRoutine(releaseWave));
+    }
+
+    // แทงหอก: พุ่งไปข้างหน้าตามแนวเล็ง ตรวจโดนที่ปลายหอกตลอดทางที่พุ่ง แล้วดึงกลับ (ล็อกทิศระหว่างแทง)
+    private IEnumerator SpearThrustRoutine(bool releaseWave)
+    {
+        isAttacking = true;
+        var hitEnemies = new HashSet<Component>();
+        Transform weapon = currentWeaponObject.transform;
+        float length = WeaponLength;
+        float from = weapon.localPosition.x; // ต่อจากท่าง้างถอยหลัง (ถ้ามี)
+        float reach = length * spearThrustReach;
+        float strike = Mathf.Max(0.01f, Mathf.Min(spearThrustTime, AttackInterval * 0.35f));
+        float recover = Mathf.Max(0.01f, Mathf.Min(spearRecoverTime, AttackInterval * 0.45f));
+
+        for (float t = 0f; t < strike; t += Time.deltaTime)
+        {
+            float k = t / strike;
+            weapon.localPosition = new Vector3(Mathf.Lerp(from, reach, 1f - (1f - k) * (1f - k)), 0f, 0f);
+            CheckSwingHit(hitEnemies);
+            yield return null;
+        }
+        weapon.localPosition = new Vector3(reach, 0f, 0f);
+        CheckSwingHit(hitEnemies);
+        if (releaseWave) ReleaseWave(currentWeaponData);
+
+        for (float t = 0f; t < recover; t += Time.deltaTime)
+        {
+            weapon.localPosition = new Vector3(Mathf.Lerp(reach, 0f, t / recover), 0f, 0f);
+            yield return null;
+        }
+        weapon.localPosition = Vector3.zero;
+        isAttacking = false;
+        spearRoutine = null;
+    }
+
+    // ระหว่างง้างหอกไอออน-X: ถอยหอกกลับ พอครบเวลาหอกเรืองแสงกะพริบ บอกว่าปล่อยได้แล้ว
+    private void ShowSpearCharge()
+    {
+        if (currentWeaponObject == null || currentWeaponData == null) return;
+        float progress = Mathf.Clamp01((Time.time - spearChargeStart) / Mathf.Max(0.01f, currentWeaponData.chargeTime));
+        currentWeaponObject.transform.localPosition = new Vector3(-WeaponLength * spearChargePullBack * progress, 0f, 0f);
+        Color tint = progress >= 1f
+            ? Color.Lerp(Color.white, spearChargedTint, 0.6f + 0.4f * Mathf.Sin(Time.time * 18f))
+            : Color.Lerp(Color.white, spearChargedTint, progress * 0.5f);
+        TintWeapon(tint);
+    }
+
+    private void ReleaseSpearCharge()
+    {
+        bool full = Time.time - spearChargeStart >= currentWeaponData.chargeTime;
+        spearChargeStart = -1f;
+        TintWeapon(Color.white);
+
+        if (owner != null && !owner.TrySpendEnergy(currentWeaponData.energyCost))
+        {
+            if (currentWeaponObject != null) currentWeaponObject.transform.localPosition = Vector3.zero;
+            nextAttackTime = Time.time + OutOfEnergyRetryDelay;
+            return;
+        }
+        StartThrust(full);
+        nextAttackTime = Time.time + AttackInterval;
+    }
+
+    private void TintWeapon(Color color)
+    {
+        if (weaponRenderers == null) return;
+        foreach (var renderer in weaponRenderers)
+            if (renderer != null) renderer.color = color;
+    }
+
+    // คลื่นพลัง (ดาบผ่ามิติ / หอกไอออน-X): พุ่งออกจากปลายอาวุธตามแนวเล็ง ทะลุศัตรูทุกตัว หยุดที่กำแพง
+    // ภาพ 3 เฟรม: เฟรม 2 = คลื่นเต็มตอนบิน, เฟรม 3 = สลายตอนหมดระยะ
+    private void ReleaseWave(WeaponData data)
+    {
+        if (data == null || data.specialFrames == null || data.specialFrames.Length == 0) return;
+        Vector2 direction = transform.right;
+        float reach = attackPoint != null ? Vector2.Distance(transform.position, attackPoint.position) : 0.5f;
+        Vector2 origin = (Vector2)transform.position + direction * reach;
+
+        var frames = data.specialFrames;
+        Sprite[] fly = { frames[Mathf.Min(1, frames.Length - 1)] };
+        Sprite[] fade = frames.Length >= 3 ? new[] { frames[2] } : null;
+        float lifetime = data.specialRange / Mathf.Max(0.1f, data.specialSpeed);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // แสงวาบตอนปล่อย (เฟรม 1 ขยายใหญ่) แล้วคลื่นพุ่งออกไปพร้อมเงาภาพค้างตามหลัง
+        SkillVfx.Spawn(new[] { frames[0] }, origin, data.specialScale * 1.3f, angle, 12f);
+        PiercingProjectile.Spawn(origin, direction, data.specialSpeed, lifetime, data.SpecialDamage,
+                                 data.specialRadius, fly, fade, data.specialScale, default, true)
+                          .WithTrail(0.035f, 0.22f);
+    }
+
+    // วงพลังค้อนควอนตัม: ตรงจุดที่ทุบ ทำดาเมจทุกตัวในวงเป็นจังหวะตลอด specialDuration วินาที
+    private IEnumerator GroundPulseRoutine(Vector2 center, WeaponData data)
+    {
+        const int ticks = 3; // ตอนทุบ / กลางทาง / ท้าย
+        float duration = Mathf.Max(0.05f, data.specialDuration);
+        if (data.specialFrames != null && data.specialFrames.Length > 0)
+            SkillVfx.Spawn(data.specialFrames, center, data.specialScale, 0f, data.specialFrames.Length / duration);
+
+        for (int i = 0; i < ticks; i++)
+        {
+            SkillCombat.DamageArea(center, data.specialRadius, data.SpecialDamage);
+            if (i < ticks - 1) yield return new WaitForSeconds(duration / (ticks - 1));
+        }
+    }
 
     // กรงเล็บคู่: ข้างที่ถึงตาพุ่งตะปบ ตรวจโดนตลอดทางที่พุ่ง ปล่อยคลื่นฟันตอนสุดแขน แล้วหดกลับ
     // ไม่ล็อกการเล็งระหว่างตี (ต่างจากดาบ) ท่าสั้นมาก ถ้าล็อกจะรู้สึกหน่วง
@@ -328,12 +494,27 @@ public class WeaponController : MonoBehaviour
 
         Transform shooter = owner != null ? owner.transform : transform.root;
         projectile.Launch(shooter, direction, data.projectileSpeed, data.projectileLifetime, data.attackDamage);
+        projectile.Configure(data);
+
+        // ยิงหลายลูก (ธนูยิงกระจาย): ลูกที่เหลือเบนออกซ้าย/ขวาเป็นพัดรอบลูกกลาง
+        int count = Mathf.Max(1, data.projectileCount);
+        for (int i = 0; i < count; i++)
+        {
+            float offset = (i - (count - 1) / 2f) * data.spreadAngle;
+            if (Mathf.Approximately(offset, 0f)) continue; // ลูกกลางยิงไปแล้วข้างบน
+            Vector2 spread = Quaternion.Euler(0f, 0f, offset) * direction;
+            var extra = Instantiate(data.projectilePrefab, muzzle, Quaternion.identity).GetComponent<PlayerProjectile>();
+            if (extra == null) continue;
+            extra.Launch(shooter, spread, data.projectileSpeed, data.projectileLifetime, data.attackDamage);
+            extra.Configure(data);
+        }
     }
 
     // หมุน sprite ดาบกวาดผ่านมุม attackAngle รอบทิศที่เล็งอยู่ แทนการสลับเฟรมอนิเมชัน
     // downward = บนลงล่าง, !downward = ล่างขึ้นบน โดยเริ่มต่อจากมุมที่ดาบค้างอยู่จากสวิงก่อนหน้า
-    private IEnumerator SwordSwingRoutine(bool downward)
+    private IEnumerator SwordSwingRoutine(bool downward, bool releaseWave = false)
     {
+        WeaponData swungWith = currentWeaponData;
         isAttacking = true;
         HashSet<Component> hitEnemies = new HashSet<Component>();
 
@@ -359,6 +540,12 @@ public class WeaponController : MonoBehaviour
 
         currentSwingAngle = endAngle;
         isAttacking = false;
+
+        // ความสามารถตำนาน: ดาบผ่ามิติปล่อยคลื่นครั้งที่ 3, ค้อนควอนตัมเกิดวงพลังตรงหัวค้อน
+        if (swungWith != currentWeaponData) yield break; // สลับอาวุธกลางท่า
+        if (releaseWave) ReleaseWave(swungWith);
+        if (swungWith.special == WeaponSpecial.GroundPulse && attackPoint != null)
+            StartCoroutine(GroundPulseRoutine(attackPoint.position, swungWith));
     }
 
     // ใส่มุมสวิงกับด้านคมให้ตัวดาบ (คนละตัวกับ WeaponHolder ที่เล็งตามเมาส์) ดาบจึงค้างมุมไว้ต่อสวิงถัดไปได้
@@ -371,9 +558,9 @@ public class WeaponController : MonoBehaviour
         Transform weapon = currentWeaponObject.transform;
         Vector3 scale = weapon.localScale;
 
-        // ปืน/ธนู/กรงเล็บคู่ไม่มีท่าสวิงและไม่มีด้านคม ปล่อยให้ WeaponHolder พลิกอย่างเดียว
+        // ปืน/ธนู/กรงเล็บคู่/หอกไม่มีท่าสวิงและไม่มีด้านคม ปล่อยให้ WeaponHolder พลิกอย่างเดียว
         // ถ้าพลิกซ้ำแบบดาบ พอเล็งไปทางซ้ายด้ามปืนจะหงายขึ้นฟ้า และมือบน/ล่างของกรงเล็บจะสลับกัน
-        if (currentClaws != null || (currentWeaponData != null && currentWeaponData.IsRanged))
+        if (currentClaws != null || IsSpear || (currentWeaponData != null && currentWeaponData.IsRanged))
         {
             weapon.localEulerAngles = Vector3.zero;
             scale.y = Mathf.Abs(scale.y);

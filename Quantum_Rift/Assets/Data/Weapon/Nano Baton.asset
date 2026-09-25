@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Nano Baton
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E01\u0E23\u0E30\u0E1A\u0E2D\u0E07\u0E19\u0E32\u0E42\u0E19"
+  weaponIcon: {fileID: 21300000, guid: 844bd05aaf1f78b47a9c69b292bec5a1, type: 3}
+  weaponPrefab: {fileID: 5170114005031447729, guid: e339b68a0bfc3cd4f8a2f4af2df77765, type: 3}
+  weaponType: 0
+  rarity: 2
+  attackDamage: 8.5
+  attackSpeed: 1.3
+  attackRange: 1.4
+  attackAngle: 90
+  energyCost: 2
+  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: 
+  specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Twin Steel Daggers
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E21\u0E35\u0E14\u0E04\u0E39\u0E48\u0E40\u0E2B\u0E25\u0E47\u0E01"
+  weaponIcon: {fileID: 21300000, guid: e741d17c9b1560245aaca8eacad93a27, type: 3}
+  weaponPrefab: {fileID: 2975596650910733367, guid: 6cba23429704fe14d87306eec77160bc, type: 3}
+  weaponType: 3
+  rarity: 2
+  attackDamage: 8.4
+  attackSpeed: 1.8
+  attackRange: 1
+  attackAngle: 90
+  energyCost: 2
+  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: 
+  specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

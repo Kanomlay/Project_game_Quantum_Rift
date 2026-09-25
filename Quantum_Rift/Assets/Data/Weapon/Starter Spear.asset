@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Starter Spear
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E2B\u0E2D\u0E01\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19"
+  weaponIcon: {fileID: 21300000, guid: 39bfef095591043438e9fbe223f2218a, type: 3}
+  weaponPrefab: {fileID: 4611003638703863663, guid: 205830ea845ed14448e8f6908bdd1271, type: 3}
+  weaponType: 4
+  rarity: 1
+  attackDamage: 7
+  attackSpeed: 1.1
+  attackRange: 0.5
+  attackAngle: 90
+  energyCost: 0
+  slashEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: 
+  specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

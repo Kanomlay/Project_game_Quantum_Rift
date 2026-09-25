@@ -14,30 +14,30 @@ using UnityEngine;
 // ส่วนค่าสเตตัสจากเอกสารกับภาพแต่ละเฟรมจะถูกตั้งใหม่ทุกครั้ง
 public static class StarterWeaponBuilder
 {
-    const string PackFolder = "Assets/image/Weapon/Quantum-Rift-Weapons-23-v1/sprites";
-    const string WeaponPrefabFolder = "Assets/Prefab/Weapon";
-    const string ProjectilePrefabFolder = "Assets/Prefab/Weapon/Projectile";
-    const string DataFolder = "Assets/Data/Weapon";
+    internal const string PackFolder = "Assets/image/Weapon/Quantum-Rift-Weapons-23-v1/sprites";
+    internal const string WeaponPrefabFolder = "Assets/Prefab/Weapon";
+    internal const string ProjectilePrefabFolder = "Assets/Prefab/Weapon/Projectile";
+    internal const string DataFolder = "Assets/Data/Weapon";
     const string HeroFolder = "Assets/Prefab/Hero/Heroes-BlondeStyle-NoHands-v2";
-    const string SwordDataPath = "Assets/Data/Weapon/Rusty Sword.asset";
+    internal const string SwordDataPath = "Assets/Data/Weapon/Rusty Sword.asset";
     const string EffectSortingLayer = "Effect";
 
     // ต้องตรงกับ ArtPackImporter ไม่งั้นระยะเลื่อนของเฟรมที่คำนวณจากพิกเซลจะเพี้ยน
-    const float PixelsPerUnit = 100f;
+    internal const float PixelsPerUnit = 100f;
 
     // ขนาดอาวุธชุดนี้ทั้งชุดใช้ค่าเดียวกัน อาวุธจะใหญ่เล็กตามภาพจริง (ธนูสูงราวตัวละคร)
-    const float PackWeaponScale = 0.8f;
-    const float ProjectileScale = 0.4f;
+    internal const float PackWeaponScale = 0.8f;
+    internal const float ProjectileScale = 0.4f;
 
     // เฟรมหนึ่งภาพ + จุดจับ (พิกเซล นับจากมุมซ้ายบนของภาพ 192 × 128) วัดจากภาพจริงทีละเฟรม
-    struct FrameSpec
+    internal struct FrameSpec
     {
         public string File;
         public Vector2 Grip;
         public FrameSpec(string file, float x, float y) { File = file; Grip = new Vector2(x, y); }
     }
 
-    sealed class RangedSpec
+    internal sealed class RangedSpec
     {
         public string Name;
         public string Folder;          // โฟลเดอร์ย่อยในชุดภาพ
@@ -249,6 +249,10 @@ public static class StarterWeaponBuilder
 
     static Transform EnsureClawHand(Transform root, string name, float spread, bool mirrored, Sprite sprite,
                                     SpriteRenderer reference, int orderOffset, out Transform tip)
+        => EnsureClawHand(root, name, spread, mirrored, sprite, reference, orderOffset, ClawGrip, ClawTip, out tip);
+
+    internal static Transform EnsureClawHand(Transform root, string name, float spread, bool mirrored, Sprite sprite,
+                                    SpriteRenderer reference, int orderOffset, Vector2 grip, Vector2 tipPixel, out Transform tip)
     {
         var hand = root.Find(name);
         if (hand == null)
@@ -271,14 +275,14 @@ public static class StarterWeaponBuilder
         renderer.sortingLayerID = reference.sortingLayerID;
         renderer.sortingOrder = reference.sortingOrder + orderOffset;
         renderer.sharedMaterial = reference.sharedMaterial;
-        visual.localPosition = GripOffset(sprite, ClawGrip);
+        visual.localPosition = GripOffset(sprite, grip);
 
         tip = hand.Find("Tip");
         if (tip == null)
         {
             tip = new GameObject("Tip").transform;
             tip.SetParent(hand, false);
-            tip.localPosition = new Vector3((ClawTip.x - ClawGrip.x) / PixelsPerUnit, 0f, 0f);
+            tip.localPosition = new Vector3((tipPixel.x - grip.x) / PixelsPerUnit, 0f, 0f);
         }
 
         return hand;
@@ -322,20 +326,20 @@ public static class StarterWeaponBuilder
     }
 
     // ภาพตั้ง pivot ไว้กลางภาพ (ArtPackImporter) จึงต้องเลื่อนภาพไปให้จุดจับตรงกับจุดหมุนของ prefab (มือ)
-    static WeaponSpriteAnimator.Frame ToFrame(string folder, FrameSpec spec)
+    internal static WeaponSpriteAnimator.Frame ToFrame(string folder, FrameSpec spec)
     {
         var sprite = Load<Sprite>($"{folder}/{spec.File}");
         return new WeaponSpriteAnimator.Frame { sprite = sprite, offset = GripOffset(sprite, spec.Grip) };
     }
 
-    static Vector2 GripOffset(Sprite sprite, Vector2 gripTopLeft)
+    internal static Vector2 GripOffset(Sprite sprite, Vector2 gripTopLeft)
     {
         // พิกัดพิกเซลนับจากมุมซ้ายบน แต่ pivot ของ sprite นับจากมุมซ้ายล่าง
         var grip = new Vector2(gripTopLeft.x, sprite.rect.height - gripTopLeft.y);
         return (sprite.pivot - grip) / PixelsPerUnit;
     }
 
-    static GameObject BuildWeaponPrefab(RangedSpec spec, WeaponSpriteAnimator.Frame idle,
+    internal static GameObject BuildWeaponPrefab(RangedSpec spec, WeaponSpriteAnimator.Frame idle,
                                         WeaponSpriteAnimator.Frame[] attack, SpriteRenderer reference)
     {
         string path = $"{WeaponPrefabFolder}/{spec.Name}.prefab";
@@ -388,7 +392,7 @@ public static class StarterWeaponBuilder
         }
     }
 
-    static GameObject BuildProjectile(RangedSpec spec, string spritePath)
+    internal static GameObject BuildProjectile(RangedSpec spec, string spritePath)
     {
         var sprite = Load<Sprite>(spritePath);
         string path = $"{ProjectilePrefabFolder}/{spec.ProjectileName}.prefab";
@@ -437,7 +441,7 @@ public static class StarterWeaponBuilder
         }
     }
 
-    static void EnsureFolder(string folder)
+    internal static void EnsureFolder(string folder)
     {
         if (AssetDatabase.IsValidFolder(folder)) return;
         string parent = Path.GetDirectoryName(folder).Replace('\\', '/');
@@ -445,7 +449,7 @@ public static class StarterWeaponBuilder
         AssetDatabase.CreateFolder(parent, Path.GetFileName(folder));
     }
 
-    static T LoadOrCreate<T>(string path) where T : ScriptableObject
+    internal static T LoadOrCreate<T>(string path) where T : ScriptableObject
     {
         var asset = AssetDatabase.LoadAssetAtPath<T>(path);
         if (asset != null) return asset;
@@ -455,7 +459,7 @@ public static class StarterWeaponBuilder
         return asset;
     }
 
-    static T Load<T>(string path) where T : UnityEngine.Object
+    internal static T Load<T>(string path) where T : UnityEngine.Object
     {
         var asset = AssetDatabase.LoadAssetAtPath<T>(path);
         if (asset == null) throw new InvalidOperationException($"ไม่เจอไฟล์ {path}");

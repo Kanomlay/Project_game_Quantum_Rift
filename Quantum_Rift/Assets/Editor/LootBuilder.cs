@@ -15,7 +15,7 @@ public static class LootBuilder
     const string UiObjects = "Assets/image/UI_Image/QuantumRift-UI-Objects-v1/runtime";
     const string ItemArt = "Assets/image/Item";
     const string ChestPrefabPath = "Assets/Prefab/Loot/Treasure Chest.prefab";
-    const string LootPath = "Assets/Data/Loot/ChestLoot.asset";
+    internal const string LootPath = "Assets/Data/Loot/ChestLoot.asset";
     const string MapFolder = "Assets/Data/Map";
     static readonly string[] ChestMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_boss" };
 
@@ -120,7 +120,13 @@ public static class LootBuilder
         loot.hpPotionSprite = Load<Sprite>($"{ItemArt}/Potion-HP.png");
         loot.energyPotionSprite = Load<Sprite>($"{ItemArt}/Potion-Energy.png");
 
-        // อาวุธทุกชิ้นในโปรเจกต์ แยกตามระดับ (อาวุธเริ่มต้นประจำอาชีพไม่ดรอป)
+        RefillWeapons(loot);
+        return loot;
+    }
+
+    // อาวุธทุกชิ้นในโปรเจกต์ แยกตามระดับ (อาวุธเริ่มต้นประจำอาชีพไม่ดรอป) WeaponCollectionBuilder เรียกหลังสร้างอาวุธเสร็จ
+    internal static void RefillWeapons(LootTable loot)
+    {
         var weapons = AssetDatabase.FindAssets("t:WeaponData")
             .Select(guid => AssetDatabase.LoadAssetAtPath<WeaponData>(AssetDatabase.GUIDToAssetPath(guid)))
             .Where(w => w != null && w.weaponPrefab != null)
@@ -129,9 +135,7 @@ public static class LootBuilder
         loot.commonWeapons = weapons.Where(w => w.rarity == WeaponRarity.Common).ToArray();
         loot.rareWeapons = weapons.Where(w => w.rarity == WeaponRarity.Rare).ToArray();
         loot.legendaryWeapons = weapons.Where(w => w.rarity == WeaponRarity.Legendary).ToArray();
-
         EditorUtility.SetDirty(loot);
-        return loot;
     }
 
     static T Load<T>(string path) where T : UnityEngine.Object

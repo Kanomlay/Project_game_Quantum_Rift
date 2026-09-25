@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Rocket Launcher
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E22\u0E34\u0E07\u0E08\u0E23\u0E27\u0E14"
+  weaponIcon: {fileID: 21300000, guid: cb3b0bcf6cc8b2941a52ac77a588c873, type: 3}
+  weaponPrefab: {fileID: 4676311181637110987, guid: 915c1c0bdbfd67b48b9871a4668581a9, type: 3}
+  weaponType: 1
+  rarity: 3
+  attackDamage: 20
+  attackSpeed: 0.8
+  attackRange: 1.5
+  attackAngle: 90
+  energyCost: 5
+  slashEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8782660637297047748, guid: 3f2e34045986e0c4a9e87fa9d8a60d7e, type: 3}
+  projectileSpeed: 10
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: "\u0E08\u0E23\u0E27\u0E14\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E1B\u0E47\u0E19\u0E27\u0E07
+    \u0E17\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E1E\u0E37\u0E49\u0E19\u0E17\u0E35\u0E48"
+  specialEffectPrefab: {fileID: 0}
+  special: 4
+  specialFrames:
+  - {fileID: 21300000, guid: 180d7a991bfa75a4eaf50a93e994d905, type: 3}
+  - {fileID: 21300000, guid: 722ca229b4bb1f949bbad367ceb71b2c, type: 3}
+  - {fileID: 21300000, guid: 6b5c262f3683f2249b023e1b5e47bcd6, type: 3}
+  specialScale: 2
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

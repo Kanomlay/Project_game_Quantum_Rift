@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Old Iron Sword
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E14\u0E32\u0E1A\u0E40\u0E2B\u0E25\u0E47\u0E01\u0E40\u0E01\u0E48\u0E32"
+  weaponIcon: {fileID: 21300000, guid: 2b69a39d1888ac146bfb5d9f92adae4b, type: 3}
+  weaponPrefab: {fileID: 6717462134916430127, guid: 63d726c2ea61cfe4da6c99813b0ffdfa, type: 3}
+  weaponType: 0
+  rarity: 1
+  attackDamage: 6
+  attackSpeed: 1
+  attackRange: 1.5
+  attackAngle: 90
+  energyCost: 0
+  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: 
+  specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

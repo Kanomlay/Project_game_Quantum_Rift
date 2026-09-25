@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Wooden Bow
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E18\u0E19\u0E39\u0E44\u0E21\u0E49"
+  weaponIcon: {fileID: 21300000, guid: 895a137c191ac3b48a87ca42565aae0a, type: 3}
+  weaponPrefab: {fileID: 8038977430075954576, guid: 69e2d7b7aae5a1f4eba4cbdb1438fb4f, type: 3}
+  weaponType: 2
+  rarity: 1
+  attackDamage: 5
+  attackSpeed: 1
+  attackRange: 1.5
+  attackAngle: 90
+  energyCost: 2
+  slashEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 3744270673154551413, guid: 8c43aacd07c086d4b8dc2096c424127e, type: 3}
+  projectileSpeed: 14
+  projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
+  abilityDescription: 
+  specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0

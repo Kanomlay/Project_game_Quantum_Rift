@@ -28,6 +28,25 @@ MonoBehaviour:
   commonWeight: 60
   rareWeight: 30
   legendaryWeight: 10
-  commonWeapons: []
-  rareWeapons: []
-  legendaryWeapons: []
+  commonWeapons:
+  - {fileID: 11400000, guid: 3475f909d6b4d464ca87633b9c7095d2, type: 2}
+  - {fileID: 11400000, guid: f17436f1f0cc5d344a74eed296199283, type: 2}
+  - {fileID: 11400000, guid: 3673d67ecfc92264aae8bbbd69af5f1f, type: 2}
+  - {fileID: 11400000, guid: b208912e02ba3f24090ab44efbabb5c4, type: 2}
+  - {fileID: 11400000, guid: f0e090532434a8644bcaf4ed159a27ba, type: 2}
+  - {fileID: 11400000, guid: 578b7e2110cb60846a7e5424f7ecc53d, type: 2}
+  rareWeapons:
+  - {fileID: 11400000, guid: 5a372fe4666406d46a5a279cf409da65, type: 2}
+  - {fileID: 11400000, guid: 7b2e8e1f849c30f4b980362eaa8c2f5a, type: 2}
+  - {fileID: 11400000, guid: e179cc198fc76904faab4bb96d6fcd42, type: 2}
+  - {fileID: 11400000, guid: e8d49c3bc298c394b8f4ffc5a191691f, type: 2}
+  - {fileID: 11400000, guid: 20f019bfeb2ac464a816c9c04b3ff3ce, type: 2}
+  - {fileID: 11400000, guid: e363a5b61318e7348b1b30aa52afd220, type: 2}
+  - {fileID: 11400000, guid: 1d1ee5aa01e484c4fb26f2eb6e4ee3a1, type: 2}
+  - {fileID: 11400000, guid: 13caa9542748f6f4fa56d19ebed03295, type: 2}
+  legendaryWeapons:
+  - {fileID: 11400000, guid: feab25b4681a8f040852700e1c77a8d1, type: 2}
+  - {fileID: 11400000, guid: 1e8f9de16972136469a4489d4af7d2d1, type: 2}
+  - {fileID: 11400000, guid: a8358d134e5414f419202271d4661ee7, type: 2}
+  - {fileID: 11400000, guid: 5fae87b7ced88104dacf49543a381bae, type: 2}
+  - {fileID: 11400000, guid: a2ba581907967334c95d3be15178ad5f, type: 2}

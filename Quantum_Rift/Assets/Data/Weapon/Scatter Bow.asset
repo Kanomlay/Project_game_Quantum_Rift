@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
+  m_Name: Scatter Bow
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: "\u0E18\u0E19\u0E39\u0E22\u0E34\u0E07\u0E01\u0E23\u0E30\u0E08\u0E32\u0E22"
+  weaponIcon: {fileID: 21300000, guid: da543e4a0751dd246a0dc621276acd19, type: 3}
+  weaponPrefab: {fileID: 4628713660559005404, guid: b0e3963bb63f008438988e6c19f2404c, type: 3}
+  weaponType: 2
+  rarity: 3
+  attackDamage: 16
+  attackSpeed: 1
+  attackRange: 1.5
+  attackAngle: 90
+  energyCost: 4
+  slashEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 2987526968256926368, guid: ca59e5b885880d1419fa215a83770886, type: 3}
+  projectileSpeed: 15
+  projectileLifetime: 1.5
+  projectileCount: 3
+  spreadAngle: 12
+  abilityDescription: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39 3 \u0E25\u0E39\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E31\u0E14
+    \u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E0A\u0E34\u0E48\u0E07\u0E01\u0E33\u0E41\u0E1E\u0E07
+    1 \u0E04\u0E23\u0E31\u0E49\u0E07"
+  specialEffectPrefab: {fileID: 0}
+  special: 3
+  specialFrames:
+  - {fileID: 21300000, guid: f88c1bab019de2347b5aaf69446ccfe4, type: 3}
+  - {fileID: 21300000, guid: b03d093ff203fb5418ca91385d2c1c2a, type: 3}
+  - {fileID: 21300000, guid: e742eb90110dd7e42acfcbb8951788c8, type: 3}
+  specialScale: 0.45
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 1
