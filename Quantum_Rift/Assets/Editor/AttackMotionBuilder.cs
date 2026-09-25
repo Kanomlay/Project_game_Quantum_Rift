@@ -5,7 +5,8 @@ using UnityEngine;
 
 // ท่าตีตามชนิดอาวุธ (AttackMotion) ชุดละหนึ่งไฟล์ที่ Data/Weapon/Motion แล้วใส่ให้อาวุธทุกชิ้น
 // - ค่าในไฟล์ตั้งจากค่าตั้งต้นเฉพาะตอนสร้างครั้งแรก ปรับจังหวะ/แรงสั่น/หยุดภาพใน Inspector แล้วสั่งซ้ำก็ไม่ทับ
-// - ใส่ให้เฉพาะอาวุธที่ยังไม่มี motion (เปลี่ยนเป็นชุดอื่นเองแล้วไม่ถูกเปลี่ยนกลับ)
+// - ใส่ให้อาวุธที่ยังไม่มี motion หรือได้ชุดมาตรฐานไม่ตรงชนิด (ถ้าอยากให้อาวุธชิ้นไหนใช้ท่าต่างจากชนิดของมัน
+//   ให้ทำไฟล์ท่าใหม่แยกไว้นอก 8 ชุดนี้ จะไม่ถูกเปลี่ยนกลับ)
 public static class AttackMotionBuilder
 {
     const string MotionFolder = "Assets/Data/Weapon/Motion";
@@ -43,8 +44,13 @@ public static class AttackMotionBuilder
         foreach (var guid in AssetDatabase.FindAssets("t:WeaponData"))
         {
             var weapon = AssetDatabase.LoadAssetAtPath<WeaponData>(AssetDatabase.GUIDToAssetPath(guid));
-            if (weapon == null || weapon.motion != null) continue;
-            weapon.motion = motions[PresetFor(weapon)];
+            if (weapon == null) continue;
+            var expected = motions[PresetFor(weapon)];
+            // ใส่ให้ถ้ายังว่าง หรือถ้าเป็นชุดมาตรฐานคนละชนิดกับอาวุธ (เช่นค้อนที่เคยเป็นชนิดดาบ ได้ท่าดาบไปก่อน)
+            // ท่าที่สร้างเองนอกชุดมาตรฐานไม่ถูกเปลี่ยน
+            bool autoAssigned = weapon.motion != null && motions.ContainsValue(weapon.motion);
+            if (weapon.motion == expected || (weapon.motion != null && !autoAssigned)) continue;
+            weapon.motion = expected;
             EditorUtility.SetDirty(weapon);
             assigned++;
         }

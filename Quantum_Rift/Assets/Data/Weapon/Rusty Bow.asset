@@ -22,9 +22,23 @@ MonoBehaviour:
   attackRange: 1.5
   attackAngle: 90
   energyCost: 1
+  motion: {fileID: 11400000, guid: 43ecd36485bfd424d9dbbcb22c75e586, type: 2}
   slashEffectPrefab: {fileID: 0}
   projectilePrefab: {fileID: 1003680541518883341, guid: 02cc6c419fe338c469ff1e89c7faac3f, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
+  projectileCount: 1
+  spreadAngle: 0
   abilityDescription: 
   specialEffectPrefab: {fileID: 0}
+  special: 0
+  specialFrames: []
+  specialScale: 1
+  specialDamage: 0
+  specialRadius: 1.4
+  specialSpeed: 11
+  specialRange: 7
+  specialDuration: 0.5
+  comboCount: 3
+  chargeTime: 1
+  bounces: 0
