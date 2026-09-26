@@ -36,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PauseManager.isGamePaused) return;
 
+        // เปิดหน้าร้านอยู่ ยืนนิ่ง (คลิกซื้อของด้วยเมาส์ ไม่ให้ตัวละครเดินตามปุ่ม)
+        if (ShopWindow.IsOpen)
+        {
+            movement = Vector2.zero;
+            anim.SetBool("isWalking", false);
+            return;
+        }
+
         // ตายแล้วยืนนิ่งค้างท่าตาย ไม่งั้นศพจะเดินตามปุ่มได้
         if (stats != null && stats.isDead)
         {

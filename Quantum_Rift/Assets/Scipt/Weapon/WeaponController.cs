@@ -80,6 +80,7 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         if (PauseManager.isGamePaused) return;
+        if (ShopWindow.IsOpen) return; // คลิกปุ่มในหน้าร้าน ไม่ใช่โจมตี
 
         if (!isAttacking)
         {

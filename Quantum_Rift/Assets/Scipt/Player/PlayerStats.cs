@@ -86,6 +86,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (PauseManager.isGamePaused) return;
         if (isDead) return; // ตายแล้วใช้สกิล/สลับอาวุธไม่ได้
+        if (ShopWindow.IsOpen) return; // อยู่ในหน้าร้าน ไม่ใช้สกิล/สลับอาวุธ
 
         if (currentCooldownQ > 0)
         {
@@ -283,6 +284,15 @@ public class PlayerStats : MonoBehaviour
         currentCurrency += amount;
         
         if (hud != null) hud.UpdateCurrency(currentCurrency);
+    }
+
+    // ร้านค้า: หักเงินถ้าพอ คืน false ถ้าไม่พอ (ไม่หักอะไรเลย)
+    public bool TrySpendCurrency(int amount)
+    {
+        if (amount < 0 || currentCurrency < amount) return false;
+        currentCurrency -= amount;
+        if (hud != null) hud.UpdateCurrency(currentCurrency);
+        return true;
     }
 
     // ขวดยาฟื้นฟูพลังงาน: เพิ่มทันที ไม่เกินค่าสูงสุด

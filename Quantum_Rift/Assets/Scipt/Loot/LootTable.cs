@@ -41,6 +41,12 @@ public class LootTable : ScriptableObject
     public WeaponData RollWeapon()
     {
         if (Random.value > weaponChance) return null;
+        return RollAnyWeapon();
+    }
+
+    // สุ่มระดับตามน้ำหนักแล้วสุ่มอาวุธในระดับนั้น ไม่มีโอกาสได้ว่าง (ร้านค้าใช้)
+    public WeaponData RollAnyWeapon()
+    {
         float common = Has(commonWeapons) ? commonWeight : 0f;
         float rare = Has(rareWeapons) ? rareWeight : 0f;
         float legendary = Has(legendaryWeapons) ? legendaryWeight : 0f;

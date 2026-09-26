@@ -175,3 +175,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopClickable
   windowPrefab: {fileID: 2895278594401540549, guid: 22b6b51109896fe488ae5f2ffa26e8dd, type: 3}
+  itemPool: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
+  weaponSlots: 3
+  commonPrice: 10
+  rarePrice: 20
+  legendaryPrice: 50
+  potionPrice: 10
+  openKey: 102
+  interactRange: 2.4

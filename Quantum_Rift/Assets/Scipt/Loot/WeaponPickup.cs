@@ -48,6 +48,19 @@ public sealed class WeaponPickup : FloorItem
     void OnEnable() => all.Add(this);
     void OnDisable() => all.Remove(this);
 
+    // มีอาวุธบนพื้นอยู่ในระยะกด F ไหม (ร้านค้าใช้ปุ่มเดียวกัน ให้เก็บอาวุธก่อน)
+    public static bool AnyInReach
+    {
+        get
+        {
+            var player = Player;
+            if (player == null) return false;
+            foreach (var item in all)
+                if (item != null && item.Landed && item.DistanceTo(player) <= PickRadius) return true;
+            return false;
+        }
+    }
+
     static int Tier(WeaponRarity rarity) =>
         rarity == WeaponRarity.Legendary ? 2 : rarity == WeaponRarity.Rare ? 1 : 0;
 

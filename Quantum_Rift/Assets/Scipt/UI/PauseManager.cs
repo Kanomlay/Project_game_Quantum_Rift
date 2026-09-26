@@ -22,6 +22,9 @@ public class PauseManager : MonoBehaviour
         // ระหว่างโชว์หน้าสรุป (ตาย/ผ่านด่าน) ห้ามกด ESC หนีกลับไปเล่นต่อ
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return;
 
+        // ESC ที่ใช้ปิดหน้าร้านไม่นับเป็นการกดพักเกม
+        if (ShopWindow.BlocksEscape) return;
+
         // เปิดหน้าตั้งค่าอยู่ ให้ ESC ปิดหน้าตั้งค่าก่อน ไม่ใช่เล่นเกมต่อทั้งที่หน้าตั้งค่ายังค้าง
         if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen)
         {
