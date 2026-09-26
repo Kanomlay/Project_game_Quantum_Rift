@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if (isKnockedBack) return;
         Vector2 velocity = movement.normalized * currentSpeed;
         if (Time.time < attackStepUntil) velocity += attackStepVelocity;
+        if (Time.time < environmentalPullUntil) velocity += environmentalPull;
         rb.MovePosition(rb.position + AvoidMonsters(velocity * Time.fixedDeltaTime));
     }
 
@@ -151,6 +152,14 @@ public class PlayerMovement : MonoBehaviour
     // ก้าวตามแรงตีสั้น ๆ (ติดลบ = ถอยจากแรงถีบปืน) บวกกับการเดินปกติ ชนกำแพงก็หยุดเองตามฟิสิกส์
     private Vector2 attackStepVelocity;
     private float attackStepUntil;
+    private Vector2 environmentalPull;
+    private float environmentalPullUntil;
+
+    public void SetEnvironmentalPull(Vector2 velocity, float seconds)
+    {
+        environmentalPull = velocity;
+        environmentalPullUntil = Time.time + Mathf.Max(.02f, seconds);
+    }
 
     public void AttackStep(Vector2 direction, float distance, float duration)
     {

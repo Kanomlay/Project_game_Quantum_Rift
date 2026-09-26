@@ -15,6 +15,8 @@ public class RoomController : MonoBehaviour
     public Transform eventAnchor;   // จุดวางของ ถ้าไม่ใส่จะใช้กลางห้อง
 
     public bool HasStarted => hasStarted;
+    public bool HasBeenVisited { get; private set; }
+    public void MarkVisited() { HasBeenVisited = true; }
     public event System.Action Cleared; // ประตูมิติในห้องรอฟังเพื่อโผล่ตอนเคลียร์
     public bool IsSafeRoom => isSafeRoom;
     public bool IsCleared => isCleared;
@@ -30,7 +32,7 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) StartEncounter();
+        if (collision.CompareTag("Player")) { MarkVisited(); StartEncounter(); }
     }
 
     public void StartEncounter()

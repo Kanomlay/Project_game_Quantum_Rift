@@ -64,6 +64,8 @@ public class WeaponController : MonoBehaviour
     private WeaponSpriteAnimator chargedFrames; // ไม่ใช่ null = กำลังง้างธนูค้างไว้
     private Coroutine spearRoutine;
     private float spearChargeStart = -1f;       // >= 0 = กำลังง้างหอกไอออน-X ค้างไว้
+    private float hammerChargeStart = -1f;
+    private bool chargedHammerImpact;
     private SpriteRenderer[] weaponRenderers;
     private int comboSwings;                    // ฟันต่อเนื่องในคอมโบนี้ไปกี่ครั้งแล้ว (ดาบผ่ามิติปล่อยคลื่นครั้งที่ 3)
 
@@ -97,12 +99,17 @@ public class WeaponController : MonoBehaviour
         {
             ReleaseSpearCharge();
         }
+        else if (hammerChargeStart >= 0f && !Input.GetMouseButton(0))
+        {
+            ReleaseHammerCharge();
+        }
         else if (Input.GetMouseButton(0))
         {
             AttemptAttack();
         }
 
         if (spearChargeStart >= 0f) ShowSpearCharge();
+        if (hammerChargeStart >= 0f) ShowHammerCharge();
         ApplySwingRotation();
     }
 
@@ -135,6 +142,9 @@ public class WeaponController : MonoBehaviour
         currentClaws = null;
         chargedFrames = null; // สลับอาวุธระหว่างง้าง = ยกเลิก ไม่ยิงและไม่เสียพลังงาน
         spearChargeStart = -1f;
+        hammerChargeStart = -1f;
+        chargedHammerImpact = false;
+        TintWeapon(Color.white);
         isAttacking = false;
         comboSwings = 0;
         weaponStretch = Vector2.one;
@@ -221,6 +231,17 @@ public class WeaponController : MonoBehaviour
                 return;
             }
             spearChargeStart = Time.time;
+            return;
+        }
+
+        // ค้อนทอง: กดค้างเพื่อง้าง ปล่อยก่อนครบเวลาจะทุบธรรมดา
+        if (currentWeaponData.weaponType == WeaponType.Hammer &&
+            currentWeaponData.rarity == WeaponRarity.Legendary)
+        {
+            if (hammerChargeStart >= 0f || meleeRoutine != null) return;
+            if (owner != null && !owner.HasEnergy(currentWeaponData.energyCost))
+            { nextAttackTime = Time.time + OutOfEnergyRetryDelay; return; }
+            hammerChargeStart = Time.time;
             return;
         }
 
@@ -451,9 +472,41 @@ public class WeaponController : MonoBehaviour
     private void AfterImpact(WeaponData swungWith, bool releaseWave)
     {
         if (swungWith != currentWeaponData) return; // สลับอาวุธกลางท่า
+        if (swungWith.weaponType == WeaponType.Hammer && attackPoint != null)
+        {
+            Color color = swungWith.rarity == WeaponRarity.Legendary ?
+                new Color(.72f,.4f,1f,.9f) : new Color(.78f,.72f,.58f,.82f);
+            GroundCrackVfx.Spawn(attackPoint.position, chargedHammerImpact ? 4.8f : 2.8f, color);
+        }
         if (releaseWave) ReleaseWave(swungWith);
-        if (swungWith.special == WeaponSpecial.GroundPulse && attackPoint != null)
+        if (chargedHammerImpact && swungWith.special == WeaponSpecial.GroundPulse && attackPoint != null)
             StartCoroutine(GroundPulseRoutine(attackPoint.position, swungWith));
+        chargedHammerImpact = false;
+    }
+
+    private void ShowHammerCharge()
+    {
+        if (currentWeaponData == null || currentWeaponObject == null) return;
+        float progress = Mathf.Clamp01((Time.time - hammerChargeStart) /
+            Mathf.Max(.1f, currentWeaponData.chargeTime));
+        currentSwingAngle = Mathf.Lerp(RestAngle, currentWeaponData.Motion.windupAngle * .75f, progress);
+        var glow = new Color(.7f,.48f,1f);
+        TintWeapon(Color.Lerp(Color.white, glow, progress * (.65f + .25f * Mathf.Sin(Time.time * 12f))));
+    }
+
+    private void ReleaseHammerCharge()
+    {
+        var data = currentWeaponData;
+        bool full = Time.time - hammerChargeStart >= Mathf.Max(.1f, data.chargeTime);
+        hammerChargeStart = -1f;
+        TintWeapon(Color.white);
+        if (owner != null && !owner.TrySpendEnergy(data.energyCost))
+        { currentSwingAngle = RestAngle; nextAttackTime = Time.time + OutOfEnergyRetryDelay; return; }
+        chargedHammerImpact = full;
+        if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
+        StopRoutine(ref meleeRoutine);
+        meleeRoutine = StartCoroutine(SmashRoutine(false));
+        nextAttackTime = Time.time + AttackInterval;
     }
 
     // ---------- แทง (หอก) ----------
@@ -592,12 +645,12 @@ public class WeaponController : MonoBehaviour
         const int ticks = 3; // ตอนทุบ / กลางทาง / ท้าย
         float duration = Mathf.Max(0.05f, data.specialDuration);
         if (data.specialFrames != null && data.specialFrames.Length > 0)
-            SkillVfx.Spawn(data.specialFrames, center, data.specialScale, 0f, data.specialFrames.Length / duration);
+            SkillVfx.Spawn(data.specialFrames, center, data.specialScale * 1.7f, 0f, data.specialFrames.Length / duration);
         CameraFollow.Shake(0.15f, 0.3f);
 
         for (int i = 0; i < ticks; i++)
         {
-            SkillCombat.DamageArea(center, data.specialRadius, data.SpecialDamage);
+            SkillCombat.DamageArea(center, data.specialRadius * 1.8f, data.SpecialDamage);
             if (i < ticks - 1) yield return new WaitForSeconds(duration / (ticks - 1));
         }
     }
@@ -840,6 +893,11 @@ public class WeaponController : MonoBehaviour
     // ตัวแรกที่โดนในท่านี้: หยุดภาพชั่วขณะ + กล้องสั่น, ทุกตัวที่โดน: ประกายกระเด็นออกตามทิศที่ตี
     private void HitAround(Vector3 center, float radius, HashSet<Component> alreadyHit, AttackMotion feel)
     {
+        foreach (var collider in Physics2D.OverlapCircleAll(center, radius))
+        {
+            var prop = collider.GetComponentInParent<BreakableProp>();
+            if (prop != null && alreadyHit.Add(prop)) prop.TakeDamage(currentWeaponData.attackDamage);
+        }
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, enemyLayers);
 
         foreach (Collider2D enemy in hits)

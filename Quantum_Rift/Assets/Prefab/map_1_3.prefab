@@ -107637,6 +107637,7 @@ GameObject:
   - component: {fileID: 8342206982612080205}
   - component: {fileID: 8735366444266406099}
   - component: {fileID: 915010975697333605}
+  - component: {fileID: 8307981500301196380}
   m_Layer: 0
   m_Name: map_1_3
   m_TagString: Untagged
@@ -107692,6 +107693,22 @@ MonoBehaviour:
   - {fileID: 7523862701781743673}
   - {fileID: 4444240864412535633}
   - {fileID: 5210178878440469696}
+--- !u!114 &8307981500301196380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326965817631159630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195a614cfb03d0247997572a7d98f01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapGameplayFeatures
+  theme: 0
+  trapSprite: {fileID: 21300000, guid: 69b93dc1e0c1a7c4896b35f6fd756bc9, type: 3}
+  healthPotionSprite: {fileID: 21300000, guid: c6af2c232cf3e1d48a459cac325e3e56, type: 3}
+  energyPotionSprite: {fileID: 21300000, guid: 39e4c7fd55a155b40ac8e0d90d8fa435, type: 3}
 --- !u!1 &6335445504129768067
 GameObject:
   m_ObjectHideFlags: 0

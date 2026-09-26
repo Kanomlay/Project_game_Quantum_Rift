@@ -42,6 +42,8 @@ public class PlayerStats : MonoBehaviour
     // สถานะจากสกิล
     private float invincibleUntil;  // อมตะชั่วคราวแบบไม่กะพริบ (พุ่งชน, ย่างก้าวเงา)
     private float shieldUntil;      // เกราะกันดาเมจทั้งหมด (เกราะสะท้อนกลับ)
+    private float poisonUntil;
+    private Coroutine poisonRoutine;
     public event System.Action<float> DamageBlocked; // เกราะกันดาเมจได้ ส่งค่าดาเมจที่กันไว้
 
     void Start()
@@ -271,6 +273,23 @@ public class PlayerStats : MonoBehaviour
         if (isDead || amount <= 0f) return;
         currentHP = Mathf.Min(maxHP, currentHP + amount);
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
+    }
+
+    public void ApplyPoison(float seconds, float damagePerTick, float interval)
+    {
+        if (isDead || seconds <= 0f || damagePerTick <= 0f) return;
+        poisonUntil = Mathf.Max(poisonUntil, Time.time + seconds);
+        if (poisonRoutine == null) poisonRoutine = StartCoroutine(PoisonRoutine(damagePerTick, Mathf.Max(1.1f, interval)));
+    }
+
+    private IEnumerator PoisonRoutine(float damagePerTick, float interval)
+    {
+        while (!isDead && Time.time < poisonUntil)
+        {
+            yield return new WaitForSeconds(interval);
+            if (!isDead && Time.time <= poisonUntil) TakeDamage(damagePerTick);
+        }
+        poisonRoutine = null;
     }
 
     public void GrantInvincibility(float seconds) =>

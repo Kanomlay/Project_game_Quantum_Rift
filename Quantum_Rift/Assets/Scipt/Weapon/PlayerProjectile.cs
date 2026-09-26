@@ -76,6 +76,15 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (other == null) continue;
             if (owner != null && other.transform.IsChildOf(owner)) continue; // ไม่ยิงโดนตัวเอง
 
+            var breakable = other.GetComponentInParent<BreakableProp>();
+            if (breakable != null)
+            {
+                breakable.TakeDamage(damage);
+                transform.position = hit.centroid;
+                Expire();
+                return;
+            }
+
             var monster = other.GetComponentInParent<MonsterController>();
             if (monster != null)
             {

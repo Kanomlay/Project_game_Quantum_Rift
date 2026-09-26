@@ -77,6 +77,12 @@ public class MapManager : MonoBehaviour
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             if (rb != null) rb.linearVelocity = Vector2.zero;
         }
+        if (currentMapInstance != null)
+        {
+            var features = currentMapInstance.GetComponent<MapGameplayFeatures>();
+            if (features != null && !currentMap.isBossRoom) features.Initialize(currentMap.spawnPosition);
+            MiniMapHUD.Show(hud, currentMapInstance, player != null ? player.transform : null);
+        }
         yield return new WaitForSeconds(1.5f);
         if (hud != null && hud.transitionCanvas != null) 
         {
