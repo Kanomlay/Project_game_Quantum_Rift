@@ -206,7 +206,7 @@ public class WeaponController : MonoBehaviour
             var frames = currentWeaponObject != null ? currentWeaponObject.GetComponent<WeaponSpriteAnimator>() : null;
             if (frames != null && frames.holdToCharge)
             {
-                if (owner != null && !owner.HasEnergy(currentWeaponData.energyCost))
+                if (!BlessingManager.HasWeaponEnergy(owner, currentWeaponData.energyCost))
                 {
                     nextAttackTime = Time.time + OutOfEnergyRetryDelay;
                     return;
@@ -224,7 +224,7 @@ public class WeaponController : MonoBehaviour
         if (IsSpear && currentWeaponData.special == WeaponSpecial.ChargeWave)
         {
             if (spearChargeStart >= 0f || spearRoutine != null) return;
-            if (owner != null && !owner.HasEnergy(currentWeaponData.energyCost))
+            if (!BlessingManager.HasWeaponEnergy(owner, currentWeaponData.energyCost))
             {
                 nextAttackTime = Time.time + OutOfEnergyRetryDelay;
                 return;
@@ -238,14 +238,14 @@ public class WeaponController : MonoBehaviour
             currentWeaponData.rarity == WeaponRarity.Legendary)
         {
             if (hammerChargeStart >= 0f || meleeRoutine != null) return;
-            if (owner != null && !owner.HasEnergy(currentWeaponData.energyCost))
+            if (!BlessingManager.HasWeaponEnergy(owner, currentWeaponData.energyCost))
             { nextAttackTime = Time.time + OutOfEnergyRetryDelay; return; }
             hammerChargeStart = Time.time;
             return;
         }
 
         // 1.3.2 ค่าพลังงาน: พลังงานไม่พอ ใช้อาวุธนั้นไม่ได้ชั่วคราว (อาวุธที่ใช้ 0 ผ่านตลอด)
-        if (owner != null && !owner.TrySpendEnergy(currentWeaponData.energyCost))
+        if (!BlessingManager.PayWeaponEnergy(owner, currentWeaponData.energyCost))
         {
             nextAttackTime = Time.time + OutOfEnergyRetryDelay;
             return;
@@ -499,7 +499,7 @@ public class WeaponController : MonoBehaviour
         bool full = Time.time - hammerChargeStart >= Mathf.Max(.1f, data.chargeTime);
         hammerChargeStart = -1f;
         TintWeapon(Color.white);
-        if (owner != null && !owner.TrySpendEnergy(data.energyCost))
+        if (!BlessingManager.PayWeaponEnergy(owner, data.energyCost))
         { currentSwingAngle = RestAngle; nextAttackTime = Time.time + OutOfEnergyRetryDelay; return; }
         chargedHammerImpact = full;
         if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
@@ -596,7 +596,7 @@ public class WeaponController : MonoBehaviour
         spearChargeStart = -1f;
         TintWeapon(Color.white);
 
-        if (owner != null && !owner.TrySpendEnergy(currentWeaponData.energyCost))
+        if (!BlessingManager.PayWeaponEnergy(owner, currentWeaponData.energyCost))
         {
             if (currentWeaponObject != null) currentWeaponObject.transform.localPosition = Vector3.zero;
             nextAttackTime = Time.time + OutOfEnergyRetryDelay;
@@ -740,7 +740,7 @@ public class WeaponController : MonoBehaviour
         chargedFrames = null;
         if (frames == null || currentWeaponData == null) return;
 
-        if (owner != null && !owner.TrySpendEnergy(currentWeaponData.energyCost))
+        if (!BlessingManager.PayWeaponEnergy(owner, currentWeaponData.energyCost))
         {
             frames.ShowIdle();
             return;
@@ -770,6 +770,9 @@ public class WeaponController : MonoBehaviour
         Transform shooter = owner != null ? owner.transform : transform.root;
         projectile.Launch(shooter, direction, data.projectileSpeed, data.projectileLifetime, data.attackDamage);
         projectile.Configure(data);
+        // ทุกลูกในการยิงครั้งนี้นับเป็นการโจมตีเดียวกัน (พรคลื่นสะสมนับครั้งเดียวต่อการโจมตี)
+        var attack = new object();
+        BlessingManager.SetupProjectile(projectile, data, attack);
 
         // ยิงหลายลูก (ธนูยิงกระจาย): ลูกที่เหลือเบนออกซ้าย/ขวาเป็นพัดรอบลูกกลาง
         int count = Mathf.Max(1, data.projectileCount);
@@ -782,6 +785,7 @@ public class WeaponController : MonoBehaviour
             if (extra == null) continue;
             extra.Launch(shooter, spread, data.projectileSpeed, data.projectileLifetime, data.attackDamage);
             extra.Configure(data);
+            BlessingManager.SetupProjectile(extra, data, attack);
         }
 
         if (data == currentWeaponData) Kick(data.Motion);
@@ -888,8 +892,10 @@ public class WeaponController : MonoBehaviour
     // ตีโดนทุกตัวในรัศมีรอบจุดที่ให้มา ตัวละหนึ่งครั้งต่อการโจมตีหนึ่งท่า
     // ดาบใช้ attackRange ของ WeaponData ส่วนกรงเล็บคู่ใช้รัศมีที่ย่อ/ขยายตามขนาด prefab
     // ตัวแรกที่โดนในท่านี้: หยุดภาพชั่วขณะ + กล้องสั่น, ทุกตัวที่โดน: ประกายกระเด็นออกตามทิศที่ตี
+    // alreadyHit เป็นชุดเดียวกันตลอดท่า จึงใช้แทนตัวตนของการโจมตีครั้งนี้ได้ (พรคมสลายมิติ/คลื่นสะสม)
     private void HitAround(Vector3 center, float radius, HashSet<Component> alreadyHit, AttackMotion feel)
     {
+        BlessingManager.CleaveBullets(center, radius, alreadyHit);
         foreach (var collider in Physics2D.OverlapCircleAll(center, radius))
         {
             var prop = collider.GetComponentInParent<BreakableProp>();
@@ -921,8 +927,19 @@ public class WeaponController : MonoBehaviour
                 }
             }
 
-            if (target != null) HitFeedback(enemy, center, alreadyHit.Count == 1, feel);
+            if (target == null) continue;
+            HitFeedback(enemy, center, CountTargets(alreadyHit) == 1, feel);
+            BlessingManager.OnAttackLanded(alreadyHit);
         }
+    }
+
+    // ศัตรูที่โดนไปแล้วในท่านี้ ไม่นับของที่ทำลายได้/กระสุนที่ฟันลบ ซึ่งอยู่ในชุดเดียวกัน (ตัวแรกที่โดนได้หยุดภาพ+กล้องสั่น)
+    private static int CountTargets(HashSet<Component> alreadyHit)
+    {
+        int count = 0;
+        foreach (var item in alreadyHit)
+            if (item is MonsterController || item is ArchitectBossHealth) count++;
+        return count;
     }
 
     private void HitFeedback(Collider2D enemy, Vector2 from, bool first, AttackMotion feel)

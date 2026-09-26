@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // กระสุน/ลูกธนูของผู้เล่น วิ่งเป็นเส้นตรงจนกว่าจะโดนศัตรู ชนกำแพง หรือหมดระยะ
@@ -27,6 +28,12 @@ public sealed class PlayerProjectile : MonoBehaviour
     private float explodeScale = 1f;
     private static readonly Color HitSparkColor = new Color(1f, 0.95f, 0.8f);
 
+    // พร (ตั้งผ่าน BlessingManager.SetupProjectile)
+    private object attack;                // การยิงครั้งไหน (คลื่นสะสมนับครั้งเดียวต่อการยิง)
+    private int pierceLeft;               // กระสุนทะลุมิติ: ทะลุได้อีกกี่ตัว
+    private float pierceDamageScale = 1f; // ตัวที่ทะลุไปโดนต่อ รับดาเมจตามสัดส่วนนี้
+    private HashSet<Component> pierced;   // ตัวที่ทะลุผ่านมาแล้ว ไม่โดนซ้ำ
+
     public void Launch(Transform shooter, Vector2 heading, float velocity, float lifetime, float power)
     {
         owner = shooter;
@@ -53,6 +60,26 @@ public sealed class PlayerProjectile : MonoBehaviour
             explodeScale = data.specialScale;
             damage = data.SpecialDamage;
         }
+    }
+
+    public void SetAttack(object key) => attack = key;
+
+    public void SetPierce(int count, float nextDamageScale)
+    {
+        pierceLeft = Mathf.Max(0, count);
+        pierceDamageScale = nextDamageScale;
+    }
+
+    // โดนศัตรูแล้ว: ยังทะลุได้ก็บินต่อ (ดาเมจลดลง) ไม่งั้นจบ คืน true ถ้าบินต่อ
+    private bool PierceThrough(Component target)
+    {
+        BlessingManager.OnAttackLanded(attack);
+        if (pierceLeft <= 0) return false;
+        pierceLeft--;
+        damage *= pierceDamageScale;
+        if (pierced == null) pierced = new HashSet<Component>();
+        pierced.Add(target);
+        return true;
     }
 
     // ภาพกระสุนทุกชิ้นวาดหันไปทางขวา หมุนให้หัวกระสุนชี้ทิศที่ยิง
@@ -89,10 +116,12 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (monster != null)
             {
                 if (!monster.gameObject.activeInHierarchy || !monster.IsAlive) continue;
+                if (pierced != null && pierced.Contains(monster)) continue;
                 if (explodeRadius <= 0f)
                 {
                     monster.TakeDamage(damage);
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
+                    if (PierceThrough(monster)) continue;
                 }
                 transform.position = hit.centroid;
                 Expire();
@@ -103,10 +132,12 @@ public sealed class PlayerProjectile : MonoBehaviour
             var architect = other.GetComponentInParent<ArchitectBossHealth>();
             if (architect != null)
             {
+                if (pierced != null && pierced.Contains(architect)) continue;
                 if (explodeRadius <= 0f)
                 {
                     architect.TakeDamage(damage);
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
+                    if (PierceThrough(architect)) continue;
                 }
                 transform.position = hit.centroid;
                 Expire();
@@ -143,6 +174,7 @@ public sealed class PlayerProjectile : MonoBehaviour
         if (explodeRadius > 0f)
         {
             int hits = SkillCombat.DamageArea(transform.position, explodeRadius, damage);
+            if (hits > 0) BlessingManager.OnAttackLanded(attack);
             if (explodeFrames != null && explodeFrames.Length > 0)
                 SkillVfx.Spawn(explodeFrames, transform.position, explodeScale, 0f, 14f);
             // ระเบิด: กล้องสั่นแรง เศษไฟกระจายรอบทิศ โดนศัตรูแล้วหยุดภาพชั่วขณะ

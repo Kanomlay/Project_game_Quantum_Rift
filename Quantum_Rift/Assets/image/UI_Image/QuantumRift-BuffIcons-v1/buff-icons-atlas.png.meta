@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 4794bc3663db54b4eaf2f0de7819f4fa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2979483607569663436
+    second: buff-icons-atlas_0
+  - first:
+      213: -2047242215203275694
+    second: buff-icons-atlas_1
+  - first:
+      213: -4860772922071734621
+    second: buff-icons-atlas_2
+  - first:
+      213: -1972680497335022315
+    second: buff-icons-atlas_3
+  - first:
+      213: -3822807999775918529
+    second: buff-icons-atlas_4
+  - first:
+      213: 817117141124509828
+    second: buff-icons-atlas_5
+  - first:
+      213: -8622627441036462540
+    second: buff-icons-atlas_6
+  - first:
+      213: -918290203834980132
+    second: buff-icons-atlas_7
+  - first:
+      213: -3631269463903615890
+    second: buff-icons-atlas_8
+  - first:
+      213: -8404896899249742480
+    second: buff-icons-atlas_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: buff-icons-atlas_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 837
+        width: 360
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43af5b4e17fb6a6d0800000000000000
+      internalID: -2979483607569663436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_1
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 827
+        width: 372
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25cff915d0cb693e0800000000000000
+      internalID: -2047242215203275694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_2
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 835
+        width: 360
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a6a316e7c01b8cb0800000000000000
+      internalID: -4860772922071734621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_3
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 457
+        width: 361
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d41051a81af94e0800000000000000
+      internalID: -1972680497335022315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_4
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 453
+        width: 359
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f36b5d8d068a2fac0800000000000000
+      internalID: -3822807999775918529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_5
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 451
+        width: 392
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 480fb98e5bbf65b00800000000000000
+      internalID: 817117141124509828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 367
+        height: 434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4367c7ae606465880800000000000000
+      internalID: -8622627441036462540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_7
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 0
+        width: 372
+        height: 436
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd8e1b7cce39143f0800000000000000
+      internalID: -918290203834980132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_8
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 23
+        width: 377
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e644d4079a32b9dc0800000000000000
+      internalID: -3631269463903615890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buff-icons-atlas_9
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 51
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ddf6a1dcecb5b80800000000000000
+      internalID: -8404896899249742480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      buff-icons-atlas_0: -2979483607569663436
+      buff-icons-atlas_1: -2047242215203275694
+      buff-icons-atlas_2: -4860772922071734621
+      buff-icons-atlas_3: -1972680497335022315
+      buff-icons-atlas_4: -3822807999775918529
+      buff-icons-atlas_5: 817117141124509828
+      buff-icons-atlas_6: -8622627441036462540
+      buff-icons-atlas_7: -918290203834980132
+      buff-icons-atlas_8: -3631269463903615890
+      buff-icons-atlas_9: -8404896899249742480
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

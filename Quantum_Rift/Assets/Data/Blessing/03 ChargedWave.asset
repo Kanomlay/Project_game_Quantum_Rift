@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2346d2a212a8b4587d7a4ce4a0e837, type: 3}
+  m_Name: 03 ChargedWave
+  m_EditorClassIdentifier: Assembly-CSharp::BlessingData
+  type: 2
+  category: 0
+  icon: {fileID: 21300000, guid: a79f6ab5a0d9b5a4bab4462c8db2dc00, type: 3}
+  hudIcon: {fileID: 21300000, guid: e102de665413ca14ebbc457c1ab09ee4, type: 3}
+  nameThai: "\u0E04\u0E25\u0E37\u0E48\u0E19\u0E2A\u0E30\u0E2A\u0E21"
+  nameEnglish: Charged Wave
+  abilityThai: "\u0E42\u0E08\u0E21\u0E15\u0E35\u0E42\u0E14\u0E19\u0E28\u0E31\u0E15\u0E23\u0E39\u0E04\u0E23\u0E1A
+    5 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E04\u0E25\u0E37\u0E48\u0E19\u0E1E\u0E25\u0E31\u0E07"
+  abilityEnglish: Every 5 hits on enemies release an energy wave.
+  limitThai: "\u0E04\u0E25\u0E37\u0E48\u0E19\u0E17\u0E33\u0E14\u0E32\u0E40\u0E21\u0E08
+    50% \u0E02\u0E2D\u0E07\u0E2D\u0E32\u0E27\u0E38\u0E18 \u0E19\u0E31\u0E1A\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0E04\u0E23\u0E31\u0E49\u0E07\u0E40\u0E14\u0E35\u0E22\u0E27\u0E15\u0E48\u0E2D\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35"
+  limitEnglish: The wave deals 50% weapon damage. Each attack counts once.
+  count: 5
+  amount: 0.5
+  threshold: 0
+  duration: 0
+  cooldown: 0
+  radius: 0.7
+  perRoomCap: 0
+  waveFrames:
+  - {fileID: 21300000, guid: 8c8aacde6b5f4194384ab6c1e3d7e154, type: 3}
+  - {fileID: 21300000, guid: d394a01c38c2b0349babeeaafa647fa0, type: 3}
+  - {fileID: 21300000, guid: 673cc6fab836ec04d84a7c2bd3223bd0, type: 3}
+  waveScale: 1.5
+  waveSpeed: 11
+  waveRange: 7
+  waveTint: {r: 0.6, g: 0.95, b: 1, a: 1}

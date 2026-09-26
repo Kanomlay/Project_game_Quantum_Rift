@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2346d2a212a8b4587d7a4ce4a0e837, type: 3}
+  m_Name: 02 PhasePiercing
+  m_EditorClassIdentifier: Assembly-CSharp::BlessingData
+  type: 1
+  category: 0
+  icon: {fileID: 21300000, guid: 3f72c328a04add44599d31eafcc7daca, type: 3}
+  hudIcon: {fileID: 21300000, guid: 30e5cc549790c0f4fac157276275b379, type: 3}
+  nameThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E17\u0E30\u0E25\u0E38\u0E21\u0E34\u0E15\u0E34"
+  nameEnglish: Phase Piercing
+  abilityThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E41\u0E25\u0E30\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E17\u0E30\u0E25\u0E38\u0E28\u0E31\u0E15\u0E23\u0E39\u0E40\u0E1E\u0E34\u0E48\u0E21
+    1 \u0E15\u0E31\u0E27"
+  abilityEnglish: Bullets and arrows pierce 1 extra enemy.
+  limitThai: "\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E49\u0E01\u0E31\u0E1A\u0E08\u0E23\u0E27\u0E14
+    \u0E28\u0E31\u0E15\u0E23\u0E39\u0E15\u0E31\u0E27\u0E16\u0E31\u0E14\u0E44\u0E1B\u0E23\u0E31\u0E1A\u0E14\u0E32\u0E40\u0E21\u0E08
+    60%"
+  limitEnglish: Not for rockets. The next enemy takes 60% damage.
+  count: 1
+  amount: 0.6
+  threshold: 0
+  duration: 0
+  cooldown: 0
+  radius: 0
+  perRoomCap: 0
+  waveFrames: []
+  waveScale: 1.5
+  waveSpeed: 11
+  waveRange: 7
+  waveTint: {r: 0.6, g: 0.95, b: 1, a: 1}

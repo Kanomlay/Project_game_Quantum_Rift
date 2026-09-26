@@ -56,6 +56,13 @@ public sealed class PiercingProjectile : MonoBehaviour
         return this;
     }
 
+    // ย้อมสีภาพ ใช้ภาพคลื่นชุดเดียวกันได้หลายแบบ (คลื่นสะสมของพรใช้ภาพคลื่นดาบผ่ามิติ)
+    public PiercingProjectile WithTint(Color tint)
+    {
+        view.color = tint;
+        return this;
+    }
+
     void Update()
     {
         float step = speed * Time.deltaTime;

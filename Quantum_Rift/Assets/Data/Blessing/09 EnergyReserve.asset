@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2346d2a212a8b4587d7a4ce4a0e837, type: 3}
+  m_Name: 09 EnergyReserve
+  m_EditorClassIdentifier: Assembly-CSharp::BlessingData
+  type: 8
+  category: 2
+  icon: {fileID: 21300000, guid: 7f838fe88398d3c4999d7f76446f075c, type: 3}
+  hudIcon: {fileID: 21300000, guid: 2c46098d4e6074344b183af9c4acd230, type: 3}
+  nameThai: "\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E2A\u0E33\u0E23\u0E2D\u0E07"
+  nameEnglish: Energy Reserve
+  abilityThai: "\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E17\u0E35\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48
+    5 \u0E44\u0E21\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
+  abilityEnglish: Every 5th energy-costing attack is free.
+  limitThai: "\u0E44\u0E21\u0E48\u0E19\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E1F\u0E23\u0E35\u0E41\u0E25\u0E30\u0E2A\u0E01\u0E34\u0E25\u0E2E\u0E35\u0E42\u0E23\u0E48"
+  limitEnglish: Free attacks and hero skills don't count.
+  count: 5
+  amount: 0
+  threshold: 0
+  duration: 0
+  cooldown: 0
+  radius: 0
+  perRoomCap: 0
+  waveFrames: []
+  waveScale: 1.5
+  waveSpeed: 11
+  waveRange: 7
+  waveTint: {r: 0.6, g: 0.95, b: 1, a: 1}

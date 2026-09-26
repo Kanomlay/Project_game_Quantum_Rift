@@ -25,6 +25,9 @@ public class PauseManager : MonoBehaviour
         // ESC ที่ใช้ปิดหน้าร้านไม่นับเป็นการกดพักเกม
         if (ShopWindow.BlocksEscape) return;
 
+        // หน้าต่างเลือกพรต้องเลือกให้เสร็จก่อน (เกมหยุดอยู่แล้ว)
+        if (BlessingManager.IsChoosing) return;
+
         // เปิดหน้าตั้งค่าอยู่ ให้ ESC ปิดหน้าตั้งค่าก่อน ไม่ใช่เล่นเกมต่อทั้งที่หน้าตั้งค่ายังค้าง
         if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen)
         {

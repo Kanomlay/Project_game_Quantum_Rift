@@ -205,9 +205,12 @@ public class MonsterController : MonoBehaviour
         isKnockedBack = false; 
     }
 
+    public static event System.Action<MonsterController> Died; // ทุกตัวที่ตาย รวมลูกน้องบอส (พรเก็บเกี่ยวพลังงานฟังอยู่)
+
     protected virtual void Die()
     {
         SummaryManager.enemiesDefeatedCount++;
+        Died?.Invoke(this);
         // นับว่าตายทันที ประตูห้องจะได้เปิดตอนตัวสุดท้ายล้ม ไม่ต้องรอท่าตายจบ
         if (currentRoom != null) currentRoom.OnMonsterDied(); 
         StartCoroutine(DeathRoutine());

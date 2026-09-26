@@ -5,8 +5,10 @@ public sealed class SpriteGhost : MonoBehaviour
 {
     private SpriteRenderer view;
     private float life, age, startAlpha;
+    private Color tint = Color.white;
 
-    public static void Spawn(SpriteRenderer source, float lifetime, float alpha)
+    // tint = สีของเงา (ไม่ใส่ = สีเดียวกับตัวจริง เช่น คลื่นที่ถูกย้อมสีไว้)
+    public static void Spawn(SpriteRenderer source, float lifetime, float alpha, Color? tint = null)
     {
         if (source == null || source.sprite == null) return;
         var go = new GameObject("Ghost");
@@ -22,11 +24,14 @@ public sealed class SpriteGhost : MonoBehaviour
         var ghost = go.AddComponent<SpriteGhost>();
         ghost.view = go.AddComponent<SpriteRenderer>();
         ghost.view.sprite = source.sprite;
+        ghost.view.flipX = source.flipX; // ตัวละครหันซ้าย/ขวาด้วย flipX ไม่ใช่ scale
+        ghost.view.flipY = source.flipY;
         ghost.view.sortingLayerID = source.sortingLayerID;
         ghost.view.sortingOrder = source.sortingOrder - 1; // อยู่หลังตัวจริง
         ghost.startAlpha = alpha;
         ghost.life = Mathf.Max(0.01f, lifetime);
-        ghost.view.color = new Color(1f, 1f, 1f, alpha);
+        ghost.tint = tint ?? source.color;
+        ghost.view.color = new Color(ghost.tint.r, ghost.tint.g, ghost.tint.b, alpha);
     }
 
     void Update()
@@ -34,7 +39,7 @@ public sealed class SpriteGhost : MonoBehaviour
         age += Time.deltaTime;
         float k = age / life;
         if (k >= 1f) { Destroy(gameObject); return; }
-        view.color = new Color(1f, 1f, 1f, startAlpha * (1f - k));
+        view.color = new Color(tint.r, tint.g, tint.b, startAlpha * (1f - k));
         transform.localScale *= 1f - Time.deltaTime * 0.6f; // หดลงนิด ๆ ระหว่างจาง
     }
 }

@@ -20,6 +20,9 @@ public class RoomController : MonoBehaviour
     public bool HasBeenVisited { get; private set; }
     public void MarkVisited() { HasBeenVisited = true; }
     public event System.Action Cleared; // ประตูมิติในห้องรอฟังเพื่อโผล่ตอนเคลียร์
+    // ห้องที่มีมอนสเตอร์ให้สู้: เริ่มสู้ / เคลียร์แล้ว (พรที่นับต่อห้องฟังอยู่ ดู BlessingManager)
+    public static event System.Action<RoomController> CombatStarted;
+    public static event System.Action<RoomController> CombatCleared;
     public bool IsSafeRoom => isSafeRoom;
     public bool IsCleared => isCleared;
     public int AliveMonstersCount => aliveMonstersCount;
@@ -58,6 +61,7 @@ public class RoomController : MonoBehaviour
             return;
         }
         SetDoors(true);
+        CombatStarted?.Invoke(this);
         StartCoroutine(RunWaves(waves));
     }
 
@@ -210,6 +214,7 @@ public class RoomController : MonoBehaviour
         isCleared = true;
         SetDoors(false);
         Cleared?.Invoke();
+        if (hadMonsters) CombatCleared?.Invoke(this);
         if (chestPrefab != null)
             Instantiate(chestPrefab, chestSpawnPoint != null ? chestSpawnPoint.position : transform.position,
                 Quaternion.identity, transform);

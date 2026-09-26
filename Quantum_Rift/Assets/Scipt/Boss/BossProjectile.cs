@@ -3,7 +3,7 @@ using UnityEngine;
 // กระสุนของบอส วิ่งเป็นเส้นตรงจนกว่าจะโดนผู้เล่น ชนกำแพง หรือหมดอายุ
 // ยิงออกมาแล้วสั่ง Launch เพื่อกำหนดทิศ ความเร็ว และดาเมจ
 [RequireComponent(typeof(Collider2D))]
-public class BossProjectile : MonoBehaviour
+public class BossProjectile : MonoBehaviour, IEnemyBullet
 {
     [Min(0.1f)] public float lifetime = 4f;
     public float knockbackForce = 4f;
@@ -27,8 +27,13 @@ public class BossProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)(velocity * Time.deltaTime);
+        // พรสนามชะลอกระสุน: ใกล้ตัวผู้เล่นบินช้าลง
+        transform.position += (Vector3)(velocity * EnemyBullets.SpeedFactor(transform.position) * Time.deltaTime);
     }
+
+    // ทะเบียนกระสุนศัตรู (พรคมสลายมิติฟันลบได้ สนามชะลอกระสุนทำให้ช้าลง)
+    void OnEnable() => EnemyBullets.Register(this);
+    void OnDisable() => EnemyBullets.Unregister(this);
 
     void OnTriggerEnter2D(Collider2D other)
     {

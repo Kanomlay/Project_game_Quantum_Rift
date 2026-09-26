@@ -119,9 +119,13 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
+        // พรเกราะฉุกเฉินรับดาเมจไว้ก่อน รับไว้หมดก็ไม่เสียเลือด
+        damage = BlessingManager.AbsorbDamage(this, damage);
+        if (damage <= 0f) return;
+
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
-        
+
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
 
         if (currentHP <= 0)
@@ -131,6 +135,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             StartCoroutine(IframeRoutine());
+            BlessingManager.OnPlayerHurt(this); // พรที่ทำงานตอนโดนตี (เกราะฉุกเฉิน, ก้าวพ้นรอยแยก)
         }
     }
     private IEnumerator IframeRoutine()

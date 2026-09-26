@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour
     // ของที่เสกลงแมพระหว่างเล่น (กับดัก ฯลฯ) ผูกกับตัวนี้ จะได้หายไปพร้อมแมพตอนเปลี่ยนด่าน
     public Transform CurrentMapRoot => currentMapInstance != null ? currentMapInstance.transform : null;
     private GameObject player; // ตัวฮีโร่ของเรา
+    private bool loading;      // กำลังเปลี่ยนด่าน (กันเดินชนพอร์ทัลซ้ำระหว่างจอมืด แล้วโหลดด่านซ้อนกัน)
 
     void Awake()
     {
@@ -53,8 +54,17 @@ public class MapManager : MonoBehaviour
         StartCoroutine(LoadMapRoutine(mapToLoad));
     }
 
+    // จบด่าน: ยังสะสมพรไม่ครบก็ให้เลือกพรก่อน (เกมหยุดระหว่างเลือก) แล้วค่อยโหลดด่านถัดไป
+    private void ProceedTo(MapData next)
+    {
+        if (loading || BlessingManager.IsChoosing) return;
+        if (BlessingManager.Instance != null && BlessingManager.Instance.OfferChoice(() => LoadMap(next))) return;
+        LoadMap(next);
+    }
+
     private IEnumerator LoadMapRoutine(MapData mapToLoad)
     {
+        loading = true;
         HUDManager hud = FindObjectOfType<HUDManager>();
         if (hud != null && hud.transitionCanvas != null) 
         {
@@ -88,6 +98,7 @@ public class MapManager : MonoBehaviour
         {
             yield return StartCoroutine(hud.FadeOutClear());
         }
+        loading = false;
     }
     public void GoToNextMap()
     {
@@ -98,7 +109,7 @@ public class MapManager : MonoBehaviour
         }
         else if (currentMap.nextMap != null)
         {
-            LoadMap(currentMap.nextMap); 
+            ProceedTo(currentMap.nextMap); 
         }
         else
         {
@@ -109,7 +120,7 @@ public class MapManager : MonoBehaviour
     {
         if (currentMap.nextMap != null)
         {
-            LoadMap(currentMap.nextMap);
+            ProceedTo(currentMap.nextMap);
         }
         else
         {

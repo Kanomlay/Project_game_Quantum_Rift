@@ -1,0 +1,42 @@
+{
+  "max_buffs_per_run": 4,
+  "status": "artwork only; not integrated in Unity",
+  "icons": [
+    {
+      "id": "01-bullet-cleave",
+      "name_th": "คมสลายมิติ"
+    },
+    {
+      "id": "02-phase-piercing",
+      "name_th": "กระสุนทะลุมิติ"
+    },
+    {
+      "id": "03-charged-wave",
+      "name_th": "คลื่นสะสม"
+    },
+    {
+      "id": "04-emergency-shield",
+      "name_th": "เกราะฉุกเฉิน"
+    },
+    {
+      "id": "05-rift-step",
+      "name_th": "ก้าวพ้นรอยแยก"
+    },
+    {
+      "id": "06-bullet-slow-field",
+      "name_th": "สนามชะลอกระสุน"
+    },
+    {
+      "id": "07-energy-harvest",
+      "name_th": "เก็บเกี่ยวพลังงาน"
+    },
+    {
+      "id": "08-healing-pulse",
+      "name_th": "ชีพจรฟื้นฟู"
+    },
+    {
+      "id": "09-energy-reserve",
+      "name_th": "พลังงานสำรอง"
+    }
+  ]
+}

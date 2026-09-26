@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>กระสุน/หินแยกจากเฟรมตัวมอนสเตอร์ ตรวจเส้นทางทุกเฟรมเพื่อไม่ทะลุเป้าหมาย</summary>
-public sealed class MonsterAttackProjectile : MonoBehaviour
+public sealed class MonsterAttackProjectile : MonoBehaviour, IEnemyBullet
 {
     public bool IsRock { get; private set; }
     Vector2 direction;
@@ -18,7 +18,7 @@ public sealed class MonsterAttackProjectile : MonoBehaviour
     {
         if(spent)return;
         if((remaining-=Time.deltaTime)<=0){Expire();return;}
-        float step=speed*Time.deltaTime;
+        float step=speed*EnemyBullets.SpeedFactor(transform.position)*Time.deltaTime; // พรสนามชะลอกระสุน
         // CircleCastAll เรียงตามระยะ จึงชนกำแพงก่อนเป้าหมายที่อยู่หลังกำแพง
         foreach(var hit in Physics2D.CircleCastAll(transform.position,radius,direction,step))
         {
@@ -36,4 +36,7 @@ public sealed class MonsterAttackProjectile : MonoBehaviour
         if(IsRock)transform.Rotate(0,0,210f*Time.deltaTime);
     }
     void Expire(){spent=true;Destroy(gameObject);}
+    // ทะเบียนกระสุนศัตรู (พรคมสลายมิติฟันลบได้ สนามชะลอกระสุนทำให้ช้าลง)
+    void OnEnable(){EnemyBullets.Register(this);}
+    void OnDisable(){EnemyBullets.Unregister(this);}
 }

@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats stats;
     private float speedBoost = 1f;     // ตัวคูณความเร็วจากสกิล (กระตุ้นเซลล์)
     private float speedBoostUntil;
+    private float blessingBoost = 1f;  // ตัวคูณความเร็วจากพร (ก้าวพ้นรอยแยก) แยกช่องกับสกิล ใช้พร้อมกันได้
+    private float blessingBoostUntil;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -82,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = baseSpeed;
         }
         if (Time.time < speedBoostUntil) currentSpeed *= speedBoost;
+        if (Time.time < blessingBoostUntil) currentSpeed *= blessingBoost;
 
     }
 
@@ -172,6 +175,12 @@ public class PlayerMovement : MonoBehaviour
     {
         speedBoost = multiplier;
         speedBoostUntil = Time.time + seconds;
+    }
+
+    public void BlessingSpeedBoost(float multiplier, float seconds)
+    {
+        blessingBoost = multiplier;
+        blessingBoostUntil = Time.time + seconds;
     }
 
     public void StartDash(Vector2 direction, float dashSpeed, float dashDuration)
