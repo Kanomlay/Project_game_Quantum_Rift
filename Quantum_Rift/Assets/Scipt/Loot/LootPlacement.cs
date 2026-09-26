@@ -8,6 +8,10 @@ public static class LootPlacement
     const float PlayerClearance = 1.4f; // ไม่เสกกล่องทับตัวผู้เล่น
     static readonly Vector2 ChestFootprint = new Vector2(1.5f, 1.2f);
     const float ChestFootprintLift = 0.5f; // root กล่องอยู่ที่พื้น ตัวกล่องสูงขึ้นไปราวหนึ่งหน่วย
+    const float PortalRoomRadius = 3f;     // ประตูมิติวางกลางห้องทางออก (ค่าเดียวกับ MapPortal)
+    // หน้าประตู = ใต้จุดฐานประตูลงมา ลองระยะใกล้สุดก่อน แล้วค่อยเยื้องซ้าย/ขวา
+    static readonly float[] FrontDistances = { 2.6f, 3.1f, 3.6f };
+    static readonly float[] FrontSides = { 0f, 1f, -1f, 2f, -2f };
 
     public static bool IsSolid(Collider2D col)
     {
@@ -58,6 +62,19 @@ public static class LootPlacement
         Vector2 center = bounds.center;
         var portals = Object.FindObjectsByType<MapPortal>(FindObjectsSortMode.None);
 
+        // ห้องประตูมิติ: วางกล่องไว้หน้าประตู (ใต้ประตูลงมา) เว้นระยะไม่ให้บังกัน ผู้เล่นยืนขวางอยู่ก็เยื้องซ้าย/ขวาหรือถอยลงอีกนิด
+        foreach (var portal in portals)
+        {
+            Vector2 at = portal.transform.position;
+            if (Vector2.Distance(at, room.transform.position) > PortalRoomRadius && !Inside(at, areas)) continue;
+            foreach (float distance in FrontDistances)
+                foreach (float side in FrontSides)
+                {
+                    Vector2 spot = at + new Vector2(side, -distance);
+                    if (Valid(spot, areas, portals, playerPosition)) return spot;
+                }
+        }
+
         const float step = 0.625f;
         for (int ring = 0; ring <= 8; ring++)
         {
@@ -72,12 +89,16 @@ public static class LootPlacement
         return center;
     }
 
+    static bool Inside(Vector2 spot, Collider2D[] areas)
+    {
+        foreach (var area in areas)
+            if (area.enabled && area.isTrigger && area.OverlapPoint(spot)) return true;
+        return false;
+    }
+
     static bool Valid(Vector2 spot, Collider2D[] areas, MapPortal[] portals, Vector2 playerPosition)
     {
-        bool inside = false;
-        foreach (var area in areas)
-            if (area.enabled && area.isTrigger && area.OverlapPoint(spot)) { inside = true; break; }
-        if (!inside) return false;
+        if (!Inside(spot, areas)) return false;
         if (Vector2.Distance(spot, playerPosition) < PlayerClearance) return false;
         foreach (var portal in portals)
             if (Vector2.Distance(spot, portal.transform.position) < PortalClearance) return false;
