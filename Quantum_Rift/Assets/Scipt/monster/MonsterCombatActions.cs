@@ -204,6 +204,9 @@ public sealed class MonsterCombatActions : MonoBehaviour
         }
     }
 
+    // มอนที่เพิ่งโผล่: ห้ามโจมตีก่อนเวลานี้ (MonsterController ตั้งให้ตอนเกิดจากวงเตือน)
+    public void HoldAttacksUntil(float time){nextAttack=Mathf.Max(nextAttack,time);}
+
     public void CancelAttack()
     {
         move=Vector2.zero;

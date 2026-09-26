@@ -63,27 +63,31 @@ public static class Map1MonsterBuilder
     {
         public string Asset;
         public string[] Pool;     // มอนสเตอร์ทั่วไป (ชื่อไฟล์ MonsterData)
-        public int Min, Max;      // จำนวนรวมต่อห้อง (ห้องมีจุดเกิด 4 จุด)
-        public string[] Leaders;  // หัวหน้าหน่วย
+        public int Min, Max;      // จำนวนต่อระลอก (จุดเกิดสุ่มกระจายทั่วห้อง ไม่จำกัดตามจุดที่วางไว้แล้ว)
+        public int Waves = 1;     // จำนวนระลอก ระลอกถัดไปมาเมื่อมอนในห้องเหลือไม่เกิน NextWaveWhenAlive ตัว
+        public string[] Leaders;  // หัวหน้าหน่วย มากับระลอกสุดท้าย
         public float LeaderChance;
     }
+
+    const int NextWaveWhenAlive = 1;
 
     static readonly string[] Starters = { "Rift_Walker", "Flux-Jaw" };
     static readonly string[] Commons = { "Rift_Walker", "Flux-Jaw", "Echo-Stalker" };
     static readonly string[] Leaders = { "Phase-Soldier", "Mutated-Heavy" };
 
-    // ความยากไล่ขึ้นตามด่าน: 1-1 ปูพื้นด้วยตัวช้า ๆ, 1-2 เริ่มมี Echo Stalker และหัวหน้าหน่วยแทรก, 1-3 กองใหญ่ขึ้น
+    // ความยากไล่ขึ้นตามด่าน: 1-1 ปูพื้นด้วยตัวช้า ๆ 2 ระลอก, 1-2 เริ่มมี Echo Stalker และหัวหน้าหน่วยแทรก,
+    // 1-3 กองใหญ่ขึ้นเป็น 3 ระลอก ห้องทางออกมีหัวหน้าหน่วยคุมระลอกสุดท้ายทุกครั้ง
     static readonly (string mapPrefab, Tier room, Tier exit)[] Maps =
     {
         ("Assets/Prefab/map_1.prefab",
-            new Tier { Asset = "Map 1-1 - Room", Pool = Starters, Min = 2, Max = 3 },
-            new Tier { Asset = "Map 1-1 - Exit", Pool = Commons, Min = 3, Max = 4, Leaders = new[] { "Phase-Soldier" }, LeaderChance = 1f }),
+            new Tier { Asset = "Map 1-1 - Room", Pool = Starters, Min = 2, Max = 3, Waves = 2 },
+            new Tier { Asset = "Map 1-1 - Exit", Pool = Commons, Min = 3, Max = 4, Waves = 2, Leaders = new[] { "Phase-Soldier" }, LeaderChance = 1f }),
         ("Assets/Prefab/map_1_2.prefab",
-            new Tier { Asset = "Map 1-2 - Room", Pool = Commons, Min = 2, Max = 4, Leaders = Leaders, LeaderChance = 0.2f },
-            new Tier { Asset = "Map 1-2 - Exit", Pool = Commons, Min = 3, Max = 4, Leaders = Leaders, LeaderChance = 1f }),
+            new Tier { Asset = "Map 1-2 - Room", Pool = Commons, Min = 3, Max = 4, Waves = 2, Leaders = Leaders, LeaderChance = 0.2f },
+            new Tier { Asset = "Map 1-2 - Exit", Pool = Commons, Min = 3, Max = 4, Waves = 2, Leaders = Leaders, LeaderChance = 1f }),
         ("Assets/Prefab/map_1_3.prefab",
-            new Tier { Asset = "Map 1-3 - Room", Pool = Commons, Min = 3, Max = 4, Leaders = Leaders, LeaderChance = 0.35f },
-            new Tier { Asset = "Map 1-3 - Exit", Pool = Commons, Min = 4, Max = 4, Leaders = Leaders, LeaderChance = 1f }),
+            new Tier { Asset = "Map 1-3 - Room", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 0.35f },
+            new Tier { Asset = "Map 1-3 - Exit", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
     };
 
     [MenuItem("Tools/Quantum Rift/Setup Monster/Map 1 Monsters + Rooms (ตาราง 1.6–1.7)")]
@@ -111,6 +115,27 @@ public static class Map1MonsterBuilder
 
         AssetDatabase.SaveAssets();
         Debug.Log("ติดตั้งมอนสเตอร์แมพ 1 ครบ 5 ตัว และใส่ชุดมอนสเตอร์ให้ทุกห้องในแมพ 1-1 / 1-2 / 1-3 แล้ว");
+    }
+
+    // ตั้งแค่ชุดมอนสเตอร์ประจำห้อง (จำนวน/ระลอก/หัวหน้าหน่วย) ของ 1-1 / 1-2 / 1-3 ตามตาราง Maps
+    // ไม่แตะ prefab มอนสเตอร์และแมพ ใช้หลังปรับตัวเลขในตาราง หรือหลังเพิ่มระบบระลอก
+    [MenuItem("Tools/Quantum Rift/Setup Monster/Map 1 Room Waves (ระลอกมอนสเตอร์)")]
+    public static void SetupMap1Waves()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            throw new InvalidOperationException("ออกจาก Play Mode ก่อนสั่งตั้งระลอกมอนสเตอร์");
+
+        var data = Monsters.ToDictionary(spec => spec.Asset, spec => Load<MonsterData>($"{MonsterDataFolder}/{spec.Asset}.asset"));
+        foreach (var (_, room, exit) in Maps)
+        {
+            foreach (var tier in new[] { room, exit })
+            {
+                var encounter = BuildTier(tier, data);
+                Debug.Log($"{tier.Asset}: {encounter.minWaves} ระลอก ระลอกละ {encounter.minMonsters}–{encounter.maxMonsters} ตัว" +
+                          (encounter.leaderChance > 0f ? $" หัวหน้าหน่วย {encounter.leaderChance:P0}" : ""));
+            }
+        }
+        AssetDatabase.SaveAssets();
     }
 
     static MonsterData SetupMonster(MonsterSpec spec, int enemyLayer, int sortingLayerID)
@@ -200,6 +225,9 @@ public static class Map1MonsterBuilder
         encounter.possibleMonsters = tier.Pool.Select(name => data[name]).ToArray();
         encounter.minMonsters = tier.Min;
         encounter.maxMonsters = tier.Max;
+        encounter.minWaves = tier.Waves;
+        encounter.maxWaves = tier.Waves;
+        encounter.nextWaveWhenAlive = NextWaveWhenAlive;
         encounter.leaderMonsters = tier.Leaders != null ? tier.Leaders.Select(name => data[name]).ToArray() : Array.Empty<MonsterData>();
         encounter.leaderChance = tier.LeaderChance;
         EditorUtility.SetDirty(encounter);

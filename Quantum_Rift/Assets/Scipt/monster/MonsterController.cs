@@ -26,6 +26,9 @@ public class MonsterController : MonoBehaviour
     private bool stunTinted;
     private static readonly Color StunTint = new Color(0.55f, 0.9f, 1f, 1f);
 
+    // เพิ่งโผล่จากวงเตือน (RoomController): ยืนนิ่งหันหาผู้เล่นจนถึงเวลานี้ ก่อนเริ่มเดิน/โจมตี
+    private float awakeAt;
+
     [Header("ตอนตาย")]
     public float deathLinger = 0.6f; // นอนค้างท่าตายให้เห็นก่อนค่อยจางหาย
     public float deathFade = 0.4f;
@@ -48,6 +51,13 @@ public class MonsterController : MonoBehaviour
         IgnorePlayerCollisions();
         combatActions = GetComponent<MonsterCombatActions>();
         if (combatActions != null) combatActions.Initialize(myData, player);
+        // โผล่พร้อมกันหลายตัว: เหลื่อมจังหวะโจมตีแรกของแต่ละตัว ไม่ยิง/ตีพร้อมกันเป๊ะตอนตื่น
+        if (awakeAt > 0f)
+        {
+            float firstAttack = awakeAt + Random.Range(0.1f, 0.5f);
+            nextAttackTime = Mathf.Max(nextAttackTime, firstAttack);
+            if (combatActions != null) combatActions.HoldAttacksUntil(firstAttack);
+        }
         bossHud = GetComponent<BossHealthHudLink>();
         // เปิดหลอดเมื่อบอสถูกเสกในห้องต่อสู้ ไม่เปิดระหว่างดูตัวอย่างอนิเมชัน
         if (bossHud != null && myData != null && currentRoom != null)
@@ -58,7 +68,8 @@ public class MonsterController : MonoBehaviour
     {
         if (isDying) return;
         if (UpdateStun()) return;
-        if (isKnockedBack) return; 
+        if (Waking()) return;
+        if (isKnockedBack) return;
 
         if (combatActions != null)
         {
@@ -118,6 +129,21 @@ public class MonsterController : MonoBehaviour
             
             if (pMove != null) pMove.TakeKnockback(transform.position, knockbackForce);
         }
+    }
+
+    // เรียกทันทีหลังเสก (ก่อน Start) ผู้เล่นมีจังหวะตั้งตัวก่อนมอนเริ่มเดิน/โจมตี
+    public void WakeUpAfter(float seconds)
+    {
+        awakeAt = Time.time + Mathf.Max(0f, seconds);
+    }
+
+    // ระหว่างตื่น: ยืนนิ่ง หันหน้าหาผู้เล่น (โดนตีได้ตามปกติ)
+    protected bool Waking()
+    {
+        if (Time.time >= awakeAt) return false;
+        if (anim != null) anim.SetBool("isWalking", false);
+        if (player != null && sr != null) sr.flipX = player.position.x < transform.position.x;
+        return true;
     }
 
     public void Stun(float seconds)

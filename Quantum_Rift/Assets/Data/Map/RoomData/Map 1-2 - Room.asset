@@ -17,8 +17,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67899a0dc53d21045bdf6de2b55b6312, type: 2}
   - {fileID: 11400000, guid: 9df185cafd23ad84cbc789f503df27ab, type: 2}
   - {fileID: 11400000, guid: 22ffcc03da5362342b6bb59348475b76, type: 2}
-  minMonsters: 2
+  minMonsters: 3
   maxMonsters: 4
+  minWaves: 2
+  maxWaves: 2
+  nextWaveWhenAlive: 1
+  waveDelay: 0.6
   leaderMonsters:
   - {fileID: 11400000, guid: 543334e2ab04e2d4abb159194385a0cf, type: 2}
   - {fileID: 11400000, guid: a9db39b11cd20e3479b0882d35284cc5, type: 2}

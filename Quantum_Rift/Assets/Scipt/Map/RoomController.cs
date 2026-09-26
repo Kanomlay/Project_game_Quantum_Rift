@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -26,6 +28,14 @@ public class RoomController : MonoBehaviour
     private int aliveMonstersCount;
     private bool isSafeRoom; // ห้องของเหตุการณ์ (ร้านค้า) ไม่มีมอนสเตอร์ ประตูไม่ปิด
     private bool hadMonsters; // มีมอนสเตอร์ให้สู้จริง (ห้องว่างเคลียร์ทันทีแต่ไม่ได้กล่อง)
+    private int incomingMonsters; // วงเตือนขึ้นแล้ว ยังไม่โผล่
+    private int wavesLeft;        // ระลอกที่ยังไม่เริ่ม
+
+    // การเกิดมอนสเตอร์ (ใช้ทุกห้อง)
+    private const float SpawnWarning = 0.8f;    // วงเตือนขึ้นก่อนมอนโผล่
+    private const float SpawnStagger = 0.3f;    // มอนในระลอกเดียวกันขึ้นวงเหลื่อมกันไม่เกินเท่านี้
+    private const float WakeUpDelay = 0.5f;     // โผล่แล้วยืนนิ่งก่อนเริ่มเดิน/โจมตี
+    private const float MinPlayerDistance = 4f; // ไม่เกิดใกล้ผู้เล่นกว่านี้
 
     // เหตุการณ์ที่ MapEventDirector เลือกให้ห้องนี้ รอจังหวะเสก
     private GameObject pendingEventPrefab;
@@ -40,38 +50,109 @@ public class RoomController : MonoBehaviour
         if (hasStarted || isCleared) return;
         hasStarted = true;
 
-        int slots = monsterSpawnPoints != null ? monsterSpawnPoints.Length : 0;
-        var wave = roomData != null ? roomData.BuildWave(slots) : null;
-        // สุ่มลำดับจุดเกิด มอนสเตอร์จะได้ไม่มายืนที่เดิมทุกครั้งที่เข้าด่าน
-        var points = ShuffledSpawnPoints();
-
-        if (wave != null)
+        var waves = PlayableWaves();
+        hadMonsters = waves.Count > 0;
+        if (!hadMonsters)
         {
-            for (int i = 0; i < wave.Count; i++)
-            {
-                var data = wave[i];
-                // Missing/animation-only prefabs cannot report deaths; do not soft-lock.
-                if (data == null || data.monsterPrefab == null ||
-                    data.monsterPrefab.GetComponent<MonsterController>() == null) continue;
-                Transform point = points != null && points.Length > 0 ? points[i % points.Length] : transform;
-                // Map unloading also removes its spawned enemies.
-                var obj = Instantiate(data.monsterPrefab, point.position, Quaternion.identity, transform);
-                var monster = obj.GetComponent<MonsterController>();
-                monster.currentRoom = this;
-                monster.myData = data;
-                aliveMonstersCount++;
-            }
+            ClearRoom();
+            return;
         }
-        hadMonsters = aliveMonstersCount > 0;
-        if (hadMonsters) SetDoors(true);
-        else ClearRoom();
+        SetDoors(true);
+        StartCoroutine(RunWaves(waves));
     }
 
+    // ตัดตัวที่เสกไม่ได้ออก (ไม่มี prefab หรือ prefab มีแค่ภาพ รายงานการตายไม่ได้) ไม่งั้นห้องค้างไม่เคลียร์
+    private List<List<MonsterData>> PlayableWaves()
+    {
+        var waves = roomData != null ? roomData.BuildWaves() : new List<List<MonsterData>>();
+        foreach (var wave in waves)
+            wave.RemoveAll(data => data == null || data.monsterPrefab == null ||
+                                   data.monsterPrefab.GetComponent<MonsterController>() == null);
+        waves.RemoveAll(wave => wave.Count == 0);
+        return waves;
+    }
+
+    // ระลอกแรกมาทันทีที่เข้าห้อง ระลอกถัดไปรอจนมอนในห้องเหลือไม่เกิน nextWaveWhenAlive ตัว
+    // ประตูปิดไว้จนเคลียร์ระลอกสุดท้าย
+    private IEnumerator RunWaves(List<List<MonsterData>> waves)
+    {
+        wavesLeft = waves.Count;
+        for (int i = 0; i < waves.Count; i++)
+        {
+            if (i > 0)
+            {
+                while (aliveMonstersCount + incomingMonsters > roomData.nextWaveWhenAlive) yield return null;
+                if (roomData.waveDelay > 0f) yield return new WaitForSeconds(roomData.waveDelay);
+            }
+            wavesLeft--;
+            SpawnWave(waves[i]);
+        }
+    }
+
+    // ทุกตัวขึ้นวงเตือนก่อนแล้วค่อยโผล่ จัดฉาก (ห้องบอส) เกิดตรงจุดที่วางไว้ แบบสุ่มกระจายทั่วห้องห่างผู้เล่น
+    private void SpawnWave(List<MonsterData> wave)
+    {
+        var spots = roomData.IsStaged
+            ? AuthoredSpots(wave.Count)
+            : SpawnPlacement.Pick(this, wave.ConvertAll(data => data.monsterPrefab), PlayerPosition(), MinPlayerDistance);
+
+        for (int i = 0; i < wave.Count; i++)
+        {
+            MonsterData data = wave[i];
+            Vector2 spot = spots[i];
+            var emphasis = EmphasisOf(data);
+            incomingMonsters++;
+            SpawnTelegraph.Begin(transform, spot, SpawnPlacement.Measure(data.monsterPrefab), emphasis,
+                                 SpawnTelegraph.ColorFor(this, emphasis), SpawnWarning,
+                                 i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot));
+        }
+    }
+
+    // วงเตือนครบเวลา: เสกมอนจริง เป็นลูกของห้อง (เปลี่ยนด่านแล้วหายไปพร้อมแมพ)
+    private GameObject SpawnMonster(MonsterData data, Vector2 spot)
+    {
+        incomingMonsters--;
+        if (isCleared) return null;
+        var obj = Instantiate(data.monsterPrefab, spot, Quaternion.identity, transform);
+        var monster = obj.GetComponent<MonsterController>();
+        monster.currentRoom = this;
+        monster.myData = data;
+        monster.WakeUpAfter(WakeUpDelay);
+        aliveMonstersCount++;
+        return obj;
+    }
+
+    private SpawnTelegraph.Emphasis EmphasisOf(MonsterData data)
+    {
+        if (data.monsterPrefab.GetComponent<BossHealthHudLink>() != null) return SpawnTelegraph.Emphasis.Boss;
+        return roomData.IsLeader(data) ? SpawnTelegraph.Emphasis.Leader : SpawnTelegraph.Emphasis.Normal;
+    }
+
+    // สุ่มลำดับจุดเกิดที่วางไว้ มอนสเตอร์จะได้ไม่มายืนที่เดิมทุกครั้งที่เข้าด่าน
+    private List<Vector2> AuthoredSpots(int count)
+    {
+        var points = ShuffledSpawnPoints();
+        var spots = new List<Vector2>(count);
+        for (int i = 0; i < count; i++)
+        {
+            Transform point = points != null && points.Length > 0 ? points[i % points.Length] : null;
+            spots.Add(point != null ? point.position : transform.position);
+        }
+        return spots;
+    }
+
+    private Vector2 PlayerPosition()
+    {
+        var hero = GameObject.FindGameObjectWithTag("Player");
+        return hero != null ? hero.transform.position : transform.position;
+    }
+
+    // เคลียร์เมื่อตัวสุดท้ายของระลอกสุดท้ายล้ม (ไม่มีวงเตือนค้างและไม่เหลือระลอกรอ)
     public void OnMonsterDied()
     {
         if (!hasStarted || isCleared || aliveMonstersCount <= 0) return;
         aliveMonstersCount--;
-        if (aliveMonstersCount == 0) ClearRoom();
+        if (aliveMonstersCount == 0 && incomingMonsters == 0 && wavesLeft == 0) ClearRoom();
     }
 
     // MapEventDirector เรียกตอนแมพโหลดเสร็จ เพื่อจองห้องนี้ให้เป็นห้องเหตุการณ์ของแมพ

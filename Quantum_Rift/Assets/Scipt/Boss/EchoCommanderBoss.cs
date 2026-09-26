@@ -136,25 +136,42 @@ public class EchoCommanderBoss : MonsterController
         isCasting = false;
     }
 
+    // ลูกน้องโผล่จากวงเตือนสั้น ๆ แบบเดียวกับมอนในห้อง ผู้เล่นเห็นก่อนว่าจะโผล่ตรงไหน
     private void SpawnMinion(int index)
     {
         var data = minions[Random.Range(0, minions.Length)];
         if (data == null || data.monsterPrefab == null) return;
         if (data.monsterPrefab.GetComponent<MonsterController>() == null) return;
 
-        var spawned = Instantiate(data.monsterPrefab, PickSummonPosition(index), Quaternion.identity, transform.parent);
+        Vector3 spot = PickSummonPosition(index, data.monsterPrefab);
+        var emphasis = SpawnTelegraph.Emphasis.Normal;
+        SpawnTelegraph.Begin(transform.parent, spot, SpawnPlacement.Measure(data.monsterPrefab), emphasis,
+                             SpawnTelegraph.ColorFor(this, emphasis), MinionWarning, index * 0.12f, () =>
+        {
+            if (isDying || !gameObject.activeInHierarchy) return null; // บอสล้มระหว่างวงเตือน ไม่ต้องเสกแล้ว
 
-        var controller = spawned.GetComponent<MonsterController>();
-        controller.myData = data;
-        // ตั้งใจไม่ผูกกับห้อง: ถ้าให้ลูกน้องรายงานการตายด้วย ห้องจะนับว่าเคลียร์แล้วเปิดประตูทั้งที่บอสยังอยู่
-        controller.currentRoom = null;
+            var spawned = Instantiate(data.monsterPrefab, spot, Quaternion.identity, transform.parent);
+            var controller = spawned.GetComponent<MonsterController>();
+            controller.myData = data;
+            // ตั้งใจไม่ผูกกับห้อง: ถ้าให้ลูกน้องรายงานการตายด้วย ห้องจะนับว่าเคลียร์แล้วเปิดประตูทั้งที่บอสยังอยู่
+            controller.currentRoom = null;
+            controller.WakeUpAfter(MinionWakeUp);
 
-        aliveMinions.Add(spawned);
+            aliveMinions.Add(spawned);
+            return spawned;
+        });
     }
 
-    // ใช้จุดเกิดมอนสเตอร์ของห้องถ้ามี ไม่งั้นวางเป็นวงรอบตัวบอส
-    private Vector3 PickSummonPosition(int index)
+    private const float MinionWarning = 0.5f; // สั้นกว่ามอนในห้อง เพราะบอสร่ายท่าเรียกให้เห็นก่อนแล้ว
+    private const float MinionWakeUp = 0.3f;
+
+    // โผล่รอบตัวบอสตรงที่ว่างในห้อง (ไม่จมกำแพง ไม่ทับผู้เล่น) หาไม่ได้ใช้จุดเกิดของห้อง ไม่งั้นวางเป็นวงรอบตัวบอส
+    private Vector3 PickSummonPosition(int index, GameObject prefab)
     {
+        Vector2 hero = player != null ? (Vector2)player.position : (Vector2)transform.position + Vector2.one * 99f;
+        if (SpawnPlacement.TryPickNear(currentRoom, prefab, transform.position, summonRadius, hero, 2.5f, out Vector2 near))
+            return near;
+
         var points = currentRoom != null ? currentRoom.monsterSpawnPoints : null;
         if (points != null && points.Length > 0)
         {
