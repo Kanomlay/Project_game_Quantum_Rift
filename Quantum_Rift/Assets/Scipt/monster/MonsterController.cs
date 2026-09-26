@@ -45,6 +45,7 @@ public class MonsterController : MonoBehaviour
 
         GameObject hero = GameObject.FindGameObjectWithTag("Player");
         if (hero != null) player = hero.transform;
+        IgnorePlayerCollisions();
         combatActions = GetComponent<MonsterCombatActions>();
         if (combatActions != null) combatActions.Initialize(myData, player);
         bossHud = GetComponent<BossHealthHudLink>();
@@ -220,6 +221,18 @@ public class MonsterController : MonoBehaviour
             }
         }
         gameObject.SetActive(false);
+    }
+
+    // ผู้เล่นเดินชนแล้วผลักมอนสเตอร์ไม่ได้ และมอนก็ไม่ดันผู้เล่น: ปิดการชนทางฟิสิกส์ระหว่างกันเป็นคู่ ๆ
+    // (ไม่ต้องตั้ง layer) ผู้เล่นยังเดินทะลุไม่ได้ เพราะ PlayerMovement เช็คแล้วหยุด/ไถลเลียบตัวมอนเอง
+    // มอนสเตอร์ด้วยกันยังชนกันตามปกติ ไม่ยืนซ้อนกัน
+    private void IgnorePlayerCollisions()
+    {
+        if (player == null) return;
+        var own = GetComponentsInChildren<Collider2D>(true);
+        foreach (var theirs in player.GetComponentsInChildren<Collider2D>(true))
+            foreach (var mine in own)
+                Physics2D.IgnoreCollision(mine, theirs, true);
     }
 
     // บอสบางตัวยังไม่มีท่าตาย (ไม่มีพารามิเตอร์ isDead) ถ้าสั่งไปจะมีคำเตือนเต็ม Console

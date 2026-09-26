@@ -16,6 +16,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public float projectileSize = .45f;
     public float lungeTriggerDistance = 3f; // Lunge: เริ่มพุ่งเมื่อผู้เล่นอยู่ในระยะนี้
     public float lungeSpeed = 6.5f;         // Lunge: ความเร็วพุ่งช่วงง้างท่า ก่อนเฟรมกระทบ
+    public float lungeStopDistance = 0.9f;  // Lunge: หยุดพุ่งเมื่อถึงตัวผู้เล่น (ไม่ชนกันทางฟิสิกส์แล้ว ต้องหยุดเอง)
     [Header("Rifle แบบตั้งท่าเล็งค้าง (Phase Soldier)")]
     public bool holdAim;                  // ยกปืนค้างยิงต่อเนื่อง ไม่ลดปืนทุกนัด (ต้องมี isAiming/Fire ใน Animator)
     public float keepAwayDistance = 2.5f; // ผู้เล่นเข้าใกล้กว่านี้ ลดปืนแล้วถอยออกไปตั้งหลัก
@@ -138,8 +139,13 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(style==Style.Lunge&&!ranged)
         {
             // Echo Stalker พุ่งเข้าหาช่วงง้างท่า แล้วค่อยฟันที่เฟรมกระทบ (ชนกำแพงก็หยุดเองเพราะใช้ความเร็ว)
-            body.linearVelocity=aim*lungeSpeed;
-            yield return new WaitForSeconds(impact);
+            // ถึงตัวผู้เล่นแล้วหยุด ไม่พุ่งทะลุไปซ้อนทับ
+            for(float t=0f;t<impact;t+=Time.deltaTime)
+            {
+                bool arrived=target!=null&&Vector2.Distance(transform.position,target.position)<=lungeStopDistance;
+                body.linearVelocity=arrived?Vector2.zero:aim*lungeSpeed;
+                yield return null;
+            }
             body.linearVelocity=Vector2.zero;
         }
         else yield return new WaitForSeconds(impact);

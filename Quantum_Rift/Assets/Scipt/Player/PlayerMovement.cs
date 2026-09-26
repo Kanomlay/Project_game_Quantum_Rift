@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
+        foreach (var col in GetComponents<Collider2D>())
+            if (!col.isTrigger) { bodyCollider = col; break; }
 
         if (GameManager.selectedCharacter != null)
         {
@@ -89,7 +91,61 @@ public class PlayerMovement : MonoBehaviour
         if (isKnockedBack) return;
         Vector2 velocity = movement.normalized * currentSpeed;
         if (Time.time < attackStepUntil) velocity += attackStepVelocity;
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + AvoidMonsters(velocity * Time.fixedDeltaTime));
+    }
+
+    // มอนสเตอร์เป็นสิ่งกีดขวางที่ผลักไม่ได้ (แบบเกมทั่วไป): เดินชนแล้วหยุดตรงตัวมอน หรือไถลเลียบตัวมอนต่อ
+    // ฟิสิกส์ระหว่างผู้เล่นกับมอนสเตอร์ถูกปิดไว้ (MonsterController) ต่างฝ่ายจึงดันกันไม่ได้ ต้องกันการเดินทับเองตรงนี้
+    // ถ้าทับกันอยู่แล้ว (มอนพุ่งเข้ามาชิด) ยังเดินออกได้ แต่เดินลึกเข้าไปอีกไม่ได้
+    private Collider2D bodyCollider;
+    private readonly RaycastHit2D[] blockHits = new RaycastHit2D[8];
+    private ContactFilter2D blockFilter = new ContactFilter2D { useTriggers = false };
+    private const float BlockSkin = 0.02f;
+
+    private Vector2 AvoidMonsters(Vector2 step)
+    {
+        if (bodyCollider == null || !bodyCollider.enabled || step.sqrMagnitude < 1e-8f) return step;
+        Vector2 moved = ClampToMonsters(step, out Vector2 normal);
+        if (normal == Vector2.zero) return step;
+
+        // ส่วนที่ติดตัวมอน เปลี่ยนเป็นไถลตามผิวมอนแทน (ไม่ต้องหยุดนิ่งเวลาเดินเฉียง)
+        Vector2 rest = step - moved;
+        Vector2 slide = rest - Vector2.Dot(rest, normal) * normal;
+        if (slide.sqrMagnitude < 1e-8f) return moved;
+        return moved + ClampToMonsters(slide, out _);
+    }
+
+    private Vector2 ClampToMonsters(Vector2 step, out Vector2 normal)
+    {
+        normal = Vector2.zero;
+        float distance = step.magnitude;
+        if (distance < 1e-6f) return step;
+        Vector2 direction = step / distance;
+        float allowed = distance;
+
+        int count = bodyCollider.Cast(direction, blockFilter, blockHits, distance + BlockSkin, true);
+        for (int i = 0; i < count; i++)
+        {
+            var hit = blockHits[i];
+            var monster = hit.collider.GetComponentInParent<MonsterController>();
+            if (monster == null || !monster.IsAlive) continue; // กำแพงให้ฟิสิกส์จัดการตามปกติ
+
+            Vector2 surface = hit.normal;
+            if (hit.distance <= 0.0001f)
+            {
+                Vector2 away = (Vector2)bodyCollider.bounds.center - (Vector2)hit.collider.bounds.center;
+                if (Vector2.Dot(direction, away) >= 0f) continue; // กำลังเดินออกจากตัวมอน
+                surface = away.sqrMagnitude > 1e-6f ? away.normalized : -direction;
+            }
+
+            float free = Mathf.Max(0f, hit.distance - BlockSkin);
+            if (free < allowed)
+            {
+                allowed = free;
+                normal = surface;
+            }
+        }
+        return direction * allowed;
     }
 
     // ก้าวตามแรงตีสั้น ๆ (ติดลบ = ถอยจากแรงถีบปืน) บวกกับการเดินปกติ ชนกำแพงก็หยุดเองตามฟิสิกส์
