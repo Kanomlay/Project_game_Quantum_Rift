@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 1
   attackDamage: 6
   attackSpeed: 1
-  attackRange: 1.5
+  attackRange: 1.9
   attackAngle: 90
   energyCost: 0
   motion: {fileID: 11400000, guid: 5cfa4838483eedc4faa5320ad5ce6261, type: 2}

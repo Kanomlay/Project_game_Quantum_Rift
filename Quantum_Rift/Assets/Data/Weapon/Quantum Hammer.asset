@@ -15,15 +15,15 @@ MonoBehaviour:
   weaponName: "\u0E04\u0E49\u0E2D\u0E19\u0E04\u0E27\u0E2D\u0E19\u0E15\u0E31\u0E21"
   weaponIcon: {fileID: 21300000, guid: 0eb5de633731ec444a4992037f86df95, type: 3}
   weaponPrefab: {fileID: 5193238447344982505, guid: 1db3c5f3d96764041aca2d27798ff37d, type: 3}
-  weaponType: 0
+  weaponType: 5
   rarity: 3
   attackDamage: 20
   attackSpeed: 0.7
-  attackRange: 1.8
+  attackRange: 2.3
   attackAngle: 90
   energyCost: 5
-  motion: {fileID: 11400000, guid: 5cfa4838483eedc4faa5320ad5ce6261, type: 2}
-  slashEffectPrefab: {fileID: 538826204133080904, guid: 439a3d49603c35f44bc798e3abf0444f, type: 3}
+  motion: {fileID: 11400000, guid: c09d8162e924eca49881c2776fc9d12d, type: 2}
+  slashEffectPrefab: {fileID: 0}
   projectilePrefab: {fileID: 0}
   projectileSpeed: 14
   projectileLifetime: 1.5
@@ -38,9 +38,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6a8923de899445c428dd259728fb2cad, type: 3}
   - {fileID: 21300000, guid: 9a2e6c8449146714b9c8712532ebe226, type: 3}
   - {fileID: 21300000, guid: 008d792b8ea33ac48bccc8d319a3f312, type: 3}
-  specialScale: 1.8
+  specialScale: 2.1
   specialDamage: 5
-  specialRadius: 1.5
+  specialRadius: 1.7
   specialSpeed: 11
   specialRange: 7
   specialDuration: 0.5
