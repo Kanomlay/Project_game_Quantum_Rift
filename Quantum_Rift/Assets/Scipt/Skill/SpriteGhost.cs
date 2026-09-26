@@ -10,8 +10,14 @@ public sealed class SpriteGhost : MonoBehaviour
     {
         if (source == null || source.sprite == null) return;
         var go = new GameObject("Ghost");
-        go.transform.SetPositionAndRotation(source.transform.position, source.transform.rotation);
-        go.transform.localScale = source.transform.lossyScale;
+        // อ่านมุม/ขนาดจากเมทริกซ์จริง: rotation กับ lossyScale ของ Unity ไม่นับการพลิกของตัวแม่
+        // (อาวุธตอนเล็งซ้าย WeaponHolder พลิกแกน Y) เงาจะหมุนผิดทางจากตัวจริง
+        Matrix4x4 m = source.transform.localToWorldMatrix;
+        Vector2 right = new Vector2(m.m00, m.m10), up = new Vector2(m.m01, m.m11);
+        float flip = right.x * up.y - right.y * up.x < 0f ? -1f : 1f;
+        go.transform.SetPositionAndRotation(source.transform.position,
+            Quaternion.Euler(0f, 0f, Mathf.Atan2(right.y, right.x) * Mathf.Rad2Deg));
+        go.transform.localScale = new Vector3(right.magnitude, up.magnitude * flip, 1f);
 
         var ghost = go.AddComponent<SpriteGhost>();
         ghost.view = go.AddComponent<SpriteRenderer>();

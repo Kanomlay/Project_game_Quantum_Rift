@@ -44,9 +44,8 @@ public class WeaponController : MonoBehaviour
     private float ComboWindow => AttackInterval * 1.5f;
     private const float RestAngle = 0f; // ท่าพัก = ปลายดาบชี้ตรงไปทางเมาส์
 
-    // WeaponHolder พลิกแกน Y ตอนเล็งไปทางซ้าย ทั้งมุมสวิงและด้านคมดาบต้องกลับเครื่องหมายตาม
-    // ไม่งั้นทิศฟันกับด้านคมจะสลับกันเวลาหันซ้าย
-    private float AimMirror => (transform.localScale.y < 0f) ? -1f : 1f;
+    // WeaponHolder พลิกแกน Y ตอนเล็งไปทางซ้าย มุมสวิง/ด้านคม/คลื่นฟันที่เป็นลูกของมันจึงสะท้อนกระจกตามเอง
+    // (ฟันบนลงล่าง ยกค้อนขึ้นแล้วทุบลง เหมือนฝั่งขวา) ห้ามกลับเครื่องหมายซ้ำ ไม่งั้นท่าฝั่งซ้ายกลายเป็นหมุน 180° แทน
 
     // ตัวละครแต่ละตัวถูกย่อ/ขยายไม่เท่ากัน WeaponHolder จึงต้องมี scale ชดเชยของตัวเองไว้ให้ดาบขนาดเท่าเดิม
     // ต้องจำไว้ตั้งแต่แรก ไม่งั้นตอนพลิกซ้าย/ขวาจะถูกรีเซ็ตกลับเป็น 1
@@ -697,7 +696,7 @@ public class WeaponController : MonoBehaviour
     }
 
     // คลื่นฟันของกรงเล็บ เกิดที่ปลายเล็บข้างที่ตี มือบนกวาดลง มือล่างกวาดขึ้น
-    // ไม่คูณ AimMirror แบบดาบ เพราะมือบน/ล่างพลิกไปพร้อม WeaponHolder อยู่แล้ว
+    // มือบน/ล่างพลิกไปพร้อม WeaponHolder อยู่แล้ว (เหมือนดาบ)
     private void SpawnClawSlash(Transform tip, bool upper)
     {
         if (currentWeaponData.slashEffectPrefab == null) return;
@@ -819,12 +818,10 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeaponObject == null) return;
 
-        float mirror = AimMirror;
         Transform weapon = currentWeaponObject.transform;
         Vector3 scale = new Vector3(weaponBaseScale.x * weaponStretch.x, weaponBaseScale.y * weaponStretch.y, weaponBaseScale.z);
 
-        // ปืน/ธนู/กรงเล็บคู่/หอกไม่มีท่าสวิงและไม่มีด้านคม ปล่อยให้ WeaponHolder พลิกอย่างเดียว
-        // ถ้าพลิกซ้ำแบบดาบ พอเล็งไปทางซ้ายด้ามปืนจะหงายขึ้นฟ้า และมือบน/ล่างของกรงเล็บจะสลับกัน
+        // ปืน/ธนู/กรงเล็บคู่/หอกไม่มีท่าสวิงและไม่มีด้านคม ตั้งตรงตาม WeaponHolder อย่างเดียว
         if (currentClaws != null || IsSpear || (currentWeaponData != null && currentWeaponData.IsRanged))
         {
             weapon.localEulerAngles = Vector3.zero;
@@ -832,9 +829,9 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        weapon.localEulerAngles = new Vector3(0f, 0f, currentSwingAngle * mirror);
+        weapon.localEulerAngles = new Vector3(0f, 0f, currentSwingAngle);
 
-        scale.y *= (bladeEdgeUp ? -1f : 1f) * mirror;
+        if (bladeEdgeUp) scale.y = -scale.y;
         weapon.localScale = scale;
     }
 
@@ -851,7 +848,7 @@ public class WeaponController : MonoBehaviour
         slash.transform.localRotation = Quaternion.identity;
 
         Vector3 scale = slash.transform.localScale * SlashSize();
-        scale.y = (downward ? 1f : -1f) * AimMirror * Mathf.Abs(scale.y); // ฟันขึ้นให้พลิกคลื่นกลับด้านตามดาบ
+        scale.y = (downward ? 1f : -1f) * Mathf.Abs(scale.y); // ฟันขึ้นให้พลิกคลื่นกลับด้านตามดาบ
         slash.transform.localScale = scale;
     }
 
