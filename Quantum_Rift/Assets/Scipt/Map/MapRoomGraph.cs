@@ -12,6 +12,7 @@ public sealed class MapRoomGraph
         public Vector2 center;
         public Collider2D[] areas;
         public bool visited;
+        public bool hasExitPortal;
         public bool Contains(Vector2 point)
         {
             if (room == null) return Mathf.Abs(point.x-center.x)<5f && Mathf.Abs(point.y-center.y)<5f;
@@ -46,6 +47,21 @@ public sealed class MapRoomGraph
             nodes.Add(new Node {id=0,center=spawn!=null?(Vector2)spawn.position:(Vector2)map.transform.position});
         }
         nodes.Sort((a,b)=>a.id.CompareTo(b.id));
+        // ประตูซ่อนภาพระหว่างสู้ แต่ห้องทางออกเปิดเผยบนแผนที่ได้เมื่อเคยเข้าห้องแล้ว
+        foreach (var portal in map.GetComponentsInChildren<MapPortal>(true))
+        {
+            // ข้ามประตูของผังที่ไม่ได้เลือก แม้ต้องรองรับตัวประตูที่ปิดไว้เอง
+            var layout = map.GetComponent<MapLayoutRandomizer>();
+            if (layout != null && layout.layouts.Any(l => l != null &&
+                portal.transform.IsChildOf(l.transform) && !l.activeInHierarchy)) continue;
+            var owner = portal.GetComponentInParent<RoomController>();
+            var node = nodes.FirstOrDefault(n => owner != null && n.room == owner);
+            if (node == null) node = nodes.FirstOrDefault(n => n.room != null && n.Contains(portal.transform.position));
+            if (node == null) node = nodes.Where(n => n.room != null &&
+                Vector2.Distance(n.center, portal.transform.position) < 3f)
+                .OrderBy(n => Vector2.Distance(n.center, portal.transform.position)).FirstOrDefault();
+            if (node != null) node.hasExitPortal = true;
+        }
         foreach(var link in links.OrderBy(e=>e.x).ThenBy(e=>e.y))
         {
             int a=nodes.FindIndex(n=>n.id==link.x), b=nodes.FindIndex(n=>n.id==link.y);

@@ -1,14 +1,26 @@
 using UnityEngine;
 
-/// <summary>A random map prop that can be destroyed by melee weapons or projectiles.</summary>
+/// <summary>กล่องเสบียงประจำจุด ทำลายด้วยอาวุธเพื่อสุ่มเลือดหรือพลังงาน</summary>
 public sealed class BreakableProp : MonoBehaviour
 {
-    SpriteRenderer display;
-    Collider2D[] blockers;
-    Sprite hpPotion, energyPotion;
-    Transform dropParent;
+    [SerializeField] SpriteRenderer display;
+    [SerializeField] Collider2D[] blockers;
+    [SerializeField] Sprite hpPotion, energyPotion;
+    [SerializeField] Transform dropParent;
+    [SerializeField] float maxHealth = 12f;
     float health;
     bool broken;
+    bool initialized;
+    public bool IsBroken => broken;
+
+    void Awake() { Initialize(); }
+    public void Initialize()
+    {
+        if (initialized) return;
+        initialized = true;
+        if (display == null) display = GetComponent<SpriteRenderer>();
+        health = maxHealth;
+    }
 
     public void Configure(SpriteRenderer renderer, Collider2D[] solidColliders,
         Sprite healthDrop, Sprite energyDrop, Transform mapRoot, float hitPoints = 12f)
@@ -18,8 +30,10 @@ public sealed class BreakableProp : MonoBehaviour
         hpPotion = healthDrop;
         energyPotion = energyDrop;
         dropParent = mapRoot;
+        maxHealth = hitPoints;
         health = hitPoints;
-        var hitbox = gameObject.AddComponent<CircleCollider2D>();
+        var hitbox = GetComponent<CircleCollider2D>();
+        if (hitbox == null) hitbox = gameObject.AddComponent<CircleCollider2D>();
         hitbox.isTrigger = true;
         float width = renderer != null && renderer.sprite != null ?
             renderer.sprite.bounds.size.x * Mathf.Abs(renderer.transform.lossyScale.x) : 1f;
@@ -29,6 +43,7 @@ public sealed class BreakableProp : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        Initialize();
         if (broken || amount <= 0f || display == null || !display.enabled) return;
         health -= amount;
         if (health > 0f)
@@ -38,7 +53,7 @@ public sealed class BreakableProp : MonoBehaviour
         }
         broken = true;
         ImpactSparks.Spawn(transform.position, new Color(.75f,.9f,1f), 7, Vector2.up);
-        display.enabled = false;
+        foreach (var visual in GetComponentsInChildren<Renderer>()) visual.enabled = false;
         if (blockers != null)
             foreach (var blocker in blockers) if (blocker != null) blocker.enabled = false;
         foreach (var hitbox in GetComponents<CircleCollider2D>()) hitbox.enabled = false;

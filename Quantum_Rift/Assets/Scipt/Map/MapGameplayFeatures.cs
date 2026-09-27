@@ -41,29 +41,11 @@ public sealed class MapGameplayFeatures : MonoBehaviour
         walls = tiles.FirstOrDefault(t=>t.name=="Bulkheads_Unified64");
         gates = GetComponentsInChildren<AnimatedRoomGate>(false).Select(g=>g.transform).ToArray();
         portals = GetComponentsInChildren<MapPortal>(false).Select(p=>p.transform).ToArray();
-        PlaceBreakables(random);
+        // กล่องถูกวางไว้ใน prefab ของแต่ละผัง ตำแหน่งและชนิดไม่สุ่มตามพร็อพตกแต่ง
+        foreach (var crate in GetComponentsInChildren<BreakableProp>(false)) crate.Initialize();
         TrySpawnTrap(playerSpawn,Vector2.up,false);
         TrySpawnTrap(playerSpawn,Vector2.up,false);
         nextSpawn = Time.time + Range(minSpawnInterval,maxSpawnInterval);
-    }
-
-    void PlaceBreakables(System.Random random)
-    {
-        var available = new List<MapAssetRandomizer.Slot>();
-        foreach (var randomizer in GetComponentsInChildren<MapAssetRandomizer>(false))
-            foreach (var slot in randomizer.slots)
-                if (slot != null && slot.display != null && slot.display.gameObject.activeInHierarchy &&
-                    slot.display.enabled && slot.display.GetComponent<BreakableProp>() == null)
-                    available.Add(slot);
-        int count = Mathf.Min(6, available.Count);
-        for (int i = 0; i < count; i++)
-        {
-            int pick = random.Next(available.Count);
-            var slot = available[pick];
-            available.RemoveAt(pick);
-            var prop = slot.display.gameObject.AddComponent<BreakableProp>();
-            prop.Configure(slot.display, slot.blockers, healthPotionSprite, energyPotionSprite, transform);
-        }
     }
 
     float Range(float min,float max)=>Mathf.Lerp(min,max,(float)random.NextDouble());
@@ -134,6 +116,7 @@ public sealed class MapGameplayFeatures : MonoBehaviour
         }
         if(gates.Any(g=>Vector2.Distance(g.position,spot)<3.3f) || portals.Any(p=>Vector2.Distance(p.position,spot)<3.3f))return false;
         if(activeTraps.Any(t=>t!=null && Vector2.Distance(t.transform.position,spot)<radiusClearance))return false;
+        if(GetComponentsInChildren<FixedSpikeTrap>(false).Any(t=>Vector2.Distance(t.transform.position,spot)<2.5f))return false;
         foreach(var col in Physics2D.OverlapCircleAll(spot,.7f))if(LootPlacement.IsSolid(col))return false;
         return true;
     }

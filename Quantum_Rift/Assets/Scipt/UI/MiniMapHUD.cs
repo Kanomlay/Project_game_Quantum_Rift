@@ -8,6 +8,7 @@ public sealed class MiniMapHUD : MonoBehaviour
 {
     readonly List<Image> markers=new List<Image>();
     readonly List<TMP_Text> questions=new List<TMP_Text>();
+    readonly List<GameObject> exitIcons=new List<GameObject>();
     Transform player;
     GameObject mapRoot;
     MapRoomGraph graph;
@@ -45,7 +46,7 @@ public sealed class MiniMapHUD : MonoBehaviour
             var child=transform.GetChild(i).gameObject; child.SetActive(false);
             if(Application.isPlaying)Destroy(child);else DestroyImmediate(child);
         }
-        markers.Clear();questions.Clear();
+        markers.Clear();questions.Clear();exitIcons.Clear();
         Box("Inset",Vector2.zero,new Vector2(312,224),new Color32(12,17,31,245));
         Box("Accent",new Vector2(0,114),new Vector2(42,3),new Color32(98,212,228,255));
         gameObject.SetActive(graph.nodes.Count>0);if(graph.nodes.Count==0)return;
@@ -71,9 +72,34 @@ public sealed class MiniMapHUD : MonoBehaviour
             label.font=hud.currencyText.font;label.fontSize=24;label.text="?";
             label.alignment=TextAlignmentOptions.Center;label.overflowMode=TextOverflowModes.Overflow;
             label.raycastTarget=false;questions.Add(label);
+            exitIcons.Add(CreateExitIcon(marker.rectTransform));
         }
         playerDot=Box("Player",Vector2.zero,new Vector2(8,8),Color.white).rectTransform;
         Refresh();
+    }
+    // ไอคอนประตูมิติวาดด้วย UI ชิ้นเล็ก จึงคมชัดและไม่พึ่งตัวอักษรพิเศษในฟอนต์
+    GameObject CreateExitIcon(RectTransform room)
+    {
+        var icon = new GameObject("ExitPortalIcon", typeof(RectTransform));
+        icon.layer = 5; icon.transform.SetParent(room, false);
+        var root = (RectTransform)icon.transform;
+        root.anchorMin = root.anchorMax = root.pivot = Vector2.one * .5f;
+        root.sizeDelta = new Vector2(24,26);
+        IconPart(root,new Vector2(-8,0),new Vector2(4,20),new Color32(219,177,255,255));
+        IconPart(root,new Vector2(8,0),new Vector2(4,20),new Color32(219,177,255,255));
+        IconPart(root,new Vector2(0,10),new Vector2(12,4),new Color32(219,177,255,255));
+        IconPart(root,new Vector2(0,-10),new Vector2(12,4),new Color32(219,177,255,255));
+        IconPart(root,Vector2.zero,new Vector2(12,16),new Color32(78,32,120,255));
+        IconPart(root,new Vector2(0,-1),new Vector2(9,3),new Color32(107,246,247,255));
+        IconPart(root,new Vector2(4,-1),new Vector2(3,7),new Color32(107,246,247,255));
+        icon.SetActive(false); return icon;
+    }
+    static void IconPart(RectTransform parent,Vector2 position,Vector2 size,Color color)
+    {
+        var part=new GameObject("Pixel",typeof(RectTransform),typeof(Image));part.layer=5;
+        part.transform.SetParent(parent,false);
+        var rect=(RectTransform)part.transform;rect.anchoredPosition=position;rect.sizeDelta=size;
+        var image=part.GetComponent<Image>();image.color=color;image.raycastTarget=false;
     }
     Image Box(string name,Vector2 position,Vector2 size,Color color)
     {
@@ -102,7 +128,9 @@ public sealed class MiniMapHUD : MonoBehaviour
             markers[i].color=i==current?new Color32(58,183,195,255):node.visited?
                 new Color32(91,119,159,255):new Color32(69,57,104,255);
             questions[i].gameObject.SetActive(!node.visited);
+            exitIcons[i].SetActive(node.visited && node.hasExitPortal);
         }
         playerDot.anchoredPosition=Project(player.position);
+        if(current>=0 && graph.nodes[current].hasExitPortal) playerDot.anchoredPosition += new Vector2(19,-11);
     }
 }
