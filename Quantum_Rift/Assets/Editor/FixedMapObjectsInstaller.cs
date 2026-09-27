@@ -188,7 +188,7 @@ public static class FixedMapObjectsInstaller
                 Physics2D.SyncTransforms();
                 var boxes=map.GetComponentsInChildren<BreakableProp>();
                 var spikes=map.GetComponentsInChildren<FixedSpikeTrap>();
-                Check(boxes.Length==6 && spikes.Length==6,name+" missing fixed objects "+variant);
+                Check(boxes.Length>=6 && spikes.Length>=6,name+" missing fixed objects "+variant);
                 var positions=boxes.Select(b=>b.transform.position).ToArray();
                 var spriteNames=boxes.Select(b=>b.GetComponent<SpriteRenderer>().sprite.name).ToArray();
                 foreach(var rng in map.GetComponentsInChildren<MapAssetRandomizer>())
@@ -199,10 +199,10 @@ public static class FixedMapObjectsInstaller
                 for(int i=0;i<boxes.Length;i++)Check(positions[i]==boxes[i].transform.position && spriteNames[i]==boxes[i].GetComponent<SpriteRenderer>().sprite.name,"Crate changed with random seed");
                 Physics2D.SyncTransforms();
                 foreach(var fixedObject in boxes.Select(b=>b.transform).Concat(spikes.Select(s=>s.transform)))
-                    foreach(var hit in Physics2D.OverlapBoxAll(fixedObject.position,new Vector2(1.5f,.85f),0))
+                    foreach(var hit in Physics2D.OverlapBoxAll(fixedObject.GetComponent<BoxCollider2D>().bounds.center,(Vector2)fixedObject.GetComponent<BoxCollider2D>().bounds.size*.9f,0))
                         Check(!LootPlacement.IsSolid(hit) || hit.transform.IsChildOf(fixedObject),"Fixed object overlaps solid: "+name+"/"+variant+" "+fixedObject.name+" with "+hit.name);
                 map.GetComponent<MapGameplayFeatures>().Initialize(new Vector2(9999,9999));
-                Check(map.GetComponentsInChildren<BreakableProp>().Length==6,"Random props still made breakable");
+                Check(map.GetComponentsInChildren<BreakableProp>().Length==boxes.Length,"Random props still made breakable");
                 foreach(var spike in spikes)
                 {
                     spike.Advance(8.9f);Check(spike.CurrentPhase==FixedSpikeTrap.Phase.Warning,"No warning before spike");
@@ -238,6 +238,7 @@ public static class FixedMapObjectsInstaller
     }
     static void Preview(GameObject map,HUDManager hud,Canvas canvas,FixedSpikeTrap spike,string name)
     {
+        foreach(var transient in map.GetComponentsInChildren<StageTrap>()) transient.gameObject.SetActive(false);
         var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-qrOutput");
         string output=i>=0?args[i+1]:Path.GetFullPath("../FixedObjectsPreview");Directory.CreateDirectory(output);
         var camera=Camera.main;
@@ -250,12 +251,14 @@ public static class FixedMapObjectsInstaller
         hud.SetupSkillIcons(character.skillQ.skillIcon,character.skillE.skillIcon);
         hud.UpdateWeapon(AssetDatabase.LoadAssetAtPath<WeaponData>("Assets/Data/Weapon/Quantum Hammer.asset"));
         camera.orthographicSize=5.5f;camera.aspect=16f/9f;
-        camera.transform.position=spike.room.transform.position+new Vector3(0,-1,-10);
+        camera.transform.position=(spike.room!=null?spike.room.transform.position:spike.transform.position)+new Vector3(0,-1,-10);
         var flow=map.GetComponentInChildren<WorldFlowBackdrop>();if(flow!=null)flow.RefreshForCamera(camera,.6f);
         foreach(var graphic in canvas.GetComponentsInChildren<Graphic>())graphic.SetAllDirty();
         MapGameplayInstaller.Capture(camera,canvas,Path.Combine(output,name+"-Fixed-Crates-Spikes.png"));
         // Camera target resize updates screen-space canvas geometry on its first render.
         foreach(var graphic in canvas.GetComponentsInChildren<Graphic>())graphic.SetAllDirty();
         MapGameplayInstaller.Capture(camera,canvas,Path.Combine(output,name+"-Fixed-Crates-Spikes.png"));
+        foreach(var fixedTrap in map.GetComponentsInChildren<FixedSpikeTrap>()) fixedTrap.Advance(2f);
+        MapGameplayInstaller.Capture(camera,canvas,Path.Combine(output,name+"-Dormant-Flush-Traps.png"));
     }
 }

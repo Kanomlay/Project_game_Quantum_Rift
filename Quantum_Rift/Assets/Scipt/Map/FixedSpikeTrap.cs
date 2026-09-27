@@ -20,7 +20,12 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     int hitCycle = -1;
     PlayerStats player;
 
-    void OnEnable() { elapsed = 0f; hitCycle = -1; Advance(0f); }
+    void OnEnable()
+    {
+        // Prefab ลากวางใหม่จะใช้ห้องที่ครอบอยู่ ไม่อ้างกลับไปยังห้องต้นฉบับ
+        if (room == null) room = GetComponentInParent<RoomController>();
+        elapsed = 0f; hitCycle = -1; Advance(0f);
+    }
     void Update()
     {
         if (PauseManager.isGamePaused || ShopWindow.IsOpen || BlessingManager.IsChoosing || Time.timeScale <= 0f) return;
@@ -74,6 +79,8 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     {
         if (animatedDisplay == null || animationFrames == null || animationFrames.Length == 0) return;
         animatedDisplay.sprite = animationFrames[Mathf.Clamp(index, 0, animationFrames.Length - 1)];
+        // ช่องกับดักฝังเรียบใต้เท้าตัวละคร มีเฉพาะหนามที่พุ่งขึ้นมาบังด้านหน้า
+        animatedDisplay.sortingOrder = index >= 2 && index <= 5 ? 4 : -2;
     }
 
     public bool TryHit(PlayerStats target)
