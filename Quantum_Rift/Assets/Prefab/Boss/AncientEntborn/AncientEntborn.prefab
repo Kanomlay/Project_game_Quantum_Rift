@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 8859622179955220774}
   - component: {fileID: 344005420229715171}
   - component: {fileID: 5992876304810605605}
-  m_Layer: 0
+  - component: {fileID: 6787052216912437354}
+  - component: {fileID: 1006395768513038222}
+  - component: {fileID: 5791824865055345873}
+  m_Layer: 8
   m_Name: AncientEntborn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,8 +83,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1096051565
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 225094627, guid: b8f0230a083bd5f479c014cf7dc10b75, type: 3}
@@ -141,3 +144,156 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealthHudLink
   hudPrefab: {fileID: 2082870198467914239, guid: e4b04fa21cdfeae4ea80b4014f472fe0, type: 3}
+--- !u!50 &6787052216912437354
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781510104032678745}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!61 &1006395768513038222
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781510104032678745}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.9}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.46581197, y: 0.008888889}
+    oldSize: {x: 2.34, y: 2.25}
+    newSize: {x: 2.34, y: 2.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.5, y: 1.8}
+  m_EdgeRadius: 0
+--- !u!114 &5791824865055345873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781510104032678745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8511ace761a7b6418734983cd820f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AncientEntbornBoss
+  myData: {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
+  deathLinger: 0.6
+  deathFade: 0.4
+  currentRoom: {fileID: 0}
+  laserFrames:
+  - {fileID: -1604814577, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: -763525398, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: -616998192, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: 362091537, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: 756700573, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: 602035138, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  - {fileID: 681281081, guid: 0a3193cc399899540a52d34f47d3272d, type: 3}
+  laserRange: 11
+  laserMaxLength: 14
+  laserWarning: 0.9
+  laserActive: 0.55
+  laserHitRadius: 0.45
+  laserCooldown: 5
+  laserAimClamp: 55
+  muzzle: {x: 1.25, y: 1.1}
+  overheatTime: 1.5
+  rootFrames:
+  - {fileID: -1014400044, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: -1397243213, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: 1637072285, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: -1090520683, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: 195620891, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: -143867851, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  - {fileID: 590623747, guid: 8f984c16ab39b0e45a3738ab96a7f7c4, type: 3}
+  rootPrefab: {fileID: 1051100669948279960, guid: 09e1a7c50e5053c46ad2f82f8a720001, type: 3}
+  rootScale: 0.7
+  rootCount: 4
+  rootSpread: 2.6
+  rootWarning: 0.9
+  rootRadius: 0.7
+  stompCooldown: 6
+  stompRange: 9
+  stompRadius: 2.5
+  poisonSeconds: 5
+  poisonDamage: 0.5
+  leapCooldown: 9
+  leapMinDistance: 5
+  leapRadius: 2.8
+  leapTrack: 1
+  leapLock: 0.45
+  cageCooldown: 10
+  cageRadius: 2.4
+  cageRoots: 12
+  cageGap: 3
+  cageWarning: 1
+  cageHold: 2.2
+  cageFinale: 0.9
+  minions:
+  - {fileID: 11400000, guid: 0008fdb92ae011c4bb592fde352c73f3, type: 2}
+  minionsPerSummon: 2
+  maxAliveMinions: 3
+  summonCooldown: 12
+  phaseTwoAt: 0.6
+  rageHealthThreshold: 0.3
+  rageCooldownScale: 0.7
+  sweepSpeed: 55
+  rootNodes: 3
+  rootNodeHealth: 60
+  healPerNode: 1.5
+  healCap: 0.45
+  rootStun: 3
+  preferredDistance: 5
+  actionGap: 1

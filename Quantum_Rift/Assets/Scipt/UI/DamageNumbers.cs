@@ -7,7 +7,7 @@ using UnityEngine;
 // เรียก DamageNumbers.Spawn จากจุดที่หักเลือด ไม่ต้องตั้งอะไรในฉาก (ตัวเลขสร้างเองแล้วเก็บไว้ใช้ซ้ำ)
 public sealed class DamageNumbers : MonoBehaviour
 {
-    public enum Kind { Enemy, Player, Heal, Poison }
+    public enum Kind { Enemy, Player, Heal, Poison, Armored } // Armored = ตีโดนเกราะ (บอสป่าเฟส 3) เลขเล็กสีเทา
 
     const float Life = 0.85f;
     const float PopTime = 0.14f;
@@ -17,6 +17,7 @@ public sealed class DamageNumbers : MonoBehaviour
     static readonly VertexGradient BigGradient = Gradient(new Color(1f, 0.95f, 0.45f), new Color(1f, 0.5f, 0.12f));
     static readonly VertexGradient HealGradient = Gradient(new Color(0.75f, 1f, 0.7f), new Color(0.2f, 0.85f, 0.4f));
     static readonly VertexGradient PoisonGradient = Gradient(new Color(0.85f, 1f, 0.45f), new Color(0.45f, 0.75f, 0.2f));
+    static readonly VertexGradient ArmoredGradient = Gradient(new Color(0.8f, 0.78f, 0.74f), new Color(0.45f, 0.42f, 0.4f));
     static readonly VertexGradient PlayerGradient= Gradient(new Color(1f, 0.55f, 0.5f), new Color(0.9f, 0.12f, 0.18f));
     static readonly Stack<DamageNumbers> pool = new Stack<DamageNumbers>();
     static Material style;
@@ -87,9 +88,9 @@ public sealed class DamageNumbers : MonoBehaviour
     void Show(Vector3 at, float amount, Kind kind, float side)
     {
         big = kind == Kind.Enemy && amount >= BigHit;
-        label.colorGradient = kind == Kind.Heal ? HealGradient : kind == Kind.Poison ? PoisonGradient
+        label.colorGradient = kind == Kind.Armored ? ArmoredGradient : kind == Kind.Heal ? HealGradient : kind == Kind.Poison ? PoisonGradient
                             : kind == Kind.Player ? PlayerGradient : big ? BigGradient : EnemyGradient;
-        label.fontSize = kind == Kind.Poison ? 3f : kind != Kind.Enemy ? 3.8f :big ? 5.2f : Mathf.Lerp(3.4f, 4.4f, Mathf.Clamp01(amount / BigHit));
+        label.fontSize = kind == Kind.Poison || kind == Kind.Armored ? 3f :kind != Kind.Enemy ? 3.8f :big ? 5.2f : Mathf.Lerp(3.4f, 4.4f, Mathf.Clamp01(amount / BigHit));
         float rounded = Mathf.Round(amount * 10f) / 10f;
         string text = Mathf.Approximately(rounded, Mathf.Round(rounded)) ? Mathf.RoundToInt(rounded).ToString() : rounded.ToString("0.0");
         label.text = kind == Kind.Player || kind == Kind.Poison ? "-" + text : kind == Kind.Heal ? "+" + text : text;

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e9f7da5d99f3a4d9a5e7af46d82e36, type: 3}
+  m_Name: Map 2 - Boss
+  m_EditorClassIdentifier: Assembly-CSharp::RoomEncounterData
+  monstersToSpawn:
+  - {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
+  possibleMonsters: []
+  minMonsters: 2
+  maxMonsters: 4
+  minWaves: 1
+  maxWaves: 1
+  nextWaveWhenAlive: 1
+  waveDelay: 0.6
+  leaderMonsters: []
+  leaderChance: 0
+  possibleWeaponDrops: []

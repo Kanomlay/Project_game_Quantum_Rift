@@ -7204,7 +7204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: dd67d02fd8744ba4091b9d20ef111aa8, type: 2}
   doors:
   - {fileID: 4318093289009804085}
   monsterSpawnPoints:
@@ -22164,6 +22164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5f112c08209e145a860685816fc408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapPortal
+  useKey: 102
+  useRange: 2
+  promptHeight: 2.8
 --- !u!58 &2302989530306105816
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -5,9 +5,10 @@ using UnityEngine;
 public sealed class HitStop : MonoBehaviour
 {
     const float FrozenScale = 0.05f;
+    const float MaxChain = 0.2f; // สั่งหยุดซ้อนกันรัว ๆ ต่อเวลาได้ไม่เกินนี้ต่อครั้ง เกมไม่ค้างช้า
 
     static HitStop runner;
-    static float until;
+    static float until, startedAt;
     static bool active;
 
     public static void Freeze(float seconds)
@@ -16,7 +17,8 @@ public sealed class HitStop : MonoBehaviour
         if (!active && !Mathf.Approximately(Time.timeScale, 1f)) return;
 
         if (runner == null) runner = new GameObject("HitStop").AddComponent<HitStop>();
-        until = Mathf.Max(until, Time.unscaledTime + seconds);
+        if (!active) startedAt = Time.unscaledTime;
+        until = Mathf.Min(Mathf.Max(until, Time.unscaledTime + seconds), startedAt + MaxChain);
         if (!active)
         {
             active = true;

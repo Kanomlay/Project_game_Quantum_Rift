@@ -600,6 +600,6 @@ public class EchoCommanderBoss : MonsterController
         var controller = minion.GetComponent<MonsterController>();
         if (controller == null || !controller.IsAlive) return;
         ImpactSparks.Spawn((Vector2)minion.transform.position + Vector2.up * 0.5f, EchoFx.Purple, 10, Vector2.zero, 4f);
-        controller.TakeDamage(float.MaxValue);
+        controller.SelfDestruct(); // ตายแบบปกติโดยไม่มีตัวเลขดาเมจยักษ์เด้ง
     }
 }

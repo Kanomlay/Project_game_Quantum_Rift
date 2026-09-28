@@ -17,6 +17,21 @@ public class MonsterController : MonoBehaviour
     protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
     protected MonsterNavigator navigator; // เดินอ้อมเสา/กำแพง (ตัวที่มี MonsterCombatActions ใช้ของตัวเอง)
 
+    // ตัวคูณดาเมจที่รับ (บอสป่าช่วงร้อนเกิน/สตันรับแรงขึ้น เกราะรากรับน้อยลง)
+    protected virtual float DamageTakenScale => 1f;
+    // เลือดล็อกไม่ให้ต่ำกว่านี้ (บอสป่า: ตีแรงแค่ไหนก็ข้ามเฟสสุดท้ายไม่ได้ ต้องเข้าเฟสก่อน)
+    protected virtual float HealthFloor => 0f;
+    // แบบตัวเลขดาเมจที่เด้ง (ตีโดนเกราะ = เลขเทาเล็ก)
+    protected virtual DamageNumbers.Kind HitKind => DamageNumbers.Kind.Enemy;
+
+    // ฟื้นเลือด (ไม่เกินเต็ม) หลอดเลือดบอสขยับตาม
+    protected void RestoreHealth(float amount)
+    {
+        if (!IsAlive || myData == null || amount <= 0f) return;
+        currentHealth = Mathf.Min(myData.maxHealth, currentHealth + amount);
+        if (bossHud != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
+    }
+
     // เลือดที่เหลือเทียบเต็ม (Zero Husk ใช้เช็คเกณฑ์ระเบิดตัวเอง)
     public float HealthFraction => myData != null && myData.maxHealth > 0f ? Mathf.Clamp01(currentHealth / myData.maxHealth) : 1f;
 
@@ -209,8 +224,9 @@ public class MonsterController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         if (!gameObject.activeInHierarchy || currentHealth <= 0) return;
-        currentHealth -= damageAmount;
-        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, DamageNumbers.Kind.Enemy,
+        damageAmount *= DamageTakenScale;
+        currentHealth = Mathf.Max(currentHealth - damageAmount, Mathf.Min(HealthFloor, currentHealth)); // เลือดไม่ต่ำกว่าเพดานล็อก
+        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, HitKind,
             player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
         if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
         
