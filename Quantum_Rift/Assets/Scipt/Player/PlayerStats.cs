@@ -180,6 +180,10 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
     // โดนตีได้ตอนนี้ไหม (ไม่ติดอมตะหลังโดนตี/พุ่ง) กระสุนหลายนัดชนพร้อมกันจะได้ผลักแค่นัดที่โดนจริง
     public bool CanTakeHit => !isDead && !isInvincible && Time.time >= invincibleUntil;
 
+    // คริติคอล: การโจมตีของผู้เล่นทุกแบบที่โดนมอน/บอส (เช็คตอนมอนรับดาเมจ) ตัวเลขเหลืองใหญ่
+    public const float CritChance = 0.1f;
+    public const float CritMultiplier = 1.5f;
+
     public void TakeDamage(float damage)
     {
 

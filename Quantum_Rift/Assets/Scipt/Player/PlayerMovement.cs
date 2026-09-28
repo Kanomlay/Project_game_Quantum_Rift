@@ -131,8 +131,7 @@ public class PlayerMovement : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var hit = blockHits[i];
-            var monster = hit.collider.GetComponentInParent<MonsterController>();
-            if (monster == null || !monster.IsAlive) continue; // กำแพงให้ฟิสิกส์จัดการตามปกติ
+            if (!IsLiveEnemyBody(hit.collider)) continue; // กำแพงให้ฟิสิกส์จัดการตามปกติ
 
             Vector2 surface = hit.normal;
             if (hit.distance <= 0.0001f)
@@ -150,6 +149,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         return direction * allowed;
+    }
+
+    // ตัวมอนที่ยังไม่ตาย หรือตัวบอสแมพ 3 (Architect ไม่ได้สืบทอด MonsterController)
+    private static bool IsLiveEnemyBody(Collider2D col)
+    {
+        var monster = col.GetComponentInParent<MonsterController>();
+        if (monster != null) return monster.IsAlive;
+        var architect = col.GetComponentInParent<ArchitectBossHealth>();
+        return architect != null && !architect.IsDefeated && col == architect.hitbox;
     }
 
     // ก้าวตามแรงตีสั้น ๆ (ติดลบ = ถอยจากแรงถีบปืน) บวกกับการเดินปกติ ชนกำแพงก็หยุดเองตามฟิสิกส์

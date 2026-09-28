@@ -929,12 +929,17 @@ public class WeaponController : MonoBehaviour
             }
 
             if (target == null) continue;
-            HitFeedback(enemy, center, CountTargets(alreadyHit) == 1, feel);
+            int landed = CountTargets(alreadyHit);
+            HitFeedback(enemy, center, landed == 1, feel);
+            // ตีประชิดโดนได้พลังงานคืน: เม็ดฟ้าลอยเข้าตัว ตัวละ 1 หน่วย ไม่เกิน 3 ต่อการฟันหนึ่งครั้ง
+            if (landed <= MeleeEnergyCap) ManaMotes.Spawn(enemy.bounds.center, 1);
             BlessingManager.OnAttackLanded(alreadyHit);
         }
     }
 
-    // ศัตรูที่โดนไปแล้วในท่านี้ ไม่นับของที่ทำลายได้/กระสุนที่ฟันลบ ซึ่งอยู่ในชุดเดียวกัน (ตัวแรกที่โดนได้หยุดภาพ+กล้องสั่น)
+    private const int MeleeEnergyCap = 3;
+
+    // ศัตรูที่โดนไปแล้วในท่านี้ไม่นับของที่ทำลายได้/กระสุนที่ฟันลบ ซึ่งอยู่ในชุดเดียวกัน (ตัวแรกที่โดนได้หยุดภาพ+กล้องสั่น)
     private static int CountTargets(HashSet<Component> alreadyHit)
     {
         int count = 0;

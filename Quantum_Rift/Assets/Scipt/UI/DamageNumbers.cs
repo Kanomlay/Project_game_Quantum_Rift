@@ -7,7 +7,7 @@ using UnityEngine;
 // เรียก DamageNumbers.Spawn จากจุดที่หักเลือด ไม่ต้องตั้งอะไรในฉาก (ตัวเลขสร้างเองแล้วเก็บไว้ใช้ซ้ำ)
 public sealed class DamageNumbers : MonoBehaviour
 {
-    public enum Kind { Enemy, Player, Heal, Poison, Armored } // Armored = ตีโดนเกราะ (บอสป่าเฟส 3) เลขเล็กสีเทา
+    public enum Kind { Enemy, Player, Heal, Poison, Armored }// Armored = ตีโดนเกราะ (บอสป่าเฟส 3) เลขเล็กสีเทา
 
     const float Life = 0.85f;
     const float PopTime = 0.14f;
@@ -17,7 +17,7 @@ public sealed class DamageNumbers : MonoBehaviour
     static readonly VertexGradient BigGradient = Gradient(new Color(1f, 0.95f, 0.45f), new Color(1f, 0.5f, 0.12f));
     static readonly VertexGradient HealGradient = Gradient(new Color(0.75f, 1f, 0.7f), new Color(0.2f, 0.85f, 0.4f));
     static readonly VertexGradient PoisonGradient = Gradient(new Color(0.85f, 1f, 0.45f), new Color(0.45f, 0.75f, 0.2f));
-    static readonly VertexGradient ArmoredGradient = Gradient(new Color(0.8f, 0.78f, 0.74f), new Color(0.45f, 0.42f, 0.4f));
+    static readonly VertexGradient ArmoredGradient= Gradient(new Color(0.8f, 0.78f, 0.74f), new Color(0.45f, 0.42f, 0.4f));
     static readonly VertexGradient PlayerGradient= Gradient(new Color(1f, 0.55f, 0.5f), new Color(0.9f, 0.12f, 0.18f));
     static readonly Stack<DamageNumbers> pool = new Stack<DamageNumbers>();
     static Material style;
@@ -35,14 +35,14 @@ public sealed class DamageNumbers : MonoBehaviour
         return new Vector3(b.center.x, Mathf.Lerp(b.center.y, b.max.y, 0.6f), 0f);
     }
 
-    // side: ทางที่ตัวเลขเอียงไป (บวก = ขวา) 0 = สุ่ม
-    public static void Spawn(Vector3 position, float amount, Kind kind, float side = 0f)
+    // side: ทางที่ตัวเลขเอียงไป (บวก = ขวา) 0 = สุ่ม   crit: คริติคอล โชว์แบบตีแรงเสมอ
+    public static void Spawn(Vector3 position, float amount, Kind kind, float side = 0f, bool crit = false)
     {
         if (amount <= 0f || float.IsNaN(amount) || float.IsInfinity(amount)) return;
         DamageNumbers number = null;
         while (pool.Count > 0 && number == null) number = pool.Pop(); // ของที่หายไปตอนเปลี่ยนฉากจะเป็น null
         if (number == null) number = Create();
-        number.Show(position, amount, kind, side);
+        number.Show(position, amount, kind, side, crit);
     }
 
     static VertexGradient Gradient(Color top, Color bottom) => new VertexGradient(top, top, bottom, bottom);
@@ -85,10 +85,10 @@ public sealed class DamageNumbers : MonoBehaviour
         return number;
     }
 
-    void Show(Vector3 at, float amount, Kind kind, float side)
+    void Show(Vector3 at, float amount, Kind kind, float side, bool crit)
     {
-        big = kind == Kind.Enemy && amount >= BigHit;
-        label.colorGradient = kind == Kind.Armored ? ArmoredGradient : kind == Kind.Heal ? HealGradient : kind == Kind.Poison ? PoisonGradient
+        big = kind == Kind.Enemy && (crit || amount >= BigHit);
+        label.colorGradient = kind == Kind.Armored ? ArmoredGradient :kind == Kind.Heal ? HealGradient : kind == Kind.Poison ? PoisonGradient
                             : kind == Kind.Player ? PlayerGradient : big ? BigGradient : EnemyGradient;
         label.fontSize = kind == Kind.Poison || kind == Kind.Armored ? 3f :kind != Kind.Enemy ? 3.8f :big ? 5.2f : Mathf.Lerp(3.4f, 4.4f, Mathf.Clamp01(amount / BigHit));
         float rounded = Mathf.Round(amount * 10f) / 10f;

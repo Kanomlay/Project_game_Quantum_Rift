@@ -224,9 +224,16 @@ public class MonsterController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         if (!gameObject.activeInHierarchy || currentHealth <= 0) return;
+        // มอนรับดาเมจจากผู้เล่นเท่านั้น จึงสุ่มคริติคอลตรงนี้ได้ครบทุกอาวุธ/สกิล/พร
+        bool crit = damageAmount > 0f && Random.value < PlayerStats.CritChance;
+        if (crit)
+        {
+            damageAmount *= PlayerStats.CritMultiplier;
+            ImpactSparks.Spawn(DamageNumbers.Above(sr, transform.position), new Color(1f, 0.85f, 0.3f), 8, Vector2.zero, 4.5f);
+        }
         damageAmount *= DamageTakenScale;
         currentHealth = Mathf.Max(currentHealth - damageAmount, Mathf.Min(HealthFloor, currentHealth)); // เลือดไม่ต่ำกว่าเพดานล็อก
-        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, HitKind,
+        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, HitKind, crit: crit && HitKind == DamageNumbers.Kind.Enemy, side:
             player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
         if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
         

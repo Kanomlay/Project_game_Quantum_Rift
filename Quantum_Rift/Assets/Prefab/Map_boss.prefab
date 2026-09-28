@@ -13239,6 +13239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5f112c08209e145a860685816fc408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapPortal
+  useKey: 102
+  useRange: 2
+  promptHeight: 2.8
 --- !u!58 &3525473737886949476
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20688,6 +20691,7 @@ GameObject:
   - component: {fileID: 281955910956638748}
   - component: {fileID: 5382202226133518293}
   - component: {fileID: 235440829729920862}
+  - component: {fileID: 8935808958886862907}
   m_Layer: 8
   m_Name: ArchitectBoss
   m_TagString: Untagged
@@ -20725,10 +20729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3aeda18147e8040a73d1048a05f0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArchitectBossHealth
-  maxHealth: 300
+  maxHealth: 1000
   phaseTwoThreshold: 0.5
   enragedThreshold: 0.25
-  transformationSeconds: 1
+  transformationSeconds: 2
   phaseOne: {fileID: 1319580199532856362}
   phaseTwo: {fileID: 7674905464170505559}
   arena: {fileID: 7660107701492402366}
@@ -20785,6 +20789,103 @@ MonoBehaviour:
   boss: {fileID: 281955910956638748}
   arena: {fileID: 7660107701492402366}
   hudPrefab: {fileID: 6064929958651746132, guid: 7c395859d1a68e24b9ef689fedcde168, type: 3}
+--- !u!114 &8935808958886862907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668448617302832106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fbbc8a1623f8874f9974dd0187a907f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArchitectBossAI
+  damage: 2
+  speedOne: 1.5
+  speedTwo: 2.25
+  spiralCooldown: 5
+  dashCooldown: 2
+  orbFrames:
+  - {fileID: 1143584355, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: -1136320566, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: -2099460398, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: 1200868183, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: -1900384632, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: 656859904, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  - {fileID: 293932917, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}
+  laserOneFrames:
+  - {fileID: -1404008633, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: -1740647446, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: 702666721, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: -565659868, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: 1261225680, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: -570520350, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  - {fileID: -164856279, guid: 01e00bff7f9b8dd41aab303216ffeaf3, type: 3}
+  laserTwoFrames:
+  - {fileID: 448934833, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: -1704302724, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: -133143595, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: -1775540815, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: -1045395213, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: 2129149449, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  - {fileID: 1664649949, guid: 34b70652031729c44998f490911d9de9, type: 3}
+  waveFrames:
+  - {fileID: 1213871212, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: -1472520281, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: -599091569, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: 1954109316, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: 31481965, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: 1590402677, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  - {fileID: 1524781115, guid: c4c9067b2f3d5cd409f7214ca01e78cf, type: 3}
+  keepDistanceOne: 6.5
+  keepDistanceTwo: 4
+  actionGapOne: 1.2
+  actionGapTwo: 0.7
+  actionGapRage: 0.4
+  orbSpeed: 4.2
+  orbHitRadius: 0.6
+  orbScale: 1.1
+  orbLife: 6
+  spiralInterval: 0.13
+  spiralSpin: 75
+  spiralTime: 3
+  laserWarning: 1.1
+  laserActive: 0.6
+  laserHitRadius: 0.5
+  laserThickness: 1.5
+  laserMaxLength: 30
+  laserSweep: 35
+  fanAngle: 28
+  dashWarning: 0.75
+  dashSpeed: 24
+  dashOvershoot: 3
+  dashHitRadius: 1.3
+  slashRadius: 2.8
+  waveSpeed: 8
+  waveScale: 1.7
+  waveHitRadius: 1
+  waveSpread: 20
+  rageCooldownScale: 0.7
+  heartInterval: 0.45
+  heartOrbSpeed: 3
+  staggerTime: 1
+  staggerScale: 1.5
+  splitCount: 3
+  splitRadius: 6
+  fakeAlpha: 0.55
+  echoAtlas: {fileID: 2800000, guid: 9aa1f256dd20e424f98abdfc373a8e71, type: 3}
+  gridLines: 3
+  gridWarning: 1.2
+  collapseSteps: 3
+  collapseEvery: 8
+  collapseShrink: {x: 2.5, y: 1.5}
+  collapseWarning: 2
+  collapseDamage: 1
+  coreHealth: 60
+  coreTime: 10
+  coreRadius: 1.3
+  reviveFraction: 0.1
 --- !u!1 &7714767174651886745
 GameObject:
   m_ObjectHideFlags: 0
