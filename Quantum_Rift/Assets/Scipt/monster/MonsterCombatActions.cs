@@ -45,6 +45,8 @@ public sealed class MonsterCombatActions : MonoBehaviour
     MonsterNavigator nav; // เดินอ้อมเสา/กำแพงแทนเดินตรงเข้าหาแล้วติด
     bool aiming;
     float aimReadyAt,moveBlockedUntil;
+    MonsterFx fx; // วาบส้มตอนง้างโจมตี (MonsterController ใส่ให้ตอนเริ่ม)
+    void Warn(){if(fx==null)fx=GetComponent<MonsterFx>();if(fx!=null)fx.Warn();}
     const float Duration = 7f / 12f;
 
     public void Initialize(MonsterData monsterData, Transform player)
@@ -131,7 +133,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         bool canShoot=!tooClose&&distance<=rangedDistance&&ClearLine(transform.position,target.position);
         if(canShoot)
         {
-            if(!aiming){aiming=true;aimReadyAt=Time.time+aimRaiseTime;animator.SetBool("isAiming",true);}
+            if(!aiming){aiming=true;aimReadyAt=Time.time+aimRaiseTime;animator.SetBool("isAiming",true);Warn();}
             animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;
             if(Time.time>=aimReadyAt&&Time.time>=nextAttack)
             {
@@ -173,7 +175,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     IEnumerator Attack(bool ranged)
     {
         if(style==Style.Pounce){yield return Pounce();yield break;}
-        IsAttacking=true;AttacksStarted++;move=Vector2.zero;
+        IsAttacking=true;AttacksStarted++;move=Vector2.zero;Warn();
         body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
         animator.ResetTrigger("Attack");
         if(style==Style.RockAndSlam)animator.ResetTrigger("Throw");
@@ -210,7 +212,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
 
     IEnumerator Pounce()
     {
-        IsAttacking=true;AttacksStarted++;move=Vector2.zero;body.linearVelocity=Vector2.zero;
+        IsAttacking=true;AttacksStarted++;move=Vector2.zero;body.linearVelocity=Vector2.zero;Warn();
         animator.SetBool("isWalking",false);animator.SetTrigger("Attack");
         // ล็อกทิศตั้งแต่ง้าง ไม่เลี้ยวตามผู้เล่นกลางอากาศ จึงหลบด้านข้างได้
         yield return new WaitForSeconds(.25f);

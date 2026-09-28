@@ -83,6 +83,7 @@ public class PlayerStats : MonoBehaviour
     {
         Time.timeScale = 1f;
         sr = GetComponent<SpriteRenderer>();
+        GroundShadow.Attach(gameObject, 0.28f); // เงาใต้เท้าแบบเดียวกับมอนสเตอร์
         hud = FindObjectOfType<HUDManager>();
 
         if (hud != null) hud.UpdateCurrency(currentCurrency);

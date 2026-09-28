@@ -34,6 +34,7 @@ public class MonsterController : MonoBehaviour
     public float deathFade = 0.4f;
     // คงชุดโจมตีเฉพาะตัวจาก Boss_main พร้อมรองรับบอสที่สืบทอดจาก MainMenu
     private MonsterCombatActions combatActions;
+    protected MonsterFx fx; // เงา กะพริบขาว หายใจ/เด้ง สลายตอนตาย (ใส่ให้เองตอนเริ่ม)
     private BossHealthHudLink bossHud;
     [HideInInspector] public RoomController currentRoom;
 
@@ -49,6 +50,7 @@ public class MonsterController : MonoBehaviour
         GameObject hero = GameObject.FindGameObjectWithTag("Player");
         if (hero != null) player = hero.transform;
         IgnorePlayerCollisions();
+        fx = MonsterFx.Attach(this);
         combatActions = GetComponent<MonsterCombatActions>();
         if (combatActions != null) combatActions.Initialize(myData, player);
         // โผล่พร้อมกันหลายตัว: เหลื่อมจังหวะโจมตีแรกของแต่ละตัว ไม่ยิง/ตีพร้อมกันเป๊ะตอนตื่น
@@ -191,16 +193,19 @@ public class MonsterController : MonoBehaviour
 
     private IEnumerator DamageEffectRoutine()
     {
+        // กะพริบขาว + ยุบตัว (ไม่มี shader เอฟเฟกต์ก็กลับไปย้อมแดงแบบเดิม)
+        bool flashed = fx != null && fx.Active;
+        if (flashed) fx.Hit();
         if (ResistsKnockback)
         {
-            sr.color = Color.red;
+            if (!flashed) sr.color = Color.red;
             yield return new WaitForSeconds(0.1f);
-            sr.color = Color.white;
+            if (!flashed) sr.color = Color.white;
             yield break;
         }
         if (combatActions != null) combatActions.CancelAttack();
-        isKnockedBack = true; 
-        sr.color = Color.red; 
+        isKnockedBack = true;
+        if (!flashed) sr.color = Color.red;
 
         if (player != null && rb != null)
         {
@@ -257,9 +262,20 @@ public class MonsterController : MonoBehaviour
             gameObject.SetActive(false);yield break;
         }
 
+        // วาบขาว ประกายแตกสีประจำแมพ ค้างท่าตายให้เห็น แล้วสลายเป็นเม็ดพิกเซล (ไม่มี shader เอฟเฟกต์ก็จางแบบเดิม)
+        if (fx != null) fx.BeginDeath(SpawnTelegraph.ColorFor(this, SpawnTelegraph.Emphasis.Normal));
         yield return new WaitForSeconds(deathLinger);
 
-        if (sr != null && deathFade > 0f)
+        if (fx != null && fx.Active && deathFade > 0f)
+        {
+            float time = deathFade + 0.25f;
+            for (float t = 0f; t < time; t += Time.deltaTime)
+            {
+                fx.Dissolve(t / time);
+                yield return null;
+            }
+        }
+        else if (sr != null && deathFade > 0f)
         {
             Color start = Color.white;
             for (float t = 0f; t < deathFade; t += Time.deltaTime)
