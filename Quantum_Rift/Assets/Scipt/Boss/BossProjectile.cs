@@ -46,10 +46,12 @@ public class BossProjectile : MonoBehaviour, IEnemyBullet
         PlayerStats stats = other.GetComponentInParent<PlayerStats>();
         if (stats != null)
         {
+            // ติดอมตะอยู่ (เพิ่งโดนนัดอื่น) ไม่เสียเลือดและไม่โดนผลักซ้ำ กระสุนแตกไปเฉย ๆ
+            bool landed = stats.CanTakeHit;
             stats.TakeDamage(damage);
 
             PlayerMovement movement = stats.GetComponent<PlayerMovement>();
-            if (movement != null) movement.TakeKnockback(transform.position, knockbackForce);
+            if (landed && movement != null) movement.TakeKnockback(transform.position, knockbackForce);
 
             Destroy(gameObject);
             return;

@@ -125,9 +125,10 @@ public class MonsterController : MonoBehaviour
             PlayerStats pStats = player.GetComponent<PlayerStats>();
             PlayerMovement pMove = player.GetComponent<PlayerMovement>();
 
+            bool landed = pStats == null || pStats.CanTakeHit; // ติดอมตะอยู่ ไม่โดนผลักซ้ำ
             if (pStats != null) pStats.TakeDamage(damage); 
             
-            if (pMove != null) pMove.TakeKnockback(transform.position, knockbackForce);
+            if (landed && pMove != null) pMove.TakeKnockback(transform.position, knockbackForce);
         }
     }
 

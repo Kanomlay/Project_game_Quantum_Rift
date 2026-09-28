@@ -108,6 +108,9 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && currentCooldownE <= 0) UseSkillE();
     }
 
+    // โดนตีได้ตอนนี้ไหม (ไม่ติดอมตะหลังโดนตี/พุ่ง) กระสุนหลายนัดชนพร้อมกันจะได้ผลักแค่นัดที่โดนจริง
+    public bool CanTakeHit => !isDead && !isInvincible && Time.time >= invincibleUntil;
+
     public void TakeDamage(float damage)
     {
 
