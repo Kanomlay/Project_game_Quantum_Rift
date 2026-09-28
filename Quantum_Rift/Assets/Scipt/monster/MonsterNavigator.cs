@@ -6,6 +6,8 @@ using UnityEngine;
 // - โดนบัง → A* บนตารางช่องละ CellSize ภายในขอบเขตห้อง แล้วเดินตามจุดเลี้ยว เห็นจุดถัดไปเมื่อไหร่ก็ตัดมุมไปเลย
 // ของแข็ง = collider ที่ไม่ใช่ trigger และไม่ได้ติด Rigidbody ที่ขยับได้
 // (กำแพง tilemap, กล่องกำแพง, ประตูห้องที่ปิดอยู่, ของประดับ) ตัวมอนสเตอร์/ผู้เล่นเป็น Dynamic จึงไม่นับ
+// มอนที่ทุบกำแพงได้ (CanBreakWalls): กำแพงในห้องของตัวเอง (BreakableWallCell) เป็นทางเดินราคาแพงแทนทางตัน
+// ถ้าทุบผ่านถูกกว่าเดินอ้อม หรือเดินติดกำแพงนั้นอยู่ BlockingWall จะบอกว่าต้องทุบช่องไหน
 public sealed class MonsterNavigator
 {
     public const float CellSize = 0.625f;      // ครึ่งช่อง tile (tile ในแมพกว้าง 1.25)
@@ -20,6 +22,9 @@ public sealed class MonsterNavigator
     const int MaxExpanded = 2500;
     const float CacheLifetime = 1f;            // ประตูห้องเปิด/ปิดได้ ล้างแคชช่องเดินได้ทุกวินาที
     const int EnemyLayer = 8;
+    const float BreakCost = 4f;                // ต่อช่องตาราง: ทุบกำแพงหนึ่งช่อง (1.25) ≈ เดินอ้อมราว 5 หน่วย
+    const float WallLook = 0.3f;               // กำแพงที่จะทุบต้องอยู่ชิดหน้าตัวไม่เกินระยะนี้
+    const byte Blocked = 0, Open = 1, Breakable = 2;
 
     readonly Transform self;
     readonly MonsterController owner;
@@ -32,6 +37,13 @@ public sealed class MonsterNavigator
     float nextRepath, nextDirectCheck, lastCall, stuckCheckAt, strictUntil;
     bool directClear;
     Vector2 lastGoal, stuckFrom;
+    readonly HashSet<BreakableWallCell> pathWalls = new HashSet<BreakableWallCell>(); // กำแพงที่เส้นทางปัจจุบันตั้งใจทุบผ่าน
+
+    // MonsterCombatActions เปิดให้มอนที่ทุบกำแพงได้ (บอสใช้ navigator ของ MonsterController ไม่เปิด)
+    public bool CanBreakWalls;
+    // กำแพงในห้องที่ขวางอยู่ตรงหน้าตอนนี้ (บนเส้นทาง หรือกำลังเดินติด) ตัวเรียกควรหยุดเดินแล้วทุบ
+    public BreakableWallCell BlockingWall { get; private set; }
+    RoomController BreakRoom => CanBreakWalls && owner != null ? owner.currentRoom : null;
 
     public MonsterNavigator(Transform self, MonsterController owner)
     {
@@ -58,6 +70,7 @@ public sealed class MonsterNavigator
     // ทิศที่ควรเดิน (หน่วยเวกเตอร์) เพื่อไปถึง target ซึ่งเป็นตำแหน่ง pivot ปลายทาง
     public Vector2 DirectionTo(Vector2 target)
     {
+        BlockingWall = null;
         Vector2 offset = CenterOffset;
         Vector2 from = (Vector2)self.position + offset;
         Vector2 goal = target + offset;
@@ -80,6 +93,7 @@ public sealed class MonsterNavigator
         if (directClear)
         {
             path.Clear();
+            pathWalls.Clear();
             return Slide(from, toGoal.normalized);
         }
 
@@ -90,8 +104,41 @@ public sealed class MonsterNavigator
         while (pathIndex < path.Count && (path[pathIndex] - from).sqrMagnitude < reached * reached) pathIndex++;
         // ตัดมุม: มองเห็นจุดถัดไปแล้วไม่ต้องเดินไปแตะจุดนี้ (เพิ่งติดมาใหม่ ๆ ไม่ตัด)
         if (Time.time >= strictUntil && pathIndex + 1 < path.Count && BoxClear(from, path[pathIndex + 1])) pathIndex++;
-        if (pathIndex >= path.Count) return Slide(from, toGoal.normalized);
-        return Slide(from, (path[pathIndex] - from).normalized);
+        Vector2 direction = pathIndex >= path.Count ? toGoal.normalized : (path[pathIndex] - from).normalized;
+
+        // ถึงหน้ากำแพงที่เส้นทางตั้งใจทุบผ่าน (หรือเพิ่งเดินติดกำแพงในห้องนี้): บอกให้ทุบ ไม่ไถลเลียบกำแพง
+        if (BreakRoom != null && (pathWalls.Count > 0 || Time.time < strictUntil))
+        {
+            var wall = WallAhead(from, direction);
+            if (wall != null && (pathWalls.Contains(wall) || Time.time < strictUntil))
+            {
+                BlockingWall = wall;
+                return direction;
+            }
+        }
+        return Slide(from, direction);
+    }
+
+    // ของแข็งชิ้นแรกข้างหน้าในระยะ WallLook เป็นกำแพงที่ทุบได้ของห้องตัวเองไหม
+    BreakableWallCell WallAhead(Vector2 from, Vector2 direction)
+    {
+        castBuffer.Clear();
+        Physics2D.BoxCast(from - direction * CastBackoff, castSize, 0f, direction, Filter, castBuffer, WallLook + CastBackoff);
+        Collider2D nearest = null;
+        float best = float.MaxValue;
+        foreach (var hit in castBuffer)
+        {
+            if (hit.distance <= 0.0001f || !IsSolid(hit.collider)) continue;
+            if (hit.distance < best) { best = hit.distance; nearest = hit.collider; }
+        }
+        return BreakableFor(nearest, BreakRoom);
+    }
+
+    static BreakableWallCell BreakableFor(Collider2D col, RoomController room)
+    {
+        if (room == null || col == null) return null;
+        var wall = col.GetComponent<BreakableWallCell>();
+        return wall != null && !wall.IsBroken && wall.Room == room ? wall : null;
     }
 
     // ข้างหน้าชนกำแพงพอดี: ตัดส่วนที่ดันเข้ากำแพงทิ้ง เหลือแต่ทิศเลียบกำแพง ไม่ยืนดันมุมค้าง
@@ -188,28 +235,43 @@ public sealed class MonsterNavigator
         return true;
     }
 
-    // ช่องเดินได้ แชร์ระหว่างมอนสเตอร์ขนาดเดียวกัน ล้างทิ้งทุก CacheLifetime วินาที
-    static readonly Dictionary<long, bool> walkCache = new Dictionary<long, bool>();
+    // สถานะช่อง แชร์ระหว่างมอนสเตอร์ขนาดเดียวกัน (และห้องเดียวกันสำหรับตัวที่ทุบกำแพงได้) ล้างทิ้งทุก CacheLifetime วินาที
+    static readonly Dictionary<(long, int), byte> walkCache = new Dictionary<(long, int), byte>();
     static float cacheExpiresAt;
 
-    bool Walkable(Vector2Int cell)
+    bool Walkable(Vector2Int cell) => State(cell) == Open;
+
+    byte State(Vector2Int cell)
     {
         if (Time.time >= cacheExpiresAt)
         {
             walkCache.Clear();
             cacheExpiresAt = Time.time + CacheLifetime;
         }
+        var room = BreakRoom;
         long sizeKey = Mathf.RoundToInt(gridSize.x * 20f) * 512L + Mathf.RoundToInt(gridSize.y * 20f);
         long key = (sizeKey << 42) ^ ((long)(cell.x + 0x100000) << 21) ^ (cell.y + 0x100000);
-        if (walkCache.TryGetValue(key, out bool walkable)) return walkable;
+        var cacheKey = (key, room != null ? room.GetInstanceID() : 0);
+        if (walkCache.TryGetValue(cacheKey, out byte state)) return state;
 
-        walkable = true;
+        state = Open;
+        Vector2 center = CellCenter(cell);
         overlapBuffer.Clear();
-        Physics2D.OverlapBox(CellCenter(cell), gridSize, 0f, Filter, overlapBuffer);
+        Physics2D.OverlapBox(center, gridSize, 0f, Filter, overlapBuffer);
         foreach (var col in overlapBuffer)
-            if (IsSolid(col)) { walkable = false; break; }
-        walkCache[key] = walkable;
-        return walkable;
+        {
+            if (!IsSolid(col)) continue;
+            if (BreakableFor(col, room) != null)
+            {
+                // กำแพงที่ทุบได้: กลางช่องอยู่ในกำแพง = ต้องทุบผ่าน, แค่เฉียดขอบ = เดินเลียบได้
+                if (col.OverlapPoint(center)) state = Breakable;
+                continue;
+            }
+            state = Blocked;
+            break;
+        }
+        walkCache[cacheKey] = state;
+        return state;
     }
 
     static Vector2Int ToCell(Vector2 p) =>
@@ -249,6 +311,7 @@ public sealed class MonsterNavigator
         nextRepath = Time.time + RepathInterval;
         lastGoal = goal;
         path.Clear();
+        pathWalls.Clear();
         pathIndex = 0;
 
         Rect area = SearchArea(from, goal);
@@ -276,13 +339,15 @@ public sealed class MonsterNavigator
             foreach (var step in Steps)
             {
                 Vector2Int next = cell + step;
-                if (!area.Contains(CellCenter(next)) || !Walkable(next)) continue;
+                if (!area.Contains(CellCenter(next))) continue;
+                byte state = State(next);
+                if (state == Blocked) continue;
                 bool diagonal = step.x != 0 && step.y != 0;
                 // ห้ามเฉียงผ่านมุมกำแพง
                 if (diagonal && (!Walkable(new Vector2Int(cell.x + step.x, cell.y)) || !Walkable(new Vector2Int(cell.x, cell.y + step.y))))
                     continue;
 
-                float cost = nodeCost[current] + (diagonal ? 1.4142f : 1f);
+                float cost = nodeCost[current] + (diagonal ? 1.4142f : 1f) + (state == Breakable ? BreakCost : 0f);
                 if (nodeOf.TryGetValue(next, out int index))
                 {
                     if (nodeClosed[index] || cost >= nodeCost[index]) continue;
@@ -295,9 +360,24 @@ public sealed class MonsterNavigator
         }
 
         if (best == first) return; // ไม่มีทางไปต่อ DirectionTo จะเดินตรงแทน
-        for (int i = best; i != first; i = nodeParent[i]) path.Add(CellCenter(nodeCell[i]));
+        for (int i = best; i != first; i = nodeParent[i])
+        {
+            path.Add(CellCenter(nodeCell[i]));
+            if (State(nodeCell[i]) == Breakable) AddWallsAt(CellCenter(nodeCell[i]));
+        }
         path.Reverse();
         if (nodeCell[best] == end) path[path.Count - 1] = goal;
+    }
+
+    void AddWallsAt(Vector2 point)
+    {
+        overlapBuffer.Clear();
+        Physics2D.OverlapPoint(point, Filter, overlapBuffer);
+        foreach (var col in overlapBuffer)
+        {
+            var wall = BreakableFor(col, BreakRoom);
+            if (wall != null) pathWalls.Add(wall);
+        }
     }
 
     static float Heuristic(Vector2Int a, Vector2Int b)

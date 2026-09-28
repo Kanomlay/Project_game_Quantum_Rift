@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>กล่องเสบียงประจำจุด ทำลายด้วยอาวุธแล้วปล่อยเม็ดพลังงานสีฟ้าลอยเข้าหาผู้เล่น (ไม่ดรอปขวดยาแล้ว)</summary>
-public sealed class BreakableProp : MonoBehaviour
+public sealed class BreakableProp : MonoBehaviour, IBreakable
 {
     [SerializeField] SpriteRenderer display;
     [SerializeField] Collider2D[] blockers;

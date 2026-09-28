@@ -103,8 +103,8 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (other == null) continue;
             if (owner != null && other.transform.IsChildOf(owner)) continue; // ไม่ยิงโดนตัวเอง
 
-            var breakable = other.GetComponentInParent<BreakableProp>();
-            if (breakable != null)
+            var breakable = other.GetComponentInParent<IBreakable>(); // กล่องทำลายได้ / กำแพงในห้อง
+            if (breakable != null && !breakable.IsBroken)
             {
                 breakable.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
                 transform.position = hit.centroid;

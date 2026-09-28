@@ -898,8 +898,8 @@ public class WeaponController : MonoBehaviour
         BlessingManager.CleaveBullets(center, radius, alreadyHit);
         foreach (var collider in Physics2D.OverlapCircleAll(center, radius))
         {
-            var prop = collider.GetComponentInParent<BreakableProp>();
-            if (prop != null && alreadyHit.Add(prop)) prop.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
+            var prop = collider.GetComponentInParent<IBreakable>(); // กล่องทำลายได้ / กำแพงในห้อง
+            if (prop != null && !prop.IsBroken && alreadyHit.Add((Component)prop)) prop.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
         }
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, enemyLayers);
 

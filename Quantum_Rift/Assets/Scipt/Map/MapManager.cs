@@ -91,6 +91,9 @@ public class MapManager : MonoBehaviour
         {
             var features = currentMapInstance.GetComponent<MapGameplayFeatures>();
             if (features != null && !currentMap.isBossRoom) features.Initialize(currentMap.spawnPosition);
+            // กล่องทำลายได้สุ่มใหม่ทุกครั้งที่เข้าแมพ (ร้านค้าถูกวางไปแล้วข้างบน ห้องร้านจึงถูกข้าม)
+            var crates = currentMapInstance.GetComponent<RandomCrateClusters>();
+            if (crates != null && !currentMap.isBossRoom) crates.Spawn(currentMap.spawnPosition);
             MiniMapHUD.Show(hud, currentMapInstance, player != null ? player.transform : null);
         }
         yield return new WaitForSeconds(1.5f);

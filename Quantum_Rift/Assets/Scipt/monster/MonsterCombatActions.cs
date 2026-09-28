@@ -25,6 +25,9 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public float aimLowerTime = .17f;     // เวลาลดปืนก่อนเริ่มเดิน (ท่าลด 2 เฟรม)
     public float fireTime = .25f;         // ท่ายิง 3 เฟรม
     public Color projectileTint = Color.white; // ย้อมสีกระสุน ใช้ภาพกระสุนชุดเดียวกันได้หลายตัว (Woodmine ย้อมเขียว)
+    [Header("ทุบกำแพงในห้องที่ขวางทาง (RoomBreakableWalls)")]
+    public bool breakWalls = true;
+    [Min(0f)] public float wallDamage = 12f; // ต่อครั้ง กำแพงช่องละ 30 = ทุบ 3 ครั้ง (ท่าทุบของ Heavy แรงเป็นสองเท่า)
     public bool IsAttacking { get; private set; }
     public int AttacksStarted { get; private set; }
     public int ShotsReleased { get; private set; }
@@ -48,7 +51,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     {
         data=monsterData;target=player;animator=GetComponent<Animator>();
         body=GetComponent<Rigidbody2D>();display=GetComponent<SpriteRenderer>();
-        nav=new MonsterNavigator(transform,GetComponent<MonsterController>());
+        nav=new MonsterNavigator(transform,GetComponent<MonsterController>()){CanBreakWalls=breakWalls};
     }
 
     public void Tick()
@@ -81,6 +84,32 @@ public sealed class MonsterCombatActions : MonoBehaviour
         animator.SetBool("isWalking",shouldWalk);
         if(shouldWalk)move=nav.DirectionTo(target.position)*data.moveSpeed;
         else body.linearVelocity=Vector2.zero;
+        if(shouldWalk&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
+    }
+
+    // กำแพงในห้องขวางทาง (หรือเดินติดกำแพงอยู่): ยืนหันเข้าหากำแพงแล้วทุบเป็นจังหวะจนแตก
+    void SmashOrWait(BreakableWallCell wall)
+    {
+        move=Vector2.zero;body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
+        Vector2 toWall=wall.Center-(Vector2)transform.position;
+        if(Mathf.Abs(toWall.x)>.01f)display.flipX=toWall.x<0;
+        if(Time.time<nextAttack)return;
+        nextAttack=Time.time+Mathf.Max(Duration+.1f,data.attackCooldown*.6f);
+        attack=StartCoroutine(SmashWall(wall));
+    }
+
+    IEnumerator SmashWall(BreakableWallCell wall)
+    {
+        IsAttacking=true;move=Vector2.zero;body.linearVelocity=Vector2.zero;
+        animator.SetBool("isWalking",false);
+        // ใช้ท่าโจมตีประชิดของตัวเอง (Phase Soldier ใช้ท่าฟัน ปืนไรเฟิลที่ไม่มีท่าประชิดทุบโดยไม่เล่นท่า)
+        string trigger=closeRangeSlash?"Melee":style==Style.Rifle?null:"Attack";
+        if(trigger!=null){animator.ResetTrigger(trigger);animator.SetTrigger(trigger);}
+        const float impact=3f/12f;
+        yield return new WaitForSeconds(impact);
+        if(wall!=null&&!wall.IsBroken)wall.Smash(wallDamage*(style==Style.RockAndSlam?2f:1f));
+        yield return new WaitForSeconds(Duration-impact);
+        IsAttacking=false;attack=null;
     }
 
     // ยืนเล็งค้างยิงเป็นชุดตราบที่ผู้เล่นอยู่ในระยะและไม่มีกำแพงบัง
@@ -118,6 +147,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(Time.time<moveBlockedUntil||GunUp()){animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;return;}
         animator.SetBool("isWalking",true);
         move=(tooClose?-delta.normalized:nav.DirectionTo(target.position))*data.moveSpeed;
+        if(!tooClose&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
     }
 
     public const string AimTag="Aim";
