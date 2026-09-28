@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// พรควอนตัม: จบด่านแล้วเลือก 1 จาก 3 พรสุ่ม (ไม่ซ้ำกับที่มี) สะสมได้สูงสุด 4 พรต่อรอบ
+// พรควอนตัม: จบด่านแล้วเลือก 1 จาก 3 การ์ด สะสมได้สูงสุด 4 พรต่อรอบ แต่ละพรอัปได้ถึงระดับ 3
+// การ์ดเป็นได้ทั้งพรใหม่และอัปเกรดพรที่มี: ช่องยังว่างรับประกันพรใหม่อย่างน้อย 1 ใบ ช่องเต็มเหลือแต่อัปเกรด อัปครบหมด = ไม่เปิดหน้าต่าง
+// พรที่ได้เก็บเป็นสำเนาตอนเล่น (อัประดับแล้วค่าเปลี่ยนในสำเนา ไฟล์ asset ไม่ถูกแตะ)
 // MapManager ขอให้เสนอพรก่อนโหลดด่านถัดไป ระหว่างเลือกเกมหยุด
 // อยู่ในฉากเกม (BlessingBuilder ใส่ให้) เริ่มรอบใหม่ = โหลดฉากใหม่ พรที่มีจึงล้างเองทุกรอบ
 //
 // ผลของพรทุกแบบอยู่ในไฟล์นี้ ระบบอื่นแค่เรียกจุดเกี่ยวแบบ static (ไม่มีตัวจัดการในฉาก = ไม่มีผลอะไร):
 // - อาวุธ: PayWeaponEnergy / HasWeaponEnergy (พลังงานสำรอง), OnAttackLanded (คลื่นสะสม), CleaveBullets (คมสลายมิติ)
-//   และ SetupProjectile (กระสุนทะลุมิติ)
+//   SetupProjectile (กระสุนทะลุมิติ), AttackScale (ครั้งฟรีของพลังงานสำรองระดับ 3), DamageScale (ก้าวพ้นรอยแยกระดับ 3)
+// - มอนสเตอร์เดิน: MonsterSpeedFactor (สนามชะลอกระสุนระดับ 3)
 // - ผู้เล่น: AbsorbDamage (เกราะฉุกเฉิน), OnPlayerHurt (เกราะฉุกเฉินขึ้น / ก้าวพ้นรอยแยก)
 // - ห้อง/มอนสเตอร์: ฟัง RoomController.CombatStarted/CombatCleared และ MonsterController.Died
 public sealed class BlessingManager : MonoBehaviour
@@ -24,8 +27,10 @@ public sealed class BlessingManager : MonoBehaviour
     public BlessingWindow window;
     public BlessingHud hud;
 
-    readonly List<BlessingData> owned = new List<BlessingData>();
+    readonly List<BlessingData> owned = new List<BlessingData>();          // สำเนาตอนเล่น
+    readonly Dictionary<BlessingData, int> levels = new Dictionary<BlessingData, int>();
     public IReadOnlyList<BlessingData> Owned => owned;
+    public int LevelOf(BlessingData blessing) => blessing != null && levels.TryGetValue(blessing, out int level) ? level : 0;
     public static bool IsChoosing => Instance != null && Instance.window != null && Instance.window.IsOpen;
 
     PlayerStats player;
@@ -38,8 +43,14 @@ public sealed class BlessingManager : MonoBehaviour
     int reserveCount;                                          // พลังงานสำรอง: จ่ายพลังงานไปกี่ครั้งตั้งแต่ครั้งฟรีล่าสุด
     int harvestedThisRoom;                                     // เก็บเกี่ยวพลังงาน
     bool shieldUsedThisRoom;                                   // เกราะฉุกเฉิน
-    float shieldLeft, shieldUntil;
+    float shieldLeft, shieldUntil;                             // shieldLeft = จำนวนครั้งที่ยังกันได้
+    float shieldGraceUntil;                                    // กันแล้วกันต่อฟรีชั่วครู่ กระสุนหลายนัดพร้อมกันไม่กินเกราะหมดในทีเดียว
+    const float ShieldGrace = 0.5f;
     float riftStepReadyAt, riftStepUntil, nextGhost;           // ก้าวพ้นรอยแยก
+    bool empowerPending; float empowerAt;                      // พลังงานสำรองระดับ 3: ครั้งฟรีรอผูกกับการโจมตีถัดไป
+    readonly Queue<object> seenAttacks = new Queue<object>();
+    readonly Queue<object> empowered = new Queue<object>();
+    static bool monsterSlowOn; static Vector2 monsterSlowCenter; static float monsterSlowRadius, monsterSlowFactor = 1f;
 
     // ภาพ: สนามชะลอกระสุน (วงรอบตัว) และฟองเกราะ
     Transform field, fieldSpin, bubble;
@@ -50,6 +61,7 @@ public sealed class BlessingManager : MonoBehaviour
     static readonly Color HarvestColor = new Color(0.45f, 0.95f, 1f);
     static readonly Color HealColor = new Color(0.4f, 1f, 0.6f);
     static readonly Color ReserveColor = new Color(0.4f, 1f, 0.85f);
+    static readonly Color CleaveColor = new Color(0.6f, 0.95f, 1f);
 
     void Awake()
     {
@@ -69,6 +81,7 @@ public sealed class BlessingManager : MonoBehaviour
         RoomController.CombatCleared -= OnCombatCleared;
         MonsterController.Died -= OnMonsterDied;
         EnemyBullets.SetSlowField(false, Vector2.zero, 0f, 1f);
+        monsterSlowOn = false;
     }
 
     void OnDestroy()
@@ -104,31 +117,23 @@ public sealed class BlessingManager : MonoBehaviour
 
     // ---------- เสนอพร ----------
 
-    // คืน false ถ้าไม่มีอะไรให้เลือก (ครบ 4 พรแล้ว / ยังไม่ได้ตั้ง UI) ให้คนเรียกไปต่อเองทันที
+    // คืน false ถ้าไม่มีอะไรให้เลือก (พรเต็มและอัปครบระดับสูงสุดหมดแล้ว / ยังไม่ได้ตั้ง UI) ให้คนเรียกไปต่อเองทันที
     public bool OfferChoice(Action afterChosen)
     {
-        if (window == null || all == null || owned.Count >= maxBlessings) return false;
-
-        var pool = new List<BlessingData>();
-        foreach (var blessing in all)
-            if (blessing != null && !owned.Contains(blessing) && !pool.Contains(blessing)) pool.Add(blessing);
-        if (pool.Count == 0) return false;
-
-        for (int i = pool.Count - 1; i > 0; i--)
-        {
-            int swap = UnityEngine.Random.Range(0, i + 1);
-            (pool[i], pool[swap]) = (pool[swap], pool[i]);
-        }
-        var options = pool.GetRange(0, Mathf.Min(choices, pool.Count));
+        if (window == null || all == null) return false;
+        var options = BuildOffers();
+        if (options.Count == 0) return false;
 
         SetPaused(true);
         window.Open(options, owned, maxBlessings, chosen =>
         {
-            if (chosen != null && !owned.Contains(chosen)) owned.Add(chosen);
+            int slot = Take(chosen);
+            foreach (var option in options)
+                if (option.IsUpgrade) Destroy(option.data); // สำเนาไว้โชว์บนการ์ดเท่านั้น
             if (hud != null)
             {
                 hud.Refresh(this);
-                hud.Ping(owned.IndexOf(chosen));
+                hud.Ping(slot);
             }
             SetPaused(false);
             afterChosen?.Invoke();
@@ -136,13 +141,98 @@ public sealed class BlessingManager : MonoBehaviour
         return true;
     }
 
+    // การ์ดพรใหม่ (ช่องยังว่าง) ปนกับการ์ดอัปเกรด ช่องยังว่างต้องมีพรใหม่อย่างน้อย 1 ใบ
+    List<BlessingOffer> BuildOffers()
+    {
+        var fresh = new List<BlessingOffer>();
+        if (owned.Count < maxBlessings)
+            foreach (var blessing in all)
+                if (blessing != null && Get(blessing.type) == null && Useful(blessing) && !fresh.Exists(o => o.data.type == blessing.type))
+                    fresh.Add(new BlessingOffer(blessing, 1, null));
+
+        var upgrades = new List<BlessingOffer>();
+        foreach (var blessing in owned)
+        {
+            int level = LevelOf(blessing);
+            if (level >= blessing.MaxLevel) continue;
+            var preview = Instantiate(blessing);
+            preview.name = blessing.name;
+            preview.Apply(blessing.upgrades[level - 1]);
+            upgrades.Add(new BlessingOffer(preview, level + 1, blessing));
+        }
+
+        Shuffle(fresh);
+        Shuffle(upgrades);
+        var options = new List<BlessingOffer>();
+        if (fresh.Count > 0)
+        {
+            options.Add(fresh[0]);
+            fresh.RemoveAt(0);
+        }
+        var rest = new List<BlessingOffer>(fresh);
+        rest.AddRange(upgrades);
+        Shuffle(rest);
+        for (int i = 0; i < rest.Count && options.Count < choices; i++) options.Add(rest[i]);
+        Shuffle(options);
+        return options;
+    }
+
+    static void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int swap = UnityEngine.Random.Range(0, i + 1);
+            (list[i], list[swap]) = (list[swap], list[i]);
+        }
+    }
+
+    // รับการ์ดที่เลือก คืนช่องบน HUD ของพรนั้น
+    int Take(BlessingOffer offer)
+    {
+        if (offer == null || offer.data == null) return -1;
+        if (offer.current == null)
+        {
+            if (Get(offer.data.type) != null || owned.Count >= maxBlessings) return -1;
+            var copy = Instantiate(offer.data);
+            copy.name = offer.data.name;
+            owned.Add(copy);
+            levels[copy] = 1;
+            return owned.Count - 1;
+        }
+
+        var blessing = offer.current;
+        int level = LevelOf(blessing);
+        if (level <= 0 || level >= blessing.MaxLevel) return owned.IndexOf(blessing);
+        var tier = blessing.upgrades[level - 1];
+        blessing.Apply(tier);
+        levels[blessing] = level + 1;
+        OnUpgraded(blessing, tier);
+        return owned.IndexOf(blessing);
+    }
+
+    // ผลที่เกิดทันทีตอนอัป: ชีพจรฟื้นฟูเพิ่มเลือดสูงสุด
+    void OnUpgraded(BlessingData blessing, BlessingTier tier)
+    {
+        if (blessing.type == BlessingType.HealingPulse && tier.bonus > 0f && FindPlayer()) player.AddMaxHP(tier.bonus);
+    }
+
     // ทดสอบใน Play Mode ไม่ต้องเล่นจนจบด่าน: คลิกขวาที่คอมโพเนนต์นี้ใน Inspector
     [ContextMenu("ทดสอบ: เปิดหน้าต่างเลือกพรตอนนี้")]
     void OfferNowForTesting()
     {
         if (!Application.isPlaying || IsChoosing) return;
-        if (!OfferChoice(null)) Debug.Log($"ไม่มีพรให้เลือกแล้ว (มี {owned.Count}/{maxBlessings})");
+        if (!OfferChoice(null)) Debug.Log($"ไม่มีพรให้เลือกแล้ว (มี {owned.Count}/{maxBlessings} อัปครบทุกอัน)");
     }
+
+    // พรพลังงานไม่สุ่มให้คนที่อาวุธทั้งสองชิ้นไม่ใช้พลังงาน (ได้ไปก็ไม่มีผล)
+    bool Useful(BlessingData blessing)
+    {
+        if (blessing.type != BlessingType.EnergyHarvest && blessing.type != BlessingType.EnergyReserve) return true;
+        if (!FindPlayer()) return true;
+        return UsesEnergy(player.weapon1) || UsesEnergy(player.weapon2);
+    }
+
+    static bool UsesEnergy(WeaponData weapon) => weapon != null && weapon.energyCost > 0;
 
     static void SetPaused(bool paused)
     {
@@ -159,13 +249,33 @@ public sealed class BlessingManager : MonoBehaviour
         harvestedThisRoom = 0;
     }
 
-    // ชีพจรฟื้นฟู: เคลียร์ห้องต่อสู้แล้วฟื้นเลือดตามสัดส่วนเลือดสูงสุด
     void OnCombatCleared(RoomController room)
+    {
+        HarvestClearBonus();
+        HealOnClear();
+    }
+
+    // เก็บเกี่ยวพลังงานระดับ 3: เคลียร์ห้องได้พลังงานเพิ่ม (ไม่นับรวมเพดานต่อห้อง)
+    void HarvestClearBonus()
+    {
+        var harvest = Get(BlessingType.EnergyHarvest);
+        if (harvest == null || harvest.bonus <= 0f || !FindPlayer() || player.isDead) return;
+        int before = player.currentEnergy;
+        player.RestoreEnergy(Mathf.RoundToInt(harvest.bonus));
+        if (player.currentEnergy <= before) return;
+        ImpactSparks.Spawn(SkillCombat.BodyCenter(player.gameObject), HarvestColor, 12, Vector2.up, 3.5f, 60f);
+        Ping(harvest);
+    }
+
+    // ชีพจรฟื้นฟู: เคลียร์ห้องต่อสู้แล้วฟื้นเลือดเป็นหน่วย (amount = จำนวนเลือด ไม่ใช่สัดส่วน เลือดผู้เล่นมีแค่ 6-9)
+    void HealOnClear()
     {
         var pulse = Get(BlessingType.HealingPulse);
         if (pulse == null || !FindPlayer() || player.isDead) return;
-        player.Heal(player.maxHP * pulse.amount);
+        float healed = Mathf.Min(pulse.amount, player.maxHP - player.currentHP);
+        player.Heal(pulse.amount);
         Vector2 center = SkillCombat.BodyCenter(player.gameObject);
+        if (healed > 0f) DamageNumbers.Spawn(center + Vector2.up * 0.5f, healed, DamageNumbers.Kind.Heal);
         ImpactSparks.Spawn(center, HealColor, 14, Vector2.zero, 3.5f);
         StartCoroutine(Pulse(center, HealColor, 2.2f, 0.45f));
         Ping(pulse);
@@ -206,6 +316,11 @@ public sealed class BlessingManager : MonoBehaviour
         if (m.ReserveReady(reserve))
         {
             m.reserveCount = 0;
+            if (reserve.bonus > 0f)
+            {
+                m.empowerPending = true;
+                m.empowerAt = Time.time;
+            }
             ImpactSparks.Spawn(SkillCombat.BodyCenter(owner.gameObject), ReserveColor, 6, Vector2.up, 3f, 50f);
             m.Ping(reserve);
             return true;
@@ -225,6 +340,45 @@ public sealed class BlessingManager : MonoBehaviour
     }
 
     bool ReserveReady(BlessingData reserve) => reserveCount >= Mathf.Max(2, reserve.count) - 1;
+
+    // ตัวคูณดาเมจของการโจมตีนี้ (attack = ตัวตนของการโจมตีหนึ่งครั้ง) พลังงานสำรองระดับ 3: ครั้งที่ฟรีแรงขึ้น
+    // ครั้งฟรีผูกกับการโจมตีใหม่ครั้งแรกที่มาถามหลังจ่าย (ฟัน = ชุดของที่โดน, ยิง = ตัวตนของนัดนั้น)
+    public static float AttackScale(object attack)
+    {
+        var m = Instance;
+        if (m == null || attack == null) return 1f;
+        var reserve = m.Get(BlessingType.EnergyReserve);
+        if (reserve == null || reserve.bonus <= 0f) return 1f;
+        if (m.empowered.Contains(attack)) return 1f + reserve.bonus;
+        if (m.seenAttacks.Contains(attack)) return 1f;
+        Remember(m.seenAttacks, attack);
+        if (!m.empowerPending || Time.time - m.empowerAt > 1.5f) return 1f;
+        m.empowerPending = false;
+        Remember(m.empowered, attack);
+        return 1f + reserve.bonus;
+    }
+
+    static void Remember(Queue<object> queue, object attack)
+    {
+        queue.Enqueue(attack);
+        while (queue.Count > 24) queue.Dequeue();
+    }
+
+    // ตัวคูณดาเมจทุกการโจมตีของผู้เล่นตอนนี้ (ก้าวพ้นรอยแยกระดับ 3: แรงขึ้นระหว่างวิ่งเร็ว)
+    public static float DamageScale
+    {
+        get
+        {
+            var m = Instance;
+            if (m == null || Time.time >= m.riftStepUntil) return 1f;
+            var step = m.Get(BlessingType.RiftStep);
+            return step != null && step.bonus > 0f ? 1f + step.bonus : 1f;
+        }
+    }
+
+    // ความเร็วเดินของมอนที่ตำแหน่งนี้ (สนามชะลอกระสุนระดับ 3)
+    public static float MonsterSpeedFactor(Vector2 position) =>
+        monsterSlowOn && (position - monsterSlowCenter).sqrMagnitude <= monsterSlowRadius * monsterSlowRadius ? monsterSlowFactor : 1f;
 
     // คลื่นสะสม: การโจมตีหนึ่งครั้ง (ฟันหนึ่งที / ยิงหนึ่งนัดรวมทุกลูก) โดนศัตรูกี่ตัวก็นับครั้งเดียว ครบแล้วปล่อยคลื่น
     public static void OnAttackLanded(object attack)
@@ -253,16 +407,17 @@ public sealed class BlessingManager : MonoBehaviour
         Vector2 origin = (Vector2)weapon.transform.position + direction * 0.6f;
         float damage = data.attackDamage * wave.amount;
         float angle = SkillCombat.Angle(direction);
+        float grow = 1f + Mathf.Max(0f, wave.bonus); // ระดับ 3: คลื่นใหญ่และไกลขึ้น
 
         var frames = wave.waveFrames;
         bool hasArt = frames != null && frames.Length > 0;
         Sprite[] fly = hasArt ? new[] { frames[Mathf.Min(1, frames.Length - 1)] } : new[] { ProceduralSprites.DashedRing };
         Sprite[] fade = hasArt && frames.Length >= 3 ? new[] { frames[2] } : null;
-        if (hasArt) SkillVfx.Spawn(new[] { frames[0] }, origin, wave.waveScale * 1.2f, angle, 12f);
+        if (hasArt) SkillVfx.Spawn(new[] { frames[0] }, origin, wave.waveScale * 1.2f * grow, angle, 12f);
 
         float speed = Mathf.Max(0.1f, wave.waveSpeed);
-        PiercingProjectile.Spawn(origin, direction, speed, wave.waveRange / speed, damage, wave.radius,
-                                 fly, fade, wave.waveScale, default, true)
+        PiercingProjectile.Spawn(origin, direction, speed, wave.waveRange * grow / speed, damage, wave.radius * grow,
+                                 fly, fade, wave.waveScale * grow, default, true)
                           .WithTrail(0.04f, 0.18f)
                           .WithTint(wave.waveTint);
         CameraFollow.Shake(0.08f, 0.12f);
@@ -270,12 +425,43 @@ public sealed class BlessingManager : MonoBehaviour
     }
 
     // คมสลายมิติ: ท่าประชิดกวาดโดนกระสุนศัตรูในวงโจมตีแล้วกระสุนหาย ไม่เกิน count ลูกต่อการฟันหนึ่งครั้ง
+    // ระดับ 2: ลบได้หนึ่งนัดคืนพลังงาน amount   ระดับ 3: กระสุนที่ลบสะท้อนกลับออกไปโดนศัตรู (ดาเมจ bonus เท่าของอาวุธ)
+    static readonly List<EnemyBullets.Cleaved> cleaved = new List<EnemyBullets.Cleaved>();
+
     public static void CleaveBullets(Vector2 center, float radius, HashSet<Component> attack)
     {
+        var m = Instance;
         var cleave = Active(BlessingType.BulletCleave);
         if (cleave == null) return;
         int left = Mathf.Max(1, cleave.count) - EnemyBullets.CountIn(attack);
-        if (left > 0 && EnemyBullets.CleaveAround(center, radius * 1.15f, left, attack) > 0) Instance.Ping(cleave);
+        if (left <= 0) return;
+        cleaved.Clear();
+        int count = EnemyBullets.CleaveAround(center, radius * 1.15f, left, attack, cleaved);
+        if (count <= 0) return;
+        m.Ping(cleave);
+        if (!m.FindPlayer()) return;
+
+        int energy = Mathf.RoundToInt(cleave.amount) * count;
+        if (energy > 0) m.player.RestoreEnergy(energy);
+        if (cleave.bonus > 0f) m.Reflect(cleaved, cleave.bonus);
+    }
+
+    void Reflect(List<EnemyBullets.Cleaved> bullets, float ratio)
+    {
+        var data = player.weaponController != null ? player.weaponController.currentWeaponData : null;
+        if (data == null) return;
+        Vector2 body = SkillCombat.BodyCenter(player.gameObject);
+        foreach (var bullet in bullets)
+        {
+            Vector2 away = bullet.position - body;
+            Vector2 direction = away.sqrMagnitude > 0.0001f ? away.normalized : (Vector2)player.weaponController.transform.right;
+            Sprite[] fly = bullet.sprite != null ? new[] { bullet.sprite } : new[] { ProceduralSprites.Disc };
+            float scale = bullet.sprite != null ? 1.1f : 0.25f;
+            PiercingProjectile.Spawn(bullet.position, direction, 10f, 0.9f, data.attackDamage * ratio, 0.35f,
+                                     fly, null, scale, default, true)
+                              .WithTrail(0.03f, 0.12f)
+                              .WithTint(CleaveColor);
+        }
     }
 
     // กระสุนทะลุมิติ: กระสุน/ลูกธนูทะลุศัตรูเพิ่ม (ไม่ใช้กับจรวด) + จำว่ามาจากการโจมตีครั้งไหน (คลื่นสะสม)
@@ -283,6 +469,8 @@ public sealed class BlessingManager : MonoBehaviour
     {
         if (projectile == null) return;
         projectile.SetAttack(attack);
+        float scale = AttackScale(attack);
+        if (scale != 1f) projectile.ScaleDamage(scale);
         var pierce = Active(BlessingType.PhasePiercing);
         if (pierce == null || (data != null && data.special == WeaponSpecial.Explosive)) return;
         projectile.SetPierce(Mathf.Max(1, pierce.count), pierce.amount > 0f ? pierce.amount : 0.6f);
@@ -290,7 +478,7 @@ public sealed class BlessingManager : MonoBehaviour
 
     // ---------- ผู้เล่นโดนตี ----------
 
-    // เกราะฉุกเฉินรับดาเมจไว้ก่อน คืนดาเมจที่เหลือไปถึงเลือด
+    // เกราะฉุกเฉินกันการโจมตีทั้งครั้งไม่ว่าแรงแค่ไหน (เลือดผู้เล่นน้อย นับเป็นครั้งเข้าใจง่ายกว่าหักตามดาเมจ)
     public static float AbsorbDamage(PlayerStats target, float damage)
     {
         var m = Instance;
@@ -301,11 +489,12 @@ public sealed class BlessingManager : MonoBehaviour
             return damage;
         }
 
-        float absorbed = Mathf.Min(m.shieldLeft, damage);
-        m.shieldLeft -= absorbed;
+        if (Time.time < m.shieldGraceUntil) return 0f;
+        m.shieldGraceUntil = Time.time + ShieldGrace;
+        m.shieldLeft -= 1f;
         ImpactSparks.Spawn(SkillCombat.BodyCenter(target.gameObject), ShieldColor, 8, Vector2.zero, 4f);
         if (m.shieldLeft <= 0.001f) m.EndShield(true);
-        return damage - absorbed;
+        return 0f;
     }
 
     // เรียกหลังเลือดลดจริง (ยังไม่ตาย)
@@ -315,12 +504,13 @@ public sealed class BlessingManager : MonoBehaviour
         if (m == null || target == null || target.isDead) return;
         m.FindPlayer();
 
-        // เกราะฉุกเฉิน: เลือดลดถึงเกณฑ์ ได้เกราะตามสัดส่วนเลือดสูงสุด ห้องละครั้ง
+        // เกราะฉุกเฉิน: เลือดลดถึงเกณฑ์ ได้เกราะกันการโจมตี count ครั้ง ห้องละครั้ง
         var shield = m.Get(BlessingType.EmergencyShield);
         if (shield != null && !m.shieldUsedThisRoom && target.currentHP <= target.maxHP * shield.threshold)
         {
             m.shieldUsedThisRoom = true;
-            m.shieldLeft = target.maxHP * shield.amount;
+            m.shieldLeft = Mathf.Max(1, shield.count);
+            m.shieldGraceUntil = 0f;
             m.shieldUntil = Time.time + shield.duration;
             ImpactSparks.Spawn(SkillCombat.BodyCenter(target.gameObject), ShieldColor, 14, Vector2.zero, 4f);
             CameraFollow.Shake(0.08f, 0.15f);
@@ -346,9 +536,26 @@ public sealed class BlessingManager : MonoBehaviour
             if (FindPlayer())
                 ImpactSparks.Spawn(SkillCombat.BodyCenter(player.gameObject), ShieldColor, broken ? 16 : 8, Vector2.zero, broken ? 5f : 2.5f);
             if (broken) CameraFollow.Shake(0.06f, 0.1f);
+            if (broken) ShieldBurst();
         }
         shieldLeft = 0f;
         shieldUntil = 0f;
+    }
+
+    // เกราะฉุกเฉินระดับ 3: เกราะแตกแล้วระเบิดผลักมอนรอบตัวกระเด็น (บอสไม่กระเด็น)
+    void ShieldBurst()
+    {
+        var shield = Get(BlessingType.EmergencyShield);
+        if (shield == null || shield.bonus <= 0f || !FindPlayer()) return;
+        Vector2 center = SkillCombat.BodyCenter(player.gameObject);
+        float reach = shield.radius > 0f ? shield.radius : 2.5f;
+        foreach (var hit in Physics2D.OverlapCircleAll(center, reach))
+        {
+            var monster = hit.GetComponentInParent<MonsterController>();
+            if (monster != null) monster.Shove(center, shield.bonus);
+        }
+        StartCoroutine(Pulse(center, ShieldColor, reach * 2f, 0.3f));
+        CameraFollow.Shake(0.12f, 0.15f);
     }
 
     // ---------- ทุกเฟรม ----------
@@ -363,6 +570,10 @@ public sealed class BlessingManager : MonoBehaviour
         EnemyBullets.SetSlowField(slow != null, center, slow != null ? slow.radius : 0f,
                                   slow != null ? Mathf.Clamp01(1f - slow.amount) : 1f);
         UpdateField(slow, center);
+        monsterSlowOn = slow != null && slow.bonus > 0f;
+        monsterSlowCenter = center;
+        monsterSlowRadius = slow != null ? slow.radius : 0f;
+        monsterSlowFactor = slow != null ? Mathf.Clamp01(1f - slow.bonus) : 1f;
 
         // เกราะหมดเวลา
         if (shieldLeft > 0f && Time.time >= shieldUntil) EndShield(false);
@@ -393,7 +604,7 @@ public sealed class BlessingManager : MonoBehaviour
                 glow = waveHits >= Mathf.Max(1, blessing.count) - 1;
                 break;
             case BlessingType.EmergencyShield:
-                if (shieldLeft > 0f) { glow = true; badge = Mathf.CeilToInt(shieldUntil - now).ToString(); }
+                if (shieldLeft > 0f) { glow = true; badge = Mathf.CeilToInt(shieldLeft).ToString(); } // กันได้อีกกี่ครั้ง
                 else if (shieldUsedThisRoom) dim = 1f;
                 break;
             case BlessingType.RiftStep:
@@ -505,5 +716,21 @@ public sealed class BlessingManager : MonoBehaviour
             yield return null;
         }
         Destroy(go);
+    }
+}
+
+// การ์ดหนึ่งใบในหน้าต่างเลือกพร: พรใหม่ (level 1, current = null) หรืออัปเกรด (data = ค่าหลังอัป, current = พรที่มีอยู่)
+public sealed class BlessingOffer
+{
+    public readonly BlessingData data;
+    public readonly int level;
+    public readonly BlessingData current;
+    public bool IsUpgrade => current != null;
+
+    public BlessingOffer(BlessingData data, int level, BlessingData current)
+    {
+        this.data = data;
+        this.level = level;
+        this.current = current;
     }
 }

@@ -50,8 +50,15 @@ public static class EnemyBullets
 
     static bool Inside(Vector2 position) => (position - slowCenter).sqrMagnitude <= slowRadius * slowRadius;
 
+    // กระสุนที่เพิ่งถูกลบ (ตำแหน่ง/ภาพ) พรคมสลายมิติระดับ 3 ใช้ยิงสะท้อนกลับ
+    public struct Cleaved
+    {
+        public Vector2 position;
+        public Sprite sprite;
+    }
+
     // ลบกระสุนในวงไม่เกิน max ลูก ใส่ลูกที่ลบแล้วลงใน attack (ชุดของที่การฟันครั้งนี้โดนไปแล้ว) คืนจำนวนที่ลบ
-    public static int CleaveAround(Vector2 center, float radius, int max, HashSet<Component> attack)
+    public static int CleaveAround(Vector2 center, float radius, int max, HashSet<Component> attack, List<Cleaved> removed = null)
     {
         if (max <= 0) return 0;
         int cleaved = 0;
@@ -65,6 +72,7 @@ public static class EnemyBullets
             var view = bullet.GetComponentInChildren<SpriteRenderer>();
             Color color = view != null ? view.color : Color.white;
             ImpactSparks.Spawn(at, Color.Lerp(color, Color.white, 0.4f), 6, Vector2.zero, 3.5f);
+            removed?.Add(new Cleaved { position = at, sprite = view != null ? view.sprite : null });
             active.RemoveAt(i);
             attack?.Add(bullet);
             Object.Destroy(bullet.gameObject);

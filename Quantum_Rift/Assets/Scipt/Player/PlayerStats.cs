@@ -62,6 +62,7 @@ public class PlayerStats : MonoBehaviour
     [Header("ตอนตาย")]
     public float deathSummaryDelay = 1.0f; // รอให้ท่าตายเล่นจบก่อนค่อยเด้งหน้าสรุป (ท่าตายยาว ~0.9 วิ)
     private bool isInvincible = false;
+    private PlayerHitFx hitFx;
     private SpriteRenderer sr; 
 
     [Header("ระบบเงิน (Currency)")]
@@ -84,6 +85,7 @@ public class PlayerStats : MonoBehaviour
         Time.timeScale = 1f;
         sr = GetComponent<SpriteRenderer>();
         GroundShadow.Attach(gameObject, 0.28f); // เงาใต้เท้าแบบเดียวกับมอนสเตอร์
+        hitFx = PlayerHitFx.Attach(gameObject, sr); // กะพริบขาวตอนโดนตี
         hud = FindObjectOfType<HUDManager>();
 
         if (hud != null) hud.UpdateCurrency(currentCurrency);
@@ -162,6 +164,8 @@ public class PlayerStats : MonoBehaviour
 
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
+        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damage, DamageNumbers.Kind.Player);
+        if (hitFx != null) hitFx.Hit();
 
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
 
@@ -179,9 +183,16 @@ public class PlayerStats : MonoBehaviour
     {
         isInvincible = true; 
 
-        float blinkInterval = 0.1f; 
+        float blinkInterval = 0.1f;
         float timePassed = 0f;
         bool isVisible = true;
+
+        // ให้เห็นกะพริบขาวก่อน แล้วค่อยกะพริบหายช่วงอมตะ
+        if (hitFx != null && hitFx.Active)
+        {
+            yield return new WaitForSeconds(blinkInterval);
+            timePassed += blinkInterval;
+        }
 
         while (timePassed < iframeDuration)
         {
@@ -309,6 +320,15 @@ public class PlayerStats : MonoBehaviour
     }
 
     // ---- ใช้โดยสกิล ----
+
+    // เพิ่มเลือดสูงสุด และเติมเลือดเท่าที่เพิ่ม (พรชีพจรฟื้นฟูตอนอัประดับ)
+    public void AddMaxHP(float amount)
+    {
+        if (isDead || amount <= 0f) return;
+        maxHP += amount;
+        currentHP = Mathf.Min(maxHP, currentHP + amount);
+        UpdateAllHUD();
+    }
 
     public void Heal(float amount)
     {

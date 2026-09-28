@@ -90,7 +90,8 @@ public class MonsterController : MonoBehaviour
             {
                 anim.SetBool("isWalking", true);
                 anim.ResetTrigger("Attack");
-                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * Time.deltaTime;
+                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * Time.deltaTime
+                               * BlessingManager.MonsterSpeedFactor(transform.position); // สนามชะลอระดับ 3
                 transform.position += (Vector3)step;
             }
             else 
@@ -149,6 +150,25 @@ public class MonsterController : MonoBehaviour
         return true;
     }
 
+    // ผลักกระเด็นออกจากจุด from (พรเกราะฉุกเฉินระดับ 3 ตอนเกราะแตก) บอสไม่กระเด็น
+    public void Shove(Vector2 from, float speed)
+    {
+        if (!IsAlive || ResistsKnockback || rb == null || !gameObject.activeInHierarchy) return;
+        StartCoroutine(ShoveRoutine(from, speed));
+    }
+
+    private IEnumerator ShoveRoutine(Vector2 from, float speed)
+    {
+        if (combatActions != null) combatActions.CancelAttack();
+        isKnockedBack = true;
+        Vector2 away = (Vector2)transform.position - from;
+        if (away.sqrMagnitude < 0.0001f) away = Random.insideUnitCircle;
+        rb.linearVelocity = away.normalized * speed;
+        yield return new WaitForSeconds(0.25f);
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        isKnockedBack = false;
+    }
+
     public void Stun(float seconds)
     {
         if (!IsAlive || seconds <= 0f) return;
@@ -179,6 +199,8 @@ public class MonsterController : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy || currentHealth <= 0) return;
         currentHealth -= damageAmount;
+        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, DamageNumbers.Kind.Enemy,
+            player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
         if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
         
     

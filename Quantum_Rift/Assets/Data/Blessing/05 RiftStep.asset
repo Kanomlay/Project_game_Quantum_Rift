@@ -31,6 +31,32 @@ MonoBehaviour:
   cooldown: 8
   radius: 0
   perRoomCap: 0
+  bonus: 0
+  upgrades:
+  - count: 0
+    amount: 0.35
+    threshold: 0
+    duration: 3
+    cooldown: 6
+    radius: 0
+    perRoomCap: 0
+    bonus: 0
+    abilityThai: "\u0E2B\u0E25\u0E31\u0E07\u0E23\u0E31\u0E1A\u0E14\u0E32\u0E40\u0E21\u0E08 \u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E40\u0E23\u0E47\u0E27\u0E02\u0E36\u0E49\u0E19 35% \u0E19\u0E32\u0E19 3 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+    abilityEnglish: "After taking damage, move 35% faster for 3 seconds."
+    limitThai: "\u0E04\u0E39\u0E25\u0E14\u0E32\u0E27\u0E19\u0E4C 6 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+    limitEnglish: "6-second cooldown."
+  - count: 0
+    amount: 0.45
+    threshold: 0
+    duration: 3
+    cooldown: 5
+    radius: 0
+    perRoomCap: 0
+    bonus: 0.2
+    abilityThai: "\u0E2B\u0E25\u0E31\u0E07\u0E23\u0E31\u0E1A\u0E14\u0E32\u0E40\u0E21\u0E08 \u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E40\u0E23\u0E47\u0E27\u0E02\u0E36\u0E49\u0E19 45% \u0E41\u0E25\u0E30\u0E42\u0E08\u0E21\u0E15\u0E35\u0E41\u0E23\u0E07\u0E02\u0E36\u0E49\u0E19 20% \u0E19\u0E32\u0E19 3 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+    abilityEnglish: "After taking damage, move 45% faster and deal 20% more damage for 3 seconds."
+    limitThai: "\u0E04\u0E39\u0E25\u0E14\u0E32\u0E27\u0E19\u0E4C 5 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+    limitEnglish: "5-second cooldown."
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

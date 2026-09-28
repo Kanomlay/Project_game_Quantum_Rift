@@ -23,8 +23,17 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     // ถ้าวางกับดักไว้ชั้น object จะทับตัวผู้เล่นตลอดแม้หนามหุบอยู่ จึงบังคับให้อยู่ชั้นเดียวกับผู้เล่น
     const string FloorLayer = "bg2";
     const int FlushOrder = 0;  // ช่องกับดักฝังพื้น: ใต้เท้าผู้เล่น (ชั้นเดียวกับประตูมิติออกด่าน/วงเตือนเกิดมอน)
-    const int RaisedOrder = 6; // หนามพุ่งขึ้น: บังเท้าผู้เล่น แต่ยังอยู่ใต้กำแพงและมอนสเตอร์
+    const int RaisedOrder = 6; // หนามพุ่งขึ้น ผู้เล่นอยู่หลังช่อง (เหนือช่องบนจอ): หนามบังเท้าผู้เล่น แต่ยังอยู่ใต้กำแพงและมอนสเตอร์
+    const int BehindOrder = 4; // หนามพุ่งขึ้น ผู้เล่นยืนบนช่อง/หน้าช่อง: ตัวผู้เล่น (ลำดับ 5) ทับหนาม ไม่ถูกหนามบังทั้งตัว
     static int floorLayerId = -1;
+    // โดนหนาม: กระเด็นออกจากช่อง สั่นจอเบา ๆ ประกายที่เท้า (ยาน = สะเก็ดเหล็กส้ม / ป่า = เศษหนามเขียว) หนามช่องที่แทงโดนเด้งขึ้น
+    const float HitKnockback = 3.5f;   // เบากว่าโดนมอนตี
+    const float PunchTime = 0.18f;
+    static readonly Color MetalSparks = new Color(1f, 0.62f, 0.22f);
+    static readonly Color ThornSparks = new Color(0.55f, 0.95f, 0.35f);
+    float punch;
+    Transform punchTarget;
+    Vector3 punchScale;
 
     void OnEnable()
     {
@@ -42,6 +51,7 @@ public sealed class FixedSpikeTrap : MonoBehaviour
         }
         if (player != null && player.isDead) return;
         Advance(Time.deltaTime);
+        Punch(Time.deltaTime);
         if (CurrentPhase == Phase.Raised && player != null && damageArea != null &&
             damageArea.OverlapPoint(player.transform.position)) TryHit(player);
     }
@@ -96,14 +106,59 @@ public sealed class FixedSpikeTrap : MonoBehaviour
         // ช่องกับดักฝังเรียบใต้เท้าตัวละคร มีเฉพาะหนามที่พุ่งขึ้นมาบังด้านหน้า
         if (floorLayerId < 0) floorLayerId = SortingLayer.NameToID(FloorLayer);
         animatedDisplay.sortingLayerID = floorLayerId;
-        animatedDisplay.sortingOrder = index >= 2 && index <= 5 ? RaisedOrder : FlushOrder;
+        animatedDisplay.sortingOrder = index >= 2 && index <= 5 ? (PlayerBehind() ? RaisedOrder : BehindOrder) : FlushOrder;
+    }
+
+    // เท้าผู้เล่นอยู่สูงกว่ากลางช่อง = ยืนอยู่หลังกับดัก หนามควรวาดทับ
+    bool PlayerBehind()
+    {
+        if (player == null) return false;
+        float center = damageArea != null ? damageArea.bounds.center.y : transform.position.y;
+        return player.transform.position.y > center;
     }
 
     public bool TryHit(PlayerStats target)
     {
         if (target == null || target.isDead || CurrentPhase != Phase.Raised || hitCycle == CompletedCycles) return false;
         hitCycle = CompletedCycles;
+        bool landed = target.CanTakeHit; // ติดอมตะอยู่ = ไม่กระเด็น ไม่มีเอฟเฟกต์
         target.TakeDamage(damage);
+        if (landed) HitFeedback(target);
         return true;
+    }
+
+    void HitFeedback(PlayerStats target)
+    {
+        Vector2 feet = target.transform.position;
+        Vector2 center = damageArea != null ? (Vector2)damageArea.bounds.center : (Vector2)transform.position;
+        Vector2 away = feet - center;
+        if (away.sqrMagnitude < 0.0004f) away = Random.insideUnitCircle; // ยืนกลางช่องพอดี สุ่มทางกระเด็น
+        var movement = target.GetComponent<PlayerMovement>();
+        if (movement != null) movement.TakeKnockback(feet - away.normalized, HitKnockback);
+
+        CameraFollow.Shake(0.1f, 0.15f);
+        var features = GetComponentInParent<MapGameplayFeatures>();
+        bool forest = features != null && features.theme == MapGameplayFeatures.Theme.LivingForest;
+        Color color = forest ? ThornSparks : MetalSparks;
+        ImpactSparks.Spawn(feet, color, 10, Vector2.up, 4.5f, 80f);
+        ImpactSparks.Spawn(feet, Color.white, 4, Vector2.up, 3f, 60f);
+
+        punchTarget = animatedDisplay != null ? animatedDisplay.transform : spikes;
+        if (punchTarget != null)
+        {
+            if (punch <= 0f) punchScale = punchTarget.localScale;
+            punch = 1f;
+        }
+    }
+
+    // หนามช่องที่แทงโดนยืดขึ้นแวบหนึ่งแล้วกลับขนาดเดิม
+    void Punch(float dt)
+    {
+        if (punch <= 0f || punchTarget == null) return;
+        punch = Mathf.Max(0f, punch - dt / PunchTime);
+        float k = Mathf.Sin(punch * Mathf.PI) * 0.5f + punch * 0.5f;
+        Vector3 scale = punchTarget == spikes ? punchTarget.localScale : punchScale;
+        punchTarget.localScale = new Vector3(scale.x * (1f + 0.1f * k), scale.y * (1f + 0.22f * k), scale.z);
+        if (punch <= 0f && punchTarget != spikes) punchTarget.localScale = punchScale;
     }
 }

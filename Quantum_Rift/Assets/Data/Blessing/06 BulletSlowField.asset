@@ -18,18 +18,43 @@ MonoBehaviour:
   hudIcon: {fileID: 21300000, guid: 03bfebed91c86f7439b234fb364f49aa, type: 3}
   nameThai: "\u0E2A\u0E19\u0E32\u0E21\u0E0A\u0E30\u0E25\u0E2D\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19"
   nameEnglish: Bullet Slow Field
-  abilityThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E15\u0E31\u0E27\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E0A\u0E49\u0E32\u0E25\u0E07
-    20%"
-  abilityEnglish: Enemy bullets near you move 20% slower.
+  abilityThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E15\u0E31\u0E27\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E0A\u0E49\u0E32\u0E25\u0E07 45%"
+  abilityEnglish: Enemy bullets near you move 45% slower.
   limitThai: "\u0E23\u0E31\u0E28\u0E21\u0E35\u0E2A\u0E31\u0E49\u0E19 \u0E44\u0E21\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C\u0E2B\u0E23\u0E37\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27\u0E28\u0E31\u0E15\u0E23\u0E39"
   limitEnglish: Short radius. No effect on lasers or enemy speed.
   count: 0
-  amount: 0.2
+  amount: 0.45
   threshold: 0
   duration: 0
   cooldown: 0
-  radius: 2.5
+  radius: 3.5
   perRoomCap: 0
+  bonus: 0
+  upgrades:
+  - count: 0
+    amount: 0.6
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 4.5
+    perRoomCap: 0
+    bonus: 0
+    abilityThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E15\u0E31\u0E27\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E17\u0E35\u0E48\u0E0A\u0E49\u0E32\u0E25\u0E07 60%"
+    abilityEnglish: "Enemy bullets near you move 60% slower."
+    limitThai: ""
+    limitEnglish: ""
+  - count: 0
+    amount: 0.75
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 5.5
+    perRoomCap: 0
+    bonus: 0.2
+    abilityThai: "\u0E01\u0E23\u0E30\u0E2A\u0E38\u0E19\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E01\u0E25\u0E49\u0E15\u0E31\u0E27\u0E0A\u0E49\u0E32\u0E25\u0E07 75% \u0E41\u0E25\u0E30\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48\u0E43\u0E19\u0E27\u0E07\u0E40\u0E14\u0E34\u0E19\u0E0A\u0E49\u0E32\u0E25\u0E07 20%"
+    abilityEnglish: "Enemy bullets near you move 75% slower and enemies inside the field walk 20% slower."
+    limitThai: "\u0E44\u0E21\u0E48\u0E2A\u0E48\u0E07\u0E1C\u0E25\u0E15\u0E48\u0E2D\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
+    limitEnglish: "No effect on lasers."
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

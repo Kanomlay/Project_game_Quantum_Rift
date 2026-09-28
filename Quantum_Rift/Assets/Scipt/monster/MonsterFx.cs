@@ -21,6 +21,8 @@ public sealed class MonsterFx : MonoBehaviour
     static readonly int DissolveColorId = Shader.PropertyToID("_DissolveColor");
     static readonly int PixelGridId = Shader.PropertyToID("_PixelGrid");
 
+    public static Material SharedMaterial => FxMaterial; // ผู้เล่นใช้ shader เดียวกัน (PlayerHitFx)
+
     static Material material;
     static bool materialLoaded;
     static Material FxMaterial

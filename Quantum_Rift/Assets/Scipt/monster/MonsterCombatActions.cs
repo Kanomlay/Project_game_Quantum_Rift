@@ -169,7 +169,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     void FixedUpdate()
     {
         if(body!=null&&move.sqrMagnitude>0&&!IsAttacking)
-            body.MovePosition(body.position+move*Time.fixedDeltaTime);
+            body.MovePosition(body.position+move*BlessingManager.MonsterSpeedFactor(body.position)*Time.fixedDeltaTime); // สนามชะลอระดับ 3
     }
 
     IEnumerator Attack(bool ranged)

@@ -18,21 +18,44 @@ MonoBehaviour:
   hudIcon: {fileID: 21300000, guid: 4ec7f9a5a2c1d8d4a8ecb2f8a9e51f46, type: 3}
   nameThai: "\u0E40\u0E01\u0E23\u0E32\u0E30\u0E09\u0E38\u0E01\u0E40\u0E09\u0E34\u0E19"
   nameEnglish: Emergency Shield
-  abilityThai: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E25\u0E14\u0E16\u0E36\u0E07
-    30% \u0E44\u0E14\u0E49\u0E40\u0E01\u0E23\u0E32\u0E30\u0E23\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E40\u0E17\u0E48\u0E32\u0E01\u0E31\u0E1A
-    15% \u0E02\u0E2D\u0E07\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14
-    \u0E19\u0E32\u0E19 4 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
-  abilityEnglish: At 30% HP, gain a shield worth 15% of max HP for 4 seconds.
+  abilityThai: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E25\u0E14\u0E16\u0E36\u0E07 30% \u0E44\u0E14\u0E49\u0E40\u0E01\u0E23\u0E32\u0E30\u0E01\u0E31\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35 2 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E19\u0E32\u0E19 5 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+  abilityEnglish: At 30% HP, gain a shield that blocks 2 hits for 5 seconds.
   limitThai: "\u0E17\u0E33\u0E07\u0E32\u0E19\u0E44\u0E14\u0E49\u0E2B\u0E49\u0E2D\u0E07\u0E25\u0E30
     1 \u0E04\u0E23\u0E31\u0E49\u0E07"
   limitEnglish: Once per room.
-  count: 0
-  amount: 0.15
+  count: 2
+  amount: 0
   threshold: 0.3
-  duration: 4
+  duration: 5
   cooldown: 0
   radius: 0
   perRoomCap: 0
+  bonus: 0
+  upgrades:
+  - count: 3
+    amount: 0
+    threshold: 0.4
+    duration: 6
+    cooldown: 0
+    radius: 0
+    perRoomCap: 0
+    bonus: 0
+    abilityThai: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E25\u0E14\u0E16\u0E36\u0E07 40% \u0E44\u0E14\u0E49\u0E40\u0E01\u0E23\u0E32\u0E30\u0E01\u0E31\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35 3 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E19\u0E32\u0E19 6 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+    abilityEnglish: "At 40% HP, gain a shield that blocks 3 hits for 6 seconds."
+    limitThai: ""
+    limitEnglish: ""
+  - count: 3
+    amount: 0
+    threshold: 0.5
+    duration: 8
+    cooldown: 0
+    radius: 2.5
+    perRoomCap: 0
+    bonus: 8
+    abilityThai: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E25\u0E14\u0E16\u0E36\u0E07 50% \u0E44\u0E14\u0E49\u0E40\u0E01\u0E23\u0E32\u0E30\u0E01\u0E31\u0E19\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35 3 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E19\u0E32\u0E19 8 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E40\u0E01\u0E23\u0E32\u0E30\u0E41\u0E15\u0E01\u0E41\u0E25\u0E49\u0E27\u0E1C\u0E25\u0E31\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E23\u0E2D\u0E1A\u0E15\u0E31\u0E27\u0E01\u0E23\u0E30\u0E40\u0E14\u0E47\u0E19"
+    abilityEnglish: "At 50% HP, gain a shield that blocks 3 hits for 8 seconds. When it breaks, nearby enemies are knocked back."
+    limitThai: ""
+    limitEnglish: ""
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

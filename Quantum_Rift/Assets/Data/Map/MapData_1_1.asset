@@ -18,5 +18,5 @@ MonoBehaviour:
   possibleEvents:
   - {fileID: 11400000, guid: 55a9e6f22ccb36f468c209d771d88f7a, type: 2}
   chestLoot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
-  nextMap: {fileID: 11400000, guid: bd88113ea26639b4ba33b795bb73bb25, type: 2}
+  nextMap: {fileID: 11400000, guid: 3212100821d769e4fb04c52c17f34beb, type: 2}
   isBossRoom: 0

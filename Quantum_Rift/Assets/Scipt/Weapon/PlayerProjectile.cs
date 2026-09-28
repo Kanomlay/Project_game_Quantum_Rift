@@ -64,6 +64,9 @@ public sealed class PlayerProjectile : MonoBehaviour
 
     public void SetAttack(object key) => attack = key;
 
+    // พรพลังงานสำรองระดับ 3: นัดที่ยิงฟรีแรงขึ้น
+    public void ScaleDamage(float scale) => damage *= scale;
+
     public void SetPierce(int count, float nextDamageScale)
     {
         pierceLeft = Mathf.Max(0, count);

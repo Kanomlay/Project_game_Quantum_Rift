@@ -35,7 +35,18 @@ public static class BlessingBuilder
         public string NameTh, NameEn, AbilityTh, AbilityEn, LimitTh, LimitEn;
         public int Count, PerRoomCap;
         public float Amount, Threshold, Duration, Cooldown, Radius;
+        public BlessingTier[] Upgrades; // [0] = ระดับ 2, [1] = ระดับ 3
     }
+
+    // ค่าเต็มของหนึ่งระดับ (ข้อความข้อจำกัดว่าง = ใช้ของระดับก่อนหน้า)
+    static BlessingTier T(int count = 0, float amount = 0f, float threshold = 0f, float duration = 0f, float cooldown = 0f,
+                          float radius = 0f, int cap = 0, float bonus = 0f,
+                          string th = "", string en = "", string limitTh = "", string limitEn = "") => new BlessingTier
+    {
+        count = count, amount = amount, threshold = threshold, duration = duration, cooldown = cooldown,
+        radius = radius, perRoomCap = cap, bonus = bonus,
+        abilityThai = th, abilityEnglish = en, limitThai = limitTh, limitEnglish = limitEn,
+    };
 
     // ตัวเลขตามตารางพรที่ผู้ใช้ให้มา (ข้อความเอ่ยถึงตัวเลขเดียวกัน ถ้าปรับตัวเลขใน Inspector ต้องแก้ข้อความตามด้วย)
     static readonly Spec[] Specs =
@@ -44,48 +55,75 @@ public static class BlessingBuilder
                    NameTh = "คมสลายมิติ", NameEn = "Bullet Cleave",
                    AbilityTh = "ฟันลบกระสุนศัตรูในแนวโจมตี", AbilityEn = "Melee strikes erase enemy bullets in their path.",
                    LimitTh = "สูงสุด 3 นัดต่อการฟัน ไม่ลบเลเซอร์หรือพื้นอันตราย", LimitEn = "Up to 3 bullets per strike. Lasers and hazard floors are not erased.",
-                   Count = 3 },
+                   Count = 3,
+                   Upgrades = new[] {
+                                  T(count: 6, amount: 1, th: "ฟันลบกระสุนศัตรูในแนวโจมตี ลบได้ 1 นัดคืนพลังงาน 1", en: "Melee strikes erase enemy bullets. Each erased bullet restores 1 energy.", limitTh: "สูงสุด 6 นัดต่อการฟัน ไม่ลบเลเซอร์หรือพื้นอันตราย", limitEn: "Up to 6 bullets per strike. Lasers and hazard floors are not erased."),
+                                  T(count: 6, amount: 1, bonus: 0.5f, th: "ฟันลบกระสุนศัตรู คืนพลังงาน 1 ต่อนัด และสะท้อนกระสุนกลับไปโดนศัตรู (ดาเมจ 50% ของอาวุธ)", en: "Erased bullets restore 1 energy each and fly back at enemies (50% weapon damage).") } },
         new Spec { File = "02 PhasePiercing", Icon = "02-phase-piercing", Type = BlessingType.PhasePiercing, Category = BlessingCategory.Attack,
                    NameTh = "กระสุนทะลุมิติ", NameEn = "Phase Piercing",
                    AbilityTh = "กระสุนและลูกธนูทะลุศัตรูเพิ่ม 1 ตัว", AbilityEn = "Bullets and arrows pierce 1 extra enemy.",
                    LimitTh = "ไม่ใช้กับจรวด ศัตรูตัวถัดไปรับดาเมจ 60%", LimitEn = "Not for rockets. The next enemy takes 60% damage.",
-                   Count = 1, Amount = 0.6f },
+                   Count = 1, Amount = 0.6f,
+                   Upgrades = new[] {
+                                  T(count: 2, amount: 0.8f, th: "กระสุนและลูกธนูทะลุศัตรูเพิ่ม 2 ตัว", en: "Bullets and arrows pierce 2 extra enemies.", limitTh: "ไม่ใช้กับจรวด ศัตรูตัวถัดไปรับดาเมจ 80%", limitEn: "Not for rockets. Following enemies take 80% damage."),
+                                  T(count: 3, amount: 1, th: "กระสุนและลูกธนูทะลุศัตรูเพิ่ม 3 ตัว โดยดาเมจไม่ลดลง", en: "Bullets and arrows pierce 3 extra enemies at full damage.", limitTh: "ไม่ใช้กับจรวด", limitEn: "Not for rockets.") } },
         new Spec { File = "03 ChargedWave", Icon = "03-charged-wave", Type = BlessingType.ChargedWave, Category = BlessingCategory.Attack,
                    NameTh = "คลื่นสะสม", NameEn = "Charged Wave",
                    AbilityTh = "โจมตีโดนศัตรูครบ 5 ครั้ง ปล่อยคลื่นพลัง", AbilityEn = "Every 5 hits on enemies release an energy wave.",
                    LimitTh = "คลื่นทำดาเมจ 50% ของอาวุธ นับสูงสุดครั้งเดียวต่อการโจมตี", LimitEn = "The wave deals 50% weapon damage. Each attack counts once.",
-                   Count = 5, Amount = 0.5f, Radius = 0.7f },
+                   Count = 5, Amount = 0.5f, Radius = 0.7f,
+                   Upgrades = new[] {
+                                  T(count: 4, amount: 0.75f, radius: 0.7f, th: "โจมตีโดนศัตรูครบ 4 ครั้ง ปล่อยคลื่นพลัง", en: "Every 4 hits on enemies release an energy wave.", limitTh: "คลื่นทำดาเมจ 75% ของอาวุธ นับสูงสุดครั้งเดียวต่อการโจมตี", limitEn: "The wave deals 75% weapon damage. Each attack counts once."),
+                                  T(count: 3, amount: 1, radius: 0.7f, bonus: 0.4f, th: "โจมตีโดนศัตรูครบ 3 ครั้ง ปล่อยคลื่นพลังขนาดใหญ่ที่ไปไกลขึ้น", en: "Every 3 hits release a larger, longer-reaching energy wave.", limitTh: "คลื่นทำดาเมจ 100% ของอาวุธ นับสูงสุดครั้งเดียวต่อการโจมตี", limitEn: "The wave deals 100% weapon damage. Each attack counts once.") } },
         new Spec { File = "04 EmergencyShield", Icon = "04-emergency-shield", Type = BlessingType.EmergencyShield, Category = BlessingCategory.Defense,
                    NameTh = "เกราะฉุกเฉิน", NameEn = "Emergency Shield",
-                   AbilityTh = "เมื่อเลือดลดถึง 30% ได้เกราะรับความเสียหายเท่ากับ 15% ของเลือดสูงสุด นาน 4 วินาที",
-                   AbilityEn = "At 30% HP, gain a shield worth 15% of max HP for 4 seconds.",
+                   AbilityTh = "เมื่อเลือดลดถึง 30% ได้เกราะกันการโจมตี 2 ครั้ง นาน 5 วินาที",
+                   AbilityEn = "At 30% HP, gain a shield that blocks 2 hits for 5 seconds.",
                    LimitTh = "ทำงานได้ห้องละ 1 ครั้ง", LimitEn = "Once per room.",
-                   Threshold = 0.3f, Amount = 0.15f, Duration = 4f },
+                   Threshold = 0.3f, Count = 2, Duration = 5f,
+                   Upgrades = new[] {
+                                  T(count: 3, threshold: 0.4f, duration: 6, th: "เมื่อเลือดลดถึง 40% ได้เกราะกันการโจมตี 3 ครั้ง นาน 6 วินาที", en: "At 40% HP, gain a shield that blocks 3 hits for 6 seconds."),
+                                  T(count: 3, threshold: 0.5f, duration: 8, radius: 2.5f, bonus: 8, th: "เมื่อเลือดลดถึง 50% ได้เกราะกันการโจมตี 3 ครั้ง นาน 8 วินาที เกราะแตกแล้วผลักศัตรูรอบตัวกระเด็น", en: "At 50% HP, gain a shield that blocks 3 hits for 8 seconds. When it breaks, nearby enemies are knocked back.") } },
         new Spec { File = "05 RiftStep", Icon = "05-rift-step", Type = BlessingType.RiftStep, Category = BlessingCategory.Defense,
                    NameTh = "ก้าวพ้นรอยแยก", NameEn = "Rift Step",
                    AbilityTh = "หลังรับดาเมจ เคลื่อนที่เร็วขึ้น 25% นาน 2 วินาที", AbilityEn = "After taking damage, move 25% faster for 2 seconds.",
                    LimitTh = "คูลดาวน์ 8 วินาที", LimitEn = "8-second cooldown.",
-                   Amount = 0.25f, Duration = 2f, Cooldown = 8f },
+                   Amount = 0.25f, Duration = 2f, Cooldown = 8f,
+                   Upgrades = new[] {
+                                  T(amount: 0.35f, duration: 3, cooldown: 6, th: "หลังรับดาเมจ เคลื่อนที่เร็วขึ้น 35% นาน 3 วินาที", en: "After taking damage, move 35% faster for 3 seconds.", limitTh: "คูลดาวน์ 6 วินาที", limitEn: "6-second cooldown."),
+                                  T(amount: 0.45f, duration: 3, cooldown: 5, bonus: 0.2f, th: "หลังรับดาเมจ เคลื่อนที่เร็วขึ้น 45% และโจมตีแรงขึ้น 20% นาน 3 วินาที", en: "After taking damage, move 45% faster and deal 20% more damage for 3 seconds.", limitTh: "คูลดาวน์ 5 วินาที", limitEn: "5-second cooldown.") } },
         new Spec { File = "06 BulletSlowField", Icon = "06-bullet-slow-field", Type = BlessingType.BulletSlowField, Category = BlessingCategory.Defense,
                    NameTh = "สนามชะลอกระสุน", NameEn = "Bullet Slow Field",
-                   AbilityTh = "กระสุนศัตรูที่อยู่ใกล้ตัวเคลื่อนที่ช้าลง 20%", AbilityEn = "Enemy bullets near you move 20% slower.",
+                   AbilityTh = "กระสุนศัตรูที่อยู่ใกล้ตัวเคลื่อนที่ช้าลง 45%", AbilityEn = "Enemy bullets near you move 45% slower.",
                    LimitTh = "รัศมีสั้น ไม่ส่งผลต่อเลเซอร์หรือความเร็วศัตรู", LimitEn = "Short radius. No effect on lasers or enemy speed.",
-                   Amount = 0.2f, Radius = 2.5f },
+                   Amount = 0.45f, Radius = 3.5f,
+                   Upgrades = new[] {
+                                  T(amount: 0.6f, radius: 4.5f, th: "กระสุนศัตรูที่อยู่ใกล้ตัวเคลื่อนที่ช้าลง 60%", en: "Enemy bullets near you move 60% slower."),
+                                  T(amount: 0.75f, radius: 5.5f, bonus: 0.2f, th: "กระสุนศัตรูที่อยู่ใกล้ตัวช้าลง 75% และศัตรูที่อยู่ในวงเดินช้าลง 20%", en: "Enemy bullets near you move 75% slower and enemies inside the field walk 20% slower.", limitTh: "ไม่ส่งผลต่อเลเซอร์", limitEn: "No effect on lasers.") } },
         new Spec { File = "07 EnergyHarvest", Icon = "07-energy-harvest", Type = BlessingType.EnergyHarvest, Category = BlessingCategory.Resource,
                    NameTh = "เก็บเกี่ยวพลังงาน", NameEn = "Energy Harvest",
-                   AbilityTh = "กำจัดศัตรูด้วยตัวเองแล้วฟื้นพลังงาน 2 หน่วย", AbilityEn = "Defeating an enemy restores 2 energy.",
-                   LimitTh = "ฟื้นได้สูงสุด 10 หน่วยต่อห้อง", LimitEn = "Up to 10 energy per room.",
-                   Count = 2, PerRoomCap = 10 },
+                   AbilityTh = "กำจัดศัตรูด้วยตัวเองแล้วฟื้นพลังงาน 5 หน่วย", AbilityEn = "Defeating an enemy restores 5 energy.",
+                   LimitTh = "ฟื้นได้สูงสุด 25 หน่วยต่อห้อง", LimitEn = "Up to 25 energy per room.",
+                   Count = 5, PerRoomCap = 25,
+                   Upgrades = new[] {
+                                  T(count: 8, cap: 40, th: "กำจัดศัตรูด้วยตัวเองแล้วฟื้นพลังงาน 8 หน่วย", en: "Defeating an enemy restores 8 energy.", limitTh: "ฟื้นได้สูงสุด 40 หน่วยต่อห้อง", limitEn: "Up to 40 energy per room."),
+                                  T(count: 10, cap: 60, bonus: 20, th: "กำจัดศัตรูแล้วฟื้นพลังงาน 10 หน่วย เคลียร์ห้องได้เพิ่มอีก 20", en: "Defeating an enemy restores 10 energy. Clearing a room restores 20 more.", limitTh: "ฟื้นจากศัตรูได้สูงสุด 60 หน่วยต่อห้อง", limitEn: "Up to 60 energy per room from enemies.") } },
         new Spec { File = "08 HealingPulse", Icon = "08-healing-pulse", Type = BlessingType.HealingPulse, Category = BlessingCategory.Resource,
                    NameTh = "ชีพจรฟื้นฟู", NameEn = "Healing Pulse",
-                   AbilityTh = "เคลียร์ห้องต่อสู้แล้วฟื้นเลือด 3% ของเลือดสูงสุด", AbilityEn = "Clearing a combat room heals 3% of max HP.",
+                   AbilityTh = "เคลียร์ห้องต่อสู้แล้วฟื้นเลือด 4 หน่วย", AbilityEn = "Clearing a combat room heals 4 HP.",
                    LimitTh = "ทำงานครั้งเดียวต่อห้อง", LimitEn = "Once per room.",
-                   Amount = 0.03f },
+                   Amount = 4f,
+                   Upgrades = new[] {
+                                  T(amount: 5, bonus: 1, th: "เคลียร์ห้องต่อสู้แล้วฟื้นเลือด 5 หน่วย (อัปแล้วเลือดสูงสุด +1)", en: "Clearing a combat room heals 5 HP. (+1 max HP on upgrade)"),
+                                  T(amount: 6, bonus: 1, th: "เคลียร์ห้องต่อสู้แล้วฟื้นเลือด 6 หน่วย (อัปแล้วเลือดสูงสุด +1 อีก)", en: "Clearing a combat room heals 6 HP. (+1 more max HP on upgrade)") } },
         new Spec { File = "09 EnergyReserve", Icon = "09-energy-reserve", Type = BlessingType.EnergyReserve, Category = BlessingCategory.Resource,
                    NameTh = "พลังงานสำรอง", NameEn = "Energy Reserve",
-                   AbilityTh = "การโจมตีที่เสียพลังงานครั้งที่ 5 ไม่เสียพลังงาน", AbilityEn = "Every 5th energy-costing attack is free.",
+                   AbilityTh = "การโจมตีที่เสียพลังงานครั้งที่ 3 ไม่เสียพลังงาน", AbilityEn = "Every 3rd energy-costing attack is free.",
                    LimitTh = "ไม่นับการโจมตีฟรีและสกิลฮีโร่", LimitEn = "Free attacks and hero skills don't count.",
-                   Count = 5 },
+                   Count = 3,
+                   Upgrades = new[] {
+                                  T(count: 2, th: "การโจมตีที่เสียพลังงานครั้งที่ 2 ไม่เสียพลังงาน", en: "Every 2nd energy-costing attack is free."),
+                                  T(count: 2, bonus: 0.3f, th: "การโจมตีที่เสียพลังงานครั้งที่ 2 ไม่เสียพลังงาน และครั้งที่ฟรีแรงขึ้น 30%", en: "Every 2nd energy-costing attack is free and deals 30% more damage.") } },
     };
 
     [MenuItem("Tools/Quantum Rift/Setup Blessings (พร)")]
@@ -166,6 +204,9 @@ public static class BlessingBuilder
             data.limitEnglish = spec.LimitEn;
             if (spec.Type == BlessingType.ChargedWave && waveFrames != null && waveFrames.Length > 0)
                 data.waveFrames = waveFrames;
+
+            // ค่าระดับ 2-3 ใส่ให้ถ้ายังไม่มี (ปรับเองใน Inspector แล้วไม่โดนทับ)
+            if (data.upgrades == null || data.upgrades.Length == 0) data.upgrades = spec.Upgrades;
 
             if (created)
             {

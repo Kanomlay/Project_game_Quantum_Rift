@@ -896,10 +896,11 @@ public class WeaponController : MonoBehaviour
     private void HitAround(Vector3 center, float radius, HashSet<Component> alreadyHit, AttackMotion feel)
     {
         BlessingManager.CleaveBullets(center, radius, alreadyHit);
+        float power = currentWeaponData.attackDamage * BlessingManager.AttackScale(alreadyHit); // ครั้งฟรีของพลังงานสำรองระดับ 3 แรงขึ้น
         foreach (var collider in Physics2D.OverlapCircleAll(center, radius))
         {
             var prop = collider.GetComponentInParent<IBreakable>(); // กล่องทำลายได้ / กำแพงในห้อง
-            if (prop != null && !prop.IsBroken && alreadyHit.Add((Component)prop)) prop.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
+            if (prop != null && !prop.IsBroken && alreadyHit.Add((Component)prop)) prop.TakeDamage(RunStatBuffs.Damage(power,owner));
         }
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, enemyLayers);
 
@@ -912,7 +913,7 @@ public class WeaponController : MonoBehaviour
                 if (!alreadyHit.Contains(monster))
                 {
                     alreadyHit.Add(monster);
-                    monster.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
+                    monster.TakeDamage(RunStatBuffs.Damage(power,owner));
                     target = monster;
                 }
             }
@@ -922,7 +923,7 @@ public class WeaponController : MonoBehaviour
                 ArchitectBossHealth boss = enemy.GetComponentInParent<ArchitectBossHealth>();
                 if (boss != null && alreadyHit.Add(boss))
                 {
-                    boss.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
+                    boss.TakeDamage(RunStatBuffs.Damage(power,owner));
                     target = boss;
                 }
             }

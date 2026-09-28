@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // การ์ดพรหนึ่งใบในหน้าต่างเลือกพร กรอบสีตามหมวด (โจมตี/ป้องกัน/ทรัพยากร) โผล่แบบจางเข้า ชี้แล้วขยายนิด ๆ
+// การ์ดอัปเกรด: กรอบสีทอง ชื่อต่อท้ายระดับ (Lv.2 / Lv.3) โชว์ความสามารถหลังอัป และความสามารถตอนนี้ไว้เทียบ
 // ส่วนประกอบสร้างโดย BlessingBuilder ใช้เวลาจริงเพราะตอนเปิดหน้าต่างเกมหยุดอยู่
 [RequireComponent(typeof(CanvasGroup))]
 public sealed class BlessingCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -18,26 +19,39 @@ public sealed class BlessingCardView : MonoBehaviour, IPointerEnterHandler, IPoi
     public TMP_Text keyText;
 
     const float FadeTime = 0.18f;
+    static readonly Color UpgradeColor = new Color(1f, 0.78f, 0.3f);
 
     CanvasGroup group;
     Color tint = Color.white;
     float appearAt;
     bool hovered;
 
-    public void Show(BlessingData data, int index, float delay)
+    public void Show(BlessingOffer offer, int index, float delay)
     {
         if (group == null) group = GetComponent<CanvasGroup>();
-        tint = BlessingData.CategoryColor(data.category);
+        var data = offer.data;
+        bool thai = LanguageSettings.IsThai;
+        tint = offer.IsUpgrade ? UpgradeColor : BlessingData.CategoryColor(data.category);
 
         if (icon != null)
         {
             icon.sprite = data.icon;
             icon.enabled = data.icon != null;
         }
-        Set(nameText, data.DisplayName, Color.Lerp(tint, Color.white, 0.55f));
-        Set(categoryText, CategoryName(data.category), tint);
+        string limit = (thai ? "ข้อจำกัด: " : "Limit: ") + data.Limit;
+        if (offer.IsUpgrade)
+        {
+            Set(nameText, $"{data.DisplayName}  Lv.{offer.level}", Color.Lerp(tint, Color.white, 0.45f));
+            Set(categoryText, thai ? $"อัปเกรด Lv.{offer.level - 1} → Lv.{offer.level}" : $"UPGRADE Lv.{offer.level - 1} → Lv.{offer.level}", tint);
+            limit += $"\n<color=#9AA0B8>{(thai ? "ตอนนี้" : "Now")}: {offer.current.Ability}</color>";
+        }
+        else
+        {
+            Set(nameText, data.DisplayName, Color.Lerp(tint, Color.white, 0.55f));
+            Set(categoryText, CategoryName(data.category), tint);
+        }
         Set(abilityText, data.Ability, null);
-        Set(limitText, (LanguageSettings.IsThai ? "ข้อจำกัด: " : "Limit: ") + data.Limit, null);
+        Set(limitText, limit, null);
         Set(keyText, (index + 1).ToString(), tint);
 
         hovered = false;

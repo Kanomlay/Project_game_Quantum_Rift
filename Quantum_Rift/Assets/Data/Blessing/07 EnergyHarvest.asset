@@ -18,19 +18,43 @@ MonoBehaviour:
   hudIcon: {fileID: 21300000, guid: 8065f382c85dbb6489f43446b6b766c3, type: 3}
   nameThai: "\u0E40\u0E01\u0E47\u0E1A\u0E40\u0E01\u0E35\u0E48\u0E22\u0E27\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
   nameEnglish: Energy Harvest
-  abilityThai: "\u0E01\u0E33\u0E08\u0E31\u0E14\u0E28\u0E31\u0E15\u0E23\u0E39\u0E14\u0E49\u0E27\u0E22\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19
-    2 \u0E2B\u0E19\u0E48\u0E27\u0E22"
-  abilityEnglish: Defeating an enemy restores 2 energy.
-  limitThai: "\u0E1F\u0E37\u0E49\u0E19\u0E44\u0E14\u0E49\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14
-    10 \u0E2B\u0E19\u0E48\u0E27\u0E22\u0E15\u0E48\u0E2D\u0E2B\u0E49\u0E2D\u0E07"
-  limitEnglish: Up to 10 energy per room.
-  count: 2
+  abilityThai: "\u0E01\u0E33\u0E08\u0E31\u0E14\u0E28\u0E31\u0E15\u0E23\u0E39\u0E14\u0E49\u0E27\u0E22\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 5 \u0E2B\u0E19\u0E48\u0E27\u0E22"
+  abilityEnglish: Defeating an enemy restores 5 energy.
+  limitThai: "\u0E1F\u0E37\u0E49\u0E19\u0E44\u0E14\u0E49\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 25 \u0E2B\u0E19\u0E48\u0E27\u0E22\u0E15\u0E48\u0E2D\u0E2B\u0E49\u0E2D\u0E07"
+  limitEnglish: Up to 25 energy per room.
+  count: 5
   amount: 0
   threshold: 0
   duration: 0
   cooldown: 0
   radius: 0
-  perRoomCap: 10
+  perRoomCap: 25
+  bonus: 0
+  upgrades:
+  - count: 8
+    amount: 0
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 40
+    bonus: 0
+    abilityThai: "\u0E01\u0E33\u0E08\u0E31\u0E14\u0E28\u0E31\u0E15\u0E23\u0E39\u0E14\u0E49\u0E27\u0E22\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 8 \u0E2B\u0E19\u0E48\u0E27\u0E22"
+    abilityEnglish: "Defeating an enemy restores 8 energy."
+    limitThai: "\u0E1F\u0E37\u0E49\u0E19\u0E44\u0E14\u0E49\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 40 \u0E2B\u0E19\u0E48\u0E27\u0E22\u0E15\u0E48\u0E2D\u0E2B\u0E49\u0E2D\u0E07"
+    limitEnglish: "Up to 40 energy per room."
+  - count: 10
+    amount: 0
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 60
+    bonus: 20
+    abilityThai: "\u0E01\u0E33\u0E08\u0E31\u0E14\u0E28\u0E31\u0E15\u0E23\u0E39\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 10 \u0E2B\u0E19\u0E48\u0E27\u0E22 \u0E40\u0E04\u0E25\u0E35\u0E22\u0E23\u0E4C\u0E2B\u0E49\u0E2D\u0E07\u0E44\u0E14\u0E49\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E35\u0E01 20"
+    abilityEnglish: "Defeating an enemy restores 10 energy. Clearing a room restores 20 more."
+    limitThai: "\u0E1F\u0E37\u0E49\u0E19\u0E08\u0E32\u0E01\u0E28\u0E31\u0E15\u0E23\u0E39\u0E44\u0E14\u0E49\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 60 \u0E2B\u0E19\u0E48\u0E27\u0E22\u0E15\u0E48\u0E2D\u0E2B\u0E49\u0E2D\u0E07"
+    limitEnglish: "Up to 60 energy per room from enemies."
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

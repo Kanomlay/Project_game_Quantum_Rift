@@ -18,18 +18,43 @@ MonoBehaviour:
   hudIcon: {fileID: 21300000, guid: 2c46098d4e6074344b183af9c4acd230, type: 3}
   nameThai: "\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E2A\u0E33\u0E23\u0E2D\u0E07"
   nameEnglish: Energy Reserve
-  abilityThai: "\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E17\u0E35\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48
-    5 \u0E44\u0E21\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
-  abilityEnglish: Every 5th energy-costing attack is free.
+  abilityThai: "\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E17\u0E35\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48 3 \u0E44\u0E21\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
+  abilityEnglish: Every 3rd energy-costing attack is free.
   limitThai: "\u0E44\u0E21\u0E48\u0E19\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E1F\u0E23\u0E35\u0E41\u0E25\u0E30\u0E2A\u0E01\u0E34\u0E25\u0E2E\u0E35\u0E42\u0E23\u0E48"
   limitEnglish: Free attacks and hero skills don't count.
-  count: 5
+  count: 3
   amount: 0
   threshold: 0
   duration: 0
   cooldown: 0
   radius: 0
   perRoomCap: 0
+  bonus: 0
+  upgrades:
+  - count: 2
+    amount: 0
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 0
+    bonus: 0
+    abilityThai: "\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E17\u0E35\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48 2 \u0E44\u0E21\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
+    abilityEnglish: "Every 2nd energy-costing attack is free."
+    limitThai: ""
+    limitEnglish: ""
+  - count: 2
+    amount: 0
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 0
+    bonus: 0.3
+    abilityThai: "\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E17\u0E35\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48 2 \u0E44\u0E21\u0E48\u0E40\u0E2A\u0E35\u0E22\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19 \u0E41\u0E25\u0E30\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48\u0E1F\u0E23\u0E35\u0E41\u0E23\u0E07\u0E02\u0E36\u0E49\u0E19 30%"
+    abilityEnglish: "Every 2nd energy-costing attack is free and deals 30% more damage."
+    limitThai: ""
+    limitEnglish: ""
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

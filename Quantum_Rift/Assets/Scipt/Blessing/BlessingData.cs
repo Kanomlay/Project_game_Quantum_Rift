@@ -2,6 +2,7 @@ using UnityEngine;
 
 // พรควอนตัม 9 แบบ (ชุดไอคอน image/UI_Image/QuantumRift-BuffIcons-v1) สะสมได้สูงสุด 4 พรต่อหนึ่งรอบการเล่น
 // ผลของแต่ละพรเขียนไว้ใน BlessingManager ตาม type ส่วนตัวเลขปรับได้ที่ asset นี้ (สร้างโดย BlessingBuilder)
+// อัปเกรดได้ถึงระดับ 3: ช่องบนสุดคือระดับ 1 ส่วน upgrades[0] = ระดับ 2, upgrades[1] = ระดับ 3 (ค่าเต็มของระดับนั้น ไม่ใช่ส่วนเพิ่ม)
 public enum BlessingType
 {
     BulletCleave,    // คมสลายมิติ
@@ -50,6 +51,15 @@ public class BlessingData : ScriptableObject
     public float radius;
     [Tooltip("เก็บเกี่ยวพลังงาน: ฟื้นได้สูงสุดต่อห้อง")]
     public int perRoomCap;
+    [Tooltip("ความสามารถพิเศษระดับ 3 (0 = ไม่มี)\nคมสลายมิติ: ดาเมจกระสุนสะท้อนเทียบอาวุธ\nคลื่นสะสม: คลื่นใหญ่/ไกลขึ้น (0.4 = 40%)\n" +
+             "เกราะฉุกเฉิน: แรงผลักตอนเกราะแตก (รัศมีใช้ช่อง radius)\nก้าวพ้นรอยแยก: ดาเมจเพิ่มระหว่างวิ่งเร็ว\n" +
+             "สนามชะลอกระสุน: มอนในวงช้าลง\nเก็บเกี่ยวพลังงาน: พลังงานเพิ่มตอนเคลียร์ห้อง\n" +
+             "ชีพจรฟื้นฟู: เลือดสูงสุดที่เพิ่มตอนอัปถึงระดับนี้\nพลังงานสำรอง: ครั้งที่ฟรีแรงขึ้น")]
+    public float bonus;
+
+    [Header("อัปเกรด: [0] = ระดับ 2, [1] = ระดับ 3")]
+    public BlessingTier[] upgrades;
+    public int MaxLevel => 1 + (upgrades != null ? upgrades.Length : 0);
 
     [Header("คลื่นสะสม: ภาพและการบินของคลื่น")]
     public Sprite[] waveFrames; // 3 เฟรมแบบคลื่นดาบผ่ามิติ: แสงวาบ / คลื่นตอนบิน / สลาย
@@ -64,6 +74,24 @@ public class BlessingData : ScriptableObject
 
     static string Fallback(string wanted, string other) => string.IsNullOrEmpty(wanted) ? other : wanted;
 
+    // ใส่ค่าของระดับที่อัปไปแล้วลงในพรชุดนี้ (ใช้กับสำเนาตอนเล่น ไม่แตะไฟล์ asset) ข้อความว่าง = ใช้ข้อความเดิม
+    public void Apply(BlessingTier tier)
+    {
+        if (tier == null) return;
+        count = tier.count;
+        amount = tier.amount;
+        threshold = tier.threshold;
+        duration = tier.duration;
+        cooldown = tier.cooldown;
+        radius = tier.radius;
+        perRoomCap = tier.perRoomCap;
+        bonus = tier.bonus;
+        if (!string.IsNullOrEmpty(tier.abilityThai)) abilityThai = tier.abilityThai;
+        if (!string.IsNullOrEmpty(tier.abilityEnglish)) abilityEnglish = tier.abilityEnglish;
+        if (!string.IsNullOrEmpty(tier.limitThai)) limitThai = tier.limitThai;
+        if (!string.IsNullOrEmpty(tier.limitEnglish)) limitEnglish = tier.limitEnglish;
+    }
+
     public static Color CategoryColor(BlessingCategory category)
     {
         switch (category)
@@ -73,4 +101,15 @@ public class BlessingData : ScriptableObject
             default: return new Color(0.3f, 1f, 0.78f);
         }
     }
+}
+
+// ค่าของพรหนึ่งระดับ (ช่องเดียวกับด้านบนของ BlessingData)
+[System.Serializable]
+public class BlessingTier
+{
+    public int count;
+    public float amount, threshold, duration, cooldown, radius;
+    public int perRoomCap;
+    public float bonus;
+    [TextArea(2, 4)] public string abilityThai, abilityEnglish, limitThai, limitEnglish;
 }

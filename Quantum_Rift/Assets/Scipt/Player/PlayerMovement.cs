@@ -207,14 +207,16 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator KnockbackRoutine(Vector2 damageSource, float force)
     {
         isKnockedBack = true;
-        sr.color = Color.red;
+        var hitFx = GetComponent<PlayerHitFx>();
+        bool flashed = hitFx != null && hitFx.Active; // กะพริบขาวแทนย้อมแดง
+        if (!flashed) sr.color = Color.red;
 
         Vector2 knockbackDir = ((Vector2)transform.position - damageSource).normalized;
         rb.linearVelocity = knockbackDir * force; 
 
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(0.2f);
 
-        sr.color = Color.white; 
+        if (!flashed) sr.color = Color.white;
         rb.linearVelocity = Vector2.zero; 
         isKnockedBack = false; 
     }

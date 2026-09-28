@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // ช่องพรหนึ่งช่องบน HUD: ไอคอน + ตัวเลขมุมขวาล่าง + แผ่นมืดแบบวงหมุน (คูลดาวน์) + แสงฟุ้งด้านหลัง (กำลังทำงาน)
+// + ป้ายระดับมุมซ้ายบน (Lv2 / Lv3 สีทอง สร้างในโค้ด ระดับ 1 ไม่โชว์)
 // ส่วนประกอบสร้างโดย BlessingBuilder
 public sealed class BlessingSlotView : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public sealed class BlessingSlotView : MonoBehaviour
 
     const float PingTime = 0.3f;
 
+    static readonly Color LevelColor = new Color(1f, 0.8f, 0.3f);
+
     BlessingData shown;
+    TMP_Text levelText;
     float pingAt = -99f;
     bool glowing;
 
@@ -24,11 +28,12 @@ public sealed class BlessingSlotView : MonoBehaviour
         if (glow != null) glow.sprite = ProceduralSprites.Glow;
     }
 
-    public void Show(BlessingData blessing)
+    public void Show(BlessingData blessing, int level = 1)
     {
         shown = blessing;
         gameObject.SetActive(blessing != null);
         if (blessing == null) return;
+        ShowLevel(level);
         if (icon != null) icon.sprite = blessing.hudIcon;
         if (cooldown != null)
         {
@@ -49,6 +54,32 @@ public sealed class BlessingSlotView : MonoBehaviour
     }
 
     public void Ping() => pingAt = Time.unscaledTime;
+
+    void ShowLevel(int level)
+    {
+        if (level <= 1 && levelText == null) return;
+        if (levelText == null)
+        {
+            var go = new GameObject("Level", typeof(RectTransform));
+            go.transform.SetParent(transform, false);
+            var rect = (RectTransform)go.transform;
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = new Vector2(-4f, 6f);
+            rect.sizeDelta = new Vector2(40f, 20f);
+            var label = go.AddComponent<TextMeshProUGUI>();
+            if (badge != null) label.font = badge.font;
+            label.fontSize = 17f;
+            label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.TopLeft;
+            label.color = LevelColor;
+            label.outlineWidth = 0.3f;
+            label.outlineColor = new Color32(20, 12, 36, 255);
+            label.raycastTarget = false;
+            levelText = label;
+        }
+        levelText.gameObject.SetActive(level > 1);
+        levelText.text = "Lv" + level;
+    }
 
     void Update()
     {

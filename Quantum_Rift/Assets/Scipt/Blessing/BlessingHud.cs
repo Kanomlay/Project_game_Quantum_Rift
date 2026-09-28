@@ -14,7 +14,7 @@ public sealed class BlessingHud : MonoBehaviour
         {
             if (slots[i] == null) continue;
             var blessing = owned != null && i < owned.Count ? owned[i] : null;
-            slots[i].Show(blessing);
+            slots[i].Show(blessing, manager != null ? manager.LevelOf(blessing) : 1);
         }
         UpdateStates(manager);
     }

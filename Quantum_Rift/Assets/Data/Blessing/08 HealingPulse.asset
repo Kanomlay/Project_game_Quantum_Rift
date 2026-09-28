@@ -18,18 +18,43 @@ MonoBehaviour:
   hudIcon: {fileID: 21300000, guid: beda4b0d7f803e14390846cc5e942e8e, type: 3}
   nameThai: "\u0E0A\u0E35\u0E1E\u0E08\u0E23\u0E1F\u0E37\u0E49\u0E19\u0E1F\u0E39"
   nameEnglish: Healing Pulse
-  abilityThai: "\u0E40\u0E04\u0E25\u0E35\u0E22\u0E23\u0E4C\u0E2B\u0E49\u0E2D\u0E07\u0E15\u0E48\u0E2D\u0E2A\u0E39\u0E49\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E40\u0E25\u0E37\u0E2D\u0E14
-    3% \u0E02\u0E2D\u0E07\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14"
-  abilityEnglish: Clearing a combat room heals 3% of max HP.
+  abilityThai: "\u0E40\u0E04\u0E25\u0E35\u0E22\u0E23\u0E4C\u0E2B\u0E49\u0E2D\u0E07\u0E15\u0E48\u0E2D\u0E2A\u0E39\u0E49\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E40\u0E25\u0E37\u0E2D\u0E14 4 \u0E2B\u0E19\u0E48\u0E27\u0E22"
+  abilityEnglish: Clearing a combat room heals 4 HP.
   limitThai: "\u0E17\u0E33\u0E07\u0E32\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E40\u0E14\u0E35\u0E22\u0E27\u0E15\u0E48\u0E2D\u0E2B\u0E49\u0E2D\u0E07"
   limitEnglish: Once per room.
   count: 0
-  amount: 0.03
+  amount: 4
   threshold: 0
   duration: 0
   cooldown: 0
   radius: 0
   perRoomCap: 0
+  bonus: 0
+  upgrades:
+  - count: 0
+    amount: 5
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 0
+    bonus: 1
+    abilityThai: "\u0E40\u0E04\u0E25\u0E35\u0E22\u0E23\u0E4C\u0E2B\u0E49\u0E2D\u0E07\u0E15\u0E48\u0E2D\u0E2A\u0E39\u0E49\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E40\u0E25\u0E37\u0E2D\u0E14 5 \u0E2B\u0E19\u0E48\u0E27\u0E22 (\u0E2D\u0E31\u0E1B\u0E41\u0E25\u0E49\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 +1)"
+    abilityEnglish: "Clearing a combat room heals 5 HP. (+1 max HP on upgrade)"
+    limitThai: ""
+    limitEnglish: ""
+  - count: 0
+    amount: 6
+    threshold: 0
+    duration: 0
+    cooldown: 0
+    radius: 0
+    perRoomCap: 0
+    bonus: 1
+    abilityThai: "\u0E40\u0E04\u0E25\u0E35\u0E22\u0E23\u0E4C\u0E2B\u0E49\u0E2D\u0E07\u0E15\u0E48\u0E2D\u0E2A\u0E39\u0E49\u0E41\u0E25\u0E49\u0E27\u0E1F\u0E37\u0E49\u0E19\u0E40\u0E25\u0E37\u0E2D\u0E14 6 \u0E2B\u0E19\u0E48\u0E27\u0E22 (\u0E2D\u0E31\u0E1B\u0E41\u0E25\u0E49\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E14\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 +1 \u0E2D\u0E35\u0E01)"
+    abilityEnglish: "Clearing a combat room heals 6 HP. (+1 more max HP on upgrade)"
+    limitThai: ""
+    limitEnglish: ""
   waveFrames: []
   waveScale: 1.5
   waveSpeed: 11

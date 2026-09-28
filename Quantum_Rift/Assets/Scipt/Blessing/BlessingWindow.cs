@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// หน้าต่างเลือกพร: การ์ดสูงสุด 3 ใบ (ไอคอน ชื่อ หมวด ความสามารถ ข้อจำกัด) คลิกการ์ดหรือกดเลข 1–3 เพื่อเลือก
+// หน้าต่างเลือกพร: การ์ดสูงสุด 3 ใบ (พรใหม่หรืออัปเกรดพรที่มี) คลิกการ์ดหรือกดเลข 1–3 เพื่อเลือก
 // แถวล่างโชว์พรที่มีแล้ว ส่วนประกอบสร้างโดย BlessingBuilder
 // สคริปต์นี้อยู่กับ BlessingManager (เปิดอยู่ตลอด) ส่วน panel ปิดไว้จนกว่าจะเปิดหน้าต่าง ระหว่างเปิดเกมหยุด (timeScale 0) จึงใช้เวลาจริง
 public sealed class BlessingWindow : MonoBehaviour
@@ -17,8 +17,8 @@ public sealed class BlessingWindow : MonoBehaviour
 
     const float InputGuard = 0.35f; // กันคลิก/กดค้างจากก่อนหน้าต่างขึ้น แล้วเลือกไปโดยไม่ได้ตั้งใจ
 
-    readonly List<BlessingData> options = new List<BlessingData>();
-    Action<BlessingData> onChosen;
+    readonly List<BlessingOffer> options = new List<BlessingOffer>();
+    Action<BlessingOffer> onChosen;
     float openedAt;
 
     public bool IsOpen => panel != null && panel.activeSelf;
@@ -34,7 +34,7 @@ public sealed class BlessingWindow : MonoBehaviour
         }
     }
 
-    public void Open(IList<BlessingData> offer, IReadOnlyList<BlessingData> owned, int max, Action<BlessingData> chosen)
+    public void Open(IList<BlessingOffer> offer, IReadOnlyList<BlessingData> owned, int max, Action<BlessingOffer> chosen)
     {
         options.Clear();
         options.AddRange(offer);

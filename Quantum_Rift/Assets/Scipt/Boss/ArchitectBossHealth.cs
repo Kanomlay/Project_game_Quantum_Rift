@@ -28,6 +28,7 @@ public sealed class ArchitectBossHealth : MonoBehaviour
     {
         if(!fighting||IsDefeated||amount<=0||float.IsNaN(amount)||float.IsInfinity(amount))return;
         CurrentHealth=Mathf.Max(0,CurrentHealth-amount);RefreshBar();
+        DamageNumbers.Spawn(hitbox!=null?hitbox.bounds.center+Vector3.up*hitbox.bounds.extents.y*.6f:transform.position+Vector3.up,amount,DamageNumbers.Kind.Enemy);
         if(CurrentHealth<=0)
         {
             StopAllCoroutines();IsDefeated=true;IsTransforming=false;fighting=false;hitbox.enabled=false;
