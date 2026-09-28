@@ -1,13 +1,12 @@
 using UnityEngine;
 
-/// <summary>กล่องเสบียงประจำจุด ทำลายด้วยอาวุธเพื่อสุ่มเลือดหรือพลังงาน</summary>
+/// <summary>กล่องเสบียงประจำจุด ทำลายด้วยอาวุธแล้วปล่อยเม็ดพลังงานสีฟ้าลอยเข้าหาผู้เล่น (ไม่ดรอปขวดยาแล้ว)</summary>
 public sealed class BreakableProp : MonoBehaviour
 {
     [SerializeField] SpriteRenderer display;
     [SerializeField] Collider2D[] blockers;
-    [SerializeField] Sprite hpPotion, energyPotion;
-    [SerializeField] Transform dropParent;
     [SerializeField] float maxHealth = 12f;
+    [SerializeField] int minMana = 2, maxMana = 3; // จำนวนเม็ดพลังงาน เม็ดละ 1 หน่วย
     float health;
     bool broken;
     bool initialized;
@@ -22,14 +21,12 @@ public sealed class BreakableProp : MonoBehaviour
         health = maxHealth;
     }
 
+    // healthDrop / energyDrop / mapRoot ไม่ใช้แล้ว (เลิกดรอปขวดยา) คงไว้ให้เครื่องมือจัดแมพเดิมเรียกได้
     public void Configure(SpriteRenderer renderer, Collider2D[] solidColliders,
         Sprite healthDrop, Sprite energyDrop, Transform mapRoot, float hitPoints = 12f)
     {
         display = renderer;
         blockers = solidColliders;
-        hpPotion = healthDrop;
-        energyPotion = energyDrop;
-        dropParent = mapRoot;
         maxHealth = hitPoints;
         health = hitPoints;
         var hitbox = GetComponent<CircleCollider2D>();
@@ -52,20 +49,13 @@ public sealed class BreakableProp : MonoBehaviour
             return;
         }
         broken = true;
+        Vector2 center = display.bounds.center; // เก็บก่อนปิดภาพ
         ImpactSparks.Spawn(transform.position, new Color(.75f,.9f,1f), 7, Vector2.up);
         foreach (var visual in GetComponentsInChildren<Renderer>()) visual.enabled = false;
         if (blockers != null)
             foreach (var blocker in blockers) if (blocker != null) blocker.enabled = false;
         foreach (var hitbox in GetComponents<CircleCollider2D>()) hitbox.enabled = false;
 
-        // 40% to drop a useful potion: half health, half energy.
-        if (Random.value >= .4f) return;
-        bool healthPotion = Random.value < .5f;
-        Sprite sprite = healthPotion ? hpPotion : energyPotion;
-        if (sprite == null) return;
-        var kind = healthPotion ? LootPickup.Kind.HpPotion : LootPickup.Kind.EnergyPotion;
-        var item = LootPickup.Create(kind, healthPotion ? 2f : 15f, sprite, .8f,
-            dropParent != null ? dropParent : transform.parent, transform.position);
-        item.Toss(transform.position, (Vector2)transform.position + Random.insideUnitCircle * .75f);
+        ManaMotes.Spawn(center, Random.Range(minMana, maxMana + 1));
     }
 }
