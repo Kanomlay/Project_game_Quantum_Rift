@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 public sealed class ShopClickable : MonoBehaviour
 {
     public ShopWindow windowPrefab;
+    public bool isBuffShop;
 
     [Header("สินค้า")]
     public LootTable itemPool;         // รายการอาวุธตามระดับ + ภาพ/ค่าขวดยา (ใช้ ChestLoot ร่วมกับกล่องสมบัติ)
@@ -31,6 +32,7 @@ public sealed class ShopClickable : MonoBehaviour
 
     List<ShopOffer> RollStock()
     {
+        if(isBuffShop)return RunStatBuffs.Stock(Mathf.Max(legendaryPrice,Mathf.Max(rarePrice,Mathf.Max(commonPrice,potionPrice))));
         var offers = new List<ShopOffer>
         {
             new ShopOffer(ShopOffer.Kind.HpPotion, potionPrice),
@@ -69,7 +71,7 @@ public sealed class ShopClickable : MonoBehaviour
         obj.transform.localScale = Vector3.one * scale; // ร้านถูกย่อไว้ ป้ายต้องขนาดเท่าป้ายอาวุธ
         obj.transform.localPosition = new Vector3(0f, 2.5f * scale, 0f);
         prompt = obj.AddComponent<TextMeshPro>();
-        prompt.text = $"[{openKey}] ร้านค้า";
+        prompt.text = $"[{openKey}] "+(isBuffShop?"ร้านบัพเลือดสนธยา":"ร้านค้า");
         prompt.fontSize = 2.6f;
         prompt.alignment = TextAlignmentOptions.Center;
         prompt.color = new Color(1f, 0.87f, 0.35f);
@@ -97,9 +99,17 @@ public sealed class ShopClickable : MonoBehaviour
         if (prompt != null && prompt.gameObject.activeSelf != near) prompt.gameObject.SetActive(near);
 
         // อาวุธบนพื้นใกล้ ๆ ใช้ปุ่มเดียวกัน ให้เก็บอาวุธก่อน
-        if (near && Input.GetKeyDown(openKey) && !WeaponPickup.AnyInReach) ShopWindow.Open(windowPrefab, this);
+        if (near && Input.GetKeyDown(openKey) && !WeaponPickup.AnyInReach && IsNearest()) ShopWindow.Open(windowPrefab, this);
     }
 
+    bool IsNearest()
+    {
+        if(player==null)return false;
+        float mine=Vector2.Distance(player.position,transform.position);
+        foreach(var other in FindObjectsByType<ShopClickable>(FindObjectsSortMode.None))
+            if(other!=this && other.isActiveAndEnabled && Vector2.Distance(player.position,other.transform.position)<mine)return false;
+        return true;
+    }
     // OnMouseDown ใช้ Collider2D และกล้องของฉาก; ไม่ต้องเพิ่ม PhysicsRaycaster
     void OnMouseDown()
     {

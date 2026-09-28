@@ -106,7 +106,7 @@ public sealed class PlayerProjectile : MonoBehaviour
             var breakable = other.GetComponentInParent<BreakableProp>();
             if (breakable != null)
             {
-                breakable.TakeDamage(damage);
+                breakable.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
                 transform.position = hit.centroid;
                 Expire();
                 return;
@@ -119,7 +119,7 @@ public sealed class PlayerProjectile : MonoBehaviour
                 if (pierced != null && pierced.Contains(monster)) continue;
                 if (explodeRadius <= 0f)
                 {
-                    monster.TakeDamage(damage);
+                    monster.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
                     if (PierceThrough(monster)) continue;
                 }
@@ -135,7 +135,7 @@ public sealed class PlayerProjectile : MonoBehaviour
                 if (pierced != null && pierced.Contains(architect)) continue;
                 if (explodeRadius <= 0f)
                 {
-                    architect.TakeDamage(damage);
+                    architect.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
                     if (PierceThrough(architect)) continue;
                 }

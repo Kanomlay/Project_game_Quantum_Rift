@@ -4,7 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public sealed class ShopOffer
 {
-    public enum Kind { HpPotion, EnergyPotion, Weapon }
+    public enum Kind { HpPotion, EnergyPotion, Weapon, RunBuff }
+    public string buffName;
+    public int hpDelta,energyDelta,damageDelta;
+    public bool risky;
 
     public Kind kind;
     public WeaponData weapon;
@@ -22,6 +25,7 @@ public sealed class ShopOffer
     {
         Kind.HpPotion => "ขวดยาเลือด",
         Kind.EnergyPotion => "ขวดยาพลังงาน",
+        Kind.RunBuff => buffName,
         _ => weapon != null ? weapon.weaponName : "-",
     };
 
@@ -33,6 +37,7 @@ public sealed class ShopOffer
     {
         Kind.HpPotion => pool != null ? pool.hpPotionSprite : null,
         Kind.EnergyPotion => pool != null ? pool.energyPotionSprite : null,
+        Kind.RunBuff => pool!=null?(hpDelta>0?pool.hpPotionSprite:pool.energyPotionSprite):null,
         _ => weapon != null ? weapon.weaponIcon : null,
     };
 
@@ -41,6 +46,12 @@ public sealed class ShopOffer
     {
         switch (kind)
         {
+            case Kind.RunBuff:
+                string text="";
+                if(hpDelta!=0)text+=$"เลือดสูงสุด {hpDelta:+0;-0} หน่วย\n";
+                if(energyDelta!=0)text+=$"พลังงานสูงสุด {energyDelta:+0;-0} หน่วย\n";
+                if(damageDelta!=0)text+=$"ดาเมจ {damageDelta:+0;-0} หน่วย\n";
+                return text+"มีผลจนจบรอบการเล่น";
             case Kind.HpPotion:
                 return $"ฟื้นฟูพลังชีวิต {(pool != null ? pool.hpRestore : 3f):0.#} หน่วยทันที (ไม่เกินค่าสูงสุด)";
             case Kind.EnergyPotion:

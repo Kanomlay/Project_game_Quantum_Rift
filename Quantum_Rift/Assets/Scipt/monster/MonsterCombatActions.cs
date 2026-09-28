@@ -6,7 +6,8 @@ using UnityEngine;
 public sealed class MonsterCombatActions : MonoBehaviour
 {
     // Lunge ต่อท้ายเสมอ ค่าใน prefab เก็บเป็นตัวเลข (Wrench = ประชิดทั่วไป ใช้กับ Flux Jaw ด้วย)
-    public enum Style { Rifle, Wrench, RockAndSlam, Lunge }
+    public enum Style { Rifle, Wrench, RockAndSlam, Lunge, Pounce }
+    public bool closeRangeSlash;
     public Style style;
     public Sprite projectileSprite;
     public float rangedDistance = 7f;
@@ -60,7 +61,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         float distance=delta.magnitude;
         if(Mathf.Abs(delta.x)>.01f)display.flipX=delta.x<0;
         if(style==Style.Rifle&&holdAim){TickHoldAim(delta,distance);return;}
-        bool lunge=style==Style.Lunge;
+        bool lunge=style==Style.Lunge || style==Style.Pounce;
         bool close=distance<=(lunge?lungeTriggerDistance:meleeDistance);
         bool ranged=style!=Style.Wrench && !lunge && !close && distance<=rangedDistance;
         if(style==Style.Rifle)ranged=distance<=rangedDistance;
@@ -86,6 +87,17 @@ public sealed class MonsterCombatActions : MonoBehaviour
     // ผู้เล่นเข้ามาใกล้เกิน → ลดปืนแล้วถอยหนี, หลุดระยะ/โดนบัง → ลดปืนแล้วเดินตาม แล้วค่อยกลับมายกปืนใหม่
     void TickHoldAim(Vector2 delta,float distance)
     {
+        if(closeRangeSlash && distance<=keepAwayDistance && ClearLine(transform.position,target.position))
+        {
+            move=Vector2.zero;body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
+            if(Time.time>=nextAttack)
+            {
+                aiming=false;animator.SetBool("isAiming",false);
+                aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;LastAttackWasRanged=false;
+                nextAttack=Time.time+Mathf.Max(.85f,data.attackCooldown);attack=StartCoroutine(Attack(false));
+            }
+            return;
+        }
         bool tooClose=distance<keepAwayDistance;
         bool canShoot=!tooClose&&distance<=rangedDistance&&ClearLine(transform.position,target.position);
         if(canShoot)
@@ -130,11 +142,12 @@ public sealed class MonsterCombatActions : MonoBehaviour
 
     IEnumerator Attack(bool ranged)
     {
+        if(style==Style.Pounce){yield return Pounce();yield break;}
         IsAttacking=true;AttacksStarted++;move=Vector2.zero;
         body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
         animator.ResetTrigger("Attack");
         if(style==Style.RockAndSlam)animator.ResetTrigger("Throw");
-        animator.SetTrigger(style==Style.RockAndSlam&&ranged?"Throw":"Attack");
+        animator.SetTrigger(style==Style.Rifle && closeRangeSlash && !ranged?"Melee":style==Style.RockAndSlam&&ranged?"Throw":"Attack");
         float impact=style==Style.RockAndSlam&&ranged?5f/12f:3f/12f;
         if(style==Style.Lunge&&!ranged)
         {
@@ -158,11 +171,31 @@ public sealed class MonsterCombatActions : MonoBehaviour
                 Vector2 delta=target.position-transform.position;
                 // ตรวจซ้ำที่เฟรมกระทบ: หลบออกจากระยะหรือไปหลังกำแพงแล้วไม่โดน
                 if(delta.magnitude<=meleeDistance && Vector2.Dot(delta.normalized,aim)>.15f && ClearLine(transform.position,target.position))
-                    DamagePlayer(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);
+                    DamagePlayer(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position,style==Style.Rifle&&closeRangeSlash?10f:6f);
             }
         }
         yield return new WaitForSeconds(Duration-impact);
         IsAttacking=false;attack=null;
+    }
+
+    IEnumerator Pounce()
+    {
+        IsAttacking=true;AttacksStarted++;move=Vector2.zero;body.linearVelocity=Vector2.zero;
+        animator.SetBool("isWalking",false);animator.SetTrigger("Attack");
+        // ล็อกทิศตั้งแต่ง้าง ไม่เลี้ยวตามผู้เล่นกลางอากาศ จึงหลบด้านข้างได้
+        yield return new WaitForSeconds(.25f);
+        bool hit=false;
+        for(float elapsed=0;elapsed<.32f;elapsed+=Time.deltaTime)
+        {
+            if(target==null)break;
+            Vector2 delta=(Vector2)target.position-body.position;
+            bool arrived=delta.magnitude<=lungeStopDistance;
+            body.linearVelocity=arrived||!ClearLine(body.position,body.position+aim*.65f)?Vector2.zero:aim*lungeSpeed;
+            if(!hit && delta.magnitude<=meleeDistance && ClearLine(body.position,target.position))
+            {DamagePlayer(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);MeleeImpacts++;hit=true;}
+            yield return null;
+        }
+        body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
     }
 
     void ReleaseProjectile()
@@ -193,14 +226,14 @@ public sealed class MonsterCombatActions : MonoBehaviour
         return true;
     }
 
-    public static void DamagePlayer(PlayerStats stats,float damage,Vector2 source)
+    public static void DamagePlayer(PlayerStats stats,float damage,Vector2 source,float knockback=6f)
     {
         if(stats==null||stats.isDead)return;
         float previous=stats.currentHP;stats.TakeDamage(damage);
         if(stats.currentHP<previous)
         {
             var movement=stats.GetComponent<PlayerMovement>();
-            if(movement!=null)movement.TakeKnockback(source,6f);
+            if(movement!=null)movement.TakeKnockback(source,knockback);
         }
     }
 
@@ -216,6 +249,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(animator!=null)
         {
             animator.ResetTrigger("Attack");
+            if(closeRangeSlash)animator.ResetTrigger("Melee");
             if(style==Style.RockAndSlam)animator.ResetTrigger("Throw");
             if(holdAim)animator.ResetTrigger("Fire");
             animator.SetBool("isWalking",false);

@@ -219,17 +219,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82688d7f675f933469537bba62fcf539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterCombatActions
+  closeRangeSlash: 1
   style: 0
   projectileSprite: {fileID: 21300000, guid: 38aa805bc8c068c408de7f1ee99b39be, type: 3}
   rangedDistance: 7
-  meleeDistance: 7
+  meleeDistance: 2.5
   projectileSpeed: 9
   projectileLifetime: 3
   projectileSize: 1.8
   lungeTriggerDistance: 3
   lungeSpeed: 6.5
+  lungeStopDistance: 0.9
   holdAim: 1
-  keepAwayDistance: 2.5
+  keepAwayDistance: 2.2
   aimRaiseTime: 0.25
   aimLowerTime: 0.17
   fireTime: 0.25

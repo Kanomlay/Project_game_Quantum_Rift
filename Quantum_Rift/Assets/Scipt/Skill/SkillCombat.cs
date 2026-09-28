@@ -40,6 +40,7 @@ public static class SkillCombat
     public static bool Damage(Collider2D other, float damage, HashSet<Component> alreadyHit = null)
     {
         if (other == null) return false;
+        damage=RunStatBuffs.Damage(damage);
 
         var monster = other.GetComponentInParent<MonsterController>();
         if (monster != null)

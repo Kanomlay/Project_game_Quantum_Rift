@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6803957144581818942}
   - component: {fileID: 2123271313419908622}
   - component: {fileID: 2389130344699530100}
+  - component: {fileID: 3407744512085344759}
   m_Layer: 0
   m_Name: ShopSpaceship
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopClickable
   windowPrefab: {fileID: 2895278594401540549, guid: 22b6b51109896fe488ae5f2ffa26e8dd, type: 3}
+  isBuffShop: 0
   itemPool: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
   weaponSlots: 3
   commonPrice: 10
@@ -183,3 +185,16 @@ MonoBehaviour:
   potionPrice: 10
   openKey: 102
   interactRange: 2.4
+--- !u!114 &3407744512085344759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8774950107016189731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668139ff912a39949b44c8903dc1e346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffShopCompanion
+  buffShopPrefab: {fileID: 1394245876300260238, guid: 067059bb01b44d441b57ea6d24b33af0, type: 3}

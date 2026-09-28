@@ -26,6 +26,7 @@ public sealed class ShopWindow : MonoBehaviour
     static ShopWindow current;
     static int closedFrame = -1;
     ShopClickable shop;
+    BuffShopView buffView;
 
     public static bool IsOpen => current != null && current.content != null && current.content.activeSelf;
     // ESC ที่เพิ่งใช้ปิดหน้าร้านในเฟรมนี้ ไม่ให้ PauseManager เอาไปเปิดหน้าหยุดเกมต่อ
@@ -62,6 +63,8 @@ public sealed class ShopWindow : MonoBehaviour
     {
         shop = owner;
         content.SetActive(true);
+        if(buffView==null)buffView=BuffShopView.Create(this,content.transform);
+        foreach(Transform child in content.transform)child.gameObject.SetActive(child==buffView.transform ? owner!=null&&owner.isBuffShop : owner==null||!owner.isBuffShop);
         Refresh();
         ShowHint();
     }
@@ -92,6 +95,7 @@ public sealed class ShopWindow : MonoBehaviour
 
     void Refresh()
     {
+        if(shop!=null && shop.isBuffShop){buffView.Refresh(shop,Player);return;}
         var player = Player;
         int money = player != null ? player.currentCurrency : 0;
         if (currencyText != null) currencyText.text = money.ToString();
@@ -106,7 +110,7 @@ public sealed class ShopWindow : MonoBehaviour
         }
     }
 
-    public void ShowHint() => Say(Hint, HintColor);
+    public void ShowHint() => Say(shop!=null&&shop.isBuffShop?"บัพอยู่จนจบรอบ · ข้อเสียมีผลทันที · เริ่มเกมใหม่จะรีเซ็ต":Hint, HintColor);
     public void HoverEnded() { if (showDetailsOnHover) ShowHint(); } // ไม่ลบข้อความผลการซื้อตอนเลื่อนเมาส์ออก
 
     public void Describe(int index)
@@ -120,6 +124,7 @@ public sealed class ShopWindow : MonoBehaviour
 
     void Say(string text, Color color)
     {
+        if(shop!=null && shop.isBuffShop && buffView!=null){buffView.Say(text,color);return;}
         if (messageText == null) return;
         messageText.text = text;
         messageText.color = color;
@@ -132,6 +137,9 @@ public sealed class ShopWindow : MonoBehaviour
         if (stock == null || player == null || index >= stock.Count) return;
         var offer = stock[index];
         if (offer == null || offer.sold) return;
+        if(player.isDead)return;
+        if(offer.kind==ShopOffer.Kind.RunBuff && !RunStatBuffs.CanApply(player,offer))
+        {Say("ซื้อไม่ได้: ข้อเสียทำให้เลือดหรือพลังงานสูงสุดต่ำเกินไป",BadColor);return;}
 
         if (!player.TrySpendCurrency(offer.price))
         {
@@ -144,6 +152,10 @@ public sealed class ShopWindow : MonoBehaviour
         Vector2 feet = player.transform.position;
         switch (offer.kind)
         {
+            case ShopOffer.Kind.RunBuff:
+                player.ApplyRunBuff(offer);
+                Say($"ซื้อ{offer.DisplayName}แล้ว\n{offer.Describe(Pool)}",GoodColor);
+                break;
             case ShopOffer.Kind.HpPotion:
             case ShopOffer.Kind.EnergyPotion:
                 DropPotion(offer.kind, parent, feet);

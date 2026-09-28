@@ -10,6 +10,7 @@ public sealed class MapGameplayFeatures : MonoBehaviour
     public enum Theme { Spaceship, LivingForest }
     public Theme theme;
     public Sprite trapSprite;
+    public bool roomEntryTrapMode;
     public Sprite healthPotionSprite;
     public Sprite energyPotionSprite;
     bool initialized;
@@ -43,6 +44,7 @@ public sealed class MapGameplayFeatures : MonoBehaviour
         portals = GetComponentsInChildren<MapPortal>(false).Select(p=>p.transform).ToArray();
         // กล่องถูกวางไว้ใน prefab ของแต่ละผัง ตำแหน่งและชนิดไม่สุ่มตามพร็อพตกแต่ง
         foreach (var crate in GetComponentsInChildren<BreakableProp>(false)) crate.Initialize();
+        if(roomEntryTrapMode)return; // แผ่นกับดักสุ่มครั้งเดียวเมื่อเข้าห้อง ไม่เสกซ้ำระหว่างสู้
         TrySpawnTrap(playerSpawn,Vector2.up,false);
         TrySpawnTrap(playerSpawn,Vector2.up,false);
         nextSpawn = Time.time + Range(minSpawnInterval,maxSpawnInterval);
@@ -52,7 +54,7 @@ public sealed class MapGameplayFeatures : MonoBehaviour
 
     void Update()
     {
-        if(!initialized || PauseManager.isGamePaused || ShopWindow.IsOpen || Time.timeScale<=0)return;
+        if(!initialized || roomEntryTrapMode || PauseManager.isGamePaused || ShopWindow.IsOpen || Time.timeScale<=0)return;
         if(player==null)
         {
             var hero=GameObject.FindGameObjectWithTag("Player");if(hero==null)return;

@@ -249,6 +249,14 @@ public class MonsterController : MonoBehaviour
             anim.SetBool("isDead", true);
         }
 
+        var burst=GetComponent<ZeroHuskDeathBurst>();
+        if(burst!=null)
+        {
+            if(anim!=null)anim.enabled=false;
+            yield return burst.Play(player);
+            gameObject.SetActive(false);yield break;
+        }
+
         yield return new WaitForSeconds(deathLinger);
 
         if (sr != null && deathFade > 0f)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5768989295209640219}
   - component: {fileID: 5293580629225505102}
   - component: {fileID: 1065807341608743498}
+  - component: {fileID: 3927986388693585607}
   m_Layer: 0
   m_Name: FloorSpikes
   m_TagString: Untagged
@@ -30,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6830067993899875030}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5293580629225505102
@@ -71,14 +71,14 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.25, y: 1.25}
+    newSize: {x: 1.25, y: 1.25}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.6, y: 1}
+  m_Size: {x: 1.25, y: 1.25}
   m_EdgeRadius: 0
 --- !u!114 &1065807341608743498
 MonoBehaviour:
@@ -100,55 +100,23 @@ MonoBehaviour:
   warningDisplay: {fileID: 0}
   damageArea: {fileID: 5293580629225505102}
   room: {fileID: 0}
-  animatedDisplay: {fileID: 1894650267878288898}
+  animatedDisplay: {fileID: 3927986388693585607}
   animationFrames:
-  - {fileID: 21300000, guid: a00eecd48b67363479a5848d27f97b3d, type: 3}
-  - {fileID: 21300000, guid: 3c7474ff7a06f824f9184aca2f0baafc, type: 3}
-  - {fileID: 21300000, guid: fce67b42193b5ea449fdd18a7abd2725, type: 3}
-  - {fileID: 21300000, guid: 23a29bc5b39ac5646aa7ed598a153333, type: 3}
-  - {fileID: 21300000, guid: b4b66fee5bda7f742a8e66ee119712f2, type: 3}
-  - {fileID: 21300000, guid: dedbfc78b00aa6540bd09197cc438474, type: 3}
-  - {fileID: 21300000, guid: 3e3f9c07cf11e5742b8207ca3ccb9540, type: 3}
---- !u!1 &2738338562369394581
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6830067993899875030}
-  - component: {fileID: 1894650267878288898}
-  m_Layer: 0
-  m_Name: AnimatedArtwork
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6830067993899875030
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738338562369394581}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5768989295209640219}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1894650267878288898
+  - {fileID: 21300000, guid: 792261c5b9bdf3f47815ecb0fe4d9c00, type: 3}
+  - {fileID: 21300000, guid: ce10b45d38a84db41a582023842254b0, type: 3}
+  - {fileID: 21300000, guid: 2b705f1bae70ebf4fa37bc70d4063a61, type: 3}
+  - {fileID: 21300000, guid: eeb8cb6a0956a7441be6ad1b1c530e8d, type: 3}
+  - {fileID: 21300000, guid: 5138aeaafca8e5547be4014f43501d5f, type: 3}
+  - {fileID: 21300000, guid: f159d3d40db40204e9ba4af3bff71fce, type: 3}
+  - {fileID: 21300000, guid: 410ebfc866a84854e8a708190ad15afb, type: 3}
+--- !u!212 &3927986388693585607
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738338562369394581}
+  m_GameObject: {fileID: 2533144788229492255}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -190,12 +158,12 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: -2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: a00eecd48b67363479a5848d27f97b3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 792261c5b9bdf3f47815ecb0fe4d9c00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.6666667, y: 2.6666667}
+  m_Size: {x: 1.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -18,7 +18,12 @@ public class RoomController : MonoBehaviour
 
     public bool HasStarted => hasStarted;
     public bool HasBeenVisited { get; private set; }
-    public void MarkVisited() { HasBeenVisited = true; }
+    public void MarkVisited()
+    {
+        if(HasBeenVisited)return;
+        HasBeenVisited=true;
+        var traps=GetComponent<RoomEntryTrapSpawner>();if(traps!=null)traps.Activate();
+    }
     public event System.Action Cleared; // ประตูมิติในห้องรอฟังเพื่อโผล่ตอนเคลียร์
     // ห้องที่มีมอนสเตอร์ให้สู้: เริ่มสู้ / เคลียร์แล้ว (พรที่นับต่อห้องฟังอยู่ ดู BlessingManager)
     public static event System.Action<RoomController> CombatStarted;

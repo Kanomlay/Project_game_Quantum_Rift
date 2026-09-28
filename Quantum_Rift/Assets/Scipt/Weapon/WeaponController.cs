@@ -899,7 +899,7 @@ public class WeaponController : MonoBehaviour
         foreach (var collider in Physics2D.OverlapCircleAll(center, radius))
         {
             var prop = collider.GetComponentInParent<BreakableProp>();
-            if (prop != null && alreadyHit.Add(prop)) prop.TakeDamage(currentWeaponData.attackDamage);
+            if (prop != null && alreadyHit.Add(prop)) prop.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
         }
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, enemyLayers);
 
@@ -912,7 +912,7 @@ public class WeaponController : MonoBehaviour
                 if (!alreadyHit.Contains(monster))
                 {
                     alreadyHit.Add(monster);
-                    monster.TakeDamage(currentWeaponData.attackDamage);
+                    monster.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
                     target = monster;
                 }
             }
@@ -922,7 +922,7 @@ public class WeaponController : MonoBehaviour
                 ArchitectBossHealth boss = enemy.GetComponentInParent<ArchitectBossHealth>();
                 if (boss != null && alreadyHit.Add(boss))
                 {
-                    boss.TakeDamage(currentWeaponData.attackDamage);
+                    boss.TakeDamage(RunStatBuffs.Damage(currentWeaponData.attackDamage,owner));
                     target = boss;
                 }
             }

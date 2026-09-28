@@ -8,6 +8,39 @@ public class PlayerStats : MonoBehaviour
     public float currentHP;  
     public int maxEnergy = 100;
     public int currentEnergy;
+    [HideInInspector] public int runDamageBonus;
+    // ผู้เล่นคนเดิมข้ามแมพจึงเก็บค่าไว้ เริ่มเกมใหม่สร้าง PlayerStats ใหม่จึงกลับเป็นศูนย์
+    public bool ApplyRunBuff(ShopOffer offer)
+    {
+        if(!RunStatBuffs.CanApply(this,offer))return false;
+        maxHP+=offer.hpDelta;maxEnergy+=offer.energyDelta;runDamageBonus+=offer.damageDelta;
+        currentHP=Mathf.Clamp(currentHP+Mathf.Max(0,offer.hpDelta),1,maxHP);
+        currentEnergy=Mathf.Clamp(currentEnergy+Mathf.Max(0,offer.energyDelta),0,maxEnergy);
+        UpdateAllHUD();return true;
+    }
+    float burningUntil;
+    Coroutine burningRoutine;
+    public void ApplyBurn(float seconds,float damage=1f)
+    {
+        if(isDead || seconds<=0)return;
+        burningUntil=Mathf.Max(burningUntil,Time.time+seconds);
+        if(burningRoutine==null)burningRoutine=StartCoroutine(BurnRoutine(damage));
+    }
+    IEnumerator BurnRoutine(float damage)
+    {
+        while(!isDead && Time.time<burningUntil)
+        {
+            yield return new WaitForSeconds(1.2f);
+            if(!isDead && Time.time<=burningUntil)
+            {
+                TakeDamage(damage);
+                var flame=new GameObject("BurningEmber");flame.transform.SetParent(transform,false);
+                var r=flame.AddComponent<SpriteRenderer>();r.sprite=sr!=null?sr.sprite:null;
+                r.color=new Color(1f,.35f,.1f,.55f);r.sortingLayerName="Effect";Destroy(flame,.18f);
+            }
+        }
+        burningRoutine=null;
+    }
 
     [Header("ระบบอาวุธ")]
     public WeaponData weapon1; 

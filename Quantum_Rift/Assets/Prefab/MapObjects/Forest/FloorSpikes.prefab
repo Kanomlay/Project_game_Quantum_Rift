@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2910459295569573929
+--- !u!1 &4116888242822088625
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,115 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7250958189320148914}
-  - component: {fileID: 6590240659221937793}
+  - component: {fileID: 4281049569413354165}
+  - component: {fileID: 7688366469064874873}
+  - component: {fileID: 5910269229347386115}
+  - component: {fileID: 8947324087144665641}
   m_Layer: 0
-  m_Name: AnimatedArtwork
+  m_Name: FloorSpikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7250958189320148914
+--- !u!4 &4281049569413354165
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2910459295569573929}
+  m_GameObject: {fileID: 4116888242822088625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4281049569413354165}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6590240659221937793
+--- !u!61 &7688366469064874873
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116888242822088625}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.25, y: 1.25}
+    newSize: {x: 1.25, y: 1.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.25, y: 1.25}
+  m_EdgeRadius: 0
+--- !u!114 &5910269229347386115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116888242822088625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10f805ea7837ff4781d39fa36d17de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FixedSpikeTrap
+  cycleSeconds: 10
+  warningSeconds: 1.2
+  raisedSeconds: 1.4
+  damage: 1
+  spikes: {fileID: 0}
+  warningDisplay: {fileID: 0}
+  damageArea: {fileID: 7688366469064874873}
+  room: {fileID: 0}
+  animatedDisplay: {fileID: 8947324087144665641}
+  animationFrames:
+  - {fileID: 21300000, guid: d32498c3def763446b1d48cd976960cd, type: 3}
+  - {fileID: 21300000, guid: 6d9cdfe47c8fe5747989bbe3b5a1e406, type: 3}
+  - {fileID: 21300000, guid: 19b0f83d62964fc4d9424782384ce3a6, type: 3}
+  - {fileID: 21300000, guid: 0748d66a8e874d54e936cdb6fc3e56c9, type: 3}
+  - {fileID: 21300000, guid: 0a0297145d5064045aa4b76b2a290502, type: 3}
+  - {fileID: 21300000, guid: 1bc070e518b67ee42afb65fa7394e7f2, type: 3}
+  - {fileID: 21300000, guid: 612f394435c6b8140af4923badc13b63, type: 3}
+--- !u!212 &8947324087144665641
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2910459295569573929}
+  m_GameObject: {fileID: 4116888242822088625}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -81,122 +158,13 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: -2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 89b9ee808a9f98f4bbcc6b933ae54ac2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d32498c3def763446b1d48cd976960cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.6666667, y: 2.6666667}
+  m_Size: {x: 1.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &4116888242822088625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4281049569413354165}
-  - component: {fileID: 7688366469064874873}
-  - component: {fileID: 5910269229347386115}
-  m_Layer: 0
-  m_Name: FloorSpikes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4281049569413354165
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116888242822088625}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7250958189320148914}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7688366469064874873
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116888242822088625}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.6, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &5910269229347386115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116888242822088625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f10f805ea7837ff4781d39fa36d17de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FixedSpikeTrap
-  cycleSeconds: 10
-  warningSeconds: 1.2
-  raisedSeconds: 1.4
-  damage: 1
-  spikes: {fileID: 0}
-  warningDisplay: {fileID: 0}
-  damageArea: {fileID: 7688366469064874873}
-  room: {fileID: 0}
-  animatedDisplay: {fileID: 6590240659221937793}
-  animationFrames:
-  - {fileID: 21300000, guid: 89b9ee808a9f98f4bbcc6b933ae54ac2, type: 3}
-  - {fileID: 21300000, guid: f44a68334ef29e94cb5717f6921b62d5, type: 3}
-  - {fileID: 21300000, guid: fcc13ce963c653742b49732db3d62343, type: 3}
-  - {fileID: 21300000, guid: 2061c3eff34f2dc449d9454e9ce5573c, type: 3}
-  - {fileID: 21300000, guid: 688bea3c31166604b85d954fadd9fded, type: 3}
-  - {fileID: 21300000, guid: 1e1d6ad4a2284984886f7ca292c24771, type: 3}
-  - {fileID: 21300000, guid: 510bbf53f616a234d91f78e2a72b2067, type: 3}
