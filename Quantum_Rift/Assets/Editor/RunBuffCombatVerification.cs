@@ -56,7 +56,7 @@ public static class RunBuffCombatVerification
                     foreach(var room in layout.GetComponentsInChildren<RoomController>())
                     {
                         roomCount++;var spawn=room.GetComponent<RoomEntryTrapSpawner>();Check(spawn!=null,name+" room spawner");
-                        spawn.ActivateWithSeed(roomCount*731);Check(spawn.Spawned.Count==3,name+" "+room.name+" three legal positions (got "+spawn.Spawned.Count+")");
+                        spawn.ActivateWithSeed(roomCount*731);Check(spawn.Spawned.Count>=1&&spawn.Spawned.Count<=spawn.maxCells,name+" "+room.name+" trap cells within limit (got "+spawn.Spawned.Count+")");
                         var points=spawn.Spawned.Select(t=>t.transform.position).ToArray();spawn.ActivateWithSeed(999);
                         Check(points.SequenceEqual(spawn.Spawned.Select(t=>t.transform.position)),"reentry retains traps");
                         foreach(var t in spawn.Spawned)
@@ -64,7 +64,7 @@ public static class RunBuffCombatVerification
                             trapCount++;var cell=floor.WorldToCell(t.transform.position);
                             Check(Vector3.Distance(t.transform.position,floor.GetCellCenterWorld(cell))<.001f,"trap grid aligned");
                             Check(Mathf.Abs(t.damageArea.bounds.size.x-1.25f)<.01f,"trap one tile wide");
-                            t.Advance(8.9f);Check(t.CurrentPhase==FixedSpikeTrap.Phase.Warning,"warning before spike");
+                            t.Restart();t.Advance(8.9f);Check(t.CurrentPhase==FixedSpikeTrap.Phase.Warning,"warning before spike");
                             t.Advance(1.11f);Check(t.CurrentPhase==FixedSpikeTrap.Phase.Raised,"spike at 10 seconds");
                             t.Advance(1.5f);Check(t.CurrentPhase==FixedSpikeTrap.Phase.Retracted,"spike retracts");
                         }

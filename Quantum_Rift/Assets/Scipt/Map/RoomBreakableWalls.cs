@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// กำแพงในห้องที่ทุบได้ (แปลงมาจากกองกล่องเดิมด้วย CratePileWallBuilder) ติดอยู่ที่ห้อง (ตัวเดียวกับ RoomController)
-// ภาพเป็น tile ในแผนที่กำแพงของผัง ตอนเริ่มสร้าง collider ช่องละชิ้น (BreakableWallCell) ไว้ใต้ห้อง
+// กำแพงในห้องที่ทุบได้ ติดอยู่ที่ห้อง (ตัวเดียวกับ RoomController)
+// ปกติ RandomRoomWalls สุ่มรูปทรงแล้วเรียก AddCells ตอนเข้าแมพ (ใส่ช่องไว้ใน cells ล่วงหน้าก็ได้ จะสร้างตอน Awake)
+// ภาพเป็น tile ในแผนที่กำแพงของผัง สร้าง collider ช่องละชิ้น (BreakableWallCell) ไว้ใต้ห้อง
 // - ผู้เล่นตีด้วยอาวุธ/กระสุนได้ แตกแล้วได้เม็ดพลังงานนิดหน่อย
 // - มอนสเตอร์ของห้องนี้ทุบได้เมื่อกำแพงขวางทาง (ดู MonsterNavigator / MonsterCombatActions)
 // แตกแล้วลบ tile ช่องนั้นทิ้ง พื้นข้างใต้โผล่มาเดินผ่านได้ ระบบหาที่เกิด/วางของเห็นเป็นพื้นว่างทันที
@@ -20,16 +21,31 @@ public sealed class RoomBreakableWalls : MonoBehaviour
 
     public RoomController Room { get; private set; }
     public int Remaining { get; private set; }
+    Transform holder;
 
     void Awake()
     {
         Room = GetComponent<RoomController>();
-        if (wallMap == null || cells.Count == 0) return;
+        if (wallMap != null && cells.Count > 0) Build(cells);
+    }
 
-        var holder = new GameObject("BreakableWalls").transform;
-        holder.SetParent(transform, false);
+    // กำแพงที่เพิ่งระบาย tile ลงแผนที่กำแพง (ตัวสุ่มรูปทรงเรียกตอนเข้าแมพ)
+    public void AddCells(Tilemap map, IList<Vector3Int> newCells)
+    {
+        wallMap = map;
+        cells.AddRange(newCells);
+        Build(newCells);
+    }
+
+    void Build(IEnumerable<Vector3Int> list)
+    {
+        if (holder == null)
+        {
+            holder = new GameObject("BreakableWalls").transform;
+            holder.SetParent(transform, false);
+        }
         Vector2 size = Vector2.Scale(wallMap.layoutGrid.cellSize, wallMap.transform.lossyScale);
-        foreach (var cell in cells)
+        foreach (var cell in list)
         {
             if (!wallMap.HasTile(cell)) continue;
             wallMap.SetTileFlags(cell, TileFlags.None); // ให้ย้อมสี/สั่นเป็นรายช่องได้

@@ -46,6 +46,14 @@ public sealed class FixedSpikeTrap : MonoBehaviour
             damageArea.OverlapPoint(player.transform.position)) TryHit(player);
     }
 
+    // เริ่มรอบใหม่ แล้วเลื่อนจังหวะไปข้างหน้า offset วินาที (ตัวสุ่มกับดักใช้ให้แต่ละจุดพุ่งไม่พร้อมกัน)
+    public void Restart(float offset = 0f)
+    {
+        elapsed = 0f;
+        hitCycle = -1;
+        Advance(offset);
+    }
+
     public void Advance(float seconds)
     {
         if (room != null && room.IsSafeRoom)
