@@ -107,6 +107,15 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (breakable != null && !breakable.IsBroken)
             {
                 breakable.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
+                // อาวุธชิ่ง: ตีกำแพงในห้อง/กล่องแล้วยังชิ่งต่อเหมือนกำแพงปกติ (นับเป็นการชิ่งหนึ่งครั้ง)
+                // ถ้านัดนี้ทำแตกพอดี บินทะลุช่องที่แตกต่อไปเลย
+                if (bouncesLeft > 0 && hit.normal.sqrMagnitude > 0.01f)
+                {
+                    bouncesLeft--;
+                    if (breakable.IsBroken) continue;
+                    Bounce(hit);
+                    return;
+                }
                 transform.position = hit.centroid;
                 Expire();
                 return;
@@ -152,10 +161,7 @@ public sealed class PlayerProjectile : MonoBehaviour
             if (bouncesLeft > 0 && hit.normal.sqrMagnitude > 0.01f)
             {
                 bouncesLeft--;
-                transform.position = hit.centroid + hit.normal * 0.02f;
-                Face(Vector2.Reflect(direction, hit.normal));
-                if (bounceFrames != null && bounceFrames.Length > 0)
-                    SkillVfx.Spawn(bounceFrames, hit.point, bounceScale, 0f, 18f);
+                Bounce(hit);
                 return;
             }
 
@@ -165,6 +171,15 @@ public sealed class PlayerProjectile : MonoBehaviour
         }
 
         transform.position += (Vector3)(direction * step);
+    }
+
+    // สะท้อนออกจากจุดชน ตามมุมตกกระทบ พร้อมประกายตรงจุดชิ่ง
+    private void Bounce(RaycastHit2D hit)
+    {
+        transform.position = hit.centroid + hit.normal * 0.02f;
+        Face(Vector2.Reflect(direction, hit.normal));
+        if (bounceFrames != null && bounceFrames.Length > 0)
+            SkillVfx.Spawn(bounceFrames, hit.point, bounceScale, 0f, 18f);
     }
 
     private void Expire()
