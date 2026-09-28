@@ -119,6 +119,8 @@ public static class SpawnPlacement
                 if (monster.IsAlive) points.Add(monster.transform.position);
             foreach (var telegraph in room.GetComponentsInChildren<SpawnTelegraph>(false))
                 points.Add(telegraph.Spot);
+            foreach (var portal in room.GetComponentsInChildren<EchoPortal>(false)) // ลูกน้องบอสที่กำลังออกจากประตูมิติ
+                points.Add(portal.Spot);
             return points;
         }
 

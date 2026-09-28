@@ -186,8 +186,18 @@ public class MonsterController : MonoBehaviour
     }
 
     
+    // บอสไม่กระเด็นตอนโดนตี (กันโดนตีรัว ๆ จนร่ายท่าไม่ออก) ยังกะพริบแดงให้รู้ว่าโดน
+    protected virtual bool ResistsKnockback => false;
+
     private IEnumerator DamageEffectRoutine()
     {
+        if (ResistsKnockback)
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sr.color = Color.white;
+            yield break;
+        }
         if (combatActions != null) combatActions.CancelAttack();
         isKnockedBack = true; 
         sr.color = Color.red; 
@@ -256,7 +266,8 @@ public class MonsterController : MonoBehaviour
     // ผู้เล่นเดินชนแล้วผลักมอนสเตอร์ไม่ได้ และมอนก็ไม่ดันผู้เล่น: ปิดการชนทางฟิสิกส์ระหว่างกันเป็นคู่ ๆ
     // (ไม่ต้องตั้ง layer) ผู้เล่นยังเดินทะลุไม่ได้ เพราะ PlayerMovement เช็คแล้วหยุด/ไถลเลียบตัวมอนเอง
     // มอนสเตอร์ด้วยกันยังชนกันตามปกติ ไม่ยืนซ้อนกัน
-    private void IgnorePlayerCollisions()
+    // บอสที่ปิด collider ชั่วคราว (วาร์ป) เรียกซ้ำหลังเปิดกลับ กันสถานะไม่ชนกันหาย
+    protected void IgnorePlayerCollisions()
     {
         if (player == null) return;
         var own = GetComponentsInChildren<Collider2D>(true);

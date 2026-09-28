@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 // ภาพพื้นฐานที่สร้างในโค้ด (1 หน่วย ย่อ/ขยายด้วย scale) ใช้ร่วมกันหลายระบบ: วงเตือนเกิดมอน สนาม/เกราะของพร
 public static class ProceduralSprites
 {
     static Sprite dashedRing, disc, glow, thinRing;
+    static readonly Dictionary<int, Sprite> sectors = new Dictionary<int, Sprite>();
 
     // วงแหวนนอกขาดเป็นช่วง 6 ช่วง (หมุนแล้วเห็นว่าหมุน) + วงในบาง ๆ แบบรอยแยกมิติ
     public static Sprite DashedRing
@@ -55,6 +57,23 @@ public static class ProceduralSprites
             glow = Generate(64, (d, a) => (1f - d) * (1f - d), FilterMode.Bilinear);
             return glow;
         }
+    }
+
+    // พัดรูปลิ่มชี้ไปทางขวา (+X) กว้างข้างละ halfAngle องศา ไส้ในจาง ขอบนอกและขอบข้างเข้ม (พื้นที่ท่าฟันของบอส)
+    public static Sprite Sector(float halfAngle)
+    {
+        int key = Mathf.Clamp(Mathf.RoundToInt(halfAngle), 1, 180);
+        if (sectors.TryGetValue(key, out var sprite)) return sprite;
+        float half = key * Mathf.Deg2Rad;
+        sprite = Generate(128, (d, a) =>
+        {
+            float fromEdge = half - Mathf.Abs(a);
+            if (fromEdge < 0f || d < 0.08f) return 0f;
+            bool rim = d > 0.93f || fromEdge * d < 0.035f;
+            return rim ? 1f : 0.4f;
+        }, FilterMode.Bilinear);
+        sectors[key] = sprite;
+        return sprite;
     }
 
     // alpha ตามระยะจากกลาง d (0–1) และมุม a (เรเดียน)

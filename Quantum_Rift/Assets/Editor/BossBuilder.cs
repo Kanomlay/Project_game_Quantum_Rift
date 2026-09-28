@@ -14,6 +14,9 @@ public static class BossBuilder
     const string ProjectilePrefabPath = "Assets/Prefab/Boss/EchoCommander/EchoCommanderProjectile.prefab";
     const string BossDataPath = "Assets/Data/Monster/Echo_Commander.asset";
     const string MinionDataPath = "Assets/Data/Monster/Rift_Walker.asset";
+    // ปกติเรียกระดับธรรมดา เลือดต่ำกว่าเกณฑ์ช่วงคลั่ง (30%) เรียกหัวหน้าหน่วย
+    static readonly string[] NormalMinions = { "Rift_Walker", "Flux-Jaw", "Echo-Stalker" };
+    static readonly string[] EliteMinions = { "Phase-Soldier", "Mutated-Heavy" };
     const string EncounterPath = "Assets/Data/Map/RoomData/Map 1 - Boss.asset";
     const string BossMapPrefabPath = "Assets/Prefab/map_1_bossroom.prefab";
     const string HeroPrefabPath = "Assets/Prefab/Hero/Warrior_0.prefab";
@@ -87,7 +90,11 @@ public static class BossBuilder
             boss.myData = data;
             boss.projectilePrefab = projectile;
             boss.projectileDamage = data.attackDamage;
-            if (newBoss && minion != null) boss.minions = new[] { minion };
+            if (newBoss && minion != null)
+            {
+                boss.minions = LoadMinions(NormalMinions);
+                boss.eliteMinions = LoadMinions(EliteMinions);
+            }
 
             return PrefabUtility.SaveAsPrefabAsset(root, BossPrefabPath);
         }
@@ -95,6 +102,17 @@ public static class BossBuilder
         {
             PrefabUtility.UnloadPrefabContents(root);
         }
+    }
+
+    static MonsterData[] LoadMinions(string[] names)
+    {
+        var list = new System.Collections.Generic.List<MonsterData>();
+        foreach (var name in names)
+        {
+            var data = AssetDatabase.LoadAssetAtPath<MonsterData>($"Assets/Data/Monster/{name}.asset");
+            if (data != null) list.Add(data);
+        }
+        return list.ToArray();
     }
 
     static GameObject SetupProjectile()
