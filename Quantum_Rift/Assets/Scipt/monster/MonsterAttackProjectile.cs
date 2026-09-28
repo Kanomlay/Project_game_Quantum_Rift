@@ -8,10 +8,14 @@ public sealed class MonsterAttackProjectile : MonoBehaviour, IEnemyBullet
     float speed,damage,remaining,radius;
     Transform owner;
     MonsterCombatActions source; // พิษของคนยิงติดไปกับกระสุน
+    SpriteRenderer view;
+    bool trail, splash;
+    float nextTrail;
     bool spent;
     public void Launch(MonsterCombatActions source,Vector2 heading,float velocity,float lifetime,float power,bool rock)
     {
-        this.source=source;owner=source.transform;direction=heading.normalized;speed=velocity;remaining=lifetime;damage=power;IsRock=rock;
+        this.source=source;owner=source.transform;direction=heading.normalized;
+        view=GetComponent<SpriteRenderer>();trail=source.projectileTrail;splash=source.poisonSeconds>0f;speed=velocity;remaining=lifetime;damage=power;IsRock=rock;
         radius=rock?.18f:.18f; // กระสุนปืน Phase Soldier ขยายเป็น 1.8 ให้เห็นชัด hitbox ขยายตามให้ตรงภาพ
         transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
     }
@@ -36,9 +40,15 @@ public sealed class MonsterAttackProjectile : MonoBehaviour, IEnemyBullet
             Expire();return;
         }
         transform.position+=(Vector3)(direction*step);
+        if(trail&&Time.time>=nextTrail){nextTrail=Time.time+.04f;SpriteGhost.Spawn(view,.2f,.45f);} // หางลูกพลัง
         if(IsRock)transform.Rotate(0,0,210f*Time.deltaTime);
     }
-    void Expire(){spent=true;Destroy(gameObject);}
+    void Expire()
+    {
+        spent=true;
+        if(splash&&view!=null)ImpactSparks.Spawn(transform.position,view.color,8,Vector2.zero,2.5f); // แตกเป็นละอองพิษ
+        Destroy(gameObject);
+    }
     // ทะเบียนกระสุนศัตรู (พรคมสลายมิติฟันลบได้ สนามชะลอกระสุนทำให้ช้าลง)
     void OnEnable(){EnemyBullets.Register(this);}
     void OnDisable(){EnemyBullets.Unregister(this);}

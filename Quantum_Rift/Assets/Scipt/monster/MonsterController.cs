@@ -17,6 +17,17 @@ public class MonsterController : MonoBehaviour
     protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
     protected MonsterNavigator navigator; // เดินอ้อมเสา/กำแพง (ตัวที่มี MonsterCombatActions ใช้ของตัวเอง)
 
+    // เลือดที่เหลือเทียบเต็ม (Zero Husk ใช้เช็คเกณฑ์ระเบิดตัวเอง)
+    public float HealthFraction => myData != null && myData.maxHealth > 0f ? Mathf.Clamp01(currentHealth / myData.maxHealth) : 1f;
+
+    // ระเบิด/สลายตัวเอง นับเป็นตายปกติ (ประตูห้อง ตัวนับศัตรู พรเก็บเกี่ยวพลังงาน ทำงานเหมือนโดนฆ่า)
+    public void SelfDestruct()
+    {
+        if (!IsAlive) return;
+        currentHealth = 0f;
+        Die();
+    }
+
     // ยังสู้อยู่ (สกิลใช้เช็คก่อนทำดาเมจ/เล็งเป้า)
     public bool IsAlive => !isDying && currentHealth > 0f && gameObject.activeInHierarchy;
 

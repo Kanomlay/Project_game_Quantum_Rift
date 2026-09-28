@@ -244,5 +244,19 @@ MonoBehaviour:
   rootWarning: 0.8
   rootRadius: 0.65
   burrowAfter: 3
+  vineLength: 3.2
+  vineWidth: 0.8
+  vineWarning: 0.5
+  selfDestructAt: 0
+  fuseTime: 1.2
+  fuseSpeed: 1.9
+  warnTint: {r: 1, g: 0.82, b: 0.45, a: 1}
+  floating: 0
+  ambientColor: {r: 0.55, g: 0.42, b: 0.28, a: 1}
+  ambientEvery: 0.6
+  ambientFromTop: 0
+  pounceTrail: 0
+  trailColor: {r: 0.45, g: 0.95, b: 1, a: 1}
+  projectileTrail: 0
   breakWalls: 1
   wallDamage: 12

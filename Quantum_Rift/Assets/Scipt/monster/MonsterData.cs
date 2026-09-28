@@ -14,5 +14,9 @@ public class MonsterData : ScriptableObject
     
     [Header("ระบบระยะและเวลาหน่วง")]
     public float attackRange = 1.2f;      
-    public float attackCooldown = 1.5f;   
+    public float attackCooldown = 1.5f;
+
+    [Header("มาเป็นฝูง (หมาป่ามิติ): สุ่มได้ตัวนี้แล้วพาพวกมาด้วย เกิดใกล้กัน")]
+    [Min(1)] public int packMin = 1;
+    [Min(1)] public int packMax = 1;
 }

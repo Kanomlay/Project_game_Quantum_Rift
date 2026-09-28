@@ -11,8 +11,8 @@ using Tier = Map1MonsterBuilder.Tier;
 //    ไม่แตะ Animator และของที่เพื่อนทำไว้ (ท่ากระโจนของหมาป่า, ระเบิดตอนตายของ Zero Husk)
 // 2. ค่าสถานะตามตาราง 1.6–1.7 (ความเร็วคูณ 0.015 แบบเดียวกับแมพ 1, Rootlings ไม่เดิน)
 // 3. ชุดมอนประจำห้องของ 2-1 / 2-2 ใส่ให้ทุกห้องในทั้ง 3 ผัง ห้องทางออกมีหัวหน้าหน่วยคุมทุกครั้ง
-// Rootlings อยู่กับที่ เรียกรากแทงใต้เท้าผู้เล่น (ภาพรากของบอสป่าย่อลง) ติดพิษ ผู้เล่นไกลนาน ๆ มุดดินไปโผล่ใกล้ ๆ
-// ท่าเฉพาะตัวที่เหลือ (Zero Husk ระเบิดตัวเอง, เถาวัลย์ Forest Wraith) มาในขั้นที่ 2 ระหว่างนี้ใช้ท่าประชิดทั่วไป
+// ท่าเฉพาะตัว: Rootlings รากแทงใต้เท้า + มุดดิน, Woodmine ยิงพิษ, Zero Husk ระเบิดตัวเองตอนเลือดน้อย,
+// Forest Wraith ฟาดเถาวัลย์เป็นแนว, หมาป่ามาเป็นฝูง (ค่าที่ Configure ใส่ทุกครั้งที่สั่งเมนู)
 // สั่งซ้ำได้: ขนาด collider และระยะประชิดตั้งให้เฉพาะตอนเพิ่มครั้งแรก ปรับเองใน prefab แล้วไม่โดนทับ
 public static class Map2MonsterBuilder
 {
@@ -22,18 +22,27 @@ public static class Map2MonsterBuilder
     const float PoisonSeconds = 5f;   // เอกสาร 1.3.7: พิษต่อเนื่อง 5 วินาที
     const float PoisonDamage = 0.5f;  // รวมทั้งช่วง (0.1 ต่อวินาที)
 
+    static readonly Color WolfTrail = new Color(0.5f, 0.85f, 1f);
+    static readonly Color Leaves = new Color(1f, 0.55f, 0.2f);
+    static readonly Color Dirt = new Color(0.55f, 0.42f, 0.28f);
+
     static Spec[] Monsters(Sprite bullet, GameObject root) => new[]
     {
-        // หมาป่ามิติ: เพื่อนตั้งท่ากระโจนไว้แล้ว (Pounce) เติมแค่ collider/ค่าสถานะ
+        // หมาป่ามิติ: ท่ากระโจนของเพื่อน + เงาภาพค้างตอนกระโจน มาเป็นฝูง 2–3 ตัวเกิดใกล้กัน
         new Spec { Asset = "Dimensional-Wolf", Name = "Dimensional Wolf", Speed = 150f, Health = 18f, Cooldown = 1f, Damage = 0.5f,
                    Prefab = "Dimensional Wolf_0", Style = MonsterCombatActions.Style.Pounce, MeleeDistance = 1.35f,
-                   ColliderSize = new Vector2(0.85f, 0.5f) },
-        // รากสามหัว: ไม่เดิน (ความเร็ว "ไม่มี") เรียกรากแทงขึ้นใต้เท้าผู้เล่นทุก 4 วินาที โดนแล้วติดพิษ
+                   ColliderSize = new Vector2(0.85f, 0.5f), PackMin = 2, PackMax = 3,
+                   Configure = c => { c.pounceTrail = true; c.trailColor = WolfTrail; } },
+        // รากสามหัว: ไม่เดิน (ความเร็ว "ไม่มี") เรียกรากแทงขึ้นใต้เท้าผู้เล่นทุก 4 วินาที โดนแล้วติดพิษ มีเศษดินร่วงตลอด
         new Spec { Asset = "Rootlings", Name = "Rootlings", Speed = 0f, Health = 22f, Cooldown = 4f, Damage = 0.5f,
                    Prefab = "Rootlings-3Heads_0", Style = MonsterCombatActions.Style.Root, MeleeDistance = 1.3f,
                    ColliderSize = new Vector2(1.4f, 1.2f),
-                   Configure = c => { c.rootPrefab = root; c.poisonSeconds = PoisonSeconds; c.poisonDamage = PoisonDamage; } },
-        // ต้นไม้ตาเดียว: ยิงลูกพลังเขียวจากตาช้า ๆ โดนแล้วติดพิษ
+                   Configure = c =>
+                   {
+                       c.rootPrefab = root; c.poisonSeconds = PoisonSeconds; c.poisonDamage = PoisonDamage;
+                       c.ambientColor = Dirt; c.ambientEvery = 0.6f; c.ambientFromTop = false;
+                   } },
+        // ต้นไม้ตาเดียว: ตาเรืองเขียวก่อนยิง ลูกพลังเขียวมีหาง โดนแล้วแตกเป็นละอองและติดพิษ
         new Spec { Asset = "Woodmine", Name = "Woodmine", Speed = 100f, Health = 16f, Cooldown = 2f, Damage = 0.5f,
                    Prefab = "Woodmine_0", Style = MonsterCombatActions.Style.Rifle, MeleeDistance = 1.3f,
                    ColliderSize = new Vector2(1.5f, 2f),
@@ -46,17 +55,25 @@ public static class Map2MonsterBuilder
                        c.projectileSpeed = 6f;
                        c.projectileLifetime = 2.5f;
                        c.rangedDistance = 6f;
+                       c.projectileTrail = true;
+                       c.warnTint = PoisonGreen;
                        c.poisonSeconds = PoisonSeconds;
                        c.poisonDamage = PoisonDamage;
                    } },
-        // หัวหน้าหน่วย: โครงกระดูกไฟฟ้า ตอนนี้ตะปบประชิด (ระเบิดตอนตายของเพื่อนยังทำงาน)
+        // หัวหน้าหน่วย: โครงกระดูกไฟฟ้า ตะปบประชิด เลือด 25% เรืองฟ้าวิ่งเข้าหาแล้วระเบิดตัวเอง (ภาพระเบิดของเพื่อน)
         new Spec { Asset = "Zero-Husk", Name = "Zero Husk", Speed = 100f, Health = 70f, Cooldown = 3f, Damage = 1f,
                    Prefab = "Zero Husk_0", Style = MonsterCombatActions.Style.Wrench, MeleeDistance = 1.3f,
-                   ColliderSize = new Vector2(0.7f, 1f) },
-        // หัวหน้าหน่วย: วิญญาณป่า ตอนนี้ฟาดเถาวัลย์ระยะประชิดยาวกว่าปกติ
+                   ColliderSize = new Vector2(0.7f, 1f),
+                   Configure = c => { c.selfDestructAt = 0.25f; } },
+        // หัวหน้าหน่วย: วิญญาณป่า ลอยขึ้นลง ใบไม้ร่วงตามตัว ฟาดเถาวัลย์เป็นแนวยาวมีแถบเตือนบนพื้น
         new Spec { Asset = "Forest-Wraith", Name = "Forest Wraith", Speed = 100f, Health = 100f, Cooldown = 1.5f, Damage = 1f,
-                   Prefab = "Forest Wraith_0", Style = MonsterCombatActions.Style.Wrench, MeleeDistance = 1.8f,
-                   ColliderSize = new Vector2(0.7f, 0.95f) },
+                   Prefab = "Forest Wraith_0", Style = MonsterCombatActions.Style.Vine, MeleeDistance = 1.8f,
+                   ColliderSize = new Vector2(0.7f, 0.95f),
+                   Configure = c =>
+                   {
+                       c.floating = true;
+                       c.ambientColor = Leaves; c.ambientEvery = 0.35f; c.ambientFromTop = true;
+                   } },
     };
 
     static readonly string[] Commons = { "Dimensional-Wolf", "Woodmine", "Rootlings" };

@@ -67,7 +67,9 @@ public class RoomEncounterData : ScriptableObject
             {
                 var pick = possibleMonsters[Random.Range(0, possibleMonsters.Length)];
                 if (pick == null) break;
-                wave.Add(pick);
+                // ตัวที่มาเป็นฝูงพาพวกมาด้วย เรียงติดกัน (RoomController วางตัวถัดไปให้ใกล้ตัวแรก) เกินจำนวนระลอกได้ 1 ตัว
+                int pack = Mathf.Min(RandomBetween(Mathf.Max(1, pick.packMin), Mathf.Max(1, pick.packMax)), count - wave.Count + 1);
+                for (int p = 0; p < pack; p++) wave.Add(pick);
             }
             if (wave.Count > 0) waves.Add(wave);
         }

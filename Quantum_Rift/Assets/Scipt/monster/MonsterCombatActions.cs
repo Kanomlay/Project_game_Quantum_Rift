@@ -7,7 +7,8 @@ public sealed class MonsterCombatActions : MonoBehaviour
 {
     // แบบใหม่ต่อท้ายเสมอ ค่าใน prefab เก็บเป็นตัวเลข (Wrench = ประชิดทั่วไป ใช้กับ Flux Jaw ด้วย)
     // Root = อยู่กับที่ เรียกรากแทงขึ้นใต้เท้าผู้เล่น ผู้เล่นไกลนาน ๆ มุดดินไปโผล่ใกล้ ๆ (Rootlings)
-    public enum Style { Rifle, Wrench, RockAndSlam, Lunge, Pounce, Root }
+    // Vine = ฟาดเถาวัลย์เป็นแนวตรงยาว มีแถบเตือนบนพื้นก่อนฟาด (Forest Wraith)
+    public enum Style { Rifle, Wrench, RockAndSlam, Lunge, Pounce, Root, Vine }
     public bool closeRangeSlash;
     public Style style;
     public Sprite projectileSprite;
@@ -36,6 +37,23 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public float rootWarning = 0.8f;       // วงเตือนก่อนรากแทง
     public float rootRadius = 0.65f;       // ยืนในวงนี้ตอนรากแทง = โดน
     public float burrowAfter = 3f;         // ผู้เล่นอยู่นอกระยะนานเท่านี้ มุดดินไปโผล่ใกล้ผู้เล่น
+    [Header("Vine: ฟาดเถาวัลย์เป็นแนวตรง (Forest Wraith)")]
+    public float vineLength = 3.2f;
+    public float vineWidth = 0.8f;
+    public float vineWarning = 0.5f;       // แถบเตือนยืดออกไปจนสุดก่อนฟาด
+    [Header("ระเบิดตัวเองตอนเลือดน้อย (Zero Husk) 0 = ไม่ระเบิด")]
+    [Range(0f, 1f)] public float selfDestructAt;
+    public float fuseTime = 1.2f;          // วิ่งเข้าหาเรืองฟ้าก่อนระเบิด (ภาพระเบิดเตือนต่ออีก 0.75 วินาที)
+    public float fuseSpeed = 1.9f;         // คูณความเร็วเดินช่วงนี้
+    [Header("หน้าตา")]
+    public Color warnTint = new Color(1f, 0.82f, 0.45f); // วาบก่อนโจมตี (Woodmine เรืองเขียว)
+    public bool floating;                  // วิญญาณลอยขึ้นลง ไม่เด้งเป็นก้าว (MonsterFx อ่าน)
+    public Color ambientColor = Color.white;
+    public float ambientEvery;             // ประกายรอบตัวทุกกี่วินาที (0 = ไม่มี) ใบไม้ร่วง / เศษดิน
+    public bool ambientFromTop;            // ร่วงจากครึ่งบนของตัว (ใบไม้) หรือครึ่งล่าง (เศษดิน)
+    public bool pounceTrail;               // เงาภาพค้างตามตัวตอนกระโจน (หมาป่า)
+    public Color trailColor = new Color(0.45f, 0.95f, 1f);
+    public bool projectileTrail;           // กระสุนมีหางตามลูก
     [Header("ทุบกำแพงในห้องที่ขวางทาง (RoomBreakableWalls)")]
     public bool breakWalls = true;
     [Min(0f)] public float wallDamage = 12f; // ต่อครั้ง กำแพงช่องละ 30 = ทุบ 3 ครั้ง (ท่าทุบของ Heavy แรงเป็นสองเท่า)
@@ -56,21 +74,29 @@ public sealed class MonsterCombatActions : MonoBehaviour
     MonsterNavigator nav; // เดินอ้อมเสา/กำแพงแทนเดินตรงเข้าหาแล้วติด
     bool aiming;
     float aimReadyAt,moveBlockedUntil;
-    MonsterFx fx; // วาบส้มตอนง้างโจมตี (MonsterController ใส่ให้ตอนเริ่ม)
-    void Warn(){if(fx==null)fx=GetComponent<MonsterFx>();if(fx!=null)fx.Warn();}
+    MonsterFx fx; // วาบตอนง้างโจมตี (MonsterController ใส่ให้ตอนเริ่ม)
+    MonsterController owner;
+    float fuseEnd=-1f,nextFuseSpark,nextTrail;
+    MonsterFx Fx{get{if(fx==null)fx=GetComponent<MonsterFx>();return fx;}}
+    void Warn(){if(Fx!=null)Fx.Warn(warnTint);}
     const float Duration = 7f / 12f;
 
     public void Initialize(MonsterData monsterData, Transform player)
     {
         data=monsterData;target=player;animator=GetComponent<Animator>();
         body=GetComponent<Rigidbody2D>();display=GetComponent<SpriteRenderer>();
-        nav=new MonsterNavigator(transform,GetComponent<MonsterController>()){CanBreakWalls=breakWalls};
+        owner=GetComponent<MonsterController>();
+        nav=new MonsterNavigator(transform,owner){CanBreakWalls=breakWalls};
     }
 
     public void Tick()
     {
         move=Vector2.zero;
-        if(data==null||target==null||!target.gameObject.activeInHierarchy||IsAttacking)return;
+        if(data==null||target==null||!target.gameObject.activeInHierarchy)return;
+        // เลือดถึงเกณฑ์: ทิ้งท่าที่ทำอยู่ แล้ววิ่งเรืองฟ้าเข้าหาเพื่อระเบิดตัวเอง
+        if(selfDestructAt>0f&&fuseEnd<0f&&owner!=null&&owner.HealthFraction<=selfDestructAt){CancelAttack();fuseEnd=Time.time+fuseTime;}
+        if(fuseEnd>=0f){TickFuse();return;}
+        if(IsAttacking)return;
         var stats=target.GetComponent<PlayerStats>();
         if(stats!=null&&stats.isDead){animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;return;}
         Vector2 delta=target.position-transform.position;
@@ -78,6 +104,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(Mathf.Abs(delta.x)>.01f)display.flipX=delta.x<0;
         if(style==Style.Rifle&&holdAim){TickHoldAim(delta,distance);return;}
         if(style==Style.Root){TickRoot(distance);return;}
+        if(style==Style.Vine){TickVine(delta,distance);return;}
         bool lunge=style==Style.Lunge || style==Style.Pounce;
         bool close=distance<=(lunge?lungeTriggerDistance:meleeDistance);
         bool ranged=style!=Style.Wrench && !lunge && !close && distance<=rangedDistance;
@@ -162,6 +189,88 @@ public sealed class MonsterCombatActions : MonoBehaviour
         animator.SetBool("isWalking",true);
         move=(tooClose?-delta.normalized:nav.DirectionTo(target.position))*data.moveSpeed;
         if(!tooClose&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
+    }
+
+    // ---------- ระเบิดตัวเอง (Zero Husk) ----------
+    static readonly Color FuseColor=new Color(.45f,.9f,1f);
+
+    void TickFuse()
+    {
+        Vector2 delta=target.position-transform.position;
+        if(Mathf.Abs(delta.x)>.01f)display.flipX=delta.x<0;
+        float k=1f-Mathf.Clamp01((fuseEnd-Time.time)/Mathf.Max(.01f,fuseTime));
+        // กะพริบฟ้าถี่ขึ้นเรื่อย ๆ ใกล้ระเบิด
+        if(Fx!=null)Fx.Glow(FuseColor,.3f+.5f*Mathf.Abs(Mathf.Sin(Time.time*(7f+20f*k))));
+        if(Time.time>=nextFuseSpark)
+        {
+            nextFuseSpark=Time.time+Mathf.Lerp(.12f,.04f,k);
+            ImpactSparks.Spawn((Vector2)display.bounds.center+Random.insideUnitCircle*.35f,FuseColor,2,Vector2.zero,3f);
+        }
+        if(Time.time>=fuseEnd||delta.magnitude<=1f)
+        {
+            body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
+            owner.SelfDestruct(); // ตายแล้วเล่นภาพระเบิดของ ZeroHuskDeathBurst (ระเบิดจริงหลังเตือน 0.75 วินาที)
+            return;
+        }
+        animator.SetBool("isWalking",true);
+        move=nav.DirectionTo(target.position)*data.moveSpeed*fuseSpeed;
+    }
+
+    // ---------- Vine (Forest Wraith) ----------
+    static readonly Color VineColor=new Color(.55f,1f,.4f);
+    static readonly Color LeafColor=new Color(1f,.55f,.2f);
+
+    void TickVine(Vector2 delta,float distance)
+    {
+        bool lineClear=ClearLine(transform.position,target.position);
+        if(distance<=vineLength*.85f&&lineClear&&Time.time>=nextAttack)
+        {
+            aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
+            nextAttack=Time.time+Mathf.Max(Duration+vineWarning+.2f,data.attackCooldown);
+            attack=StartCoroutine(VineLash());
+            return;
+        }
+        // เข้าไปยืนระยะฟาดสบาย ๆ แล้วรอจังหวะ ไม่ต้องชิดตัว
+        bool shouldWalk=distance>1.6f||!lineClear;
+        animator.SetBool("isWalking",shouldWalk);
+        if(shouldWalk)move=nav.DirectionTo(target.position)*data.moveSpeed;
+        else body.linearVelocity=Vector2.zero;
+        if(shouldWalk&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
+    }
+
+    // แถบเตือนยืดจากตัวไปตามทิศที่ล็อกไว้ (หลบด้านข้างทัน) สุดแถบแล้วฟาด ยืนในแถบ = โดน
+    IEnumerator VineLash()
+    {
+        IsAttacking=true;AttacksStarted++;move=Vector2.zero;body.linearVelocity=Vector2.zero;Warn();
+        animator.SetBool("isWalking",false);
+        display.flipX=aim.x<0;
+        Vector2 origin=(Vector2)transform.position+aim*.3f;
+        var strip=warningMarker=new GameObject("VineWarning");
+        strip.transform.SetParent(transform.parent,true);
+        strip.transform.SetPositionAndRotation(origin,Quaternion.Euler(0f,0f,Mathf.Atan2(aim.y,aim.x)*Mathf.Rad2Deg));
+        var bar=Layer(strip.transform,ProceduralSprites.Bar,1);
+        for(float t=0f;t<vineWarning;t+=Time.deltaTime)
+        {
+            float k=t/vineWarning;
+            bar.transform.localScale=new Vector3(vineLength*Mathf.Lerp(.15f,1f,1f-(1f-k)*(1f-k)),vineWidth,1f);
+            bar.color=new Color(VineColor.r,VineColor.g,VineColor.b,.35f+.4f*Mathf.Abs(Mathf.Sin(t*16f)));
+            yield return null;
+        }
+        animator.ResetTrigger("Attack");animator.SetTrigger("Attack");
+        const float impact=3f/12f; // เฟรมที่เถาวัลย์ยืดสุด
+        yield return new WaitForSeconds(impact);
+        Destroy(strip);warningMarker=null;
+        for(int i=1;i<=4;i++)ImpactSparks.Spawn(origin+aim*vineLength*i/4f,LeafColor,3,aim,2.5f,90f);
+        if(target!=null)
+        {
+            Vector2 offset=(Vector2)target.position-origin;
+            float along=Vector2.Dot(offset,aim);
+            float side=Mathf.Abs(aim.x*offset.y-aim.y*offset.x);
+            if(along>=-.3f&&along<=vineLength&&side<=vineWidth*.5f+.3f)
+            {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,origin,8f);MeleeImpacts++;}
+        }
+        yield return new WaitForSeconds(Duration-impact);
+        IsAttacking=false;attack=null;
     }
 
     // ---------- Root (Rootlings) ----------
@@ -338,6 +447,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             Vector2 delta=(Vector2)target.position-body.position;
             bool arrived=delta.magnitude<=lungeStopDistance;
             body.linearVelocity=arrived||!ClearLine(body.position,body.position+aim*.65f)?Vector2.zero:aim*lungeSpeed;
+            if(pounceTrail&&!arrived&&Time.time>=nextTrail){nextTrail=Time.time+.05f;SpriteGhost.Spawn(display,.22f,.5f,trailColor);}
             if(!hit && delta.magnitude<=meleeDistance && ClearLine(body.position,target.position))
             {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);MeleeImpacts++;hit=true;}
             yield return null;

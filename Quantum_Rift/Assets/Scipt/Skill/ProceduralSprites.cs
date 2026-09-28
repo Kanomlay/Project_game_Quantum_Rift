@@ -5,7 +5,7 @@ using UnityEngine;
 // ภาพพื้นฐานที่สร้างในโค้ด (1 หน่วย ย่อ/ขยายด้วย scale) ใช้ร่วมกันหลายระบบ: วงเตือนเกิดมอน สนาม/เกราะของพร
 public static class ProceduralSprites
 {
-    static Sprite dashedRing, disc, glow, thinRing;
+    static Sprite dashedRing, disc, glow, thinRing, bar;
     static readonly Dictionary<int, Sprite> sectors = new Dictionary<int, Sprite>();
 
     // วงแหวนนอกขาดเป็นช่วง 6 ช่วง (หมุนแล้วเห็นว่าหมุน) + วงในบาง ๆ แบบรอยแยกมิติ
@@ -74,6 +74,32 @@ public static class ProceduralSprites
         }, FilterMode.Bilinear);
         sectors[key] = sprite;
         return sprite;
+    }
+
+    // แถบยาว 1x1 หน่วย ยึดขอบซ้ายกลาง (scale x = ความยาว, y = ความกว้าง) ไส้จาง ขอบบน/ล่างเข้ม ปลายขวามน
+    // ใช้เป็นเส้นเตือนท่าที่พุ่งเป็นแนวตรง (เถาวัลย์ Forest Wraith)
+    public static Sprite Bar
+    {
+        get
+        {
+            if (bar != null) return bar;
+            const int w = 64, h = 16;
+            var texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Point };
+            var pixels = new Color[w * h];
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    float v = Mathf.Abs((y + 0.5f) / h * 2f - 1f);       // 0 กลาง 1 ขอบ
+                    float tip = (x + 0.5f) / w;
+                    bool cut = tip > 0.9f && v > 1f - (1f - tip) * 10f; // ปลายโค้งมน
+                    float alpha = cut ? 0f : v > 0.78f ? 1f : 0.4f;
+                    pixels[y * w + x] = new Color(1f, 1f, 1f, alpha);
+                }
+            texture.SetPixels(pixels);
+            texture.Apply();
+            bar = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0f, 0.5f), w);
+            return bar;
+        }
     }
 
     // alpha ตามระยะจากกลาง d (0–1) และมุม a (เรเดียน)

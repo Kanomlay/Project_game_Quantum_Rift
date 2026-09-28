@@ -19,3 +19,5 @@ MonoBehaviour:
   moveSpeed: 2.25
   attackRange: 1.35
   attackCooldown: 1
+  packMin: 2
+  packMax: 3

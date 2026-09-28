@@ -44,6 +44,7 @@ public static class Map1MonsterBuilder
         public float LungeTrigger;
         public Vector2 ColliderSize;   // หน่วยของ sprite ก่อนย่อ prefab (วัดจากภาพท่ายืน)
         public Action<MonsterCombatActions> Configure; // ค่าท่าโจมตีเพิ่มเติม (ยิง/พิษ) ใส่ทุกครั้งที่สั่ง
+        public int PackMin, PackMax;   // มาเป็นฝูง (0 = ตัวเดียว)
     }
 
     static readonly MonsterSpec[] Monsters =
@@ -156,6 +157,8 @@ public static class Map1MonsterBuilder
         data.maxHealth = spec.Health;
         data.attackCooldown = spec.Cooldown;
         data.attackDamage = spec.Damage;
+        data.packMin = Mathf.Max(1, spec.PackMin);
+        data.packMax = Mathf.Max(data.packMin, spec.PackMax);
 
         if (spec.Prefab != null)
         {

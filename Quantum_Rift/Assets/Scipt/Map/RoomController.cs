@@ -104,6 +104,7 @@ public class RoomController : MonoBehaviour
         var spots = roomData.IsStaged
             ? AuthoredSpots(wave.Count)
             : SpawnPlacement.Pick(this, wave.ConvertAll(data => data.monsterPrefab), PlayerPosition(), MinPlayerDistance);
+        if (!roomData.IsStaged) GroupPacks(wave, spots);
 
         for (int i = 0; i < wave.Count; i++)
         {
@@ -115,6 +116,38 @@ public class RoomController : MonoBehaviour
                                  SpawnTelegraph.ColorFor(this, emphasis), SpawnWarning,
                                  i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot));
         }
+    }
+
+    // ฝูง (หมาป่ามิติ): ตัวชนิดเดียวกันที่เรียงติดกันใน wave ย้ายไปเกิดใกล้ตัวแรกของฝูง แทนที่จะกระจายทั่วห้อง
+    private void GroupPacks(List<MonsterData> wave, List<Vector2> spots)
+    {
+        int head = -1, size = 0;
+        for (int i = 0; i < wave.Count; i++)
+        {
+            var data = wave[i];
+            bool follower = data.packMax > 1 && head >= 0 && wave[head] == data && size < data.packMax;
+            if (!follower)
+            {
+                head = data.packMax > 1 ? i : -1;
+                size = 1;
+                continue;
+            }
+            size++;
+            for (int attempt = 0; attempt < 6; attempt++)
+                if (SpawnPlacement.TryPickNear(this, data.monsterPrefab, spots[head], 1.8f, PlayerPosition(), MinPlayerDistance, out Vector2 near)
+                    && ApartFrom(near, spots, head, i, 0.9f))
+                {
+                    spots[i] = near;
+                    break;
+                }
+        }
+    }
+
+    private static bool ApartFrom(Vector2 point, List<Vector2> spots, int from, int to, float gap)
+    {
+        for (int j = from; j < to; j++)
+            if (Vector2.Distance(point, spots[j]) < gap) return false;
+        return true;
     }
 
     // วงเตือนครบเวลา: เสกมอนจริง เป็นลูกของห้อง (เปลี่ยนด่านแล้วหายไปพร้อมแมพ)
