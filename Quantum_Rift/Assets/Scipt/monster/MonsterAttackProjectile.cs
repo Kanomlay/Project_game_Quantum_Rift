@@ -7,10 +7,11 @@ public sealed class MonsterAttackProjectile : MonoBehaviour, IEnemyBullet
     Vector2 direction;
     float speed,damage,remaining,radius;
     Transform owner;
+    MonsterCombatActions source; // พิษของคนยิงติดไปกับกระสุน
     bool spent;
     public void Launch(MonsterCombatActions source,Vector2 heading,float velocity,float lifetime,float power,bool rock)
     {
-        owner=source.transform;direction=heading.normalized;speed=velocity;remaining=lifetime;damage=power;IsRock=rock;
+        this.source=source;owner=source.transform;direction=heading.normalized;speed=velocity;remaining=lifetime;damage=power;IsRock=rock;
         radius=rock?.18f:.18f; // กระสุนปืน Phase Soldier ขยายเป็น 1.8 ให้เห็นชัด hitbox ขยายตามให้ตรงภาพ
         transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
     }
@@ -27,7 +28,9 @@ public sealed class MonsterAttackProjectile : MonoBehaviour, IEnemyBullet
             var player=c.GetComponentInParent<PlayerStats>();
             if(player!=null)
             {
-                MonsterCombatActions.DamagePlayer(player,damage,transform.position);Expire();return;
+                if(source!=null)source.Hit(player,damage,transform.position);
+                else MonsterCombatActions.DamagePlayer(player,damage,transform.position);
+                Expire();return;
             }
             if(c.isTrigger||c.GetComponentInParent<MonsterController>()!=null)continue;
             Expire();return;

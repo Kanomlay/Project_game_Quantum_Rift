@@ -19,8 +19,8 @@ public static class Map1MonsterBuilder
     const string MonsterDataFolder = "Assets/Data/Monster";
     const string MonsterPrefabFolder = "Assets/Prefab/Monster";
     const string RoomDataFolder = "Assets/Data/Map/RoomData";
-    const string SortingReferencePrefab = "Assets/Prefab/Monster/Rift-Drained Worker_0.prefab";
-    const string EnemyLayerName = "Enemy";
+    internal const string SortingReferencePrefab = "Assets/Prefab/Monster/Rift-Drained Worker_0.prefab";
+    internal const string EnemyLayerName = "Enemy";
 
     // ความเร็วในเอกสารเป็นคนละหน่วยกับในเกม เทียบจาก Rift-Drained Worker ที่เอกสารเขียน 100
     // แต่ในเกมเดินที่ 1.5 หน่วย/วินาที (ตัวที่เล่นได้จริงตัวแรก) จึงคูณ 0.015 ทุกตัว
@@ -29,7 +29,8 @@ public static class Map1MonsterBuilder
     // พอร์ทัลออกด่านวางไว้กลางห้องสุดท้ายของแต่ละผัง ใช้หาห้องทางออก (ค่าเดียวกับ MapEventDirector)
     const float PortalRoomRadius = 3f;
 
-    sealed class MonsterSpec
+    // แมพ 2 (Map2MonsterBuilder) ใช้ตัวช่วยชุดเดียวกัน
+    internal sealed class MonsterSpec
     {
         public string Asset;   // ชื่อไฟล์ MonsterData
         public string Name;
@@ -42,6 +43,7 @@ public static class Map1MonsterBuilder
         public float MeleeDistance;
         public float LungeTrigger;
         public Vector2 ColliderSize;   // หน่วยของ sprite ก่อนย่อ prefab (วัดจากภาพท่ายืน)
+        public Action<MonsterCombatActions> Configure; // ค่าท่าโจมตีเพิ่มเติม (ยิง/พิษ) ใส่ทุกครั้งที่สั่ง
     }
 
     static readonly MonsterSpec[] Monsters =
@@ -59,7 +61,7 @@ public static class Map1MonsterBuilder
         new MonsterSpec { Asset = "Mutated-Heavy", Name = "Mutated Heavy", Speed = 100f, Health = 100f, Cooldown = 1.5f, Damage = 1f },
     };
 
-    sealed class Tier
+    internal sealed class Tier
     {
         public string Asset;
         public string[] Pool;     // มอนสเตอร์ทั่วไป (ชื่อไฟล์ MonsterData)
@@ -138,7 +140,7 @@ public static class Map1MonsterBuilder
         AssetDatabase.SaveAssets();
     }
 
-    static MonsterData SetupMonster(MonsterSpec spec, int enemyLayer, int sortingLayerID)
+    internal static MonsterData SetupMonster(MonsterSpec spec, int enemyLayer, int sortingLayerID)
     {
         string path = $"{MonsterDataFolder}/{spec.Asset}.asset";
         var data = AssetDatabase.LoadAssetAtPath<MonsterData>(path);
@@ -202,6 +204,7 @@ public static class Map1MonsterBuilder
                 combat.meleeDistance = spec.MeleeDistance;
                 if (spec.LungeTrigger > 0f) combat.lungeTriggerDistance = spec.LungeTrigger;
             }
+            spec.Configure?.Invoke(combat);
 
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }
@@ -211,7 +214,7 @@ public static class Map1MonsterBuilder
         }
     }
 
-    static RoomEncounterData BuildTier(Tier tier, Dictionary<string, MonsterData> data)
+    internal static RoomEncounterData BuildTier(Tier tier, Dictionary<string, MonsterData> data)
     {
         string path = $"{RoomDataFolder}/{tier.Asset}.asset";
         var encounter = AssetDatabase.LoadAssetAtPath<RoomEncounterData>(path);
@@ -236,7 +239,7 @@ public static class Map1MonsterBuilder
 
     // ทุกห้องในทั้ง 3 ผัง (รวมผังที่ถูกปิดตอนเล่น เพราะสุ่มผังกันตอนเริ่มด่าน)
     // ห้องทางออกได้ชุดหัวหน้าหน่วย และไม่ให้ร้านค้ามาลง (ไม่งั้นร้านทับพอร์ทัลกลางห้อง)
-    static void AssignRooms(string mapPrefab, RoomEncounterData room, RoomEncounterData exit)
+    internal static void AssignRooms(string mapPrefab, RoomEncounterData room, RoomEncounterData exit)
     {
         var root = PrefabUtility.LoadPrefabContents(mapPrefab);
         try
@@ -399,7 +402,7 @@ public static class Map1MonsterBuilder
         return added ? go.AddComponent<T>() : component;
     }
 
-    static T Load<T>(string path) where T : UnityEngine.Object
+    internal static T Load<T>(string path) where T : UnityEngine.Object
     {
         var asset = AssetDatabase.LoadAssetAtPath<T>(path);
         if (asset == null) throw new InvalidOperationException($"ไม่เจอไฟล์ {path}");

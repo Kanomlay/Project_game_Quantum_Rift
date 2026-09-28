@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 24670618260770320}
   - {fileID: 5706746052465954919}
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   - {fileID: 9063265378030833724}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &4859676272919500471
 BoxCollider2D:
@@ -2327,7 +2327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 8734290708957877945}
   - {fileID: 386789234170590144}
@@ -2338,7 +2338,7 @@ MonoBehaviour:
   - {fileID: 5501557861878630017}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &11671378082231642
 BoxCollider2D:
@@ -5943,7 +5943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: c8442ae255ef4a14c91d17b16e86bbfd, type: 2}
   doors:
   - {fileID: 5902510445609681088}
   monsterSpawnPoints:
@@ -68023,7 +68023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 8418318247923505702}
   - {fileID: 3266605603340007484}
@@ -89644,7 +89644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 8140906382382218475}
   - {fileID: 5171483084360701477}
@@ -89657,7 +89657,7 @@ MonoBehaviour:
   - {fileID: 4230564791930670591}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &2595178756315185255
 BoxCollider2D:
@@ -90673,7 +90673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 6531273767539518331}
   - {fileID: 3612995725346220758}
@@ -90684,7 +90684,7 @@ MonoBehaviour:
   - {fileID: 7221268266315558447}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &169189397154150833
 BoxCollider2D:
@@ -100386,7 +100386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 4071229540743758125}
   - {fileID: 2592349451274707822}
@@ -100397,7 +100397,7 @@ MonoBehaviour:
   - {fileID: 729796348169373678}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &5481262904532611699
 BoxCollider2D:
@@ -151264,7 +151264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 5983781205104029326}
   - {fileID: 2094826393149495925}
@@ -153469,7 +153469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: c8442ae255ef4a14c91d17b16e86bbfd, type: 2}
   doors:
   - {fileID: 8866573063036969204}
   - {fileID: 5711618352451797323}
@@ -185551,7 +185551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 6845530010396512865}
   - {fileID: 4368925981138111049}
@@ -187110,7 +187110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: c8442ae255ef4a14c91d17b16e86bbfd, type: 2}
   doors:
   - {fileID: 2955210662928522586}
   - {fileID: 5619341147122722341}
@@ -187121,7 +187121,7 @@ MonoBehaviour:
   - {fileID: 8800254580464288081}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 1
+  canHostEvent: 0
   eventAnchor: {fileID: 0}
 --- !u!61 &186571347876130171
 BoxCollider2D:
@@ -187294,7 +187294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 2078554540379858007}
   - {fileID: 2036613872111104294}
@@ -187305,7 +187305,7 @@ MonoBehaviour:
   - {fileID: 8608182306171323134}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &2568385457834013767
 BoxCollider2D:
@@ -188339,7 +188339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 3095236012660068335}
   - {fileID: 2081248128716497082}
@@ -192598,7 +192598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 4406004234709517302}
   - {fileID: 399110409867144650}
@@ -193504,7 +193504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 2719789758873419859}
   - {fileID: 8686092264630718915}
@@ -193515,7 +193515,7 @@ MonoBehaviour:
   - {fileID: 7264156517717633774}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &794734076988337308
 BoxCollider2D:
@@ -194850,7 +194850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 3687474271981465371}
   monsterSpawnPoints:
@@ -194860,7 +194860,7 @@ MonoBehaviour:
   - {fileID: 8152173789746266529}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &8285412640087865885
 BoxCollider2D:
@@ -197798,7 +197798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 1394412704930223666}
   - {fileID: 5761154425878316775}
@@ -197809,7 +197809,7 @@ MonoBehaviour:
   - {fileID: 6708702403936763330}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &6331949531715306611
 BoxCollider2D:
@@ -200897,7 +200897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66bb26c92082140828cb89a20ef5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 2e17befb31f4f8e45ac7d9086b11db9a, type: 2}
   doors:
   - {fileID: 7953449021296548212}
   - {fileID: 8968140589371634652}
@@ -200908,7 +200908,7 @@ MonoBehaviour:
   - {fileID: 3861309707915061731}
   chestSpawnPoint: {fileID: 0}
   chestPrefab: {fileID: 0}
-  canHostEvent: 0
+  canHostEvent: 1
   eventAnchor: {fileID: 0}
 --- !u!61 &6520834322453640580
 BoxCollider2D:

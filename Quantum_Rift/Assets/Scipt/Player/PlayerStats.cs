@@ -42,6 +42,41 @@ public class PlayerStats : MonoBehaviour
         burningRoutine=null;
     }
 
+    // พิษ (แมพป่า ตามเอกสาร 1.3.7): เสียเลือดทีละนิดทุก 1 วินาที ไม่ติดอมตะ ไม่กะพริบ ไม่ผลัก
+    // โดนซ้ำระหว่างติดพิษ = ต่อเวลาใหม่ ไม่ซ้อนแรงขึ้น ตัวละครอมเขียวตลอดที่ติดพิษ
+    float poisonedUntil, poisonPerTick;
+    Coroutine poisonRoutine;
+    static readonly Color PoisonTint = new Color(0.72f, 1f, 0.6f);
+    static readonly Color PoisonBubbles = new Color(0.6f, 1f, 0.35f);
+    public bool IsPoisoned => !isDead && Time.time < poisonedUntil;
+
+    public void ApplyPoison(float seconds = 5f, float totalDamage = 0.5f)
+    {
+        if (isDead || seconds <= 0f || totalDamage <= 0f) return;
+        poisonedUntil = Mathf.Max(poisonedUntil, Time.time + seconds);
+        poisonPerTick = Mathf.Max(poisonPerTick, totalDamage / Mathf.Max(1f, Mathf.Round(seconds)));
+        if (poisonRoutine == null) poisonRoutine = StartCoroutine(PoisonRoutine());
+    }
+
+    IEnumerator PoisonRoutine()
+    {
+        var wait = new WaitForSeconds(1f);
+        while (!isDead && Time.time < poisonedUntil)
+        {
+            if (sr != null) sr.color = PoisonTint;
+            yield return wait;
+            if (isDead) break;
+            currentHP = Mathf.Max(0f, currentHP - poisonPerTick);
+            if (hud != null) hud.UpdateHP(currentHP, maxHP);
+            DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), poisonPerTick, DamageNumbers.Kind.Poison);
+            ImpactSparks.Spawn(SkillCombat.BodyCenter(gameObject), PoisonBubbles, 4, Vector2.up, 2f, 40f);
+            if (currentHP <= 0f) { Die(); break; }
+        }
+        if (sr != null && !isDead) sr.color = Color.white;
+        poisonPerTick = 0f;
+        poisonRoutine = null;
+    }
+
     [Header("ระบบอาวุธ")]
     public WeaponData weapon1; 
     public WeaponData weapon2; 
@@ -76,9 +111,7 @@ public class PlayerStats : MonoBehaviour
     // สถานะจากสกิล
     private float invincibleUntil;  // อมตะชั่วคราวแบบไม่กะพริบ (พุ่งชน, ย่างก้าวเงา)
     private float shieldUntil;      // เกราะกันดาเมจทั้งหมด (เกราะสะท้อนกลับ)
-    private float poisonUntil;
-    private Coroutine poisonRoutine;
-    public event System.Action<float> DamageBlocked; // เกราะกันดาเมจได้ ส่งค่าดาเมจที่กันไว้
+public event System.Action<float> DamageBlocked; // เกราะกันดาเมจได้ ส่งค่าดาเมจที่กันไว้
 
     void Start()
     {
@@ -337,22 +370,9 @@ public class PlayerStats : MonoBehaviour
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
     }
 
-    public void ApplyPoison(float seconds, float damagePerTick, float interval)
-    {
-        if (isDead || seconds <= 0f || damagePerTick <= 0f) return;
-        poisonUntil = Mathf.Max(poisonUntil, Time.time + seconds);
-        if (poisonRoutine == null) poisonRoutine = StartCoroutine(PoisonRoutine(damagePerTick, Mathf.Max(1.1f, interval)));
-    }
-
-    private IEnumerator PoisonRoutine(float damagePerTick, float interval)
-    {
-        while (!isDead && Time.time < poisonUntil)
-        {
-            yield return new WaitForSeconds(interval);
-            if (!isDead && Time.time <= poisonUntil) TakeDamage(damagePerTick);
-        }
-        poisonRoutine = null;
-    }
+    // แบบเก่า (กับดักเถาวัลย์พิษ StageTrap) นับเป็นดาเมจต่อครั้ง แปลงเป็นดาเมจรวมแล้วใช้ระบบพิษเดียวกัน
+    public void ApplyPoison(float seconds, float damagePerTick, float interval) =>
+        ApplyPoison(seconds, damagePerTick * Mathf.Max(1f, Mathf.Floor(seconds / Mathf.Max(0.1f, interval))));
 
     public void GrantInvincibility(float seconds) =>
         invincibleUntil = Mathf.Max(invincibleUntil, Time.time + seconds);

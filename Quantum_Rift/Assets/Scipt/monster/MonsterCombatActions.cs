@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MonsterController), typeof(Animator), typeof(Rigidbody2D))]
 public sealed class MonsterCombatActions : MonoBehaviour
 {
-    // Lunge ต่อท้ายเสมอ ค่าใน prefab เก็บเป็นตัวเลข (Wrench = ประชิดทั่วไป ใช้กับ Flux Jaw ด้วย)
-    public enum Style { Rifle, Wrench, RockAndSlam, Lunge, Pounce }
+    // แบบใหม่ต่อท้ายเสมอ ค่าใน prefab เก็บเป็นตัวเลข (Wrench = ประชิดทั่วไป ใช้กับ Flux Jaw ด้วย)
+    // Root = อยู่กับที่ เรียกรากแทงขึ้นใต้เท้าผู้เล่น ผู้เล่นไกลนาน ๆ มุดดินไปโผล่ใกล้ ๆ (Rootlings)
+    public enum Style { Rifle, Wrench, RockAndSlam, Lunge, Pounce, Root }
     public bool closeRangeSlash;
     public Style style;
     public Sprite projectileSprite;
@@ -25,6 +26,16 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public float aimLowerTime = .17f;     // เวลาลดปืนก่อนเริ่มเดิน (ท่าลด 2 เฟรม)
     public float fireTime = .25f;         // ท่ายิง 3 เฟรม
     public Color projectileTint = Color.white; // ย้อมสีกระสุน ใช้ภาพกระสุนชุดเดียวกันได้หลายตัว (Woodmine ย้อมเขียว)
+    [Header("พิษ (มอนแมพป่า) 0 = ไม่ติดพิษ")]
+    [Min(0f)] public float poisonSeconds;
+    [Min(0f)] public float poisonDamage = 0.5f; // รวมทั้งช่วง ไม่ใช่ต่อวินาที
+    [Header("Root: รากแทงขึ้นใต้เท้าผู้เล่น (Rootlings)")]
+    public GameObject rootPrefab;          // ภาพรากแทงขึ้น 7 เฟรม (ชุดเดียวกับบอสป่า ย่อลง)
+    public float rootScale = 0.4f;
+    public float rootRange = 7f;           // ผู้เล่นอยู่ในระยะนี้ถึงเรียกราก (ใต้ดิน ไม่ต้องเห็นตัว)
+    public float rootWarning = 0.8f;       // วงเตือนก่อนรากแทง
+    public float rootRadius = 0.65f;       // ยืนในวงนี้ตอนรากแทง = โดน
+    public float burrowAfter = 3f;         // ผู้เล่นอยู่นอกระยะนานเท่านี้ มุดดินไปโผล่ใกล้ผู้เล่น
     [Header("ทุบกำแพงในห้องที่ขวางทาง (RoomBreakableWalls)")]
     public bool breakWalls = true;
     [Min(0f)] public float wallDamage = 12f; // ต่อครั้ง กำแพงช่องละ 30 = ทุบ 3 ครั้ง (ท่าทุบของ Heavy แรงเป็นสองเท่า)
@@ -66,6 +77,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         float distance=delta.magnitude;
         if(Mathf.Abs(delta.x)>.01f)display.flipX=delta.x<0;
         if(style==Style.Rifle&&holdAim){TickHoldAim(delta,distance);return;}
+        if(style==Style.Root){TickRoot(distance);return;}
         bool lunge=style==Style.Lunge || style==Style.Pounce;
         bool close=distance<=(lunge?lungeTriggerDistance:meleeDistance);
         bool ranged=style!=Style.Wrench && !lunge && !close && distance<=rangedDistance;
@@ -152,6 +164,109 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(!tooClose&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
     }
 
+    // ---------- Root (Rootlings) ----------
+    static readonly Color RootWarnColor=new Color(.62f,.9f,.3f);
+    static readonly Color DirtColor=new Color(.55f,.4f,.25f);
+    float outOfRangeSince=-1f;
+    bool burrowing;
+    GameObject warningMarker; // วงเตือนที่กำลังขึ้นอยู่ ตาย/โดนขัดกลางท่าต้องลบทิ้ง ไม่งั้นค้างอยู่บนพื้น
+
+    void TickRoot(float distance)
+    {
+        move=Vector2.zero;body.linearVelocity=Vector2.zero;animator.SetBool("isWalking",false);
+        if(distance<=rootRange)
+        {
+            outOfRangeSince=-1f;
+            if(Time.time<nextAttack)return;
+            nextAttack=Time.time+Mathf.Max(1.5f,data.attackCooldown);
+            attack=StartCoroutine(RootStrike(target.position));
+            return;
+        }
+        if(outOfRangeSince<0f)outOfRangeSince=Time.time;
+        else if(Time.time-outOfRangeSince>=burrowAfter)attack=StartCoroutine(Burrow());
+    }
+
+    // วงเตือนตรงเท้าผู้เล่น (ตำแหน่งตอนเริ่มร่าย เดินหนีทัน) แล้วรากแทงขึ้น โดน = ดาเมจ + พิษ
+    IEnumerator RootStrike(Vector2 spot)
+    {
+        IsAttacking=true;AttacksStarted++;Warn();
+        animator.ResetTrigger("Attack");animator.SetTrigger("Attack");
+        var warn=warningMarker=new GameObject("RootWarning");
+        warn.transform.SetParent(transform.parent,true);warn.transform.position=spot;
+        var disc=Layer(warn.transform,ProceduralSprites.Disc,1);
+        var ring=Layer(warn.transform,ProceduralSprites.DashedRing,2);
+        for(float t=0f;t<rootWarning;t+=Time.deltaTime)
+        {
+            float k=t/rootWarning;
+            disc.transform.localScale=Vector3.one*rootRadius*2f*Mathf.Lerp(.2f,1f,k); // วงทึบขยายเต็ม = รากขึ้น
+            ring.transform.localScale=Vector3.one*rootRadius*2f;
+            disc.color=new Color(RootWarnColor.r,RootWarnColor.g,RootWarnColor.b,.18f+.22f*k);
+            ring.color=new Color(RootWarnColor.r,RootWarnColor.g,RootWarnColor.b,.5f+.4f*Mathf.Abs(Mathf.Sin(t*14f)));
+            yield return null;
+        }
+        Destroy(warn);warningMarker=null;
+        if(rootPrefab!=null)
+        {
+            var root=Instantiate(rootPrefab,spot,Quaternion.identity,transform.parent);
+            root.transform.localScale=Vector3.one*rootScale;
+            foreach(var view in root.GetComponentsInChildren<SpriteRenderer>())view.sortingLayerName="object";
+            Destroy(root,.75f);
+        }
+        ImpactSparks.Spawn(spot,DirtColor,8,Vector2.up,3.5f,70f);
+        if(target!=null&&Vector2.Distance(target.position,spot)<=rootRadius)
+        {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,spot,4f);MeleeImpacts++;}
+        yield return new WaitForSeconds(.25f);
+        IsAttacking=false;attack=null;
+    }
+
+    // มุดดิน: จมหาย ย้ายไปโผล่ในห้องเดิมใกล้ผู้เล่น (ไม่ประชิดเกิน) ระหว่างอยู่ใต้ดินตีไม่โดน
+    IEnumerator Burrow()
+    {
+        var owner=GetComponent<MonsterController>();
+        Vector2 spot;
+        if(owner==null||!SpawnPlacement.TryPickNear(owner.currentRoom,gameObject,target.position,4.5f,target.position,2.5f,out spot))
+        {outOfRangeSince=Time.time;yield break;}
+        IsAttacking=true;burrowing=true;outOfRangeSince=-1f;
+        animator.SetBool("isWalking",true); // ท่าเดินของ Rootlings คือกองดินที่หดหัวลง
+        SetBodyActive(false);
+        ImpactSparks.Spawn(transform.position,DirtColor,10,Vector2.up,3f,80f);
+        yield return Fade(1f,0f,.35f);
+        body.position=spot;transform.position=spot;
+        ImpactSparks.Spawn(spot,DirtColor,10,Vector2.up,3f,80f);
+        yield return Fade(0f,1f,.35f);
+        EndBurrow();
+        nextAttack=Mathf.Max(nextAttack,Time.time+.8f); // โผล่แล้วให้ผู้เล่นตั้งตัวก่อนรากแรก
+        IsAttacking=false;attack=null;
+    }
+
+    IEnumerator Fade(float from,float to,float time)
+    {
+        for(float t=0f;t<time;t+=Time.deltaTime)
+        {
+            var c=display.color;display.color=new Color(c.r,c.g,c.b,Mathf.Lerp(from,to,t/time));
+            yield return null;
+        }
+        var end=display.color;display.color=new Color(end.r,end.g,end.b,to);
+    }
+
+    void SetBodyActive(bool on){foreach(var c in GetComponents<Collider2D>())if(!c.isTrigger)c.enabled=on;}
+
+    // จบมุดดิน (หรือโดนขัดกลางทาง): ตัวกลับมาเห็น/โดนตีได้ ไม่ค้างหายใต้ดิน
+    void EndBurrow()
+    {
+        if(!burrowing)return;
+        burrowing=false;SetBodyActive(true);
+        if(display!=null){var c=display.color;display.color=new Color(c.r,c.g,c.b,1f);}
+        if(animator!=null)animator.SetBool("isWalking",false);
+    }
+
+    SpriteRenderer Layer(Transform parent,Sprite sprite,int order)
+    {
+        var go=new GameObject("Layer");go.transform.SetParent(parent,false);
+        var view=go.AddComponent<SpriteRenderer>();view.sprite=sprite;view.sortingLayerName="bg2";view.sortingOrder=order;
+        return view;
+    }
+
     public const string AimTag="Aim";
     bool GunUp()=>animator.GetCurrentAnimatorStateInfo(0).IsTag(AimTag)||
         (animator.IsInTransition(0)&&animator.GetNextAnimatorStateInfo(0).IsTag(AimTag));
@@ -203,7 +318,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
                 Vector2 delta=target.position-transform.position;
                 // ตรวจซ้ำที่เฟรมกระทบ: หลบออกจากระยะหรือไปหลังกำแพงแล้วไม่โดน
                 if(delta.magnitude<=meleeDistance && Vector2.Dot(delta.normalized,aim)>.15f && ClearLine(transform.position,target.position))
-                    DamagePlayer(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position,style==Style.Rifle&&closeRangeSlash?10f:6f);
+                    Hit(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position,style==Style.Rifle&&closeRangeSlash?10f:6f);
             }
         }
         yield return new WaitForSeconds(Duration-impact);
@@ -224,7 +339,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             bool arrived=delta.magnitude<=lungeStopDistance;
             body.linearVelocity=arrived||!ClearLine(body.position,body.position+aim*.65f)?Vector2.zero:aim*lungeSpeed;
             if(!hit && delta.magnitude<=meleeDistance && ClearLine(body.position,target.position))
-            {DamagePlayer(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);MeleeImpacts++;hit=true;}
+            {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);MeleeImpacts++;hit=true;}
             yield return null;
         }
         body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
@@ -258,15 +373,21 @@ public sealed class MonsterCombatActions : MonoBehaviour
         return true;
     }
 
-    public static void DamagePlayer(PlayerStats stats,float damage,Vector2 source,float knockback=6f)
+    // คืน true ถ้าโดนจริง (เลือดลด) ใช้ต่อพิษ/ผลพิเศษเฉพาะตอนโดน
+    public static bool DamagePlayer(PlayerStats stats,float damage,Vector2 source,float knockback=6f)
     {
-        if(stats==null||stats.isDead)return;
+        if(stats==null||stats.isDead)return false;
         float previous=stats.currentHP;stats.TakeDamage(damage);
-        if(stats.currentHP<previous)
-        {
-            var movement=stats.GetComponent<PlayerMovement>();
-            if(movement!=null)movement.TakeKnockback(source,knockback);
-        }
+        if(stats.currentHP>=previous)return false;
+        var movement=stats.GetComponent<PlayerMovement>();
+        if(movement!=null)movement.TakeKnockback(source,knockback);
+        return true;
+    }
+
+    // โดนตี/โดนกระสุนของตัวนี้: ดาเมจ + ผลักกระเด็น + พิษ (ถ้าตั้งไว้)
+    public void Hit(PlayerStats stats,float damage,Vector2 source,float knockback=6f)
+    {
+        if(DamagePlayer(stats,damage,source,knockback)&&poisonSeconds>0f)stats.ApplyPoison(poisonSeconds,poisonDamage);
     }
 
     // มอนที่เพิ่งโผล่: ห้ามโจมตีก่อนเวลานี้ (MonsterController ตั้งให้ตอนเกิดจากวงเตือน)
@@ -277,6 +398,8 @@ public sealed class MonsterCombatActions : MonoBehaviour
         move=Vector2.zero;
         if(attack!=null)StopCoroutine(attack);
         attack=null;IsAttacking=false;
+        EndBurrow();
+        if(warningMarker!=null){Destroy(warningMarker);warningMarker=null;}
         if(body!=null)body.linearVelocity=Vector2.zero; // หยุดพุ่งถ้าโดนตีกลางท่า
         if(animator!=null)
         {

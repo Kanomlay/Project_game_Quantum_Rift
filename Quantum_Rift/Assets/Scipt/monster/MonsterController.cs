@@ -211,7 +211,8 @@ public class MonsterController : MonoBehaviour
 
     
     // บอสไม่กระเด็นตอนโดนตี (กันโดนตีรัว ๆ จนร่ายท่าไม่ออก) ยังกะพริบแดงให้รู้ว่าโดน
-    protected virtual bool ResistsKnockback => false;
+    // รากที่ฝังดิน (Rootlings) ก็ไม่ไถลไปตามแรงตี
+    protected virtual bool ResistsKnockback => combatActions != null && combatActions.style == MonsterCombatActions.Style.Root;
 
     private IEnumerator DamageEffectRoutine()
     {
