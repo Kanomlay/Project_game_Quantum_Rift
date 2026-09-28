@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
             {
                 TakeDamage(damage);
                 var flame=new GameObject("BurningEmber");flame.transform.SetParent(transform,false);
-                var r=flame.AddComponent<SpriteRenderer>();r.sprite=sr!=null?sr.sprite:null;
+                var r=flame.AddComponent<SpriteRenderer>();r.sprite=sr!=null?sr.sprite:null;r.flipX=sr!=null&&sr.flipX; // หันตามตัวละคร
                 r.color=new Color(1f,.35f,.1f,.55f);r.sortingLayerName="Effect";Destroy(flame,.18f);
             }
         }

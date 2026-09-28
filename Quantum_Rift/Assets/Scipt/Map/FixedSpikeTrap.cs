@@ -19,6 +19,12 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     float elapsed;
     int hitCycle = -1;
     PlayerStats player;
+    // ผู้เล่นอยู่ชั้น bg2 ลำดับ 5 (มอนสเตอร์/กล่องอยู่ชั้น object ซึ่งวาดทับ bg2 ทั้งชั้น)
+    // ถ้าวางกับดักไว้ชั้น object จะทับตัวผู้เล่นตลอดแม้หนามหุบอยู่ จึงบังคับให้อยู่ชั้นเดียวกับผู้เล่น
+    const string FloorLayer = "bg2";
+    const int FlushOrder = 0;  // ช่องกับดักฝังพื้น: ใต้เท้าผู้เล่น (ชั้นเดียวกับประตูมิติออกด่าน/วงเตือนเกิดมอน)
+    const int RaisedOrder = 6; // หนามพุ่งขึ้น: บังเท้าผู้เล่น แต่ยังอยู่ใต้กำแพงและมอนสเตอร์
+    static int floorLayerId = -1;
 
     void OnEnable()
     {
@@ -80,7 +86,9 @@ public sealed class FixedSpikeTrap : MonoBehaviour
         if (animatedDisplay == null || animationFrames == null || animationFrames.Length == 0) return;
         animatedDisplay.sprite = animationFrames[Mathf.Clamp(index, 0, animationFrames.Length - 1)];
         // ช่องกับดักฝังเรียบใต้เท้าตัวละคร มีเฉพาะหนามที่พุ่งขึ้นมาบังด้านหน้า
-        animatedDisplay.sortingOrder = index >= 2 && index <= 5 ? 4 : -2;
+        if (floorLayerId < 0) floorLayerId = SortingLayer.NameToID(FloorLayer);
+        animatedDisplay.sortingLayerID = floorLayerId;
+        animatedDisplay.sortingOrder = index >= 2 && index <= 5 ? RaisedOrder : FlushOrder;
     }
 
     public bool TryHit(PlayerStats target)
