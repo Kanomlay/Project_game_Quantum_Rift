@@ -9,6 +9,8 @@ using UnityEngine;
 // - สร้าง/อัปเดต prefab กล่อง (ภาพจากชุด QuantumRift-UI-Objects-v1)
 // - สร้าง LootTable (Data/Loot/ChestLoot) ตัวเลขตั้งให้เฉพาะตอนสร้าง ส่วนรายการอาวุธเติมใหม่ทุกครั้งจาก WeaponData ตามระดับ
 // - ใส่ LootTable ให้ MapData ของแมพ 1 และ 2 (แมพ 3 ไม่มีกล่องตามขอบเขต)
+// - ห้องบอสแมพ 1/2 ใช้ตารางกล่องบอสของตัวเอง (BossChestLoot_1/2): อาวุธ 2 ชิ้นไม่ซ้ำ หายากขึ้นไป (บอส 2 ตำนานบ่อยกว่า)
+//   เงิน 20–30 เป็นกองเหรียญใหญ่ ยาอย่างละ 2 กล่องใหญ่ 1.4 เท่ามีแสงทอง
 // สั่งซ้ำได้ ไม่ทับค่าที่ปรับใน Inspector
 public static class LootBuilder
 {
@@ -16,6 +18,10 @@ public static class LootBuilder
     const string ItemArt = "Assets/image/Item";
     const string ChestPrefabPath = "Assets/Prefab/Loot/Treasure Chest.prefab";
     internal const string LootPath = "Assets/Data/Loot/ChestLoot.asset";
+    const string BossLootOnePath = "Assets/Data/Loot/BossChestLoot_1.asset";
+    const string BossLootTwoPath = "Assets/Data/Loot/BossChestLoot_2.asset";
+    const string BossMapOne = "MapData_1_bossroom";
+    const string BossMapTwo = "MapData_2_boss";
     const string MapFolder = "Assets/Data/Map";
     static readonly string[] ChestMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_boss" };
 
@@ -30,13 +36,15 @@ public static class LootBuilder
 
         var chest = BuildChestPrefab();
         var loot = BuildLootTable(chest);
+        var bossOne = BuildBossLoot(BossLootOnePath, chest, 70f, 30f);
+        var bossTwo = BuildBossLoot(BossLootTwoPath, chest, 40f, 60f);
 
         int maps = 0;
         foreach (var name in ChestMaps)
         {
             var map = AssetDatabase.LoadAssetAtPath<MapData>($"{MapFolder}/{name}.asset");
             if (map == null) { Debug.LogWarning($"ไม่เจอ {MapFolder}/{name}.asset ข้าม"); continue; }
-            map.chestLoot = loot;
+            map.chestLoot = name == BossMapOne ? bossOne : name == BossMapTwo ? bossTwo : loot;
             EditorUtility.SetDirty(map);
             maps++;
         }
@@ -122,6 +130,44 @@ public static class LootBuilder
 
         RefillWeapons(loot);
         return loot;
+    }
+
+    // กล่องบอส: ตัวเลขตั้งเฉพาะตอนสร้าง (ปรับใน Inspector ได้ไม่ถูกทับ) ภาพ/รายการอาวุธเติมใหม่ทุกครั้ง
+    static LootTable BuildBossLoot(string path, TreasureChest chest, float rareWeight, float legendaryWeight)
+    {
+        var loot = AssetDatabase.LoadAssetAtPath<LootTable>(path);
+        if (loot == null)
+        {
+            loot = ScriptableObject.CreateInstance<LootTable>();
+            loot.bossChest = true;
+            loot.chestScale = 1.4f;
+            loot.currencyMin = 20;
+            loot.currencyMax = 30;
+            loot.hpPotionCount = 2;
+            loot.energyPotionCount = 2;
+            loot.weaponCount = 2;
+            loot.commonWeight = 0f;
+            loot.rareWeight = rareWeight;
+            loot.legendaryWeight = legendaryWeight;
+            AssetDatabase.CreateAsset(loot, path);
+        }
+        loot.chestPrefab = chest;
+        loot.coinSprite = Load<Sprite>($"{UiObjects}/Coin-Single.png");
+        loot.coinPileSprite = Load<Sprite>($"{UiObjects}/Coin-Pile-Large.png");
+        loot.hpPotionSprite = Load<Sprite>($"{ItemArt}/Potion-HP.png");
+        loot.energyPotionSprite = Load<Sprite>($"{ItemArt}/Potion-Energy.png");
+        RefillWeapons(loot);
+        return loot;
+    }
+
+    // เติมรายการอาวุธให้ทุกตาราง (กล่องธรรมดา + กล่องบอส) WeaponCollectionBuilder เรียกหลังสร้างอาวุธเสร็จ
+    internal static void RefillAllTables()
+    {
+        foreach (var path in new[] { LootPath, BossLootOnePath, BossLootTwoPath })
+        {
+            var table = AssetDatabase.LoadAssetAtPath<LootTable>(path);
+            if (table != null) RefillWeapons(table);
+        }
     }
 
     // อาวุธทุกชิ้นในโปรเจกต์ แยกตามระดับ (อาวุธเริ่มต้นประจำอาชีพไม่ดรอป) WeaponCollectionBuilder เรียกหลังสร้างอาวุธเสร็จ

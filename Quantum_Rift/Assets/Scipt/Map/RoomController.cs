@@ -36,6 +36,7 @@ public class RoomController : MonoBehaviour
     private int aliveMonstersCount;
     private bool isSafeRoom; // ห้องของเหตุการณ์ (ร้านค้า) ไม่มีมอนสเตอร์ ประตูไม่ปิด
     private bool hadMonsters; // มีมอนสเตอร์ให้สู้จริง (ห้องว่างเคลียร์ทันทีแต่ไม่ได้กล่อง)
+    private int elitesSpawned; // มอน elite ในห้องนี้ (ไม่เกิน EliteMonster.MaxPerRoom)
     private int incomingMonsters; // วงเตือนขึ้นแล้ว ยังไม่โผล่
     private int wavesLeft;        // ระลอกที่ยังไม่เริ่ม
 
@@ -111,10 +112,20 @@ public class RoomController : MonoBehaviour
             MonsterData data = wave[i];
             Vector2 spot = spots[i];
             var emphasis = EmphasisOf(data);
+            var color = SpawnTelegraph.ColorFor(this, emphasis);
+            // สุ่ม elite ตั้งแต่ตอนขึ้นวงเตือน: วงแบบหัวหน้า (ใหญ่ สั่น) สีตามแบบ elite
+            EliteMonster.Kind? elite = null;
+            if (EliteMonster.Roll(data, elitesSpawned))
+            {
+                elitesSpawned++;
+                elite = EliteMonster.RandomKind();
+                emphasis = SpawnTelegraph.Emphasis.Leader;
+                color = EliteMonster.ColorOf(elite.Value);
+            }
             incomingMonsters++;
             SpawnTelegraph.Begin(transform, spot, SpawnPlacement.Measure(data.monsterPrefab), emphasis,
-                                 SpawnTelegraph.ColorFor(this, emphasis), SpawnWarning,
-                                 i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot));
+                                 color, SpawnWarning,
+                                 i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot, elite));
         }
     }
 
@@ -151,7 +162,7 @@ public class RoomController : MonoBehaviour
     }
 
     // วงเตือนครบเวลา: เสกมอนจริง เป็นลูกของห้อง (เปลี่ยนด่านแล้วหายไปพร้อมแมพ)
-    private GameObject SpawnMonster(MonsterData data, Vector2 spot)
+    private GameObject SpawnMonster(MonsterData data, Vector2 spot, EliteMonster.Kind? elite = null)
     {
         incomingMonsters--;
         if (isCleared) return null;
@@ -160,6 +171,7 @@ public class RoomController : MonoBehaviour
         monster.currentRoom = this;
         monster.myData = data;
         monster.WakeUpAfter(WakeUpDelay);
+        if (elite.HasValue) EliteMonster.Make(monster, elite.Value);
         aliveMonstersCount++;
         return obj;
     }

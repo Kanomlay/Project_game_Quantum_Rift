@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f54a6af80d74b849ab60530dad4ae9d, type: 3}
-  m_Name: ChestLoot
+  m_Name: BossChestLoot_1
   m_EditorClassIdentifier: Assembly-CSharp::LootTable
   chestPrefab: {fileID: 4418493256972042660, guid: cc6fec0889b0ecd4e8f25dac730fcba6, type: 3}
-  bossChest: 0
-  chestScale: 1
-  currencyMin: 5
-  currencyMax: 10
+  bossChest: 1
+  chestScale: 1.4
+  currencyMin: 20
+  currencyMax: 30
   coinSprite: {fileID: 21300000, guid: 590f9d091312c9541b6e4bf751599fdb, type: 3}
   coinSize: 0.3
-  coinPileSprite: {fileID: 0}
+  coinPileSprite: {fileID: 21300000, guid: ce2cace6a39913340bab099c24c5356c, type: 3}
   coinPileSize: 0.8
-  hpPotionCount: 1
-  energyPotionCount: 1
+  hpPotionCount: 2
+  energyPotionCount: 2
   hpRestore: 3
   energyRestore: 100
   hpPotionSprite: {fileID: 21300000, guid: c6af2c232cf3e1d48a459cac325e3e56, type: 3}
   energyPotionSprite: {fileID: 21300000, guid: 39e4c7fd55a155b40ac8e0d90d8fa435, type: 3}
   potionSize: 0.5
   weaponChance: 1
-  weaponCount: 1
-  commonWeight: 60
-  rareWeight: 30
-  legendaryWeight: 10
+  weaponCount: 2
+  commonWeight: 0
+  rareWeight: 70
+  legendaryWeight: 30
   commonWeapons:
   - {fileID: 11400000, guid: 3475f909d6b4d464ca87633b9c7095d2, type: 2}
   - {fileID: 11400000, guid: f17436f1f0cc5d344a74eed296199283, type: 2}

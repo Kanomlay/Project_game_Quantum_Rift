@@ -149,7 +149,7 @@ public sealed class WeaponPickup : FloorItem
     }
 
     // วงกลมฟุ้ง: ทึบตรงกลางจางออกขอบ (1 หน่วย ย่อ/ขยายด้วย scale)
-    static Sprite GlowSprite
+    internal static Sprite GlowSprite
     {
         get
         {
@@ -172,7 +172,7 @@ public sealed class WeaponPickup : FloorItem
     }
 
     // ลำแสงแนวตั้ง: ฐานอยู่ที่พื้น (pivot ล่าง) จางออกด้านข้างและด้านบน (กว้าง 0.25 x สูง 1 หน่วยก่อน scale)
-    static Sprite BeamSprite
+    internal static Sprite BeamSprite
     {
         get
         {

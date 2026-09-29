@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 // กระสุน/ลูกธนูของผู้เล่น วิ่งเป็นเส้นตรงจนกว่าจะโดนศัตรู ชนกำแพง หรือหมดระยะ
@@ -9,6 +10,9 @@ using UnityEngine;
 // ความสามารถของอาวุธตำนาน (ตั้งผ่าน Configure):
 // - ชิ่งกำแพง (ธนูยิงกระจาย): ชนกำแพงแล้วสะท้อนออกตามมุม ได้ bounces ครั้ง พร้อมประกายตรงจุดชิ่ง
 // - ระเบิด (เครื่องยิงจรวด): โดนอะไรหรือหมดระยะแล้วระเบิดเป็นวง ทำดาเมจทุกตัวในวง
+//
+// บอส (ตัวใหญ่ ธนูยิงกระจายโดนครบทุกลูกเสมอ): ลูกแรกของนัดที่โดนบอสตัวนั้นแรงเต็ม ลูกถัดไปของนัดเดียวกันแรง 35%
+// ลูกที่ชิ่งกำแพงมาแล้วโดนบอสแรงครึ่งเดียว มอนธรรมดา/ลูกน้องบอสไม่เปลี่ยน
 public sealed class PlayerProjectile : MonoBehaviour
 {
     public float hitRadius = 0.12f;
@@ -34,6 +38,13 @@ public sealed class PlayerProjectile : MonoBehaviour
     private float pierceDamageScale = 1f; // ตัวที่ทะลุไปโดนต่อ รับดาเมจตามสัดส่วนนี้
     private HashSet<Component> pierced;   // ตัวที่ทะลุผ่านมาแล้ว ไม่โดนซ้ำ
 
+    const float BossExtraShotScale = 0.35f;
+    const float BossBouncedScale = 0.5f;
+    // บอสที่แต่ละนัดโดนไปแล้ว (คีย์ = การยิงครั้งนั้น ลบเองเมื่อทุกลูกของนัดหายไป)
+    private static readonly ConditionalWeakTable<object, HashSet<Component>> bossVolleys = new ConditionalWeakTable<object, HashSet<Component>>();
+    private bool bounced;
+    private float poise; // แรงกระแทกต่อลูก (ทำให้มอนเซ) ตามชนิดอาวุธที่ยิง
+
     public void Launch(Transform shooter, Vector2 heading, float velocity, float lifetime, float power)
     {
         owner = shooter;
@@ -47,6 +58,7 @@ public sealed class PlayerProjectile : MonoBehaviour
     public void Configure(WeaponData data)
     {
         if (data == null) return;
+        poise = data.PoiseDamage;
         if (data.special == WeaponSpecial.Ricochet)
         {
             bouncesLeft = Mathf.Max(0, data.bounces);
@@ -83,6 +95,15 @@ public sealed class PlayerProjectile : MonoBehaviour
         if (pierced == null) pierced = new HashSet<Component>();
         pierced.Add(target);
         return true;
+    }
+
+    // ตัวคูณดาเมจใส่บอส: ลูกถัดไปของนัดเดียวกัน / ลูกที่ชิ่งมาแล้ว แรงลดลง
+    private float BossScale(Component target)
+    {
+        if (!(target is EchoCommanderBoss || target is AncientEntbornBoss || target is ArchitectBossHealth)) return 1f;
+        float scale = bounced ? BossBouncedScale : 1f;
+        if (attack != null && !bossVolleys.GetOrCreateValue(attack).Add(target)) scale *= BossExtraShotScale;
+        return scale;
     }
 
     // ภาพกระสุนทุกชิ้นวาดหันไปทางขวา หมุนให้หัวกระสุนชี้ทิศที่ยิง
@@ -131,7 +152,7 @@ public sealed class PlayerProjectile : MonoBehaviour
                 if (pierced != null && pierced.Contains(monster)) continue;
                 if (explodeRadius <= 0f)
                 {
-                    monster.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
+                    monster.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null) * BossScale(monster), poise);
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
                     if (PierceThrough(monster)) continue;
                 }
@@ -147,7 +168,7 @@ public sealed class PlayerProjectile : MonoBehaviour
                 if (pierced != null && pierced.Contains(architect)) continue;
                 if (explodeRadius <= 0f)
                 {
-                    architect.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null));
+                    architect.TakeDamage(RunStatBuffs.Damage(damage,owner!=null?owner.GetComponentInParent<PlayerStats>():null) * BossScale(architect));
                     ImpactSparks.Spawn(hit.point, HitSparkColor, 4, direction);
                     if (PierceThrough(architect)) continue;
                 }
@@ -179,6 +200,7 @@ public sealed class PlayerProjectile : MonoBehaviour
     // สะท้อนออกจากจุดชน ตามมุมตกกระทบ พร้อมประกายตรงจุดชิ่ง
     private void Bounce(RaycastHit2D hit)
     {
+        bounced = true;
         transform.position = hit.centroid + hit.normal * 0.02f;
         Face(Vector2.Reflect(direction, hit.normal));
         if (bounceFrames != null && bounceFrames.Length > 0)

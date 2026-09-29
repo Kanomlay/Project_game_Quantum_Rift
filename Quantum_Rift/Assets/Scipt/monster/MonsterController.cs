@@ -28,12 +28,20 @@ public class MonsterController : MonoBehaviour
     protected void RestoreHealth(float amount)
     {
         if (!IsAlive || myData == null || amount <= 0f) return;
-        currentHealth = Mathf.Min(myData.maxHealth, currentHealth + amount);
-        if (bossHud != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
+        currentHealth = Mathf.Min(MaxHealth, currentHealth + amount);
+        if (bossHud != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
     }
 
     // เลือดที่เหลือเทียบเต็ม (Zero Husk ใช้เช็คเกณฑ์ระเบิดตัวเอง)
-    public float HealthFraction => myData != null && myData.maxHealth > 0f ? Mathf.Clamp01(currentHealth / myData.maxHealth) : 1f;
+    public float HealthFraction => MaxHealth > 0f ? Mathf.Clamp01(currentHealth / MaxHealth) : 1f;
+
+    // ตัวคูณเฉพาะตัว (มอน elite ตั้งตอนเกิด ก่อน Start) MonsterData ใช้ร่วมกันทุกตัว แก้ตรงนั้นไม่ได้
+    public float HealthScale { get; set; } = 1f;
+    public float AttackScale { get; set; } = 1f;
+    public float AttackCooldownScale { get; set; } = 1f;
+    public float SpeedScale { get; set; } = 1f;
+    public float ArmorScale { get; set; } = 1f;   // รับดาเมจตามสัดส่วนนี้ (elite เกราะ = 0.5 จนกว่าจะเซ)
+    public float MaxHealth => myData != null ? myData.maxHealth * HealthScale : 0f;
 
     // ระเบิด/สลายตัวเอง นับเป็นตายปกติ (ประตูห้อง ตัวนับศัตรู พรเก็บเกี่ยวพลังงาน ทำงานเหมือนโดนฆ่า)
     public void SelfDestruct()
@@ -71,7 +79,7 @@ public class MonsterController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); 
         navigator = new MonsterNavigator(transform, this);
 
-        if (myData != null) currentHealth = myData.maxHealth;
+        if (myData != null) currentHealth = MaxHealth;
 
         GameObject hero = GameObject.FindGameObjectWithTag("Player");
         if (hero != null) player = hero.transform;
@@ -89,7 +97,7 @@ public class MonsterController : MonoBehaviour
         bossHud = GetComponent<BossHealthHudLink>();
         // เปิดหลอดเมื่อบอสถูกเสกในห้องต่อสู้ ไม่เปิดระหว่างดูตัวอย่างอนิเมชัน
         if (bossHud != null && myData != null && currentRoom != null)
-            bossHud.BeginFight(currentHealth, myData.maxHealth, player != null ? player.GetComponent<PlayerStats>() : null);
+            bossHud.BeginFight(currentHealth, MaxHealth, player != null ? player.GetComponent<PlayerStats>() : null);
     }
 
     protected virtual void Update()
@@ -116,7 +124,7 @@ public class MonsterController : MonoBehaviour
             {
                 anim.SetBool("isWalking", true);
                 anim.ResetTrigger("Attack");
-                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * Time.deltaTime
+                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * SpeedScale * Time.deltaTime
                                * BlessingManager.MonsterSpeedFactor(transform.position); // สนามชะลอระดับ 3
                 transform.position += (Vector3)step;
             }
@@ -129,9 +137,9 @@ public class MonsterController : MonoBehaviour
                     anim.SetTrigger("Attack");
                     
                 
-                    HitPlayer(myData.attackDamage, 6f); 
+                    HitPlayer(myData.attackDamage * AttackScale, 6f); 
 
-                    nextAttackTime = Time.time + myData.attackCooldown;
+                    nextAttackTime = Time.time + myData.attackCooldown * AttackCooldownScale;
                 }
             }
         }
@@ -142,7 +150,7 @@ public class MonsterController : MonoBehaviour
     {
         if (combatActions == null && myData != null && collision.gameObject.CompareTag("Player") && !isKnockedBack)
         {
-            HitPlayer(myData.attackDamage, 6f); 
+            HitPlayer(myData.attackDamage * AttackScale, 6f); 
         }
     }
 
@@ -221,7 +229,8 @@ public class MonsterController : MonoBehaviour
         return false;
     }
 
-    public void TakeDamage(float damageAmount)
+    // poise = แรงกระแทกของการโดนครั้งนี้ (อาวุธส่งมาตามชนิด ดู WeaponData.PoiseDamage) สกิล/พรไม่มี
+    public void TakeDamage(float damageAmount, float poise = 0f)
     {
         if (!gameObject.activeInHierarchy || currentHealth <= 0) return;
         // มอนรับดาเมจจากผู้เล่นเท่านั้น จึงสุ่มคริติคอลตรงนี้ได้ครบทุกอาวุธ/สกิล/พร
@@ -231,11 +240,15 @@ public class MonsterController : MonoBehaviour
             damageAmount *= PlayerStats.CritMultiplier;
             ImpactSparks.Spawn(DamageNumbers.Above(sr, transform.position), new Color(1f, 0.85f, 0.3f), 8, Vector2.zero, 4.5f);
         }
-        damageAmount *= DamageTakenScale;
+        bool staggerHit = IsStaggered;
+        if (staggerHit) damageAmount *= StaggerDamageScale;
+        damageAmount *= DamageTakenScale * ArmorScale;
         currentHealth = Mathf.Max(currentHealth - damageAmount, Mathf.Min(HealthFloor, currentHealth)); // เลือดไม่ต่ำกว่าเพดานล็อก
-        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, HitKind, crit: crit && HitKind == DamageNumbers.Kind.Enemy, side:
+        var kind = ArmorScale < 1f ? DamageNumbers.Kind.Armored : HitKind;
+        DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, kind, crit: (crit || staggerHit) && kind == DamageNumbers.Kind.Enemy, side:
             player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
-        if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, myData.maxHealth);
+        if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
+        if (currentHealth > 0) ApplyPoise(poise);
         
     
         StartCoroutine(DamageEffectRoutine());
@@ -244,6 +257,36 @@ public class MonsterController : MonoBehaviour
     }
 
     
+    // ---------- แรงกระแทก: อาวุธหนักทำให้มอนเซ ----------
+    // ค่าทนแรงกระแทกที่มองไม่เห็น โดนตีลดตามชนิดอาวุธ (ค้อน/หอกมาก ดาบกลาง มีด/กรงเล็บ/ปืนน้อย) หมดแล้วเซ
+    // เซ = สตัน + รับดาเมจแรงขึ้น (เลขเหลือง) มีดาวฟ้าวนเหนือหัว หลังเซกันเซซ้ำสักพัก (ค้อนตีรัวจนมอนขยับไม่ได้ไม่ได้)
+    // ไม่โดนตีสักพักค่าทนฟื้นเต็ม ตัวใหญ่เลือดเยอะทนกว่า บอสไม่เซ (มีกลไกของตัวเอง)
+    public const float StaggerTime = 1.2f;
+    public const float StaggerDamageScale = 1.3f;
+    const float PoiseRecoverDelay = 2.5f;
+    const float StaggerImmunity = 3f;
+    protected virtual bool CanStagger => bossHud == null;
+    public float PoiseScale { get; set; } = 1f;   // elite ทนกว่า
+    public bool IsStaggered => Time.time < staggeredUntil;
+    public event System.Action<MonsterController> Staggered; // elite เกราะ: เซแล้วเกราะแตก
+    private float poise, lastPoiseHit = -99f, staggeredUntil, staggerImmuneUntil;
+    private float PoiseMax => Mathf.Clamp(30f + MaxHealth * 0.45f, 40f, 100f) * PoiseScale;
+
+    private void ApplyPoise(float amount)
+    {
+        if (amount <= 0f || !CanStagger || !IsAlive || Time.time < staggerImmuneUntil) return;
+        if (Time.time - lastPoiseHit > PoiseRecoverDelay) poise = 0f;
+        lastPoiseHit = Time.time;
+        poise += amount;
+        if (poise < PoiseMax) return;
+        poise = 0f;
+        staggeredUntil = Time.time + StaggerTime;
+        staggerImmuneUntil = staggeredUntil + StaggerImmunity;
+        Stun(StaggerTime);
+        StaggerStars.Play(this, sr, StaggerTime);
+        Staggered?.Invoke(this);
+    }
+
     // บอสไม่กระเด็นตอนโดนตี (กันโดนตีรัว ๆ จนร่ายท่าไม่ออก) ยังกะพริบแดงให้รู้ว่าโดน
     // รากที่ฝังดิน (Rootlings) ก็ไม่ไถลไปตามแรงตี
     protected virtual bool ResistsKnockback => combatActions != null && combatActions.style == MonsterCombatActions.Style.Root;

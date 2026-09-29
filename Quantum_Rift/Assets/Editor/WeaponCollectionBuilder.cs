@@ -163,7 +163,7 @@ public static class WeaponCollectionBuilder
         AttackMotionBuilder.AssignAll(); // ท่าตีตามชนิดอาวุธ (ใส่เฉพาะชิ้นที่ยังไม่มี)
 
         var loot = AssetDatabase.LoadAssetAtPath<LootTable>(LootBuilder.LootPath);
-        if (loot != null) LootBuilder.RefillWeapons(loot);
+        LootBuilder.RefillAllTables(); // กล่องธรรมดา + กล่องบอส
 
         AssetDatabase.SaveAssets();
         Debug.Log($"สร้างอาวุธครบ {Melee.Length + Ranged.Length} ชิ้น (ทั่วไป {Count(WeaponRarity.Common)} / หายาก {Count(WeaponRarity.Rare)} / ตำนาน {Count(WeaponRarity.Legendary)})"

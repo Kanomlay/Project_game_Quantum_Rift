@@ -80,6 +80,10 @@ public sealed class MonsterCombatActions : MonoBehaviour
     MonsterFx Fx{get{if(fx==null)fx=GetComponent<MonsterFx>();return fx;}}
     void Warn(){if(Fx!=null)Fx.Warn(warnTint);}
     const float Duration = 7f / 12f;
+    // ค่าจาก MonsterData คูณตัวคูณเฉพาะตัว (มอน elite)
+    float Cooldown=>data.attackCooldown*(owner!=null?owner.AttackCooldownScale:1f);
+    float AttackDamage=>data.attackDamage*(owner!=null?owner.AttackScale:1f);
+    float MoveSpeed=>data.moveSpeed*(owner!=null?owner.SpeedScale:1f);
 
     public void Initialize(MonsterData monsterData, Transform player)
     {
@@ -115,7 +119,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         {
             aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
             LastAttackWasRanged=ranged;
-            nextAttack=Time.time+Mathf.Max(Duration+.15f,data.attackCooldown);
+            nextAttack=Time.time+Mathf.Max(Duration+.15f,Cooldown);
             attack=StartCoroutine(Attack(ranged));
             return;
         }
@@ -123,7 +127,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         // ใกล้แต่มีเสา/กำแพงคั่น ต้องเดินอ้อมไปหาก่อน ไม่ใช่ยืนนิ่งอยู่หลังกำแพง
         bool shouldWalk=(!close||!lineClear) && !(style==Style.Rifle&&ranged&&canAttack);
         animator.SetBool("isWalking",shouldWalk);
-        if(shouldWalk)move=nav.DirectionTo(target.position)*data.moveSpeed;
+        if(shouldWalk)move=nav.DirectionTo(target.position)*MoveSpeed;
         else body.linearVelocity=Vector2.zero;
         if(shouldWalk&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
     }
@@ -135,7 +139,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         Vector2 toWall=wall.Center-(Vector2)transform.position;
         if(Mathf.Abs(toWall.x)>.01f)display.flipX=toWall.x<0;
         if(Time.time<nextAttack)return;
-        nextAttack=Time.time+Mathf.Max(Duration+.1f,data.attackCooldown*.6f);
+        nextAttack=Time.time+Mathf.Max(Duration+.1f,Cooldown*.6f);
         attack=StartCoroutine(SmashWall(wall));
     }
 
@@ -164,7 +168,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             {
                 aiming=false;animator.SetBool("isAiming",false);
                 aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;LastAttackWasRanged=false;
-                nextAttack=Time.time+Mathf.Max(.85f,data.attackCooldown);attack=StartCoroutine(Attack(false));
+                nextAttack=Time.time+Mathf.Max(.85f,Cooldown);attack=StartCoroutine(Attack(false));
             }
             return;
         }
@@ -178,7 +182,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             {
                 aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
                 LastAttackWasRanged=true;
-                nextAttack=Time.time+Mathf.Max(fireTime,data.attackCooldown);
+                nextAttack=Time.time+Mathf.Max(fireTime,Cooldown);
                 attack=StartCoroutine(FireFromStance());
             }
             return;
@@ -187,7 +191,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         // ห้ามเดินจนกว่า Animator จะลดปืนจบจริง (ท่ายก/เล็ง/ยิง/ลด ติด tag Aim) ไม่ใช่แค่นับเวลา
         if(Time.time<moveBlockedUntil||GunUp()){animator.SetBool("isWalking",false);body.linearVelocity=Vector2.zero;return;}
         animator.SetBool("isWalking",true);
-        move=(tooClose?-delta.normalized:nav.DirectionTo(target.position))*data.moveSpeed;
+        move=(tooClose?-delta.normalized:nav.DirectionTo(target.position))*MoveSpeed;
         if(!tooClose&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
     }
 
@@ -213,7 +217,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             return;
         }
         animator.SetBool("isWalking",true);
-        move=nav.DirectionTo(target.position)*data.moveSpeed*fuseSpeed;
+        move=nav.DirectionTo(target.position)*MoveSpeed*fuseSpeed;
     }
 
     // ---------- Vine (Forest Wraith) ----------
@@ -226,14 +230,14 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(distance<=vineLength*.85f&&lineClear&&Time.time>=nextAttack)
         {
             aim=delta.sqrMagnitude>.001f?delta.normalized:Vector2.right;
-            nextAttack=Time.time+Mathf.Max(Duration+vineWarning+.2f,data.attackCooldown);
+            nextAttack=Time.time+Mathf.Max(Duration+vineWarning+.2f,Cooldown);
             attack=StartCoroutine(VineLash());
             return;
         }
         // เข้าไปยืนระยะฟาดสบาย ๆ แล้วรอจังหวะ ไม่ต้องชิดตัว
         bool shouldWalk=distance>1.6f||!lineClear;
         animator.SetBool("isWalking",shouldWalk);
-        if(shouldWalk)move=nav.DirectionTo(target.position)*data.moveSpeed;
+        if(shouldWalk)move=nav.DirectionTo(target.position)*MoveSpeed;
         else body.linearVelocity=Vector2.zero;
         if(shouldWalk&&nav.BlockingWall!=null)SmashOrWait(nav.BlockingWall);
     }
@@ -267,7 +271,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             float along=Vector2.Dot(offset,aim);
             float side=Mathf.Abs(aim.x*offset.y-aim.y*offset.x);
             if(along>=-.3f&&along<=vineLength&&side<=vineWidth*.5f+.3f)
-            {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,origin,8f);MeleeImpacts++;}
+            {Hit(target.GetComponent<PlayerStats>(),AttackDamage,origin,8f);MeleeImpacts++;}
         }
         yield return new WaitForSeconds(Duration-impact);
         IsAttacking=false;attack=null;
@@ -287,7 +291,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         {
             outOfRangeSince=-1f;
             if(Time.time<nextAttack)return;
-            nextAttack=Time.time+Mathf.Max(1.5f,data.attackCooldown);
+            nextAttack=Time.time+Mathf.Max(1.5f,Cooldown);
             attack=StartCoroutine(RootStrike(target.position));
             return;
         }
@@ -323,7 +327,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         }
         ImpactSparks.Spawn(spot,DirtColor,8,Vector2.up,3.5f,70f);
         if(target!=null&&Vector2.Distance(target.position,spot)<=rootRadius)
-        {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,spot,4f);MeleeImpacts++;}
+        {Hit(target.GetComponent<PlayerStats>(),AttackDamage,spot,4f);MeleeImpacts++;}
         yield return new WaitForSeconds(.25f);
         IsAttacking=false;attack=null;
     }
@@ -427,7 +431,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
                 Vector2 delta=target.position-transform.position;
                 // ตรวจซ้ำที่เฟรมกระทบ: หลบออกจากระยะหรือไปหลังกำแพงแล้วไม่โดน
                 if(delta.magnitude<=meleeDistance && Vector2.Dot(delta.normalized,aim)>.15f && ClearLine(transform.position,target.position))
-                    Hit(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position,style==Style.Rifle&&closeRangeSlash?10f:6f);
+                    Hit(target.GetComponent<PlayerStats>(),AttackDamage,transform.position,style==Style.Rifle&&closeRangeSlash?10f:6f);
             }
         }
         yield return new WaitForSeconds(Duration-impact);
@@ -449,7 +453,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             body.linearVelocity=arrived||!ClearLine(body.position,body.position+aim*.65f)?Vector2.zero:aim*lungeSpeed;
             if(pounceTrail&&!arrived&&Time.time>=nextTrail){nextTrail=Time.time+.05f;SpriteGhost.Spawn(display,.22f,.5f,trailColor);}
             if(!hit && delta.magnitude<=meleeDistance && ClearLine(body.position,target.position))
-            {Hit(target.GetComponent<PlayerStats>(),data.attackDamage,transform.position);MeleeImpacts++;hit=true;}
+            {Hit(target.GetComponent<PlayerStats>(),AttackDamage,transform.position);MeleeImpacts++;hit=true;}
             yield return null;
         }
         body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
@@ -467,7 +471,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         renderer.sortingLayerName="Effect";
         float scale=projectileSize/Mathf.Max(projectileSprite.bounds.size.x,projectileSprite.bounds.size.y);
         obj.transform.localScale=Vector3.one*scale;
-        obj.AddComponent<MonsterAttackProjectile>().Launch(this,aim,projectileSpeed,projectileLifetime,data.attackDamage,style==Style.RockAndSlam);
+        obj.AddComponent<MonsterAttackProjectile>().Launch(this,aim,projectileSpeed,projectileLifetime,AttackDamage,style==Style.RockAndSlam);
         ShotsReleased++;
     }
 

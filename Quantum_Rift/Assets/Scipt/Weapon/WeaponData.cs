@@ -81,4 +81,22 @@ public class WeaponData : ScriptableObject
     public int bounces;                      // Ricochet: ชิ่งกำแพงได้กี่ครั้ง
 
     public float SpecialDamage => specialDamage > 0f ? specialDamage : attackDamage;
+
+    // แรงกระแทกต่อการโดนหนึ่งครั้ง (ทำให้มอนเซ ดู MonsterController.ApplyPoise) ตามชนิดอาวุธ ไม่ขึ้นกับดาเมจ
+    // ค้อนหนักสุด หอกรองลงมา ดาบกลาง มีด/กรงเล็บ/ปืนน้อย ธนูยิงกระจายโดนหลายดอกรวมกันได้
+    public float PoiseDamage
+    {
+        get
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Hammer: return 45f;
+                case WeaponType.Spear: return 30f;
+                case WeaponType.Sword: return motion != null && motion.name == "Dagger" ? 12f : 20f;
+                case WeaponType.Claw: return 10f;
+                case WeaponType.Bow: return 14f;
+                default: return 10f; // ปืน
+            }
+        }
+    }
 }

@@ -5,17 +5,22 @@ using UnityEngine;
 // - ขวดยาฟื้นฟูพลังชีวิต 1 ขวด (+3) และขวดยาฟื้นฟูพลังงาน 1 ขวด (+100) ทุกกล่อง
 // - อาวุธสุ่มตามระดับ ธรรมดา 60% / หายาก 30% / ตำนาน 10% (ระดับที่ยังไม่มีอาวุธในรายการจะข้ามไปสุ่มระดับที่มี)
 // ใส่ไว้ที่ MapData.chestLoot ของแมพที่มีกล่อง (แมพ 1 และ 2) แมพที่ไม่ใส่จะไม่มีกล่อง
+// ห้องบอสใช้ตารางของตัวเอง (BossChestLoot_1/2): อาวุธ 2 ชิ้นไม่ซ้ำ หายากขึ้นไป เงินเป็นกองใหญ่ ยาอย่างละ 2 กล่องใหญ่มีแสงทอง
 [CreateAssetMenu(fileName = "ChestLoot", menuName = "Game Data/Loot Table")]
 public class LootTable : ScriptableObject
 {
     [Header("กล่อง")]
     public TreasureChest chestPrefab;
+    public bool bossChest;                // กล่องบอส: ใหญ่ขึ้น แสงทองพุ่งขึ้น ประกายรอบกล่อง เปิดแล้ววาบ
+    [Min(0.5f)] public float chestScale = 1f;
 
     [Header("เงิน")]
     public int currencyMin = 5;
     public int currencyMax = 10;
     public Sprite coinSprite;
     public float coinSize = 0.3f;
+    public Sprite coinPileSprite;         // มีภาพนี้ = เงินทั้งหมดออกมาเป็นกองเดียว (กองเหรียญใหญ่) ไม่ใช่ทีละเหรียญ
+    public float coinPileSize = 0.8f;
 
     [Header("ขวดยา")]
     public int hpPotionCount = 1;
@@ -28,6 +33,7 @@ public class LootTable : ScriptableObject
 
     [Header("อาวุธ")]
     [Range(0f, 1f)] public float weaponChance = 1f;
+    [Min(1)] public int weaponCount = 1;  // กี่ชิ้นต่อกล่อง (ไม่ซ้ำกันถ้ามีให้สุ่มพอ)
     public float commonWeight = 60f;
     public float rareWeight = 30f;
     public float legendaryWeight = 10f;
@@ -42,6 +48,23 @@ public class LootTable : ScriptableObject
     {
         if (Random.value > weaponChance) return null;
         return RollAnyWeapon();
+    }
+
+    // อาวุธทั้งกล่อง weaponCount ชิ้น พยายามไม่ให้ซ้ำกัน (สุ่มใหม่ไม่กี่ครั้ง รายการน้อยก็ยอมซ้ำ)
+    public System.Collections.Generic.List<WeaponData> RollWeapons()
+    {
+        var result = new System.Collections.Generic.List<WeaponData>();
+        for (int i = 0; i < weaponCount; i++)
+        {
+            WeaponData weapon = null;
+            for (int attempt = 0; attempt < 8; attempt++)
+            {
+                weapon = RollWeapon();
+                if (weapon == null || !result.Contains(weapon)) break;
+            }
+            if (weapon != null) result.Add(weapon);
+        }
+        return result;
     }
 
     // สุ่มระดับตามน้ำหนักแล้วสุ่มอาวุธในระดับนั้น ไม่มีโอกาสได้ว่าง (ร้านค้าใช้)

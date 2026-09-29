@@ -913,7 +913,7 @@ public class WeaponController : MonoBehaviour
                 if (!alreadyHit.Contains(monster))
                 {
                     alreadyHit.Add(monster);
-                    monster.TakeDamage(RunStatBuffs.Damage(power,owner));
+                    monster.TakeDamage(RunStatBuffs.Damage(power,owner), currentWeaponData.PoiseDamage);
                     target = monster;
                 }
             }
