@@ -65,11 +65,11 @@ public sealed class BlessingSlotView : MonoBehaviour
             var rect = (RectTransform)go.transform;
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
             rect.anchoredPosition = new Vector2(-4f, 6f);
-            rect.sizeDelta = new Vector2(40f, 20f);
+            rect.sizeDelta = new Vector2(52f, 34f);
             var label = go.AddComponent<TextMeshProUGUI>();
             if (badge != null) label.font = badge.font;
-            label.fontSize = 17f;
-            label.fontStyle = FontStyles.Bold;
+            label.fontSize = 22f;
+            label.fontStyle = FontStyles.Normal;
             label.alignment = TextAlignmentOptions.TopLeft;
             label.color = LevelColor;
             label.outlineWidth = 0.3f;

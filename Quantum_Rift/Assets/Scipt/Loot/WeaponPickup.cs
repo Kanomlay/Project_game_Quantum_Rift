@@ -71,7 +71,7 @@ public sealed class WeaponPickup : FloorItem
         obj.transform.localPosition = new Vector3(0f, 1.15f, 0f);
         label = obj.AddComponent<TextMeshPro>();
         label.text = $"[{PickKey}] {weapon.weaponName}";
-        label.fontSize = 2.4f;
+        label.fontSize = 2.9f;
         label.alignment = TextAlignmentOptions.Center;
         label.color = RarityColor(weapon.rarity);
         label.outlineWidth = 0.2f;

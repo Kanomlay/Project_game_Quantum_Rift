@@ -12,6 +12,9 @@ public class CharacterBoxUI : MonoBehaviour
     [Header("ชื่อทักษะประจำอาชีพ")]
     public TextMeshProUGUI skill1Text;
     public TextMeshProUGUI skill2Text;
+    [Header("รายละเอียดที่อ่านได้ในหน้าเลือกตัวละคร")]
+    public Image skill1Icon, skill2Icon;
+    public TextMeshProUGUI skill1Info, skill2Info, skill1Description, skill2Description;
 
     private CharacterData currentData;
 
@@ -54,5 +57,15 @@ public class CharacterBoxUI : MonoBehaviour
         // ชื่อทักษะมีเฉพาะภาษาไทยตามเอกสาร ทั้งสองภาษาจึงแสดงข้อความเดียวกันไปก่อน
         if (skill1Text != null) skill1Text.text = currentData.skill1Name;
         if (skill2Text != null) skill2Text.text = currentData.skill2Name;
+        ShowSkill(currentData.skillQ, skill1Icon, skill1Info, skill1Description, "Q");
+        ShowSkill(currentData.skillE, skill2Icon, skill2Info, skill2Description, "E");
+    }
+    static void ShowSkill(SkillData skill, Image icon, TMP_Text info, TMP_Text description, string key)
+    {
+        if(icon!=null){icon.sprite=skill!=null?skill.skillIcon:null;icon.enabled=icon.sprite!=null;icon.preserveAspect=true;}
+        if(info!=null)info.text=skill==null?"":LanguageSettings.IsThai
+            ? $"ปุ่ม {key}  ·  พลังงาน {skill.energyCost}  ·  คูลดาวน์ {skill.cooldown:0.#} วินาที"
+            : $"{key}  ·  Energy {skill.energyCost}  ·  Cooldown {skill.cooldown:0.#} s";
+        if(description!=null)description.text=skill!=null?skill.Description:"";
     }
 }

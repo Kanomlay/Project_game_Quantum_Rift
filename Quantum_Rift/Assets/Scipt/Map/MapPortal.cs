@@ -85,7 +85,7 @@ public class MapPortal : MonoBehaviour
         float scale = Mathf.Abs(transform.lossyScale.x) > 0.0001f ? 1f / Mathf.Abs(transform.lossyScale.x) : 1f;
         obj.transform.localScale = Vector3.one * scale; // ประตูถูกขยายไว้ ป้ายต้องขนาดเท่าป้ายอื่น
         prompt = obj.AddComponent<TextMeshPro>();
-        prompt.fontSize = 2.6f;
+        prompt.fontSize = 3f;
         prompt.alignment = TextAlignmentOptions.Center;
         prompt.color = new Color(0.55f, 0.95f, 1f);
         prompt.outlineWidth = 0.2f;

@@ -26,7 +26,7 @@ public sealed class BuffShopView:MonoBehaviour
     }
     TMP_Text Label(string name,Transform parent,Vector2 pos,Vector2 size,string text,float height,Color color)
     {
-        var t=Rect(name,parent,pos,size).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.text=text;t.fontSize=height;
+        var t=Rect(name,parent,pos,size).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.text=text;t.fontSize=Mathf.Max(22,height*1.12f);
         t.alignment=TextAlignmentOptions.Center;t.color=color;t.raycastTarget=false;t.textWrappingMode=TextWrappingModes.Normal;return t;
     }
     Button Button(string name,Transform parent,Vector2 pos,Vector2 size,System.Action action)
@@ -60,7 +60,7 @@ public sealed class BuffShopView:MonoBehaviour
         money.text=$"เหรียญ { (player!=null?player.currentCurrency:0) }   |   ซื้อได้รายการละ 1 ครั้ง";
         for(int i=0;i<4;i++)
         {
-            var offer=shop.Stock[i];titles[i].text=offer.DisplayName;details[i].text=offer.Describe(shop.itemPool);
+            var offer=shop.Stock[i];titles[i].text=offer.DisplayName;details[i].text=offer.Describe(shop.itemPool).Replace(" หน่วย","");
             icons[i].sprite=offer.Icon(shop.itemPool);icons[i].color=offer.risky?new Color(1,.3f,.3f):Color.white;
             prices[i].text=offer.sold?"ขายแล้ว":offer.price+" เหรียญ";
             buttons[i].interactable=!offer.sold && player!=null && !player.isDead;

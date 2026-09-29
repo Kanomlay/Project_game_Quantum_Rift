@@ -72,7 +72,7 @@ public sealed class ShopClickable : MonoBehaviour
         obj.transform.localPosition = new Vector3(0f, 2.5f * scale, 0f);
         prompt = obj.AddComponent<TextMeshPro>();
         prompt.text = $"[{openKey}] "+(isBuffShop?"ร้านบัพเลือดสนธยา":"ร้านค้า");
-        prompt.fontSize = 2.6f;
+        prompt.fontSize = 3f;
         prompt.alignment = TextAlignmentOptions.Center;
         prompt.color = new Color(1f, 0.87f, 0.35f);
         prompt.outlineWidth = 0.2f;
