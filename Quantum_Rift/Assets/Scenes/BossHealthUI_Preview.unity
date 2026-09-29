@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ECHO COMMANDER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -399,7 +399,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -454}
-  m_SizeDelta: {x: 1300, y: 40.997498}
+  m_SizeDelta: {x: 1300, y: 46.2875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &765629187
 MonoBehaviour:
@@ -423,8 +423,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UI TEST VALUES ONLY  /  NO PHASES
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -668,8 +668,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DAMAGE -20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1333,8 +1333,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ANCIENT ENTBORN
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1603,8 +1603,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: RESET
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1716,7 +1716,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -390}
-  m_SizeDelta: {x: 1300, y: 60.604996}
+  m_SizeDelta: {x: 1300, y: 68.424995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819911531
 MonoBehaviour:
@@ -1740,8 +1740,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUANTUM RIFT - BOSS HUD PREVIEW
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

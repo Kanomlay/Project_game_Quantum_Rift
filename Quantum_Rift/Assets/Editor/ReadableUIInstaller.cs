@@ -14,12 +14,72 @@ using Object=UnityEngine.Object;
 // เปลี่ยนฟอนต์และขนาดข้อความจริง ไม่วาดตัวอักษรลงภาพ จึงสลับภาษาได้และคมทุกความละเอียด
 public static class ReadableUIInstaller
 {
-    const string FontPath="Assets/Fonts/Sarabun/Sarabun UI SDF.asset";
+    const string FontPath="Assets/Fonts/IBMPlexSansThaiLooped/IBM Plex UI SDF.asset";
+    const string SourceFontPath="Assets/Fonts/IBMPlexSansThaiLooped/IBMPlexSansThaiLooped-Medium.ttf";
+    static string previewPrefix="";
     static string Out
     {get{var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-readableUIOutput");var path=i>=0&&i+1<args.Length?args[i+1]:Path.GetFullPath(Application.dataPath+"/../Temp/ReadableUI-v1");Directory.CreateDirectory(path);return path;}}
     static TMP_FontAsset font;
     static readonly Color Ink=new Color32(19,17,36,255),Panel=new Color32(33,28,53,255),Purple=new Color32(117,83,183,255),White=new Color32(247,245,255,255);
     static readonly StringBuilder report=new StringBuilder();
+    // เปลี่ยนเฉพาะฟอนต์ทั้งเกม โดยรักษาขนาดและการจัดวาง UI ที่ปรับไว้แล้ว
+    [MenuItem("Tools/Quantum Rift/Change All Game Fonts")]
+    public static void ChangeAllGameFonts()
+    {
+        if(EditorApplication.isPlaying)throw new Exception("Stop Play Mode first");
+        if(!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())return;
+        font=MakeFont();DefaultFont();
+        var source=AssetDatabase.LoadAssetAtPath<Font>(SourceFontPath);
+        int labels=0,prefabs=0,scenes=0;
+        foreach(var guid in AssetDatabase.FindAssets("t:Prefab",new[]{"Assets"}))
+        {
+            var path=AssetDatabase.GUIDToAssetPath(guid);
+            if(path.StartsWith("Assets/TextMesh Pro/")||path.StartsWith("Assets/Settings/"))continue;
+            var asset=AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            if(!asset.GetComponentsInChildren<TMP_Text>(true).Any()&&!asset.GetComponentsInChildren<Text>(true).Any())continue;
+            var root=PrefabUtility.LoadPrefabContents(path);
+            try{int count=ReplaceFont(root,source);labels+=count;if(count>0){PrefabUtility.SaveAsPrefabAsset(root,path);prefabs++;}}
+            finally{PrefabUtility.UnloadPrefabContents(root);}
+        }
+        foreach(var guid in AssetDatabase.FindAssets("t:Scene",new[]{"Assets/Scenes"}))
+        {
+            var scene=EditorSceneManager.OpenScene(AssetDatabase.GUIDToAssetPath(guid));int count=0;
+            foreach(var root in scene.GetRootGameObjects())count+=ReplaceFont(root,source);
+            labels+=count;if(count>0){EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);scenes++;}
+        }
+        AssetDatabase.SaveAssets();
+        Debug.Log($"GAME_FONT_INSTALLED font={font.name} labels={labels} prefabs={prefabs} scenes={scenes}");
+        // ฟอนต์เริ่มต้นครอบคลุมป้ายที่สร้างระหว่างเล่น เช่น ดาเมจ ร้านบัพ และมินิแมพ
+        var probe=new GameObject("Runtime font probe").AddComponent<TextMeshProUGUI>();
+        if(probe.font!=font)throw new Exception("Runtime default font mismatch");
+        Object.DestroyImmediate(probe.gameObject);
+        var original=LanguageSettings.Current;
+        try{foreach(var lang in new[]{GameLanguage.Thai,GameLanguage.English}){LanguageSettings.Current=lang;previewPrefix=lang==GameLanguage.Thai?"th-":"en-";Preview();}}
+        finally{LanguageSettings.Current=original;previewPrefix="";}
+    }
+    static int ReplaceFont(GameObject root,Font source)
+    {
+        int count=0;
+        foreach(var t in root.GetComponentsInChildren<TMP_Text>(true))
+        {
+            t.font=font;t.fontSharedMaterial=font.material;t.extraPadding=true;
+            if(t is TextMeshProUGUI && t.rectTransform.anchorMin.y==t.rectTransform.anchorMax.y)
+            {
+                var rect=t.rectTransform;
+                rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,Mathf.Max(rect.rect.height,t.fontSize*1.75f));
+            }
+            EditorUtility.SetDirty(t);count++;
+        }
+        var shop=root.GetComponent<ShopWindow>();
+        if(shop!=null)foreach(var slot in shop.slots)
+        {
+            var t=slot.nameText;t.rectTransform.sizeDelta=new Vector2(154,80);
+            t.fontSizeMin=20;t.fontSizeMax=22;t.fontSize=22;t.enableAutoSizing=true;
+        }
+        foreach(var t in root.GetComponentsInChildren<Text>(true))
+        {if(t.font==source)continue;t.font=source;EditorUtility.SetDirty(t);count++;}
+        return count;
+    }
     [MenuItem("Tools/Quantum Rift/Apply Readable UI")]
     public static void Install()
     {
@@ -62,9 +122,9 @@ public static class ReadableUIInstaller
     static TMP_FontAsset MakeFont()
     {
         var existing=AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FontPath);if(existing!=null){AddSymbols(existing);return existing;}
-        var source=AssetDatabase.LoadAssetAtPath<Font>("Assets/Fonts/Sarabun/Sarabun-Medium.ttf");
+        var source=AssetDatabase.LoadAssetAtPath<Font>(SourceFontPath);
         var f=TMP_FontAsset.CreateFontAsset(source,90,9,GlyphRenderMode.SDFAA,2048,2048,AtlasPopulationMode.Dynamic,true);
-        f.name="Sarabun UI SDF";AssetDatabase.CreateAsset(f,FontPath);
+        f.name="IBM Plex UI SDF";AssetDatabase.CreateAsset(f,FontPath);
         AssetDatabase.AddObjectToAsset(f.atlasTexture,f);AssetDatabase.AddObjectToAsset(f.material,f);
         var chars=Enumerable.Range(32,95).Concat(Enumerable.Range(0xE01,0xE3A-0xE01+1)).Concat(Enumerable.Range(0xE3F,0xE5B-0xE3F+1)).Select(i=>(uint)i).ToArray();
         if(!f.TryAddCharacters(chars,out uint[] missing))throw new Exception("Missing Thai/English glyphs: "+string.Join(",",missing));
@@ -113,7 +173,7 @@ public static class ReadableUIInstaller
         var message=shop.messageText;
         var back=Rect(message.transform.parent,"ReadableMessageBorder",message.rectTransform.anchoredPosition,new Vector2(674,92),Purple);back.SetSiblingIndex(message.transform.GetSiblingIndex());Rect(back,"Fill",Vector2.zero,new Vector2(668,86),Panel);message.transform.SetAsLastSibling();
     }
-    static void Legacy(Text t){t.font=AssetDatabase.LoadAssetAtPath<Font>("Assets/Fonts/Sarabun/Sarabun-Medium.ttf");t.fontSize=Mathf.Max(24,Mathf.RoundToInt(t.fontSize*1.15f));EditorUtility.SetDirty(t);}
+    static void Legacy(Text t){t.font=AssetDatabase.LoadAssetAtPath<Font>(SourceFontPath);t.fontSize=Mathf.Max(24,Mathf.RoundToInt(t.fontSize*1.15f));EditorUtility.SetDirty(t);}
     static RectTransform Rect(Transform parent,string name,Vector2 pos,Vector2 size,Color? color=null)
     {
         var found=parent.Find(name);var r=found!=null?(RectTransform)found:new GameObject(name,typeof(RectTransform)).GetComponent<RectTransform>();r.SetParent(parent,false);Place(r,pos,size);
@@ -246,7 +306,17 @@ public static class ReadableUIInstaller
     }
     static void Capture(Camera camera,int w,int h,string name)
     {
-        var target=new RenderTexture(w,h,24);camera.targetTexture=target;Canvas.ForceUpdateCanvases();foreach(var c in Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None))c.GetComponent<CanvasScaler>()?.SendMessage("Update",SendMessageOptions.DontRequireReceiver);Canvas.ForceUpdateCanvases();camera.Render();
+        name=previewPrefix+name;
+        foreach(var label in Object.FindObjectsByType<LocalizedText>(FindObjectsSortMode.None))label.Apply();
+        var target=new RenderTexture(w,h,24);camera.targetTexture=target;
+        // คำนวณสเกลสำหรับขนาดภาพทดสอบ ไม่เรียก Update ของ Behaviour ใน Edit Mode
+        foreach(var c in Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None))
+        {
+            var s=c.GetComponent<CanvasScaler>();if(s==null||s.uiScaleMode!=CanvasScaler.ScaleMode.ScaleWithScreenSize)continue;
+            float x=w/s.referenceResolution.x,y=h/s.referenceResolution.y;
+            c.scaleFactor=s.screenMatchMode==CanvasScaler.ScreenMatchMode.Expand?Mathf.Min(x,y):s.screenMatchMode==CanvasScaler.ScreenMatchMode.Shrink?Mathf.Max(x,y):Mathf.Pow(2,Mathf.Lerp(Mathf.Log(x,2),Mathf.Log(y,2),s.matchWidthOrHeight));
+        }
+        Canvas.ForceUpdateCanvases();camera.Render();
         var previous=RenderTexture.active;RenderTexture.active=target;var pixels=new Texture2D(w,h,TextureFormat.RGB24,false);pixels.ReadPixels(new Rect(0,0,w,h),0,0);pixels.Apply();File.WriteAllBytes(Out+"/"+name,pixels.EncodeToPNG());RenderTexture.active=previous;camera.targetTexture=null;Object.DestroyImmediate(pixels);Object.DestroyImmediate(target);
     }
 }

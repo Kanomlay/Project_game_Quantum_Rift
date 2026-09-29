@@ -27,6 +27,8 @@ public sealed class BuffShopView:MonoBehaviour
     TMP_Text Label(string name,Transform parent,Vector2 pos,Vector2 size,string text,float height,Color color)
     {
         var t=Rect(name,parent,pos,size).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.text=text;t.fontSize=Mathf.Max(22,height*1.12f);
+        // เว้นที่สระและวรรณยุกต์ของฟอนต์ไทย รวมถึงรายละเอียดบัพสามบรรทัด
+        t.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,Mathf.Max(size.y,name=="Description"?124:t.fontSize*1.75f));
         t.alignment=TextAlignmentOptions.Center;t.color=color;t.raycastTarget=false;t.textWrappingMode=TextWrappingModes.Normal;return t;
     }
     Button Button(string name,Transform parent,Vector2 pos,Vector2 size,System.Action action)

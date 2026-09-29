@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 272.35956, y: -2.6966293}
-  m_SizeDelta: {x: 417.97754, y: 37.199997}
+  m_SizeDelta: {x: 417.97754, y: 42}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6327952218100140845
 CanvasRenderer:
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: THE ARCHITECT OF COLLAPSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -290,7 +290,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 764.4944, y: -76.853935}
-  m_SizeDelta: {x: 155.05618, y: 37.199997}
+  m_SizeDelta: {x: 155.05618, y: 42}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &920788139202935105
 CanvasRenderer:
@@ -322,8 +322,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -577,7 +577,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 789, y: -1}
-  m_SizeDelta: {x: 132, y: 32}
+  m_SizeDelta: {x: 132, y: 38.5}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6235244680337889440
 CanvasRenderer:
@@ -609,8 +609,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PHASE 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
-  m_sharedMaterial: {fileID: 1640420389150691104, guid: 95ad0af5cd30528449f0a08e63488e4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
+  m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
