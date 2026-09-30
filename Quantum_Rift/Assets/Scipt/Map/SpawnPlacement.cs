@@ -76,6 +76,11 @@ public static class SpawnPlacement
         return area.TryPick(Measure(prefab), area.LiveMonsters(), player, minPlayerDistance, center, radius, out spot);
     }
 
+    // จุดที่คลิกวางเอง (คอนโซลทดสอบ): ทั้งตัวอยู่บนพื้น ไม่ทับกำแพง และไม่ชนของแข็ง
+    // ไม่บังคับว่าต้องอยู่ในกล่อง trigger ของห้อง (บางผังใช้ trigger เป็นแถบแคบตรงทางเข้าห้อง)
+    public static bool FitsAt(RoomController room, Footprint body, Vector2 spot) =>
+        room != null && new RoomArea(room).Fits(spot, body, false);
+
     sealed class RoomArea
     {
         readonly RoomController room;
@@ -187,14 +192,14 @@ public static class SpawnPlacement
         }
 
         // ทั้งตัว (กลางตัวกับสี่มุม) ต้องอยู่ในห้องบนพื้นที่ไม่ใช่กำแพง และไม่ชนของแข็ง
-        bool Fits(Vector2 spot, Footprint body)
+        public bool Fits(Vector2 spot, Footprint body, bool insideRoom = true)
         {
             Vector2 center = spot + body.offset;
             Vector2 half = body.size * 0.5f;
             foreach (var probe in Probe)
             {
                 Vector2 p = center + Vector2.Scale(probe, half);
-                if (!InRoom(p) || !OnFloor(p)) return false;
+                if ((insideRoom && !InRoom(p)) || !OnFloor(p)) return false;
             }
             foreach (var col in Physics2D.OverlapBoxAll(center, body.size + Vector2.one * Skin * 2f, 0f))
                 if (LootPlacement.IsSolid(col)) return false;

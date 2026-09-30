@@ -35,13 +35,18 @@ public class MonsterController : MonoBehaviour
     // เลือดที่เหลือเทียบเต็ม (Zero Husk ใช้เช็คเกณฑ์ระเบิดตัวเอง)
     public float HealthFraction => MaxHealth > 0f ? Mathf.Clamp01(currentHealth / MaxHealth) : 1f;
 
-    // ตัวคูณเฉพาะตัว (มอน elite ตั้งตอนเกิด ก่อน Start) MonsterData ใช้ร่วมกันทุกตัว แก้ตรงนั้นไม่ได้
+    // ตัวคูณเฉพาะตัว (มอนผิดเพี้ยนตั้งตอนเกิด ก่อน Start) MonsterData ใช้ร่วมกันทุกตัว แก้ตรงนั้นไม่ได้
     public float HealthScale { get; set; } = 1f;
     public float AttackScale { get; set; } = 1f;
     public float AttackCooldownScale { get; set; } = 1f;
     public float SpeedScale { get; set; } = 1f;
-    public float ArmorScale { get; set; } = 1f;   // รับดาเมจตามสัดส่วนนี้ (elite เกราะ = 0.5 จนกว่าจะเซ)
+    public float ArmorScale { get; set; } = 1f;   // รับดาเมจตามสัดส่วนนี้ (มอนผิดเพี้ยนเกราะหนา = 0.5 จนกว่าจะเซ)
     public float MaxHealth => myData != null ? myData.maxHealth * HealthScale : 0f;
+
+    // คอนโซลทดสอบ: หุ่นฝึกยืนนิ่งตลอด (Frozen) / หยุด AI มอนและบอสทุกตัว (DevCheats.FreezeMonsters) ยังโดนตี เซ ตายได้
+    public bool Frozen { get; set; }
+    protected bool IsHeld => Frozen || DevCheats.FreezeMonsters;
+    private bool frozenNow;
 
     // ระเบิด/สลายตัวเอง นับเป็นตายปกติ (ประตูห้อง ตัวนับศัตรู พรเก็บเกี่ยวพลังงาน ทำงานเหมือนโดนฆ่า)
     public void SelfDestruct()
@@ -106,6 +111,7 @@ public class MonsterController : MonoBehaviour
         if (UpdateStun()) return;
         if (Waking()) return;
         if (isKnockedBack) return;
+        if (HoldStill()) return;
 
         if (combatActions != null)
         {
@@ -266,9 +272,9 @@ public class MonsterController : MonoBehaviour
     const float PoiseRecoverDelay = 2.5f;
     const float StaggerImmunity = 3f;
     protected virtual bool CanStagger => bossHud == null;
-    public float PoiseScale { get; set; } = 1f;   // elite ทนกว่า
+    public float PoiseScale { get; set; } = 1f;   // มอนผิดเพี้ยนทนกว่า
     public bool IsStaggered => Time.time < staggeredUntil;
-    public event System.Action<MonsterController> Staggered; // elite เกราะ: เซแล้วเกราะแตก
+    public event System.Action<MonsterController> Staggered; // มอนผิดเพี้ยนเกราะหนา: เซแล้วเกราะแตก
     private float poise, lastPoiseHit = -99f, staggeredUntil, staggerImmuneUntil;
     private float PoiseMax => Mathf.Clamp(30f + MaxHealth * 0.45f, 40f, 100f) * PoiseScale;
 
@@ -321,6 +327,31 @@ public class MonsterController : MonoBehaviour
         isKnockedBack = false; 
     }
 
+    // บอสที่เขียน Update เองเรียกก่อนเลือกท่า: หยุด AI อยู่ = ยืนนิ่ง ไม่เริ่มท่าใหม่
+    protected bool HoldStill()
+    {
+        bool hold = IsHeld;
+        if (hold && !frozenNow)
+        {
+            if (combatActions != null) combatActions.CancelAttack();
+            if (anim != null) anim.SetBool("isWalking", false);
+        }
+        frozenNow = hold;
+        return hold;
+    }
+
+    // ท่าของบอสที่ร่ายอยู่ตอนกดหยุด AI ค้างไว้ที่จังหวะนั้น ปล่อยแล้วทำต่อ
+    protected IEnumerator PausedWhileHeld(IEnumerator move) => DevCheats.Pausable(move, () => IsHeld);
+
+    // คอนโซลทดสอบ: ตั้งเลือดเป็นสัดส่วนของเลือดเต็มทันที (บอสเช็คเฟสเองใน Update) เลือดล็อกของบอสยังมีผล
+    public void SetHealthForTesting(float fraction)
+    {
+        if (!IsAlive || myData == null) return;
+        float target = Mathf.Clamp(fraction, 0.01f, 1f) * MaxHealth;
+        currentHealth = Mathf.Max(target, Mathf.Min(HealthFloor, currentHealth));
+        if (bossHud != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
+    }
+
     public static event System.Action<MonsterController> Died; // ทุกตัวที่ตาย รวมลูกน้องบอส (พรเก็บเกี่ยวพลังงานฟังอยู่)
 
     protected virtual void Die()
@@ -328,7 +359,7 @@ public class MonsterController : MonoBehaviour
         SummaryManager.enemiesDefeatedCount++;
         Died?.Invoke(this);
         // นับว่าตายทันที ประตูห้องจะได้เปิดตอนตัวสุดท้ายล้ม ไม่ต้องรอท่าตายจบ
-        if (currentRoom != null) currentRoom.OnMonsterDied(); 
+        if (currentRoom != null) currentRoom.OnMonsterDied(this);
         StartCoroutine(DeathRoutine());
     }
 

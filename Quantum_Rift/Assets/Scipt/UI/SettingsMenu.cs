@@ -38,6 +38,7 @@ public class SettingsMenu : MonoBehaviour
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
+        DevConsoleSettingsRow.Attach(this); // แถวเปิด/ปิดคอนโซลทดสอบ ต่อท้ายแถวภาษา
         RefreshLabels();
     }
 

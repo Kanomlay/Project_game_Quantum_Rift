@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9aeeb2560bd144885a4cf17a5c19e, type: 3}
+  m_Name: DevCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::DevCatalog
+  monsters:
+  - data: {fileID: 11400000, guid: 22ffcc03da5362342b6bb59348475b76, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 9df185cafd23ad84cbc789f503df27ab, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 543334e2ab04e2d4abb159194385a0cf, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 67899a0dc53d21045bdf6de2b55b6312, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: a9db39b11cd20e3479b0882d35284cc5, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1-2"
+    boss: 0
+  - data: {fileID: 11400000, guid: 27ea86aeea61ef8448ca22ccf8b5a707, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 1 - BossRoom"
+    boss: 1
+  - data: {fileID: 11400000, guid: 5dc21ae621dbc014da3e9f73b334c868, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: b168268e707ff2a4eb5f9d6b78673402, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 0008fdb92ae011c4bb592fde352c73f3, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: f14191813d1e2294c9b9b57643be503a, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 8bb318b375fc81b44b5ecdbe8cba3672, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-1"
+    boss: 0
+  - data: {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-BossRoom"
+    boss: 1
+  weapons:
+  - {fileID: 11400000, guid: 8966a3abd470b3144920c47277cf8c26, type: 2}
+  - {fileID: 11400000, guid: 20b36cdcea5467b4cb2530649595139f, type: 2}
+  - {fileID: 11400000, guid: 463263e8c34315a459e0a1da6ce037ec, type: 2}
+  - {fileID: 11400000, guid: d3d0854cf11709346b25117b5bfeb071, type: 2}
+  - {fileID: 11400000, guid: 3475f909d6b4d464ca87633b9c7095d2, type: 2}
+  - {fileID: 11400000, guid: f17436f1f0cc5d344a74eed296199283, type: 2}
+  - {fileID: 11400000, guid: 3673d67ecfc92264aae8bbbd69af5f1f, type: 2}
+  - {fileID: 11400000, guid: b208912e02ba3f24090ab44efbabb5c4, type: 2}
+  - {fileID: 11400000, guid: f0e090532434a8644bcaf4ed159a27ba, type: 2}
+  - {fileID: 11400000, guid: 578b7e2110cb60846a7e5424f7ecc53d, type: 2}
+  - {fileID: 11400000, guid: 5a372fe4666406d46a5a279cf409da65, type: 2}
+  - {fileID: 11400000, guid: 7b2e8e1f849c30f4b980362eaa8c2f5a, type: 2}
+  - {fileID: 11400000, guid: e179cc198fc76904faab4bb96d6fcd42, type: 2}
+  - {fileID: 11400000, guid: e8d49c3bc298c394b8f4ffc5a191691f, type: 2}
+  - {fileID: 11400000, guid: 20f019bfeb2ac464a816c9c04b3ff3ce, type: 2}
+  - {fileID: 11400000, guid: e363a5b61318e7348b1b30aa52afd220, type: 2}
+  - {fileID: 11400000, guid: 1d1ee5aa01e484c4fb26f2eb6e4ee3a1, type: 2}
+  - {fileID: 11400000, guid: 13caa9542748f6f4fa56d19ebed03295, type: 2}
+  - {fileID: 11400000, guid: feab25b4681a8f040852700e1c77a8d1, type: 2}
+  - {fileID: 11400000, guid: 1e8f9de16972136469a4489d4af7d2d1, type: 2}
+  - {fileID: 11400000, guid: a8358d134e5414f419202271d4661ee7, type: 2}
+  - {fileID: 11400000, guid: 5fae87b7ced88104dacf49543a381bae, type: 2}
+  - {fileID: 11400000, guid: a2ba581907967334c95d3be15178ad5f, type: 2}
+  blessings:
+  - {fileID: 11400000, guid: c40791d845a0ff641a36f718ec5c4013, type: 2}
+  - {fileID: 11400000, guid: d410d63d62e8cda4da24b00fc0b15b98, type: 2}
+  - {fileID: 11400000, guid: 41989a96687db7147ad9b930f8212640, type: 2}
+  - {fileID: 11400000, guid: c615af9e73c902e4c9b26072fa350525, type: 2}
+  - {fileID: 11400000, guid: 81b14af7832b4f04eb312920be099586, type: 2}
+  - {fileID: 11400000, guid: 11a553c59fd060d4e959458862f07071, type: 2}
+  - {fileID: 11400000, guid: 7745393cd2e0d2444b0a9e3c472e7521, type: 2}
+  - {fileID: 11400000, guid: 7b661349cc651f140b347fada62e8ac5, type: 2}
+  - {fileID: 11400000, guid: 18bbd92164f42bb49897ae4ff6c38244, type: 2}
+  characters:
+  - {fileID: 11400000, guid: c36b703dd784bef489c4e976c4892928, type: 2}
+  - {fileID: 11400000, guid: 9888a7d97a9491a42a3f43ad28b0756d, type: 2}
+  - {fileID: 11400000, guid: 6dc19830aeda8264da46097fda61206b, type: 2}
+  - {fileID: 11400000, guid: 96da1977c1c50d84895fc5acb759eba7, type: 2}
+  maps:
+  - {fileID: 11400000, guid: 692a024dc5e76e64a85dc97882b4cbcb, type: 2}
+  - {fileID: 11400000, guid: 3212100821d769e4fb04c52c17f34beb, type: 2}
+  - {fileID: 11400000, guid: 59f861cd60d50dc41b21e7cc04b5a706, type: 2}
+  - {fileID: 11400000, guid: bd88113ea26639b4ba33b795bb73bb25, type: 2}
+  - {fileID: 11400000, guid: 0da5f1f2845df4642840ccd26ffbe411, type: 2}
+  - {fileID: 11400000, guid: b809ce7d65e628543a2b4832d988a2c7, type: 2}
+  - {fileID: 11400000, guid: 57906349bc8c62f459788ef408f0ccac, type: 2}
+  - {fileID: 11400000, guid: 0fd8c6262a817654ea237f919e5447de, type: 2}
+  chests:
+  - {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
+  - {fileID: 11400000, guid: d46505f7dd9205449b72c435df5fe8eb, type: 2}
+  - {fileID: 11400000, guid: 2083c12ab71d8d44fa8502aef31aff76, type: 2}
+  shops:
+  - label: "\u0E23\u0E49\u0E32\u0E19\u0E1A\u0E31\u0E1E"
+    prefab: {fileID: 1394245876300260238, guid: 067059bb01b44d441b57ea6d24b33af0, type: 3}
+  - label: "\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32 (\u0E1B\u0E48\u0E32)"
+    prefab: {fileID: 7610806195871881507, guid: 039440037013cd44d8be8b97f1d3ed3f, type: 3}
+  - label: "\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32 (\u0E22\u0E32\u0E19)"
+    prefab: {fileID: 8774950107016189731, guid: b562717ea3cd1284193d312f483802e5, type: 3}
+  traps:
+  - label: "\u0E2B\u0E19\u0E32\u0E21\u0E1E\u0E37\u0E49\u0E19 (\u0E1B\u0E48\u0E32)"
+    prefab: {fileID: 4116888242822088625, guid: 30bb8933ae2c67c42a130ae3b5f45d40, type: 3}
+  - label: "\u0E2B\u0E19\u0E32\u0E21\u0E1E\u0E37\u0E49\u0E19 (\u0E22\u0E32\u0E19)"
+    prefab: {fileID: 2533144788229492255, guid: f9b4e0569b0e8e6479920c8aa49f9217, type: 3}
+  labArena: {fileID: 11400000, guid: bd88113ea26639b4ba33b795bb73bb25, type: 2}

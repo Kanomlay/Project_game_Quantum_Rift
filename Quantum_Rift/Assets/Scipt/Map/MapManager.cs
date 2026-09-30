@@ -7,6 +7,9 @@ public class MapManager : MonoBehaviour
 
     [Header("ด่านเริ่มต้น")]
     public MapData firstMap; // ใส่ข้อมูลด่าน 1-1 ไว้ตรงนี้
+    // คอนโซลทดสอบเปลี่ยนอาชีพ: โหลดฉากใหม่แล้วเริ่มที่แมพนี้แทนด่านแรก (ใช้ครั้งเดียว)
+    public static MapData startOverride;
+    public bool IsLoading => loading;
     
     private MapData currentMap; // จำว่าตอนนี้อยู่ด่านไหน
     public MapData CurrentMap => currentMap;
@@ -34,7 +37,9 @@ public class MapManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player"); 
         }
 
-        if (firstMap != null)
+        MapData start = startOverride != null ? startOverride : firstMap;
+        startOverride = null;
+        if (start != null)
         {
             // ด่านแรกยังไม่มีอะไรให้ค่อยๆ มืด ถ้าปล่อยให้เฟดตามปกติจะเห็นฉากเปล่าแว็บนึงก่อนแมพโหลด
             // จึงบังคับให้ดำสนิทตั้งแต่เฟรมแรก แล้วปล่อยให้ LoadMapRoutine เฟดออกตอนแมพพร้อมแล้ว
@@ -45,7 +50,7 @@ public class MapManager : MonoBehaviour
                 hud.transitionCanvas.alpha = 1f;
             }
 
-            LoadMap(firstMap);
+            LoadMap(start);
         }
     }
 
@@ -58,6 +63,7 @@ public class MapManager : MonoBehaviour
     private void ProceedTo(MapData next)
     {
         if (loading || BlessingManager.IsChoosing) return;
+        if (currentMap != null && currentMap.isTestLab) { LoadMap(next); return; } // ออกจากห้องทดสอบไม่ได้พร
         if (BlessingManager.Instance != null && BlessingManager.Instance.OfferChoice(() => LoadMap(next))) return;
         LoadMap(next);
     }
@@ -77,6 +83,9 @@ public class MapManager : MonoBehaviour
         if (currentMap.mapPrefab != null)
         {
             currentMapInstance = Instantiate(currentMap.mapPrefab, Vector3.zero, Quaternion.identity);
+            // ห้องทดสอบยืมผังห้องบอส ถอดมอนของห้องออก เดินเข้าไปแล้วห้องเคลียร์ทันที (ประตูออกโผล่)
+            if (currentMap.isTestLab)
+                foreach (var room in currentMapInstance.GetComponentsInChildren<RoomController>(true)) room.roomData = null;
             // สุ่มเหตุการณ์พิเศษของแมพนี้ (ร้านค้า ฯลฯ) หนึ่งอย่างต่อการเข้าหนึ่งครั้ง
             MapEventDirector.PlaceEvent(currentMapInstance, currentMap);
         }

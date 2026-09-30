@@ -105,6 +105,7 @@ public class EchoCommanderBoss : MonsterController
         if (Waking()) return;
         if (isCasting) return;
         if (isKnockedBack) return;
+        if (HoldStill()) return; // คอนโซลทดสอบ: หยุด AI
 
         if (player == null || myData == null)
         {
@@ -166,7 +167,7 @@ public class EchoCommanderBoss : MonsterController
     {
         isCasting = true;
         if (anim != null) anim.SetBool("isWalking", false);
-        yield return move;
+        yield return PausedWhileHeld(move);
         if (anim != null) anim.speed = 1f;
         isCasting = false;
     }

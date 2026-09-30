@@ -224,6 +224,49 @@ public sealed class BlessingManager : MonoBehaviour
         if (!OfferChoice(null)) Debug.Log($"ไม่มีพรให้เลือกแล้ว (มี {owned.Count}/{maxBlessings} อัปครบทุกอัน)");
     }
 
+    // ---------- คอนโซลทดสอบ (DevConsole) ----------
+
+    // ใส่พรให้ถึงระดับที่ต้องการทันที (มีอยู่แล้วระดับสูงกว่า = ถอดออกแล้วใส่ใหม่) คืนข้อความถ้าใส่ไม่ได้ ใส่ได้คืน null
+    public string GrantForTesting(BlessingData blessing, int level)
+    {
+        if (blessing == null) return "ไม่มีพรนี้";
+        var have = Get(blessing.type);
+        if (have != null && LevelOf(have) > level)
+        {
+            RemoveOwned(have);
+            have = null;
+        }
+        if (have == null)
+        {
+            if (owned.Count >= maxBlessings) return $"พรเต็ม {maxBlessings} ช่องแล้ว กดล้างพรก่อน";
+            int slot = Take(new BlessingOffer(blessing, 1, null));
+            if (slot < 0) return "ใส่พรไม่ได้";
+            have = owned[slot];
+        }
+        int wanted = Mathf.Clamp(level, 1, have.MaxLevel);
+        for (int step = 0; step < have.MaxLevel && LevelOf(have) < wanted; step++)
+            Take(new BlessingOffer(have, LevelOf(have) + 1, have));
+        if (hud != null)
+        {
+            hud.Refresh(this);
+            hud.Ping(owned.IndexOf(have));
+        }
+        return null;
+    }
+
+    public void ClearForTesting()
+    {
+        foreach (var blessing in owned.ToArray()) RemoveOwned(blessing);
+        if (hud != null) hud.Refresh(this);
+    }
+
+    void RemoveOwned(BlessingData blessing)
+    {
+        owned.Remove(blessing);
+        levels.Remove(blessing);
+        if (blessing != null) Destroy(blessing); // สำเนาตอนเล่น ไม่ใช่ไฟล์พรจริง
+    }
+
     // พรพลังงานไม่สุ่มให้คนที่อาวุธทั้งสองชิ้นไม่ใช้พลังงาน (ได้ไปก็ไม่มีผล)
     bool Useful(BlessingData blessing)
     {

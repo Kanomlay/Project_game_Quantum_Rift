@@ -58,6 +58,16 @@ public sealed class ArchitectBossHealth : MonoBehaviour
         arena.SetPhase(CurrentHealth/maxHealth<=enragedThreshold?3:2);
     }
     public void Kill(){if(IsDefeated)return;CurrentHealth=0;RefreshBar();Die();}
+    // คอนโซลทดสอบ: ตั้งเลือดตามสัดส่วนทันที ร่างแรกลงได้แค่เส้นแปลงร่าง (ถึงเส้นแล้วแปลงร่างแบบเดียวกับโดนตี) ยังไม่เริ่มสู้ = false
+    public bool SetHealthForTesting(float fraction)
+    {
+        if(!fighting||IsDefeated||IsTransforming)return false;
+        float floor=secondForm?1f:maxHealth*phaseTwoThreshold;
+        CurrentHealth=Mathf.Clamp(fraction*maxHealth,floor,maxHealth);RefreshBar();
+        if(!secondForm&&CurrentHealth/maxHealth<=phaseTwoThreshold)StartCoroutine(TransformPhase());
+        else if(secondForm)arena.SetPhase(CurrentHealth/maxHealth<=enragedThreshold?3:2);
+        return true;
+    }
     void Die()
     {
         StopAllCoroutines();IsDefeated=true;IsTransforming=false;fighting=false;hitbox.enabled=false;

@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
             if (sr != null) sr.color = PoisonTint;
             yield return wait;
             if (isDead) break;
-            currentHP = Mathf.Max(0f, currentHP - poisonPerTick);
+            currentHP = Mathf.Max(DevCheats.GodMode ? 1f : 0f, currentHP - poisonPerTick);
             if (hud != null) hud.UpdateHP(currentHP, maxHP);
             DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), poisonPerTick, DamageNumbers.Kind.Poison);
             ImpactSparks.Spawn(SkillCombat.BodyCenter(gameObject), PoisonBubbles, 4, Vector2.up, 2f, 40f);
@@ -201,6 +201,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
 
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
+        if (DevCheats.GodMode) currentHP = Mathf.Max(1f, currentHP); // คอนโซลทดสอบ: ไม่ตาย
         DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damage, DamageNumbers.Kind.Player);
         if (hitFx != null) hitFx.Hit();
 
@@ -389,6 +390,38 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         currentCurrency += amount;
         
         if (hud != null) hud.UpdateCurrency(currentCurrency);
+    }
+
+    // ---- ใช้โดยคอนโซลทดสอบ (DevConsole) ----
+
+    public void SetHealthForTesting(float hp)
+    {
+        if (isDead) return;
+        currentHP = Mathf.Clamp(hp, 1f, maxHP);
+        if (hud != null) hud.UpdateHP(currentHP, maxHP);
+    }
+
+    public void ResetSkillCooldowns()
+    {
+        if (currentCooldownQ > 0f)
+        {
+            currentCooldownQ = 0f;
+            if (hud != null) hud.UpdateSkillCooldown("Q", 0f);
+        }
+        if (currentCooldownE > 0f)
+        {
+            currentCooldownE = 0f;
+            if (hud != null) hud.UpdateSkillCooldown("E", 0f);
+        }
+    }
+
+    // ตายทันที (ดูหน้าสรุปตอนแพ้) ไม่สนอมตะ เกราะ หรือสูตรไม่ตาย
+    public void Kill()
+    {
+        if (isDead) return;
+        currentHP = 0f;
+        if (hud != null) hud.UpdateHP(currentHP, maxHP);
+        Die();
     }
 
     // ร้านค้า: หักเงินถ้าพอ คืน false ถ้าไม่พอ (ไม่หักอะไรเลย)

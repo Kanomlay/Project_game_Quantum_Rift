@@ -36,9 +36,11 @@ public class RoomController : MonoBehaviour
     private int aliveMonstersCount;
     private bool isSafeRoom; // ห้องของเหตุการณ์ (ร้านค้า) ไม่มีมอนสเตอร์ ประตูไม่ปิด
     private bool hadMonsters; // มีมอนสเตอร์ให้สู้จริง (ห้องว่างเคลียร์ทันทีแต่ไม่ได้กล่อง)
-    private int elitesSpawned; // มอน elite ในห้องนี้ (ไม่เกิน EliteMonster.MaxPerRoom)
+    private int anomaliesSpawned; // มอนผิดเพี้ยนในห้องนี้ (ไม่เกิน AnomalyMonster.MaxPerRoom)
     private int incomingMonsters; // วงเตือนขึ้นแล้ว ยังไม่โผล่
     private int wavesLeft;        // ระลอกที่ยังไม่เริ่ม
+    // มอนที่คอนโซลทดสอบเสกมา ไม่นับเป็นมอนของห้อง (ตายแล้วไม่ทำให้ห้องเคลียร์)
+    private readonly HashSet<MonsterController> testMonsters = new HashSet<MonsterController>();
 
     // การเกิดมอนสเตอร์ (ใช้ทุกห้อง)
     private const float SpawnWarning = 0.8f;    // วงเตือนขึ้นก่อนมอนโผล่
@@ -113,19 +115,19 @@ public class RoomController : MonoBehaviour
             Vector2 spot = spots[i];
             var emphasis = EmphasisOf(data);
             var color = SpawnTelegraph.ColorFor(this, emphasis);
-            // สุ่ม elite ตั้งแต่ตอนขึ้นวงเตือน: วงแบบหัวหน้า (ใหญ่ สั่น) สีตามแบบ elite
-            EliteMonster.Kind? elite = null;
-            if (EliteMonster.Roll(data, elitesSpawned))
+            // สุ่มมอนผิดเพี้ยนตั้งแต่ตอนขึ้นวงเตือน: วงแบบหัวหน้า (ใหญ่ สั่น) สีตามแบบที่สุ่มได้
+            AnomalyMonster.Kind? anomaly = null;
+            if (AnomalyMonster.Roll(data, anomaliesSpawned))
             {
-                elitesSpawned++;
-                elite = EliteMonster.RandomKind();
+                anomaliesSpawned++;
+                anomaly = AnomalyMonster.RandomKind();
                 emphasis = SpawnTelegraph.Emphasis.Leader;
-                color = EliteMonster.ColorOf(elite.Value);
+                color = AnomalyMonster.ColorOf(anomaly.Value);
             }
             incomingMonsters++;
             SpawnTelegraph.Begin(transform, spot, SpawnPlacement.Measure(data.monsterPrefab), emphasis,
                                  color, SpawnWarning,
-                                 i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot, elite));
+                                 i == 0 ? 0f : Random.Range(0f, SpawnStagger), () => SpawnMonster(data, spot, anomaly));
         }
     }
 
@@ -162,7 +164,7 @@ public class RoomController : MonoBehaviour
     }
 
     // วงเตือนครบเวลา: เสกมอนจริง เป็นลูกของห้อง (เปลี่ยนด่านแล้วหายไปพร้อมแมพ)
-    private GameObject SpawnMonster(MonsterData data, Vector2 spot, EliteMonster.Kind? elite = null)
+    private GameObject SpawnMonster(MonsterData data, Vector2 spot, AnomalyMonster.Kind? anomaly = null)
     {
         incomingMonsters--;
         if (isCleared) return null;
@@ -171,9 +173,32 @@ public class RoomController : MonoBehaviour
         monster.currentRoom = this;
         monster.myData = data;
         monster.WakeUpAfter(WakeUpDelay);
-        if (elite.HasValue) EliteMonster.Make(monster, elite.Value);
+        if (anomaly.HasValue) AnomalyMonster.Make(monster, anomaly.Value);
         aliveMonstersCount++;
         return obj;
+    }
+
+    // คอนโซลทดสอบ (DevConsole): เสกมอนลงห้องนี้หลังวงเตือนเหมือนปกติ แต่ไม่ผูกกับระลอก ประตู หรือกล่องของห้อง
+    // setup = ตั้งค่าตัวที่เพิ่งเสกก่อน Start (หุ่นฝึก: เลือดเยอะ ยืนนิ่ง)
+    public void SpawnForTest(MonsterData data, Vector2 spot, AnomalyMonster.Kind? anomaly, System.Action<MonsterController> setup = null)
+    {
+        if (data == null || data.monsterPrefab == null || data.monsterPrefab.GetComponent<MonsterController>() == null) return;
+        var emphasis = data.monsterPrefab.GetComponent<BossHealthHudLink>() != null ? SpawnTelegraph.Emphasis.Boss
+                     : anomaly.HasValue ? SpawnTelegraph.Emphasis.Leader : SpawnTelegraph.Emphasis.Normal;
+        var color = anomaly.HasValue && emphasis != SpawnTelegraph.Emphasis.Boss ? AnomalyMonster.ColorOf(anomaly.Value)
+                  : SpawnTelegraph.ColorFor(this, emphasis);
+        SpawnTelegraph.Begin(transform, spot, SpawnPlacement.Measure(data.monsterPrefab), emphasis, color, SpawnWarning, 0f, () =>
+        {
+            var obj = Instantiate(data.monsterPrefab, spot, Quaternion.identity, transform);
+            var monster = obj.GetComponent<MonsterController>();
+            monster.currentRoom = this;
+            monster.myData = data;
+            monster.WakeUpAfter(WakeUpDelay);
+            if (anomaly.HasValue) AnomalyMonster.Make(monster, anomaly.Value);
+            setup?.Invoke(monster);
+            testMonsters.Add(monster);
+            return obj;
+        });
     }
 
     private SpawnTelegraph.Emphasis EmphasisOf(MonsterData data)
@@ -202,8 +227,9 @@ public class RoomController : MonoBehaviour
     }
 
     // เคลียร์เมื่อตัวสุดท้ายของระลอกสุดท้ายล้ม (ไม่มีวงเตือนค้างและไม่เหลือระลอกรอ)
-    public void OnMonsterDied()
+    public void OnMonsterDied(MonsterController monster = null)
     {
+        if (monster != null && testMonsters.Remove(monster)) return;
         if (!hasStarted || isCleared || aliveMonstersCount <= 0) return;
         aliveMonstersCount--;
         if (aliveMonstersCount == 0 && incomingMonsters == 0 && wavesLeft == 0) ClearRoom();

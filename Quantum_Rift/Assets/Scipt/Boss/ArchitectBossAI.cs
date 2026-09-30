@@ -318,7 +318,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         if (transforming) EndTransform();
 
         if (Enraged && !rageShown && brain != null) Interrupt(); // เข้าคลั่งทันที ไม่รอท่าเดิมจบ
-        if (Enraged && rageShown) HeartTick();
+        if (Enraged && rageShown && !DevCheats.FreezeMonsters) HeartTick();
         if (brain == null) brain = StartCoroutine(Brain());
     }
 
@@ -327,12 +327,12 @@ public sealed class ArchitectBossAI : MonoBehaviour
         if (!introDone)
         {
             introDone = true;
-            yield return Intro();
+            yield return Held(Intro());
         }
         if (Enraged && !rageShown)
         {
             rageShown = true;
-            yield return Rage();
+            yield return Held(Rage());
         }
         while (true)
         {
@@ -340,9 +340,9 @@ public sealed class ArchitectBossAI : MonoBehaviour
             float until = Mathf.Max(Time.time + gap, graceUntil);
             do
             {
-                Drift();
+                if (!DevCheats.FreezeMonsters) Drift();
                 yield return null;
-            } while (Time.time < until);
+            } while (Time.time < until || DevCheats.FreezeMonsters); // คอนโซลทดสอบ: หยุด AI = ลอยนิ่ง ไม่เริ่มท่าใหม่
             yield return NextMove();
         }
     }
@@ -365,9 +365,12 @@ public sealed class ArchitectBossAI : MonoBehaviour
                   : ready[Random.Range(0, ready.Count)];
         last = pick;
         int form = Form;
-        yield return Perform(pick);
+        yield return Held(Perform(pick));
         readyAt[pick] = Time.time + Cooldown(pick, form) * (Enraged ? rageCooldownScale : 1f);
     }
+
+    // ท่าที่ร่ายอยู่ตอนกดหยุด AI (คอนโซลทดสอบ) ค้างไว้ที่จังหวะนั้น ปล่อยแล้วทำต่อ
+    static IEnumerator Held(IEnumerator move) => DevCheats.Pausable(move, () => DevCheats.FreezeMonsters);
 
     float ReadyAt(Move move) => readyAt.TryGetValue(move, out float at) ? at : 0f;
 

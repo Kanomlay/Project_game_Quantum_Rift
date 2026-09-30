@@ -80,7 +80,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     MonsterFx Fx{get{if(fx==null)fx=GetComponent<MonsterFx>();return fx;}}
     void Warn(){if(Fx!=null)Fx.Warn(warnTint);}
     const float Duration = 7f / 12f;
-    // ค่าจาก MonsterData คูณตัวคูณเฉพาะตัว (มอน elite)
+    // ค่าจาก MonsterData คูณตัวคูณเฉพาะตัว (มอนผิดเพี้ยน)
     float Cooldown=>data.attackCooldown*(owner!=null?owner.AttackCooldownScale:1f);
     float AttackDamage=>data.attackDamage*(owner!=null?owner.AttackScale:1f);
     float MoveSpeed=>data.moveSpeed*(owner!=null?owner.SpeedScale:1f);

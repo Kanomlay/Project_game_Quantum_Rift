@@ -165,6 +165,7 @@ public class AncientEntbornBoss : MonsterController
         if (UpdateStun()) return;
         if (Waking()) return;
         if (isCasting || isKnockedBack) return;
+        if (HoldStill()) return; // คอนโซลทดสอบ: หยุด AI
         if (player == null || myData == null) return;
         if (playerStats == null) playerStats = player.GetComponent<PlayerStats>();
         if (playerStats != null && playerStats.isDead) { if (anim != null) anim.SetBool("isWalking", false); return; }
@@ -203,7 +204,7 @@ public class AncientEntbornBoss : MonsterController
         isCasting = true;
         if (anim != null) anim.SetBool("isWalking", false);
         if (rb != null) rb.linearVelocity = Vector2.zero;
-        yield return move;
+        yield return PausedWhileHeld(move);
         if (anim != null) anim.speed = 1f;
         isCasting = false;
         nextAction = Time.time + actionGap * CooldownScale;
