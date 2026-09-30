@@ -19,6 +19,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
+        if (GameHelpWindow.BlocksGameplayInput) return;
         // ระหว่างโชว์หน้าสรุป (ตาย/ผ่านด่าน) ห้ามกด ESC หนีกลับไปเล่นต่อ
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return;
 

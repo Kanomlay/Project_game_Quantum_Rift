@@ -41,15 +41,19 @@ public sealed class BuffShopView:MonoBehaviour
     {
         gameObject.AddComponent<Image>().color=Red;
         Rect("Inner",transform,Vector2.zero,new Vector2(1108,648),Ink);
-        Label("Title",transform,new Vector2(0,268),new Vector2(880,55),"ร้านบัพเลือดสนธยา",34,new Color(1,.65f,.5f));
+        Label("Title",transform,new Vector2(-20,268),new Vector2(760,55),"ร้านบัพเลือดสนธยา",34,new Color(1,.65f,.5f));
         money=Label("Money",transform,new Vector2(0,219),new Vector2(900,36),"",22,Color.yellow);
         var close=Button("Close",transform,new Vector2(508,281),new Vector2(62,52),()=>window.Close());
         Label("X",close.transform,Vector2.zero,new Vector2(50,45),"X",25,Color.white);
+        var help=Button("ShopHelp",transform,new Vector2(434,281),new Vector2(56,52),()=>window.OpenHelp());
+        Label("Question",help.transform,Vector2.zero,new Vector2(50,55),"?",28,Color.white);
         for(int i=0;i<4;i++)
         {
             int index=i;var card=Rect("Offer"+i,transform,new Vector2(-405+270*i,5),new Vector2(250,368),i==3?new Color(.24f,.075f,.12f):new Color(.16f,.08f,.1f));
             Label("Kind",card,new Vector2(0,151),new Vector2(230,36),i==3?"ข้อเสนอมีข้อเสีย":"บัพประจำรอบ",18,i==3?new Color(1,.4f,.3f):Color.gray);
             icons[i]=Rect("Icon",card,new Vector2(0,92),new Vector2(70,70)).gameObject.AddComponent<Image>();icons[i].preserveAspect=true;icons[i].raycastTarget=false;
+            var info=Button("ItemHelp",card,new Vector2(98,95),new Vector2(38,42),()=>window.OpenOfferHelp(index));
+            Label("Question",info.transform,Vector2.zero,new Vector2(36,45),"?",22,Color.white);
             titles[i]=Label("Name",card,new Vector2(0,33),new Vector2(234,46),"",22,Color.white);
             details[i]=Label("Description",card,new Vector2(0,-40),new Vector2(228,108),"",18,Color.white);
             buttons[i]=Button("Buy",card,new Vector2(0,-137),new Vector2(222,48),()=>window.Buy(index));

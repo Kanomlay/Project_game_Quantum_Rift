@@ -80,6 +80,9 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
+        if (GameHelpWindow.BlocksGameplayInput) return;
+        // คลิกปุ่มคู่มือหรือ UI ไม่ให้ยิงอาวุธทะลุไปในฉาก
+        if (UnityEngine.EventSystems.EventSystem.current != null && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
         if (PauseManager.isGamePaused) return;
         if (ShopWindow.IsOpen) return; // คลิกปุ่มในหน้าร้าน ไม่ใช่โจมตี
 

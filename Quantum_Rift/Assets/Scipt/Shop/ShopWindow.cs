@@ -10,6 +10,11 @@ using UnityEngine.EventSystems;
 public sealed class ShopWindow : MonoBehaviour
 {
     public GameObject content;
+    public GameHelpWindow helpPrefab;
+    public static ShopWindow Active => IsOpen ? current : null;
+    public IReadOnlyList<ShopOffer> HelpStock => Stock;
+    public LootTable HelpPool => Pool;
+    public bool IsBuffShop => shop != null && shop.isBuffShop;
 
     [Header("ส่วนแสดงผล (สร้างโดย ShopUIBuilder)")]
     public ShopSlotView[] slots;
@@ -71,6 +76,7 @@ public sealed class ShopWindow : MonoBehaviour
 
     public void Close()
     {
+        if (GameHelpWindow.Instance != null && GameHelpWindow.Instance.IsGuideFor(this)) GameHelpWindow.Instance.Close();
         content.SetActive(false);
         closedFrame = Time.frameCount;
         if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
@@ -78,7 +84,22 @@ public sealed class ShopWindow : MonoBehaviour
 
     void Update()
     {
+        if (GameHelpWindow.BlocksGameplayInput) return;
         if (content.activeSelf && Input.GetKeyDown(KeyCode.Escape)) Close();
+    }
+
+    public void OpenHelp() => OpenOfferHelp(-1);
+    public void OpenOfferHelp(int index)
+    {
+        if (Active != this) return;
+        var help = GameHelpWindow.Instance;
+        if (help == null && helpPrefab != null)
+        { help = Instantiate(helpPrefab); help.pauseGameplay = true; }
+        if (help != null) help.OpenFromShop(this, index);
+    }
+    void OnDisable()
+    {
+        if (GameHelpWindow.Instance != null && GameHelpWindow.Instance.IsGuideFor(this)) GameHelpWindow.Instance.Close();
     }
 
     IReadOnlyList<ShopOffer> Stock => shop != null ? shop.Stock : null;
@@ -132,6 +153,7 @@ public sealed class ShopWindow : MonoBehaviour
 
     public void Buy(int index)
     {
+        if (GameHelpWindow.BlocksGameplayInput) return; // ปุ่มรายละเอียดไม่ซื้อสินค้าและไม่ให้คลิกทะลุ
         var stock = Stock;
         var player = Player;
         if (stock == null || player == null || index >= stock.Count) return;
