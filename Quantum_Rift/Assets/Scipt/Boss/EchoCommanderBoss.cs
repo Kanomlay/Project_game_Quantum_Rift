@@ -184,6 +184,7 @@ public class EchoCommanderBoss : MonsterController
         Vector2 aim = Quaternion.Euler(0f, 0f, Mathf.Clamp(tilt, -SlashAimClamp, SlashAimClamp)) * facing;
 
         slashTelegraph = EchoSlashTelegraph.Show(origin, aim, slashRadius, slashArc, windup + SlashLead, SlashColor);
+        Sfx.Play(SfxId.EchoSlashWindup);
 
         // ง้าง: ค้างเฟรมยกมือ (มีประกายที่มือ) ตลอดช่วงเตือน แล้วปล่อยท่าต่อจนคลื่นฟันออก
         if (anim != null)
@@ -195,6 +196,7 @@ public class EchoCommanderBoss : MonsterController
         if (anim != null) anim.speed = 1f;
         yield return new WaitForSeconds(SlashLead);
 
+        Sfx.Play(SfxId.EchoSlash);
         if (slashTelegraph != null) slashTelegraph.Strike();
         slashTelegraph = null;
         if (InSlash(origin, aim)) HitPlayer(myData.attackDamage, slashKnockback);
@@ -236,6 +238,7 @@ public class EchoCommanderBoss : MonsterController
 
         int count = projectilesPerShot + (enraged ? rageExtraProjectiles : 0);
         float spread = fanSpreadDegrees + (enraged ? 20f : 0f);
+        Sfx.Play(SfxId.BossBullets);
         FireFan((Vector2)transform.position + Vector2.up * MuzzleHeight, count, spread);
         foreach (var echo in echoes)
         {
@@ -312,6 +315,7 @@ public class EchoCommanderBoss : MonsterController
 
         yield return new WaitForSeconds(summonWindup);
 
+        Sfx.Play(SfxId.EchoSummon);
         var pool = SummonPool;
         int count = SummonCount;
         bool elite = SummonsElites;
@@ -418,6 +422,7 @@ public class EchoCommanderBoss : MonsterController
             yield return null;
         }
         SetAlpha(0f);
+        Sfx.Play(SfxId.BossTeleport);
         entry.Flare();
         entry.Close(0.2f);
         portals.Remove(entry);
@@ -489,6 +494,7 @@ public class EchoCommanderBoss : MonsterController
         }
         Vector2 center = BodyCenter;
         CameraFollow.Shake(0.25f, 0.35f);
+        Sfx.Play(SfxId.EchoRage);
         EchoFx.Flash(center, EchoFx.Purple, 3.5f, 0.35f);
         EchoFx.Shockwave(transform.position, EchoFx.Purple, 4.5f, 0.55f);
         ImpactSparks.Spawn(center, EchoFx.Purple, 24, Vector2.zero, 6f);
@@ -536,6 +542,7 @@ public class EchoCommanderBoss : MonsterController
     protected override void Die()
     {
         StopAllCoroutines();
+        Sfx.Play(SfxId.EchoDeath);
         isCasting = false;
         if (slashTelegraph != null) Destroy(slashTelegraph.gameObject);
         foreach (var echo in echoes) if (echo != null) echo.Vanish();

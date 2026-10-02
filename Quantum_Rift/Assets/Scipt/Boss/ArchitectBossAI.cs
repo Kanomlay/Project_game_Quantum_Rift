@@ -445,6 +445,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         ArchitectOrb.ClearAll();
         CameraFollow.Shake(0.25f, 0.5f);
         EchoFx.Shockwave(Core, Violet, 4f, 0.6f);
+        Sfx.Play(SfxId.ArchitectTransform);
     }
 
     // ชาร์จ: ประกายม่วง/ฟ้าดูดเข้าตัว ตัวเรืองขึ้นเรื่อย ๆ จอสั่นเบา ๆ
@@ -553,6 +554,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     IEnumerator Spiral(int arms, float time, float spin, bool storm)
     {
         Warn(Violet);
+        Sfx.Play(storm ? SfxId.ArchitectStorm : SfxId.BossBullets);
         if (Form == 1)
         {
             if (formOne != null) formOne.PlayBulletPose();
@@ -600,6 +602,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     IEnumerator Burst()
     {
         Warn(Violet);
+        Sfx.Play(SfxId.BossBullets);
         if (formOne != null) formOne.PlayMixedPose();
         yield return HoldPose(animOne, 3f / 10f);
         int rings = HealthFraction <= 0.75f ? 3 : 2;
@@ -640,6 +643,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
 
         Vector2 aim = Aim();
         for (int i = 0; i < count; i++) beams.Add(MakeBeam());
+        Sfx.Play(SfxId.BossLaserCharge);
         // เตือน: ไล่ตามผู้เล่นช่วงแรก แล้วล็อกทิศให้เวลาหลบ ประกายดูดเข้าประตูมิติ
         float nextCharge = 0f;
         for (float t = 0f; t < laserWarning; t += Time.deltaTime)
@@ -662,6 +666,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         ClearMarks();
 
         CameraFollow.Shake(0.15f, 0.25f);
+        Sfx.Play(SfxId.BossLaserBeam);
         bool hit = false;
         for (float t = 0f; t < laserActive; t += Time.deltaTime)
         {
@@ -893,6 +898,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
 
     void BeginDashPose(Vector2 dir)
     {
+        Sfx.Play(SfxId.BossTeleport);
         formTwo.FaceLeft(dir.x < 0f);
         animTwo.Play("AuraDash", 0, 3f / 7f);
         animTwo.speed = 0f;
@@ -918,6 +924,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         else mark.transform.position = center; // จุดตกจริงอาจสั้นกว่าที่คาด (เฟรมสุดท้ายของการพุ่ง)
         slashMarks.Clear();
         yield return Wait(SlashAt);
+        Sfx.Play(SfxId.ArchitectSlash);
         if (mark != null) mark.Strike();
         if (player != null && (PlayerCenter - center).sqrMagnitude <= slashRadius * slashRadius)
             HurtPlayer(player, damage, center, Knockback);
@@ -1148,6 +1155,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             }
 
             float warn = Enraged ? gridWarning * 0.85f : gridWarning;
+            Sfx.Play(SfxId.BossLaserCharge);
             float width = (laserHitRadius + 0.25f) * 2f;
             for (float t = 0f; t < warn; t += Time.deltaTime)
             {
@@ -1165,6 +1173,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             }
             ClearMarks();
             foreach (var portal in portals) if (portal != null) portal.Flare(0.25f);
+            Sfx.Play(SfxId.BossLaserBeam);
             CameraFollow.Shake(0.2f, 0.25f);
 
             bool hit = false;
@@ -1271,6 +1280,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     // ตัวบอสเดินในกรอบที่ยังไม่พัง (เว้นขอบให้ตัวใหญ่ไม่ล้ำเข้าไปในพื้นที่พัง)
     void ShrinkArea(Rect standable)
     {
+        Sfx.Play(SfxId.ArchitectCollapse);
         Rect inner = Shrink(standable, new Vector2(2.5f, 2f));
         float xMin = Mathf.Max(area.min.x, inner.xMin), xMax = Mathf.Min(area.max.x, inner.xMax);
         float yMin = Mathf.Max(area.min.y, inner.yMin), yMax = Mathf.Min(area.max.y, inner.yMax);
@@ -1476,6 +1486,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     {
         if (waveFrames == null || waveFrames.Length == 0) return;
         float baseAngle = Angle(aim);
+        Sfx.Play(SfxId.ArchitectWave);
         for (int i = 0; i < count; i++)
         {
             float angle = baseAngle + (i - (count - 1) / 2f) * waveSpread;
@@ -1505,6 +1516,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     void OnDefeated()
     {
         Interrupt();
+        Sfx.Play(SfxId.ArchitectDeath);
         ArchitectOrb.ClearAll();
         dead = true;
         StartCoroutine(DeathShow());

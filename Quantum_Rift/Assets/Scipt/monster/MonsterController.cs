@@ -251,6 +251,7 @@ public class MonsterController : MonoBehaviour
         damageAmount *= DamageTakenScale * ArmorScale;
         currentHealth = Mathf.Max(currentHealth - damageAmount, Mathf.Min(HealthFloor, currentHealth)); // เลือดไม่ต่ำกว่าเพดานล็อก
         var kind = ArmorScale < 1f ? DamageNumbers.Kind.Armored : HitKind;
+        if (damageAmount > 0f) Sfx.PlayAt(kind == DamageNumbers.Kind.Armored ? SfxId.HitArmor : SfxId.HitMonster, transform.position);
         DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, kind, crit: (crit || staggerHit) && kind == DamageNumbers.Kind.Enemy, side:
             player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
         if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
@@ -358,6 +359,7 @@ public class MonsterController : MonoBehaviour
     {
         SummaryManager.enemiesDefeatedCount++;
         Died?.Invoke(this);
+        if (bossHud == null) Sfx.PlayAt(SfxId.MonsterDeath, transform.position); // บอสมีเสียงตายของตัวเอง
         // นับว่าตายทันที ประตูห้องจะได้เปิดตอนตัวสุดท้ายล้ม ไม่ต้องรอท่าตายจบ
         if (currentRoom != null) currentRoom.OnMonsterDied(this);
         StartCoroutine(DeathRoutine());

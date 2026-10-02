@@ -21,6 +21,7 @@ public class PauseManager : MonoBehaviour
     {
         if (GameHelpWindow.BlocksGameplayInput) return;
         if (DevConsole.BlocksEscape) return; // ESC ที่ใช้ปิดคอนโซลทดสอบ ไม่นับเป็นการพักเกม
+        if (CreditsWindow.BlocksEscape) return; // ESC ปิดหน้าเครดิตก่อน หน้าตั้งค่ายังเปิดอยู่
         // ระหว่างโชว์หน้าสรุป (ตาย/ผ่านด่าน) ห้ามกด ESC หนีกลับไปเล่นต่อ
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return;
 

@@ -100,6 +100,7 @@ public sealed class ManaMotes : MonoBehaviour
     void Absorb(Vector2 target)
     {
         stats.RestoreEnergy(energy);
+        Sfx.Play(SfxId.PickupMana);
         ImpactSparks.Spawn(target, CoreColor, 2, Vector2.zero, 2f);
         Destroy(gameObject);
     }

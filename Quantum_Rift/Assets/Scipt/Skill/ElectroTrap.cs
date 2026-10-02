@@ -69,6 +69,7 @@ public sealed class ElectroTrap : MonoBehaviour
     private IEnumerator Blast()
     {
         triggered = true;
+        Sfx.PlayAt(SfxId.SkillTrapTrigger, transform.position);
         const float frameTime = 1f / 14f;
 
         for (int i = 2; i < frames.Length; i++)

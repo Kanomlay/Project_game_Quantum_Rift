@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AssaultDrone", menuName = "Game Data/Skills/Inventor/Assault Drone")]
 public class AssaultDroneSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillDroneDeploy;
     [Header("โดรน")]
     public float duration = 10f;
     public float fireInterval = 0.6f;

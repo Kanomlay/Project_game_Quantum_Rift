@@ -16,6 +16,9 @@ public abstract class SkillData : ScriptableObject
     // SkillVfx เลื่อนภาพกลับให้กึ่งกลางเอฟเฟกต์ตรงจุดที่สั่งเกิด และหมุนรอบจุดนั้นพอดี
     public Vector2 effectOffset;
 
+    // เสียงตอนกดใช้สกิล (PlayerStats เล่นให้) เสียงจังหวะที่สองของสกิล (ชนโดน สะท้อน ฯลฯ) สกิลเล่นเอง
+    public virtual SfxId CastSound => SfxId.None;
+
     // asset สกิลใช้ร่วมกันทุกเกม ห้ามเก็บสถานะระหว่างเล่นไว้ในนี้ ของที่ต้องจำให้สร้างเป็น GameObject/coroutine แทน
     public abstract void ActivateSkill(GameObject player);
 }

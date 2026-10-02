@@ -204,6 +204,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         if (DevCheats.GodMode) currentHP = Mathf.Max(1f, currentHP); // คอนโซลทดสอบ: ไม่ตาย
         DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damage, DamageNumbers.Kind.Player);
         if (hitFx != null) hitFx.Hit();
+        if (currentHP > 0) Sfx.Play(SfxId.PlayerHurt);
 
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
 
@@ -247,6 +248,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
     private void Die()
     {
         isDead = true;
+        Sfx.Play(SfxId.PlayerDeath);
 
         // ตัวละครชุดใหม่มีท่าตายมาให้ ส่วนตัวเก่าที่ไม่มีสคริปต์นี้ก็แค่ข้ามไป
         HeroNoHandsAnimation heroAnim = GetComponent<HeroNoHandsAnimation>();
@@ -287,6 +289,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
     {
         if (cost <= 0 || currentEnergy >= cost) return true;
         if (hud != null) hud.FlashEnergyEmpty();
+        Sfx.Play(SfxId.UiDenied);
         return false;
     }
 
@@ -313,6 +316,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         if (other == null) return;
         currentWeaponIndex = (currentWeaponIndex == 1) ? 2 : 1;
         EquipCurrentWeapon();
+        Sfx.Play(SfxId.PickupWeapon);
     }
 
     private void EquipCurrentWeapon()
@@ -334,6 +338,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         else if (currentWeaponIndex == 1) { replaced = weapon1; weapon1 = weapon; }
         else { replaced = weapon2; weapon2 = weapon; }
         EquipCurrentWeapon();
+        Sfx.Play(SfxId.PickupWeapon);
         return replaced;
     }
 
@@ -342,6 +347,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         if (activeSkillQ != null && currentEnergy >= activeSkillQ.energyCost)
         {
             UseEnergy(activeSkillQ.energyCost);
+            Sfx.Play(activeSkillQ.CastSound);
             activeSkillQ.ActivateSkill(this.gameObject); 
             currentCooldownQ = maxCooldownQ;
         }
@@ -352,6 +358,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         if (activeSkillE != null && currentEnergy >= activeSkillE.energyCost)
         {
             UseEnergy(activeSkillE.energyCost);
+            Sfx.Play(activeSkillE.CastSound);
             activeSkillE.ActivateSkill(this.gameObject);
             currentCooldownE = maxCooldownE;
         }

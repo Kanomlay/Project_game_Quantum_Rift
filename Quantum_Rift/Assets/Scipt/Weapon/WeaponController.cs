@@ -64,6 +64,8 @@ public class WeaponController : MonoBehaviour
     private Coroutine spearRoutine;
     private float spearChargeStart = -1f;       // >= 0 = กำลังง้างหอกไอออน-X ค้างไว้
     private float hammerChargeStart = -1f;
+    private bool spearChargeSounded;            // เสียงชาร์จของหอกไอออน-X ดังไปแล้วในการง้างครั้งนี้
+    private const float SpearChargeSoundDelay = 0.2f; // กดค้างเกินนี้ถึงนับว่าตั้งใจชาร์จ (กดสั้น = แทงธรรมดา ไม่มีเสียงชาร์จ)
     private bool chargedHammerImpact;
     private SpriteRenderer[] weaponRenderers;
     private int comboSwings;                    // ฟันต่อเนื่องในคอมโบนี้ไปกี่ครั้งแล้ว (ดาบผ่ามิติปล่อยคลื่นครั้งที่ 3)
@@ -217,6 +219,7 @@ public class WeaponController : MonoBehaviour
                 }
                 StopRoutine(ref rangedRoutine);
                 if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
+                Sfx.Play(SfxId.BowDraw);
                 frames.ShowCharge();
                 chargedFrames = frames;
                 return;
@@ -234,6 +237,7 @@ public class WeaponController : MonoBehaviour
                 return;
             }
             spearChargeStart = Time.time;
+            spearChargeSounded = false;
             return;
         }
 
@@ -379,6 +383,7 @@ public class WeaponController : MonoBehaviour
 
         SpawnSlashEffect(downward);
         float strike = Mathf.Max(0.01f, m.strikeTime * fit);
+        Sfx.PlayAttack(swungWith);
         Step(m, strike);
         float nextGhost = 0f;
         for (float t = 0f; t < strike; t += Time.deltaTime)
@@ -446,6 +451,7 @@ public class WeaponController : MonoBehaviour
         CheckSwingHit(hitEnemies, m);
 
         // กระแทกพื้น: สั่นทุกครั้งแม้ไม่โดนใคร ฝุ่นพุ่งขึ้นรอบหัวค้อน
+        Sfx.PlayAttack(swungWith);
         CameraFollow.Shake(m.impactShake, 0.2f);
         if (attackPoint != null)
             ImpactSparks.Spawn(attackPoint.position, m.sparkColor, m.sparkCount, Vector2.zero, 4f);
@@ -548,6 +554,7 @@ public class WeaponController : MonoBehaviour
         else back = from;
 
         float strike = Mathf.Max(0.01f, m.strikeTime * fit);
+        if (!releaseWave) Sfx.PlayAttack(used);
         Step(m, strike);
         float nextGhost = 0f;
         for (float t = 0f; t < strike; t += Time.deltaTime)
@@ -587,6 +594,11 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeaponObject == null || currentWeaponData == null) return;
         float progress = Mathf.Clamp01((Time.time - spearChargeStart) / Mathf.Max(0.01f, currentWeaponData.chargeTime));
+        if (!spearChargeSounded && Time.time - spearChargeStart >= SpearChargeSoundDelay)
+        {
+            spearChargeSounded = true;
+            Sfx.Play(SfxId.IonCharge);
+        }
         currentWeaponObject.transform.localPosition = new Vector3(-WeaponLength * spearChargePullBack * progress, 0f, 0f);
         Color tint = progress >= 1f
             ? Color.Lerp(Color.white, spearChargedTint, 0.6f + 0.4f * Mathf.Sin(Time.time * 18f))
@@ -626,6 +638,7 @@ public class WeaponController : MonoBehaviour
         if (data == null || data.specialFrames == null || data.specialFrames.Length == 0) return;
         Vector2 direction = transform.right;
         float reach = attackPoint != null ? Vector2.Distance(transform.position, attackPoint.position) : 0.5f;
+        Sfx.Play(data.special == WeaponSpecial.ChargeWave ? SfxId.IonWave : SfxId.RiftWave);
         Vector2 origin = (Vector2)transform.position + direction * reach;
 
         var frames = data.specialFrames;
@@ -646,6 +659,7 @@ public class WeaponController : MonoBehaviour
     private IEnumerator GroundPulseRoutine(Vector2 center, WeaponData data)
     {
         const int ticks = 3; // ตอนทุบ / กลางทาง / ท้าย
+        Sfx.Play(SfxId.QuantumPulse);
         float duration = Mathf.Max(0.05f, data.specialDuration);
         if (data.specialFrames != null && data.specialFrames.Length > 0)
             SkillVfx.Spawn(data.specialFrames, center, data.specialScale * 1.7f, 0f, data.specialFrames.Length / duration);
@@ -668,6 +682,7 @@ public class WeaponController : MonoBehaviour
         bool upper = claws.NextHand();
         claws.ResetPose();
         if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
+        Sfx.PlayAttack(currentWeaponData);
 
         var hitEnemies = new HashSet<Component>();
         float strike = Mathf.Max(0.01f, Mathf.Min(claws.strikeTime, AttackInterval * 0.4f));
@@ -766,6 +781,7 @@ public class WeaponController : MonoBehaviour
         // ยิงไปทางที่ WeaponHolder เล็งอยู่ (แกน right ไม่โดนการพลิกซ้าย/ขวาของ scale)
         Vector3 muzzle = attackPoint != null ? attackPoint.position : transform.position;
         Vector2 direction = transform.right;
+        Sfx.PlayAttack(data);
 
         GameObject shot = Instantiate(data.projectilePrefab, muzzle, Quaternion.identity);
         var projectile = shot.GetComponent<PlayerProjectile>();

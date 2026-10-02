@@ -247,6 +247,7 @@ public class AncientEntbornBoss : MonsterController
         }
         Vector2 center = Core;
         CameraFollow.Shake(0.22f, 0.35f);
+        Sfx.Play(SfxId.EntbornRoar);
         EchoFx.Flash(center, color, size, 0.35f);
         EchoFx.Shockwave(transform.position, color, size + 1f, 0.5f);
         ImpactSparks.Spawn(center, color, 20, Vector2.zero, 5.5f);
@@ -282,6 +283,7 @@ public class AncientEntbornBoss : MonsterController
         int count = phase >= 2 ? 3 : 1;
         for (int i = 0; i < count; i++) beams.Add(MakeBeam());
         // ชาร์จ: ประกายฟ้าดูดเข้ามือ หินบนตัวเรืองขึ้นเรื่อย ๆ เส้นบางกะพริบเตือน (ช่วงคลั่งหันตามผู้เล่นด้วย)
+        Sfx.Play(SfxId.BossLaserCharge);
         float nextCharge = 0f;
         for (float t = 0f; t < laserWarning; t += Time.deltaTime)
         {
@@ -299,6 +301,7 @@ public class AncientEntbornBoss : MonsterController
         }
 
         CameraFollow.Shake(0.12f, 0.2f);
+        Sfx.Play(SfxId.BossLaserBeam);
         bool hit = false;
         for (float t = 0f; t < laserActive; t += Time.deltaTime)
         {
@@ -513,6 +516,7 @@ public class AncientEntbornBoss : MonsterController
         if (anim != null) anim.Play("Stomp", 0, 0f);
         yield return new WaitForSeconds(StompImpact);
         CameraFollow.Shake(0.18f, 0.25f);
+        Sfx.Play(SfxId.EntbornStomp);
         EchoFx.Shockwave(transform.position, RootColor, stompRadius * Size, 0.35f);
         ImpactSparks.Spawn(transform.position, Dirt, 16, Vector2.up, 4.5f, 160f);
         if (Vector2.Distance(player.position, transform.position) <= stompRadius * Size) HitPlayer(myData.attackDamage * 0.5f, 9f);
@@ -567,6 +571,7 @@ public class AncientEntbornBoss : MonsterController
         warnings.Remove(marker);
         Destroy(marker);
         SpawnRoot(spot, scale, hold, hold > 0f);
+        Sfx.PlayAt(SfxId.EntbornRoot, spot);
         ImpactSparks.Spawn(spot, Dirt, 8, Vector2.up, 3.5f, 70f);
         if (player != null && Vector2.Distance(player.position, spot) <= radius)
         {
@@ -696,6 +701,7 @@ public class AncientEntbornBoss : MonsterController
         Destroy(marker);
 
         CameraFollow.Shake(0.3f, 0.35f);
+        Sfx.Play(SfxId.EntbornLeap);
         EchoFx.Shockwave(target, LeapColor, leapRadius + 0.5f, 0.45f);
         ImpactSparks.Spawn(target, Dirt, 24, Vector2.up, 5.5f, 170f);
         if (Vector2.Distance(player.position, target) <= leapRadius) HitPlayer(myData.attackDamage, 11f);
@@ -1068,6 +1074,7 @@ public class AncientEntbornBoss : MonsterController
 
         deathLinger = DeathShowTime + 0.1f;
         deathFade = 0.8f;
+        Sfx.Play(SfxId.EntbornDeath);
         base.Die();
         StartCoroutine(DeathShow());
     }

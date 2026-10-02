@@ -53,6 +53,7 @@ public sealed class SpawnTelegraph : MonoBehaviour
         telegraph.radius = (Mathf.Max(body.size.x, 0.7f) * 0.7f + 0.35f) * SizeBy[(int)emphasis];
         telegraph.bodyCenter = spot + body.offset;
         telegraph.Build();
+        Sfx.PlayAt(SfxId.MonsterSpawn, spot);
         telegraph.StartCoroutine(telegraph.Run());
         return telegraph;
     }

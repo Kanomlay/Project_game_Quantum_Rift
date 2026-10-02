@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "ShadowStep", menuName = "Game Data/Skills/Archer/Shadow Step")]
 public class ShadowStepSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillShadowStep;
     [Header("ย่างก้าว")]
     public float maxDistance = 4f;
     public float invincibleTime = 0.4f;

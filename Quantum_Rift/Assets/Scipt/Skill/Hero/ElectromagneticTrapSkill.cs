@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ElectromagneticTrap", menuName = "Game Data/Skills/Inventor/Electromagnetic Trap")]
 public class ElectromagneticTrapSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillTrapPlace;
     [Header("กับดัก")]
     public float placeRange = 5f;
     public float armTime = 0.4f;     // เวลาเตรียมพร้อมหลังวาง

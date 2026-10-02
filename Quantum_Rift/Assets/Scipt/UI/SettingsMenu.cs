@@ -39,6 +39,7 @@ public class SettingsMenu : MonoBehaviour
         }
 
         DevConsoleSettingsRow.Attach(this); // แถวเปิด/ปิดคอนโซลทดสอบ ต่อท้ายแถวภาษา
+        CreditsWindow.Attach(this);         // แถวเครดิต (เสียง CC BY ต้องให้เครดิตในเกม)
         RefreshLabels();
     }
 

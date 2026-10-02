@@ -1,0 +1,27 @@
+<size=130%><color=#8CEBFF>QUANTUM RIFT</color></size>
+
+
+<color=#8CEBFF>SOUND EFFECTS</color>
+
+"Pixel Combat SFX" by Helton Yan
+https://heltonyan.itch.io/pixelcombat
+Licensed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+Changes: converted to 44.1 kHz mono and trimmed.
+
+"Retro Mecha SFX" by Helton Yan
+https://heltonyan.itch.io/retro-mecha-sfx
+Licensed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+Changes: converted to 44.1 kHz mono and trimmed.
+
+Public domain (CC0) sounds from OpenGameArt.org
+"Fantasy Sound Effects (Tinysized SFX)" by Vehicle
+"25 CC0 bang / firework SFX" by rubberduck
+"50 CC0 Sci-Fi SFX" by rubberduck
+
+
+<color=#8CEBFF>FONTS</color>
+
+Kanit, IBM Plex Sans Thai Looped, Sarabun
+SIL Open Font License 1.1

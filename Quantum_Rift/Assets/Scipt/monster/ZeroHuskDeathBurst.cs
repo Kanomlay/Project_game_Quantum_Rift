@@ -17,6 +17,7 @@ public sealed class ZeroHuskDeathBurst:MonoBehaviour
             if(i==3)
             {
                 Exploded=true;
+                Sfx.PlayAt(SfxId.MonExplode,transform.position);
                 if(player!=null && Vector2.Distance(player.position,transform.position)<=radius && Clear(player.position))
                 {
                     var stats=player.GetComponent<PlayerStats>();

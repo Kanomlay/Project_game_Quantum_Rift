@@ -98,7 +98,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         move=Vector2.zero;
         if(data==null||target==null||!target.gameObject.activeInHierarchy)return;
         // เลือดถึงเกณฑ์: ทิ้งท่าที่ทำอยู่ แล้ววิ่งเรืองฟ้าเข้าหาเพื่อระเบิดตัวเอง
-        if(selfDestructAt>0f&&fuseEnd<0f&&owner!=null&&owner.HealthFraction<=selfDestructAt){CancelAttack();fuseEnd=Time.time+fuseTime;}
+        if(selfDestructAt>0f&&fuseEnd<0f&&owner!=null&&owner.HealthFraction<=selfDestructAt){CancelAttack();fuseEnd=Time.time+fuseTime;Sfx.PlayAt(SfxId.MonFuse,transform.position);}
         if(fuseEnd>=0f){TickFuse();return;}
         if(IsAttacking)return;
         var stats=target.GetComponent<PlayerStats>();
@@ -264,6 +264,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         const float impact=3f/12f; // เฟรมที่เถาวัลย์ยืดสุด
         yield return new WaitForSeconds(impact);
         Destroy(strip);warningMarker=null;
+        Sfx.PlayAt(SfxId.MonVine,origin);
         for(int i=1;i<=4;i++)ImpactSparks.Spawn(origin+aim*vineLength*i/4f,LeafColor,3,aim,2.5f,90f);
         if(target!=null)
         {
@@ -318,6 +319,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             yield return null;
         }
         Destroy(warn);warningMarker=null;
+        Sfx.PlayAt(SfxId.MonRoot,spot);
         if(rootPrefab!=null)
         {
             var root=Instantiate(rootPrefab,spot,Quaternion.identity,transform.parent);
@@ -340,6 +342,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         if(owner==null||!SpawnPlacement.TryPickNear(owner.currentRoom,gameObject,target.position,4.5f,target.position,2.5f,out spot))
         {outOfRangeSince=Time.time;yield break;}
         IsAttacking=true;burrowing=true;outOfRangeSince=-1f;
+        Sfx.PlayAt(SfxId.MonBurrow,transform.position);
         animator.SetBool("isWalking",true); // ท่าเดินของ Rootlings คือกองดินที่หดหัวลง
         SetBodyActive(false);
         ImpactSparks.Spawn(transform.position,DirtColor,10,Vector2.up,3f,80f);
@@ -411,6 +414,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         float impact=style==Style.RockAndSlam&&ranged?5f/12f:3f/12f;
         if(style==Style.Lunge&&!ranged)
         {
+            Sfx.PlayAt(SfxId.MonLunge,transform.position);
             // Echo Stalker พุ่งเข้าหาช่วงง้างท่า แล้วค่อยฟันที่เฟรมกระทบ (ชนกำแพงก็หยุดเองเพราะใช้ความเร็ว)
             // ถึงตัวผู้เล่นแล้วหยุด ไม่พุ่งทะลุไปซ้อนทับ
             for(float t=0f;t<impact;t+=Time.deltaTime)
@@ -428,6 +432,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             else
             {
                 MeleeImpacts++;
+                if(style!=Style.Lunge)Sfx.PlayAt(style==Style.RockAndSlam?SfxId.MonSlam:SfxId.MonMelee,transform.position);
                 Vector2 delta=target.position-transform.position;
                 // ตรวจซ้ำที่เฟรมกระทบ: หลบออกจากระยะหรือไปหลังกำแพงแล้วไม่โดน
                 if(delta.magnitude<=meleeDistance && Vector2.Dot(delta.normalized,aim)>.15f && ClearLine(transform.position,target.position))
@@ -444,6 +449,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         animator.SetBool("isWalking",false);animator.SetTrigger("Attack");
         // ล็อกทิศตั้งแต่ง้าง ไม่เลี้ยวตามผู้เล่นกลางอากาศ จึงหลบด้านข้างได้
         yield return new WaitForSeconds(.25f);
+        Sfx.PlayAt(SfxId.MonPounce,transform.position);
         bool hit=false;
         for(float elapsed=0;elapsed<.32f;elapsed+=Time.deltaTime)
         {
@@ -453,7 +459,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             body.linearVelocity=arrived||!ClearLine(body.position,body.position+aim*.65f)?Vector2.zero:aim*lungeSpeed;
             if(pounceTrail&&!arrived&&Time.time>=nextTrail){nextTrail=Time.time+.05f;SpriteGhost.Spawn(display,.22f,.5f,trailColor);}
             if(!hit && delta.magnitude<=meleeDistance && ClearLine(body.position,target.position))
-            {Hit(target.GetComponent<PlayerStats>(),AttackDamage,transform.position);MeleeImpacts++;hit=true;}
+            {Hit(target.GetComponent<PlayerStats>(),AttackDamage,transform.position);MeleeImpacts++;hit=true;Sfx.PlayAt(SfxId.MonBite,transform.position);}
             yield return null;
         }
         body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
@@ -473,6 +479,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         obj.transform.localScale=Vector3.one*scale;
         obj.AddComponent<MonsterAttackProjectile>().Launch(this,aim,projectileSpeed,projectileLifetime,AttackDamage,style==Style.RockAndSlam);
         ShotsReleased++;
+        if(style==Style.RockAndSlam)Sfx.PlayAt(SfxId.MonRockThrow,origin);else Sfx.PlayMonsterShot(data,origin);
     }
 
     public bool ClearLine(Vector2 from,Vector2 to)

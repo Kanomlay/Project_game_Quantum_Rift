@@ -106,6 +106,7 @@ public sealed class AssaultDrone : MonoBehaviour
     {
         if (bulletPrefab == null) return;
         Vector2 direction = (at - (Vector2)transform.position).normalized;
+        Sfx.PlayAt(SfxId.SkillDroneShot, transform.position);
         var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         var projectile = bullet.GetComponent<PlayerProjectile>();
         if (projectile == null) projectile = bullet.AddComponent<PlayerProjectile>();

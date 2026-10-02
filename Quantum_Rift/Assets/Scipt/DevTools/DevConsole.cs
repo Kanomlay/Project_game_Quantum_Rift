@@ -37,7 +37,7 @@ public sealed class DevConsole : MonoBehaviour
         }
     }
 
-    static readonly string[] Tabs = { "มอน", "บอส", "อาวุธ", "ไอเทม", "พร", "ผู้เล่น", "แมพ" };
+    static readonly string[] Tabs = { "มอน", "บอส", "อาวุธ", "ไอเทม", "พร", "ผู้เล่น", "แมพ", "เสียง" };
     static readonly int[] Counts = { 1, 3, 5, 10 };
     static readonly float[] BossHealthSteps = { 1f, 0.75f, 0.6f, 0.5f, 0.3f, 0.25f, 0.1f, 0.01f };
     static readonly float[] TimeScales = { 0.25f, 0.5f, 1f, 2f };
@@ -156,7 +156,8 @@ public sealed class DevConsole : MonoBehaviour
                 case 3: BuildItems(); break;
                 case 4: BuildBlessings(); break;
                 case 5: BuildPlayer(); break;
-                default: BuildMaps(); break;
+                case 6: BuildMaps(); break;
+                default: BuildSounds(); break;
             }
         ui.Restore(scrolled);
     }
@@ -867,6 +868,34 @@ public sealed class DevConsole : MonoBehaviour
             return "วาง" + item.label;
         };
         BeginPlacement(spec);
+    }
+
+    // ---------- แท็บเสียง ----------
+
+    // กดเพื่อฟังเสียงของแต่ละเหตุการณ์ตามที่ตั้งไว้ในคลังเสียง (ความดัง/ระดับเสียง/สุ่มแบบย่อย เหมือนในเกมจริง)
+    void BuildSounds()
+    {
+        var library = Sfx.Library;
+        if (library == null || library.entries == null)
+        {
+            ui.Note("ไม่เจอคลังเสียง Resources/SfxLibrary (กด Play ใน Unity ใหม่อีกครั้งให้ Editor สร้างให้)");
+            return;
+        }
+        ui.Note($"{library.entries.Length} เหตุการณ์ · กดเพื่อฟัง (กดซ้ำ = สุ่มแบบย่อยถัดไป) · ปรับความดัง/ระดับเสียงได้ที่ Resources/SfxLibrary ใน Inspector");
+        var grid = ui.Grid(2, 56);
+        foreach (var entry in library.entries)
+        {
+            if (entry == null) continue;
+            var sound = entry;
+            int count = sound.clips != null ? sound.clips.Length : 0;
+            string clip = count > 0 && sound.clips[0] != null ? sound.clips[0].name : "ไม่มีไฟล์";
+            ui.Button(grid, $"{sound.id}\n<size=70%>{clip} · {count} ไฟล์</size>",
+                      count > 0 ? DevConsoleUI.ButtonColor : DevConsoleUI.DangerColor, () =>
+                      {
+                          Sfx.Play(sound.id);
+                          Say($"เล่นเสียง {sound.id} (ความดัง {sound.volume:0.##} ระดับเสียง {sound.pitch:0.##})");
+                      });
+        }
     }
 
     // ---------- ตัวช่วย ----------

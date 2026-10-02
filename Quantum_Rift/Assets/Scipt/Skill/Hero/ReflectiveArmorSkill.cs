@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ReflectiveArmor", menuName = "Game Data/Skills/Warrior/Reflective Armor")]
 public class ReflectiveArmorSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillArmorOn;
     [Header("เกราะ")]
     public float duration = 4f;
     public float reflectDamage = 4f;
@@ -34,6 +35,7 @@ public class ReflectiveArmorSkill : SkillData
         {
             if (Time.time < nextReflect) return;
             nextReflect = Time.time + reflectInterval;
+            Sfx.Play(SfxId.SkillArmorReflect);
             SkillCombat.DamageArea(SkillCombat.BodyCenter(stats.gameObject), reflectRadius, reflectDamage);
             if (vfx != null) vfx.Pulse(4, 0.15f); // เฟรม 5 = แสงสะท้อนวาบออก
         }

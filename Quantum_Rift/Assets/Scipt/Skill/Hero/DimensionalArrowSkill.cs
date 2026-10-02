@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DimensionalArrow", menuName = "Game Data/Skills/Archer/Dimensional Arrow")]
 public class DimensionalArrowSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillDimensionalArrow;
     [Header("ลูกศร")]
     public float damage = 6f;
     public float speed = 16f;

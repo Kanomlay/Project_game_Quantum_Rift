@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbsorbingFangs", menuName = "Game Data/Skills/Mutant/Absorbing Fangs")]
 public class AbsorbingFangsSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillFangs;
     [Header("งับ")]
     public float reach = 1.3f;      // ระยะจากตัวผู้เล่นถึงกลางวงงับ
     public float biteRadius = 1f;

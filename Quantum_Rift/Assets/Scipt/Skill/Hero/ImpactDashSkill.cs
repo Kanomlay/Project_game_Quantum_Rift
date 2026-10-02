@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ImpactDash", menuName = "Game Data/Skills/Warrior/Impact Dash")]
 public class ImpactDashSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillImpactDash;
     [Header("พุ่งชน")]
     public float dashSpeed = 22f;
     public float dashDuration = 0.25f; // ระยะพุ่ง = ความเร็ว × เวลา (ราว 5.5 หน่วย)
@@ -36,7 +37,7 @@ public class ImpactDashSkill : SkillData
         var hit = new HashSet<Component>();
         for (float t = 0f; t < dashDuration; t += Time.deltaTime)
         {
-            SkillCombat.DamageArea(SkillCombat.BodyCenter(player), hitRadius, damage, hit);
+            if (SkillCombat.DamageArea(SkillCombat.BodyCenter(player), hitRadius, damage, hit) > 0) Sfx.Play(SfxId.SkillImpactDashHit);
             yield return null;
         }
     }

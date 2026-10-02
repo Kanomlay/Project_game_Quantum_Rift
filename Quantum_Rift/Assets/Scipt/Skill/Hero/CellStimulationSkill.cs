@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CellStimulation", menuName = "Game Data/Skills/Mutant/Cell Stimulation")]
 public class CellStimulationSkill : SkillData
 {
+    public override SfxId CastSound => SfxId.SkillCellStim;
     [Header("ฟื้นฟู")]
     public float healTotal = 3f;       // เท่าขวดยาฟื้นพลังชีวิต 1 ขวด (1.3.10)
     public float healDuration = 3f;

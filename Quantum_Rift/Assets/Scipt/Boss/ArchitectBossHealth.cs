@@ -37,6 +37,7 @@ public sealed class ArchitectBossHealth : MonoBehaviour
         // ร่างแรกเลือดล็อกที่เส้นแปลงร่าง เบิร์สต์จังหวะเดียวข้ามร่างสองไม่ได้
         float floor=secondForm?0:maxHealth*phaseTwoThreshold;
         CurrentHealth=Mathf.Max(floor,CurrentHealth-amount);RefreshBar();
+        Sfx.Play(SfxId.HitMonster);
         DamageNumbers.Spawn(hitbox!=null?hitbox.bounds.center+Vector3.up*hitbox.bounds.extents.y*.6f:transform.position+Vector3.up,amount,DamageNumbers.Kind.Enemy,0f,crit||DamageScale>1f);
         Damaged?.Invoke(amount);
         if(CurrentHealth<=0)

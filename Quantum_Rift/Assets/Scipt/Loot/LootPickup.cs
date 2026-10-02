@@ -39,14 +39,17 @@ public sealed class LootPickup : FloorItem
         {
             case Kind.Coin:
                 player.AddCurrency(Mathf.RoundToInt(amount));
+                Sfx.Play(SfxId.PickupCoin);
                 break;
             case Kind.HpPotion:
                 if (player.currentHP >= player.maxHP) return;
                 player.Heal(amount);
+                Sfx.Play(SfxId.PickupPotion);
                 break;
             case Kind.EnergyPotion:
                 if (player.currentEnergy >= player.maxEnergy) return;
                 player.RestoreEnergy(Mathf.RoundToInt(amount));
+                Sfx.Play(SfxId.PickupPotion);
                 break;
         }
         Destroy(gameObject);

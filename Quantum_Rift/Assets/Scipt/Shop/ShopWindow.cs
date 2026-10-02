@@ -145,6 +145,7 @@ public sealed class ShopWindow : MonoBehaviour
 
     void Say(string text, Color color)
     {
+        if (color == BadColor) Sfx.Play(SfxId.UiDenied); // ซื้อไม่ได้ (เงินไม่พอ ฯลฯ)
         if(shop!=null && shop.isBuffShop && buffView!=null){buffView.Say(text,color);return;}
         if (messageText == null) return;
         messageText.text = text;
