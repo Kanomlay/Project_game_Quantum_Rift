@@ -95,6 +95,7 @@ public class EchoCommanderBoss : MonsterController
         nextShootTime = Time.time + 2f;
         nextSummonTime = Time.time + 5f;
         nextRiftStepTime = Time.time + 8f;
+        if (currentRoom != null) Sfx.Play(SfxId.EchoVoiceIntro); // เสกโดยห้องบอส (ไม่ใช่ตัวอย่างในฉากอนิเมชัน)
     }
 
     protected override void Update()
@@ -185,6 +186,7 @@ public class EchoCommanderBoss : MonsterController
 
         slashTelegraph = EchoSlashTelegraph.Show(origin, aim, slashRadius, slashArc, windup + SlashLead, SlashColor);
         Sfx.Play(SfxId.EchoSlashWindup);
+        Sfx.Play(SfxId.EchoVoiceAttack);
 
         // ง้าง: ค้างเฟรมยกมือ (มีประกายที่มือ) ตลอดช่วงเตือน แล้วปล่อยท่าต่อจนคลื่นฟันออก
         if (anim != null)
@@ -312,6 +314,7 @@ public class EchoCommanderBoss : MonsterController
     {
         FacePlayer();
         if (anim != null) anim.Play("Summon", 0, 0f);
+        Sfx.Play(SfxId.EchoVoiceSummon);
 
         yield return new WaitForSeconds(summonWindup);
 
@@ -495,6 +498,7 @@ public class EchoCommanderBoss : MonsterController
         Vector2 center = BodyCenter;
         CameraFollow.Shake(0.25f, 0.35f);
         Sfx.Play(SfxId.EchoRage);
+        Sfx.Play(SfxId.EchoVoiceRage);
         EchoFx.Flash(center, EchoFx.Purple, 3.5f, 0.35f);
         EchoFx.Shockwave(transform.position, EchoFx.Purple, 4.5f, 0.55f);
         ImpactSparks.Spawn(center, EchoFx.Purple, 24, Vector2.zero, 6f);
@@ -543,6 +547,7 @@ public class EchoCommanderBoss : MonsterController
     {
         StopAllCoroutines();
         Sfx.Play(SfxId.EchoDeath);
+        Sfx.Play(SfxId.EchoVoiceDeath);
         isCasting = false;
         if (slashTelegraph != null) Destroy(slashTelegraph.gameObject);
         foreach (var echo in echoes) if (echo != null) echo.Vanish();

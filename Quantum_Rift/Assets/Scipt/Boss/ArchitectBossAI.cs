@@ -365,6 +365,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
                   : ready[Random.Range(0, ready.Count)];
         last = pick;
         int form = Form;
+        Sfx.Play(SfxId.ArchitectVoiceAttack);
         yield return Held(Perform(pick));
         readyAt[pick] = Time.time + Cooldown(pick, form) * (Enraged ? rageCooldownScale : 1f);
     }
@@ -426,6 +427,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     {
         health.Invulnerable = true;
         Warn(Violet);
+        Sfx.Play(SfxId.ArchitectVoiceIntro);
         if (formOne != null) formOne.PlayMixedPose();
         CameraFollow.Shake(0.3f, 0.6f);
         EchoFx.Flash(Core, Violet, 7f, 0.5f);
@@ -446,6 +448,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         CameraFollow.Shake(0.25f, 0.5f);
         EchoFx.Shockwave(Core, Violet, 4f, 0.6f);
         Sfx.Play(SfxId.ArchitectTransform);
+        Sfx.Play(SfxId.ArchitectVoiceTransform);
     }
 
     // ชาร์จ: ประกายม่วง/ฟ้าดูดเข้าตัว ตัวเรืองขึ้นเรื่อย ๆ จอสั่นเบา ๆ
@@ -1517,6 +1520,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     {
         Interrupt();
         Sfx.Play(SfxId.ArchitectDeath);
+        Sfx.Play(SfxId.ArchitectVoiceDeath);
         ArchitectOrb.ClearAll();
         dead = true;
         StartCoroutine(DeathShow());

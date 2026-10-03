@@ -75,6 +75,9 @@ public class MonsterController : MonoBehaviour
     private MonsterCombatActions combatActions;
     protected MonsterFx fx; // เงา กะพริบขาว หายใจ/เด้ง สลายตอนตาย (ใส่ให้เองตอนเริ่ม)
     private BossHealthHudLink bossHud;
+    // เสียงร้องของตัวมอน: ตัวเดียวกันร้องถี่กว่านี้ไม่ได้ ไม่งั้นโดนตีรัว ๆ เสียงจะซ้อนกันเป็นพรืด (บอสเลือดเยอะ โดนตีนาน เว้นห่างกว่า)
+    private const float HurtVoiceGap = 0.5f, BossHurtVoiceGap = 2f, AttackVoiceGap = 0.8f;
+    private float nextHurtVoice, nextAttackVoice;
     [HideInInspector] public RoomController currentRoom;
 
     protected virtual void Start()
@@ -252,6 +255,11 @@ public class MonsterController : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth - damageAmount, Mathf.Min(HealthFloor, currentHealth)); // เลือดไม่ต่ำกว่าเพดานล็อก
         var kind = ArmorScale < 1f ? DamageNumbers.Kind.Armored : HitKind;
         if (damageAmount > 0f) Sfx.PlayAt(kind == DamageNumbers.Kind.Armored ? SfxId.HitArmor : SfxId.HitMonster, transform.position);
+        if (damageAmount > 0f && currentHealth > 0f && Time.time >= nextHurtVoice)
+        {
+            nextHurtVoice = Time.time + (bossHud != null ? BossHurtVoiceGap : HurtVoiceGap);
+            Sfx.PlayMonsterVoice(myData, SfxLibrary.Voice.Hurt, transform.position);
+        }
         DamageNumbers.Spawn(DamageNumbers.Above(sr, transform.position), damageAmount, kind, crit: (crit || staggerHit) && kind == DamageNumbers.Kind.Enemy, side:
             player != null ? transform.position.x - player.position.x : 0f); // เลขกระเด็นไปทางเดียวกับมอน
         if (bossHud != null && myData != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
@@ -353,13 +361,25 @@ public class MonsterController : MonoBehaviour
         if (bossHud != null) bossHud.RefreshHealth(currentHealth, MaxHealth);
     }
 
+    // เสียงร้องตอนเริ่มท่าโจมตี (MonsterCombatActions เรียกพร้อมวาบเตือนก่อนโจมตี)
+    public void AttackVoice()
+    {
+        if (Time.time < nextAttackVoice) return;
+        nextAttackVoice = Time.time + AttackVoiceGap;
+        Sfx.PlayMonsterVoice(myData, SfxLibrary.Voice.Attack, transform.position);
+    }
+
     public static event System.Action<MonsterController> Died; // ทุกตัวที่ตาย รวมลูกน้องบอส (พรเก็บเกี่ยวพลังงานฟังอยู่)
 
     protected virtual void Die()
     {
         SummaryManager.enemiesDefeatedCount++;
         Died?.Invoke(this);
-        if (bossHud == null) Sfx.PlayAt(SfxId.MonsterDeath, transform.position); // บอสมีเสียงตายของตัวเอง
+        if (bossHud == null) // บอสมีเสียงตายของตัวเอง
+        {
+            Sfx.PlayAt(SfxId.MonsterDeath, transform.position);
+            Sfx.PlayMonsterVoice(myData, SfxLibrary.Voice.Death, transform.position);
+        }
         // นับว่าตายทันที ประตูห้องจะได้เปิดตอนตัวสุดท้ายล้ม ไม่ต้องรอท่าตายจบ
         if (currentRoom != null) currentRoom.OnMonsterDied(this);
         StartCoroutine(DeathRoutine());

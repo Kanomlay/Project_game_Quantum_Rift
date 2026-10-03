@@ -78,7 +78,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     MonsterController owner;
     float fuseEnd=-1f,nextFuseSpark,nextTrail;
     MonsterFx Fx{get{if(fx==null)fx=GetComponent<MonsterFx>();return fx;}}
-    void Warn(){if(Fx!=null)Fx.Warn(warnTint);}
+    void Warn(){if(Fx!=null)Fx.Warn(warnTint);if(owner!=null)owner.AttackVoice();}
     const float Duration = 7f / 12f;
     // ค่าจาก MonsterData คูณตัวคูณเฉพาะตัว (มอนผิดเพี้ยน)
     float Cooldown=>data.attackCooldown*(owner!=null?owner.AttackCooldownScale:1f);
@@ -98,7 +98,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         move=Vector2.zero;
         if(data==null||target==null||!target.gameObject.activeInHierarchy)return;
         // เลือดถึงเกณฑ์: ทิ้งท่าที่ทำอยู่ แล้ววิ่งเรืองฟ้าเข้าหาเพื่อระเบิดตัวเอง
-        if(selfDestructAt>0f&&fuseEnd<0f&&owner!=null&&owner.HealthFraction<=selfDestructAt){CancelAttack();fuseEnd=Time.time+fuseTime;Sfx.PlayAt(SfxId.MonFuse,transform.position);}
+        if(selfDestructAt>0f&&fuseEnd<0f&&owner!=null&&owner.HealthFraction<=selfDestructAt){CancelAttack();fuseEnd=Time.time+fuseTime;Sfx.PlayAt(SfxId.MonFuse,transform.position);Sfx.PlayAt(SfxId.VoiceHuskFuse,transform.position);}
         if(fuseEnd>=0f){TickFuse();return;}
         if(IsAttacking)return;
         var stats=target.GetComponent<PlayerStats>();

@@ -105,6 +105,12 @@ public sealed class Sfx : MonoBehaviour
         if (Library != null) PlayAt(Library.ShotOf(monster), position);
     }
 
+    // เสียงร้องของตัวมอน (คำรามตอนโจมตี ร้องเจ็บ ร้องตอนตาย) เล่นซ้อนกับเสียงเอฟเฟกต์ของท่า
+    public static void PlayMonsterVoice(MonsterData monster, SfxLibrary.Voice voice, Vector2 position)
+    {
+        if (Library != null) PlayAt(Library.VoiceOf(monster, voice), position);
+    }
+
     // ช่องที่ว่างอยู่ ไม่มีก็ทับช่องถัดไปตามลำดับ (เสียงเก่าสุด)
     AudioSource FreeSource()
     {

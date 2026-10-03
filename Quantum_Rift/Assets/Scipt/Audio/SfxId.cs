@@ -36,4 +36,23 @@ public enum SfxId
     EntbornRoar, EntbornStomp, EntbornRoot, EntbornLeap, EntbornDeath,
     // Architect of Collapse
     ArchitectWave, ArchitectSlash, ArchitectStorm, ArchitectTransform, ArchitectCollapse, ArchitectDeath,
+
+    // ---- เสียงร้องของตัวมอน/บอส: ชั้นเสียงที่เล่นซ้อนกับเสียงเอฟเฟกต์ของท่าข้างบน ----
+    // มอนทั่วไป: โจมตี / โดนตี / ตาย (จับคู่กับ MonsterData ในคลังเสียง ดู MonsterVoices ใน SfxLibraryBuilder)
+    VoiceWolfAttack, VoiceWolfHurt, VoiceWolfDeath,
+    VoiceJawAttack, VoiceJawHurt, VoiceJawDeath,
+    VoiceStalkerAttack, VoiceStalkerHurt, VoiceStalkerDeath,
+    VoiceWraithAttack, VoiceWraithHurt, VoiceWraithDeath,
+    VoiceHeavyAttack, VoiceHeavyHurt, VoiceHeavyDeath,
+    VoiceSoldierAttack, VoiceSoldierHurt, VoiceSoldierDeath,
+    VoiceWorkerAttack, VoiceWorkerHurt, VoiceWorkerDeath,
+    VoiceRootlingAttack, VoiceRootlingHurt, VoiceRootlingDeath,
+    VoiceWoodmineAttack, VoiceWoodmineHurt, VoiceWoodmineDeath,
+    VoiceHuskAttack, VoiceHuskHurt, VoiceHuskFuse, // Zero Husk ไม่มีเสียงร้องตอนตาย (ระเบิดตัวเอง) มีเสียงกรีดร้องก่อนระเบิดแทน
+    // Echo Commander
+    EchoVoiceIntro, EchoVoiceAttack, EchoVoiceSummon, EchoVoiceHurt, EchoVoiceRage, EchoVoiceDeath,
+    // Ancient Entborn (เสียงคำรามใช้ EntbornRoar เดิม) + ชั้นเสียงตัวไม้
+    EntbornVoiceAttack, EntbornVoiceHurt, EntbornVoiceWeak, EntbornVoiceDeath, EntbornWoodCreak, EntbornWoodBreak,
+    // Architect of Collapse
+    ArchitectVoiceIntro, ArchitectVoiceAttack, ArchitectVoiceHurt, ArchitectVoiceTransform, ArchitectVoiceDeath,
 }

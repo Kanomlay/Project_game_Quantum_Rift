@@ -16,9 +16,45 @@ https://creativecommons.org/licenses/by/4.0/
 Changes: converted to 44.1 kHz mono and trimmed.
 
 Public domain (CC0) sounds from OpenGameArt.org
+"80 CC0 creature SFX" and "80 CC0 creature SFX #2" by rubberduck
+"Monster Sound Effects Pack" by Ogrebane
+"RPG Sound Pack" by artisticdude
+"Monster or beast sounds" by pauliuw
+"35 wooden cracks/hits/destructions" by Independent.nu
 "Fantasy Sound Effects (Tinysized SFX)" by Vehicle
 "25 CC0 bang / firework SFX" by rubberduck
 "50 CC0 Sci-Fi SFX" by rubberduck
+
+
+<color=#8CEBFF>MONSTER AND BOSS VOICES</color>
+
+"Monster Roar Sound Pack" by Leonardo Calvo
+https://thesoundrack.itch.io/monster-roar-sound-pack
+Licensed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+
+"Voices Sound Effects Library" by Little Robot Sound Factory
+www.littlerobotsoundfactory.com
+Licensed under CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+
+"Space Creature SFX Pack" by Vinrax
+https://opengameart.org/content/space-creature-sfx-pack
+Licensed under CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+
+"Undead Sound Effects" by Ramblez and Cheb Gonaz
+https://opengameart.org/content/undead-sound-effects
+Licensed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+
+"15 monster grunt/pain/death sounds" by Michel Baradari
+https://opengameart.org/content/15-monster-gruntpaindeath-sounds
+Licensed under CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+
+Changes to all of the above: converted to 44.1 kHz mono,
+trimmed, some shortened, loudness evened out.
 
 
 <color=#8CEBFF>FONTS</color>

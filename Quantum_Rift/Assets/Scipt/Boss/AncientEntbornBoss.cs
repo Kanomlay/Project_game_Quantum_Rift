@@ -275,6 +275,7 @@ public class AncientEntbornBoss : MonsterController
     {
         FacePlayer();
         if (fx != null) fx.Warn(LaserColor);
+        Sfx.Play(SfxId.EntbornWoodCreak);
         if (anim != null) anim.Play("LaserCast", 0, 0f);
         yield return new WaitForSeconds(LaserPointTime);
         if (anim != null) anim.speed = 0f; // ค้างท่าชี้แขนตลอดที่ยิง
@@ -333,6 +334,7 @@ public class AncientEntbornBoss : MonsterController
     {
         float time = Enraged ? rageOverheatTime : overheatTime;
         overheatUntil = Time.time + time;
+        Sfx.Play(SfxId.EntbornVoiceWeak);
         float nextSteam = 0f;
         for (float t = 0f; t < time; t += Time.deltaTime)
         {
@@ -496,6 +498,8 @@ public class AncientEntbornBoss : MonsterController
     {
         FacePlayer();
         if (fx != null) fx.Warn(RootColor);
+        Sfx.Play(SfxId.EntbornVoiceAttack);
+        Sfx.Play(SfxId.EntbornWoodCreak);
         Vector2 hero = player.position;
         foreach (var spot in PickRootSpots(hero)) StartCoroutine(RootAt(spot, rootWarning, rootRadius, rootScale, 0f));
         // ช่วงคลั่ง: รากไล่เป็นแนวจากตัวบอสไปหาผู้เล่น ทีละจุด
@@ -637,6 +641,8 @@ public class AncientEntbornBoss : MonsterController
     {
         FacePlayer();
         if (fx != null) fx.Warn(LeapColor);
+        Sfx.Play(SfxId.EntbornVoiceAttack);
+        Sfx.Play(SfxId.EntbornWoodCreak);
         // ย่อตัวรวมแรง
         if (anim != null)
         {
@@ -803,6 +809,8 @@ public class AncientEntbornBoss : MonsterController
         CameraFollow.Shake(0.25f, 0.35f);
         EchoFx.Flash(Core, Color.white, 3f, 0.3f);
         ImpactSparks.Spawn(Core, RageGreen, 20, Vector2.zero, 5f);
+        Sfx.Play(SfxId.EntbornVoiceWeak);
+        Sfx.Play(SfxId.EntbornWoodBreak);
         Stun(rootStun);
     }
 
@@ -850,6 +858,7 @@ public class AncientEntbornBoss : MonsterController
     IEnumerator LastStand()
     {
         lastStand = true;
+        Sfx.Play(SfxId.EntbornWoodBreak);
         foreach (var node in nodes) if (node != null) node.Withdraw();
         nodes.Clear();
         regrowAt = 0f;
@@ -1075,6 +1084,8 @@ public class AncientEntbornBoss : MonsterController
         deathLinger = DeathShowTime + 0.1f;
         deathFade = 0.8f;
         Sfx.Play(SfxId.EntbornDeath);
+        Sfx.Play(SfxId.EntbornVoiceDeath);
+        Sfx.Play(SfxId.EntbornWoodBreak);
         base.Die();
         StartCoroutine(DeathShow());
     }

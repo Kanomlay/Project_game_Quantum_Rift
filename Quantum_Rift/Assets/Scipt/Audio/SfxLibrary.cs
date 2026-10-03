@@ -33,16 +33,19 @@ public sealed class SfxLibrary : ScriptableObject
     public sealed class MonsterSound
     {
         public MonsterData monster;
-        public SfxId shot;
+        public SfxId shot;                               // เสียงยิง (None = เสียงยิงปกติ)
+        public SfxId attackVoice, hurtVoice, deathVoice; // เสียงร้องของตัวมอน (None = ไม่มีเสียงร้องจังหวะนั้น)
     }
+
+    public enum Voice { Attack, Hurt, Death }
 
     public Entry[] entries;
     public WeaponSound[] weapons;    // เสียงโจมตีของอาวุธแต่ละชิ้น
-    public MonsterSound[] monsters;  // เสียงยิงของมอนที่ไม่ใช้เสียงยิงปกติ (Woodmine ยิงสปอร์)
+    public MonsterSound[] monsters;  // เสียงประจำตัวมอน: เสียงยิงที่ไม่ใช่เสียงปกติ (Woodmine ยิงสปอร์) และเสียงร้อง
 
     Dictionary<SfxId, Entry> byId;
     Dictionary<WeaponData, SfxId> byWeapon;
-    Dictionary<MonsterData, SfxId> byMonster;
+    Dictionary<MonsterData, MonsterSound> byMonster;
 
     public Entry Find(SfxId id)
     {
@@ -79,15 +82,29 @@ public sealed class SfxLibrary : ScriptableObject
         }
     }
 
-    public SfxId ShotOf(MonsterData monster)
+    MonsterSound SoundOf(MonsterData monster)
     {
         if (byMonster == null)
         {
-            byMonster = new Dictionary<MonsterData, SfxId>();
+            byMonster = new Dictionary<MonsterData, MonsterSound>();
             if (monsters != null)
                 foreach (var pair in monsters)
-                    if (pair != null && pair.monster != null) byMonster[pair.monster] = pair.shot;
+                    if (pair != null && pair.monster != null) byMonster[pair.monster] = pair;
         }
-        return monster != null && byMonster.TryGetValue(monster, out var id) ? id : SfxId.MonShot;
+        return monster != null && byMonster.TryGetValue(monster, out var found) ? found : null;
+    }
+
+    public SfxId ShotOf(MonsterData monster)
+    {
+        var sound = SoundOf(monster);
+        return sound != null && sound.shot != SfxId.None ? sound.shot : SfxId.MonShot;
+    }
+
+    // เสียงร้องของตัวมอน มอนที่ไม่อยู่ในตาราง (มอนใหม่) ไม่มีเสียงร้อง
+    public SfxId VoiceOf(MonsterData monster, Voice voice)
+    {
+        var sound = SoundOf(monster);
+        if (sound == null) return SfxId.None;
+        return voice == Voice.Attack ? sound.attackVoice : voice == Voice.Hurt ? sound.hurtVoice : sound.deathVoice;
     }
 }

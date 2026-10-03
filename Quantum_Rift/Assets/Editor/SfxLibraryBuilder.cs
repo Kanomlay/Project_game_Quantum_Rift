@@ -8,7 +8,8 @@ using UnityEngine;
 // ทำเองทุกครั้งที่กด Play: ผูกคลิปตามชื่อไฟล์ (Name.wav หรือ Name_1..n.wav = แบบย่อยที่สุ่มสลับ) และจับคู่อาวุธ/มอนกับเสียง
 // ความดัง/ระดับเสียงในตารางนี้ใช้ตอนสร้างรายการครั้งแรกเท่านั้น ปรับใน Inspector แล้วไม่โดนทับ
 // (เมนู Reset Volumes And Pitch = กลับไปใช้ค่าในตารางทั้งหมด)
-// ชื่อไฟล์ตรงกับ import_to_project.py ในโฟลเดอร์ต้นฉบับเสียงนอก repo
+// ตารางเปลี่ยนไฟล์ของรายการไหน รายการนั้นกลับไปใช้ค่าในตารางเอง (ค่าเดิมปรับไว้กับเสียงเก่า)
+// ชื่อไฟล์ตรงกับ import_to_project.py และ Monsters/import_monsters.py ในโฟลเดอร์ต้นฉบับเสียงนอก repo
 [InitializeOnLoad]
 public static class SfxLibraryBuilder
 {
@@ -106,8 +107,8 @@ public static class SfxLibraryBuilder
         new Row(SfxId.EchoSummon, "SharperSummon", 0.7f, 1f, 0.05f, 0.2f),
         new Row(SfxId.EchoRage, "AuraRise", 0.9f, 1f, 0f),
         new Row(SfxId.EchoDeath, "MechaMultipleBangs", 0.9f, 1f, 0f),
-        // Ancient Entborn (เสียง Eruption เดียวกันทั้ง 3 ท่า แยกด้วยระดับเสียง: คำรามต่ำ รากแทงสูงสั้น ตายต่ำสุด)
-        new Row(SfxId.EntbornRoar, "Eruption", 0.9f, 0.8f, 0f, 0.3f),
+        // Ancient Entborn (คำราม = เสียงร้องจริง ส่วนรากแทงกับตอนตายใช้ Eruption เดียวกัน แยกด้วยระดับเสียง: รากแทงสูงสั้น ตายต่ำสุด)
+        new Row(SfxId.EntbornRoar, "AquaticBeastRoar02", 0.9f, 1f, 0.02f, 0.3f),
         new Row(SfxId.EntbornStomp, "BassHit", 0.9f),
         new Row(SfxId.EntbornRoot, "Eruption", 0.55f, 1.4f, 0.06f, 0.12f),
         new Row(SfxId.EntbornLeap, "MechaDamage", 0.9f),
@@ -119,6 +120,59 @@ public static class SfxLibraryBuilder
         new Row(SfxId.ArchitectTransform, "MechaTurnOnOff3", 0.9f, 1f, 0f),
         new Row(SfxId.ArchitectCollapse, "ExplodingMovement", 0.8f, 1f, 0.05f, 0.3f),
         new Row(SfxId.ArchitectDeath, "MechaMultipleBangs", 1f, 0.9f, 0f),
+
+        // ---- เสียงร้องของตัวมอน (Assets/Audio/SFX/Monsters) เล่นซ้อนกับเสียงท่าข้างบน ----
+        // มอนทั่วไป: โจมตี / โดนตี / ตาย
+        new Row(SfxId.VoiceWolfAttack, "RpgWolfman", 0.55f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceWolfHurt, "BaradariPainB", 0.5f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceWolfDeath, "Beast2Roar13", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceJawAttack, "CreatureRoar01", 0.6f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceJawHurt, "CreatureGrunt02", 0.55f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceJawDeath, "CreatureMonster03", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceStalkerAttack, "GhostRoar12", 0.55f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceStalkerHurt, "RpgShade15", 0.5f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceStalkerDeath, "CreatureScream02", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceWraithAttack, "UndeadWraith01", 0.55f, 1f, 0.06f, 0.12f),       // ตัดเหลือ 1.0 วิ
+        new Row(SfxId.VoiceWraithHurt, "AlienScientist26", 0.5f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceWraithDeath, "UndeadWraith07", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceHeavyAttack, "CreatureRoar05", 0.65f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceHeavyHurt, "OgrebaneMonster7", 0.55f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceHeavyDeath, "OgrebaneMonster10", 0.65f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceSoldierAttack, "SpaceAlert00", 0.5f, 1f, 0.06f, 0.12f),          // ตัดเหลือ 1.0 วิ
+        new Row(SfxId.VoiceSoldierHurt, "SpacePain00", 0.5f, 1f, 0.06f, 0.1f),              // ตัดเหลือ 0.7 วิ
+        new Row(SfxId.VoiceSoldierDeath, "SpaceDeath00", 0.55f, 1.2f, 0.05f, 0.1f),         // ไฟล์เดียวกับ Architect ตาย เสียงแหลมขึ้นให้เป็นตัวเล็กกว่า
+        new Row(SfxId.VoiceWorkerAttack, "UndeadGhoulSmall02", 0.55f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceWorkerHurt, "CreatureHurt01", 0.55f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceWorkerDeath, "CreatureDie01", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceRootlingAttack, "CreatureMisc01", 0.5f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceRootlingHurt, "CreatureMisc20", 0.5f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceRootlingDeath, "DieingPixie", 0.55f, 0.8f, 0.05f, 0.1f),         // ลดระดับเสียงลงไม่ให้แหลม
+        new Row(SfxId.VoiceWoodmineAttack, "CreatureSpit01", 0.55f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceWoodmineHurt, "CreatureSlime06", 0.5f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceWoodmineDeath, "CreatureBurble02", 0.6f, 1f, 0.05f, 0.1f),
+        new Row(SfxId.VoiceHuskAttack, "CreatureBreath02", 0.6f, 1f, 0.06f, 0.12f),
+        new Row(SfxId.VoiceHuskHurt, "CreatureMonster08", 0.55f, 1f, 0.06f, 0.1f),
+        new Row(SfxId.VoiceHuskFuse, "UndeadWraith04", 0.7f, 1f, 0.03f, 0.3f),
+        // Echo Commander
+        new Row(SfxId.EchoVoiceIntro, "DemonRoar15", 0.85f, 1f, 0f, 1f),
+        new Row(SfxId.EchoVoiceAttack, "VoiceDemon10", 0.7f, 1f, 0.05f, 0.3f),
+        new Row(SfxId.EchoVoiceSummon, "DemonRoar19", 0.75f, 1f, 0.03f, 0.5f),
+        new Row(SfxId.EchoVoiceHurt, "DemonRoar21", 0.65f, 1f, 0.05f, 0.5f),
+        new Row(SfxId.EchoVoiceRage, "DemonRoar07", 0.9f, 1f, 0f, 1f),
+        new Row(SfxId.EchoVoiceDeath, "HumanDyingBreath00", 0.9f, 1f, 0f, 1f),
+        // Ancient Entborn: เสียงร้อง + ชั้นเสียงตัวไม้ (ลั่นตอนง้างท่า แตกตอนสตัน/ยืนหยัดครั้งสุดท้าย/ตาย)
+        new Row(SfxId.EntbornVoiceAttack, "OgreRoar18", 0.75f, 1f, 0.05f, 0.5f),
+        new Row(SfxId.EntbornVoiceHurt, "OgreRoar20", 0.65f, 1f, 0.05f, 0.5f),
+        new Row(SfxId.EntbornVoiceWeak, "BeastRoar15", 0.7f, 1f, 0.04f, 0.5f),
+        new Row(SfxId.EntbornVoiceDeath, "OgreRoar21", 0.95f, 1f, 0f, 1f),
+        new Row(SfxId.EntbornWoodCreak, "ImpactWood18", 0.6f, 1f, 0.08f, 1f),               // ตัดเหลือ 1.2 วิ
+        new Row(SfxId.EntbornWoodBreak, "ImpactWood05", 0.8f, 1f, 0.05f, 1f),
+        // Architect of Collapse
+        new Row(SfxId.ArchitectVoiceIntro, "SpaceAlert01", 0.85f, 1f, 0f, 1f),
+        new Row(SfxId.ArchitectVoiceAttack, "SpaceAttack01", 0.65f, 1f, 0.05f, 1.5f),       // ตัดเหลือ 1.5 วิ เริ่มท่าใหม่เร็วกว่านี้ไม่ร้องซ้ำ
+        new Row(SfxId.ArchitectVoiceHurt, "SpacePain02", 0.6f, 1f, 0.05f, 2f),              // ตัดเหลือ 0.7 วิ ร้องได้ไม่ถี่กว่า 2 วิ
+        new Row(SfxId.ArchitectVoiceTransform, "SpaceAlert02", 0.9f, 1f, 0f, 1f),
+        new Row(SfxId.ArchitectVoiceDeath, "SpaceDeath00", 0.95f, 1f, 0f, 1f),
     };
 
     // เสียงโจมตีของอาวุธแต่ละชิ้น (ชื่อไฟล์ WeaponData) อาวุธที่ไม่อยู่ในตารางใช้เสียงกลางของชนิดนั้น
@@ -140,6 +194,24 @@ public static class SfxLibraryBuilder
     static readonly Dictionary<string, SfxId> MonsterShots = new Dictionary<string, SfxId>
     {
         { "Woodmine", SfxId.MonSpit },
+    };
+
+    // เสียงร้องของมอนแต่ละตัว (ชื่อไฟล์ MonsterData): โจมตี, โดนตี, ตาย ช่องไหนไม่มีเสียงใส่ None
+    // บอสใส่แค่เสียงโดนตี เสียงอื่นสคริปต์บอสเล่นเองตามจังหวะท่า (Architect ไม่ใช้ MonsterData เล่นเองทั้งหมด)
+    static readonly Dictionary<string, SfxId[]> MonsterVoices = new Dictionary<string, SfxId[]>
+    {
+        { "Dimensional-Wolf", new[] { SfxId.VoiceWolfAttack, SfxId.VoiceWolfHurt, SfxId.VoiceWolfDeath } },
+        { "Flux-Jaw", new[] { SfxId.VoiceJawAttack, SfxId.VoiceJawHurt, SfxId.VoiceJawDeath } },
+        { "Echo-Stalker", new[] { SfxId.VoiceStalkerAttack, SfxId.VoiceStalkerHurt, SfxId.VoiceStalkerDeath } },
+        { "Forest-Wraith", new[] { SfxId.VoiceWraithAttack, SfxId.VoiceWraithHurt, SfxId.VoiceWraithDeath } },
+        { "Mutated-Heavy", new[] { SfxId.VoiceHeavyAttack, SfxId.VoiceHeavyHurt, SfxId.VoiceHeavyDeath } },
+        { "Phase-Soldier", new[] { SfxId.VoiceSoldierAttack, SfxId.VoiceSoldierHurt, SfxId.VoiceSoldierDeath } },
+        { "Rift_Walker", new[] { SfxId.VoiceWorkerAttack, SfxId.VoiceWorkerHurt, SfxId.VoiceWorkerDeath } }, // Rift-Drained Worker
+        { "Rootlings", new[] { SfxId.VoiceRootlingAttack, SfxId.VoiceRootlingHurt, SfxId.VoiceRootlingDeath } },
+        { "Woodmine", new[] { SfxId.VoiceWoodmineAttack, SfxId.VoiceWoodmineHurt, SfxId.VoiceWoodmineDeath } },
+        { "Zero-Husk", new[] { SfxId.VoiceHuskAttack, SfxId.VoiceHuskHurt, SfxId.None } }, // ระเบิดตัวเอง ไม่มีเสียงร้องตอนตาย
+        { "Echo_Commander", new[] { SfxId.None, SfxId.EchoVoiceHurt, SfxId.None } },
+        { "Ancient_Entborn", new[] { SfxId.None, SfxId.EntbornVoiceHurt, SfxId.None } },
     };
 
     static SfxLibraryBuilder()
@@ -174,9 +246,7 @@ public static class SfxLibraryBuilder
             {
                 var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(guid));
                 if (clip == null) continue;
-                string name = clip.name;
-                int cut = name.LastIndexOf('_');
-                if (cut > 0 && int.TryParse(name.Substring(cut + 1), out _)) name = name.Substring(0, cut);
+                string name = BaseName(clip.name);
                 if (!clips.TryGetValue(name, out var list)) clips[name] = list = new List<AudioClip>();
                 list.Add(clip);
             }
@@ -188,7 +258,8 @@ public static class SfxLibraryBuilder
         var missing = new List<string>();
         library.entries = Table.Select(row =>
         {
-            bool keep = !resetValues && old.TryGetValue(row.id, out var existing);
+            // ค่าที่ปรับใน Inspector อยู่ต่อ ยกเว้นตารางเปลี่ยนไฟล์เสียงของรายการนั้น (ค่าเดิมปรับไว้กับเสียงเก่า)
+            bool keep = !resetValues && old.TryGetValue(row.id, out var existing) && SourceOf(existing) == row.file;
             var entry = keep ? old[row.id] : new SfxLibrary.Entry
             {
                 id = row.id, volume = row.volume, pitch = row.pitch, pitchJitter = row.jitter, minInterval = row.interval,
@@ -199,7 +270,18 @@ public static class SfxLibraryBuilder
         }).ToArray();
 
         library.weapons = Find<WeaponData>(Weapons).Select(p => new SfxLibrary.WeaponSound { weapon = p.asset, attack = p.id }).ToArray();
-        library.monsters = Find<MonsterData>(MonsterShots).Select(p => new SfxLibrary.MonsterSound { monster = p.asset, shot = p.id }).ToArray();
+        library.monsters = All<MonsterData>().Where(p => MonsterShots.ContainsKey(p.name) || MonsterVoices.ContainsKey(p.name)).Select(p =>
+        {
+            MonsterVoices.TryGetValue(p.name, out var voice);
+            return new SfxLibrary.MonsterSound
+            {
+                monster = p.asset,
+                shot = MonsterShots.TryGetValue(p.name, out var shot) ? shot : SfxId.None,
+                attackVoice = voice != null ? voice[0] : SfxId.None,
+                hurtVoice = voice != null ? voice[1] : SfxId.None,
+                deathVoice = voice != null ? voice[2] : SfxId.None,
+            };
+        }).ToArray();
 
         if (EditorJsonUtility.ToJson(library) != before)
         {
@@ -212,14 +294,31 @@ public static class SfxLibraryBuilder
         return library;
     }
 
+    // "SwordSlash_2" เป็นแบบย่อยของ "SwordSlash" (ชื่อไฟล์เสียงจึงห้ามลงท้ายด้วย _เลข ถ้าไม่ใช่แบบย่อย)
+    static string BaseName(string name)
+    {
+        int cut = name.LastIndexOf('_');
+        return cut > 0 && int.TryParse(name.Substring(cut + 1), out _) ? name.Substring(0, cut) : name;
+    }
+
+    // ชื่อไฟล์เสียงที่รายการในคลังใช้อยู่ตอนนี้ ไว้เช็คว่าตารางเปลี่ยนไฟล์ไปหรือยัง
+    static string SourceOf(SfxLibrary.Entry entry) =>
+        entry.clips != null && entry.clips.Length > 0 && entry.clips[0] != null ? BaseName(entry.clips[0].name) : null;
+
     static IEnumerable<(T asset, SfxId id)> Find<T>(Dictionary<string, SfxId> names) where T : Object
+    {
+        foreach (var (name, asset) in All<T>())
+            if (names.TryGetValue(name, out var id)) yield return (asset, id);
+    }
+
+    // ไฟล์ข้อมูลชนิด T ทั้งโปรเจกต์ พร้อมชื่อไฟล์ (ตารางในไฟล์นี้อ้างด้วยชื่อไฟล์)
+    static IEnumerable<(string name, T asset)> All<T>() where T : Object
     {
         foreach (var guid in AssetDatabase.FindAssets("t:" + typeof(T).Name).OrderBy(AssetDatabase.GUIDToAssetPath))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            if (!names.TryGetValue(Path.GetFileNameWithoutExtension(path), out var id)) continue;
             var asset = AssetDatabase.LoadAssetAtPath<T>(path);
-            if (asset != null) yield return (asset, id);
+            if (asset != null) yield return (Path.GetFileNameWithoutExtension(path), asset);
         }
     }
 }
