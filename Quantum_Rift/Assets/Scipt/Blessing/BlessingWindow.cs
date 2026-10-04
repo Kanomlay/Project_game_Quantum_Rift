@@ -25,6 +25,7 @@ public sealed class BlessingWindow : MonoBehaviour
 
     void Awake()
     {
+        QuantumUiSkin.Blessings(this);
         if (panel != null) panel.SetActive(false);
         if (cards == null) return;
         for (int i = 0; i < cards.Length; i++)
@@ -62,7 +63,7 @@ public sealed class BlessingWindow : MonoBehaviour
                 if (ownedIcons[i] == null) continue;
                 var blessing = i < owned.Count ? owned[i] : null;
                 ownedIcons[i].sprite = blessing != null ? blessing.hudIcon : null;
-                ownedIcons[i].color = blessing != null ? Color.white : new Color(1f, 1f, 1f, 0.12f); // ช่องว่างจาง ๆ ให้เห็นว่าเหลือกี่ช่อง
+                ownedIcons[i].color = blessing != null ? Color.white : Color.clear; // ช่องว่างใช้กรอบพลังงาน ไม่แสดงสี่เหลี่ยมทึบ
             }
 
         // ปุ่มที่ถูกเลือกค้างจากหน้าต่างอื่น กด Enter/Space แล้วจะไปโดนปุ่มนั้นแทน

@@ -39,7 +39,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     public static GameHelpWindow Instance { get; private set; }
     static int closedFrame = -1;
     public static bool IsOpen => Instance != null && Instance.panel != null && Instance.panel.activeSelf;
-    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame;
+    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame || CinematicDirector.BlocksGameplayInput;
     public int CurrentPage { get; private set; }
     bool ownsPause;
     bool previousPaused;
@@ -59,6 +59,7 @@ public sealed class GameHelpWindow : MonoBehaviour
         Instance = this;
         LanguageSettings.Changed += Refresh;
         Refresh();
+        QuantumUiSkin.Help(this);
     }
     void OnDisable()
     {
@@ -75,7 +76,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     }
     bool CanOpen(bool fromShop)
     {
-        if ((!fromShop && ShopWindow.IsOpen) || BlessingManager.IsChoosing) return false;
+        if (CinematicDirector.BlocksGameplayInput || (!fromShop && ShopWindow.IsOpen) || BlessingManager.IsChoosing) return false;
         if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen) return false;
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return false;
         if (pauseGameplay)
@@ -204,5 +205,6 @@ public sealed class GameHelpWindow : MonoBehaviour
             sectionAccents[i].color = section.accent;
             sectionTitles[i].color = section.accent;
         }
+        QuantumUiSkin.HelpSelection(this);
     }
 }

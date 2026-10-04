@@ -18,10 +18,17 @@ public class MapManager : MonoBehaviour
     public Transform CurrentMapRoot => currentMapInstance != null ? currentMapInstance.transform : null;
     private GameObject player; // ตัวฮีโร่ของเรา
     private bool loading;      // กำลังเปลี่ยนด่าน (กันเดินชนพอร์ทัลซ้ำระหว่างจอมืด แล้วโหลดด่านซ้อนกัน)
+    private MapBackgroundMusic backgroundMusic;
+    private CinematicDirector cinematics;
+    private bool openingConsidered;
 
     void Awake()
     {
         if (instance == null) instance = this;
+        backgroundMusic = GetComponent<MapBackgroundMusic>();
+        if (backgroundMusic == null) backgroundMusic = gameObject.AddComponent<MapBackgroundMusic>();
+        cinematics=GetComponent<CinematicDirector>();
+        if(cinematics==null)cinematics=gameObject.AddComponent<CinematicDirector>();
     }
 
     void Start()
@@ -79,6 +86,7 @@ public class MapManager : MonoBehaviour
         if (currentMapInstance != null) Destroy(currentMapInstance);
         
         currentMap = mapToLoad;
+        backgroundMusic.PlayMap(currentMap);
         
         if (currentMap.mapPrefab != null)
         {
@@ -114,6 +122,11 @@ public class MapManager : MonoBehaviour
             yield return StartCoroutine(hud.FadeOutClear());
         }
         loading = false;
+        if(!openingConsidered)
+        {
+            openingConsidered=true;
+            if(currentMap==firstMap&&!currentMap.isTestLab)yield return cinematics.PlayOpening();
+        }
     }
     public void GoToNextMap()
     {

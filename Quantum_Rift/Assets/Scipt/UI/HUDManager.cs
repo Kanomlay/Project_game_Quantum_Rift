@@ -5,6 +5,7 @@ using System.Collections;
 
 public class HUDManager : MonoBehaviour
 {
+    void Awake() { QuantumUiSkin.Hud(this); }
     [Header("ระบบหลอดเลือด")]
     public Image hpFillImage;
     public TMP_Text hpText;

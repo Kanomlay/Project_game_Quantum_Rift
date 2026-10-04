@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (PauseManager.isGamePaused) return;
+        if (PauseManager.isGamePaused || CinematicDirector.BlocksGameplayInput) return;
 
         // เปิดหน้าร้านอยู่ ยืนนิ่ง (คลิกซื้อของด้วยเมาส์ ไม่ให้ตัวละครเดินตามปุ่ม)
         if (ShopWindow.IsOpen)
