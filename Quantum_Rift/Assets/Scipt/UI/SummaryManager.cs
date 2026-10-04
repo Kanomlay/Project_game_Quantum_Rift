@@ -41,6 +41,9 @@ public class SummaryManager : MonoBehaviour
 
     public void ShowSummary(bool isWin, string nextMapName)
     {
+        if(CinematicDirector.Instance!=null)CinematicDirector.Instance.Cancel();
+        var map=MapManager.instance!=null?MapManager.instance.CurrentMap:null;
+        if(map!=null&&!map.isTestLab&&(!isWin||map.nextMap==null))CinematicProgress.MarkRunFinished();
         if (summaryPanel == null)
         {
             Debug.LogWarning("SummaryManager ยังไม่ได้ลาก Summary Panel ใส่ใน Inspector เลยไม่มีหน้าสรุปให้แสดง");
@@ -66,7 +69,7 @@ public class SummaryManager : MonoBehaviour
         if (LanguageSettings.IsThai) SetText(titleText, isWin ? "ผ่านด่านแล้ว!" : "เกมโอเวอร์");
         else SetText(titleText, isWin ? "Stage Cleared!" : "Game Over!");
         if (nextSectorBox != null) nextSectorBox.SetActive(isWin);
-        if (continueButton != null) continueButton.SetActive(isWin);
+        if (continueButton != null) continueButton.SetActive(isWin&&map!=null&&map.nextMap!=null);
         if (isWin) SetText(nextSectorText, nextMapName);
     }
 

@@ -53,7 +53,13 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) { MarkVisited(); StartEncounter(); }
+        TryEnterRoom(collision);
+    }
+    private void OnTriggerStay2D(Collider2D collision){if(!hasStarted)TryEnterRoom(collision);}
+    private void TryEnterRoom(Collider2D collision)
+    {
+        if((MapManager.instance!=null&&MapManager.instance.IsLoading)||CinematicDirector.IsOpen)return;
+        if(collision.CompareTag("Player")){MarkVisited();StartEncounter();}
     }
 
     public void StartEncounter()
@@ -69,8 +75,20 @@ public class RoomController : MonoBehaviour
             return;
         }
         SetDoors(true);
+        StartCoroutine(BeginEncounter(waves));
+    }
+
+    private IEnumerator BeginEncounter(List<List<MonsterData>> waves)
+    {
+        var boss=waves.Find(w=>w.Exists(d=>d.monsterPrefab.GetComponent<BossHealthHudLink>()!=null));
+        if(boss!=null&&CinematicDirector.Instance!=null)
+        {
+            var data=boss.Find(d=>d.monsterPrefab.GetComponent<BossHealthHudLink>()!=null);
+            yield return CinematicDirector.Instance.PlayBoss(data.monsterPrefab);
+        }
+        if(!isActiveAndEnabled||isCleared||(SummaryManager.instance!=null&&SummaryManager.instance.IsShowing))yield break;
         CombatStarted?.Invoke(this);
-        StartCoroutine(RunWaves(waves));
+        yield return RunWaves(waves);
     }
 
     // ตัดตัวที่เสกไม่ได้ออก (ไม่มี prefab หรือ prefab มีแค่ภาพ รายงานการตายไม่ได้) ไม่งั้นห้องค้างไม่เคลียร์

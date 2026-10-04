@@ -75,6 +75,7 @@ public sealed class MiniMapHUD : MonoBehaviour
             exitIcons.Add(CreateExitIcon(marker.rectTransform));
         }
         playerDot=Box("Player",Vector2.zero,new Vector2(8,8),Color.white).rectTransform;
+        QuantumUiSkin.MiniMap(transform);
         Refresh();
     }
     // ไอคอนประตูมิติวาดด้วย UI ชิ้นเล็ก จึงคมชัดและไม่พึ่งตัวอักษรพิเศษในฟอนต์
