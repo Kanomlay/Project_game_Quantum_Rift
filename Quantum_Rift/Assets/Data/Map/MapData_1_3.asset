@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapData
   mapName: Map 1-3
   mapPrefab: {fileID: 6326965817631159630, guid: f9fc0559694f5ed4db8a6b805ac6a674, type: 3}
-  backgroundMusic: {fileID: 8300000, guid: a050e30fc3d6fe546b6546c187bc661b, type: 3}
+  backgroundMusic: {fileID: 0}
   spawnPosition: {x: 0, y: 0}
   possibleEvents:
   - {fileID: 11400000, guid: 55a9e6f22ccb36f468c209d771d88f7a, type: 2}
