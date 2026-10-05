@@ -24,6 +24,7 @@
 | `SheathSqueeze.wav`, `SeaxUnsheathe.wav` | Fantasy Sound Effects (Tinysized SFX) | Vehicle | https://opengameart.org/content/fantasy-sound-effects-tinysized-sfx |
 | `Bang02.ogg` | 25 CC0 bang / firework SFX | rubberduck | https://opengameart.org/content/25-cc0-bang-firework-sfx |
 | `Teleport02.ogg` | 50 CC0 Sci-Fi SFX | rubberduck | https://opengameart.org/content/50-cc0-sci-fi-sfx |
+| `MetalHit05.ogg`, `MetalSheet05.ogg`, `Keys01.ogg` | 100 CC0 metal and wood SFX | rubberduck | https://opengameart.org/content/100-cc0-metal-and-wood-sfx |
 
 ## SFX/Monsters (เสียงร้องของมอนและบอส รวมหลายที่มา)
 
@@ -50,6 +51,28 @@
 | `RpgWolfman`, `RpgShade15` | RPG Sound Pack | artisticdude | https://opengameart.org/content/rpg-sound-pack |
 | `DieingPixie` | Monster or beast sounds | pauliuw | https://opengameart.org/content/monster-or-beast-sounds |
 | `ImpactWood05`, `ImpactWood18` | 35 wooden cracks/hits/destructions | Independent.nu | https://opengameart.org/content/35-wooden-crackshitsdestructions |
+
+## เพลงประกอบ (BGM/ และ Resources/Music/)
+
+ต้องให้เครดิต:
+
+| ไฟล์ | ใช้กับ | ผลงาน | ผู้ทำ | สัญญาอนุญาต | ที่มา |
+|---|---|---|---|---|---|
+| `Resources/Music/Menu_CosmicJourney.ogg` | เมนูหลัก | "Cosmic Journey" จากชุด Cosmic Journey, Space-themed Music Pack | David KBD | CC BY 4.0 https://creativecommons.org/licenses/by/4.0/ | https://davidkbd.itch.io/cosmic-journey-space-themed-music-pack |
+
+ผู้ทำไม่อนุญาตให้แก้ไขไฟล์เสียงถาวร ไฟล์นี้จึงเป็นไฟล์ต้นฉบับ เปลี่ยนแค่ชื่อไฟล์ (ปรับความดังในเกมได้)
+
+สาธารณสมบัติ (CC0 ไม่บังคับเครดิต):
+
+| ไฟล์ | ใช้กับ | ผลงาน | ผู้ทำ | ที่มา |
+|---|---|---|---|---|
+| `BGM/Map1_SpaceDungeon.ogg` | แมพ 1 (ด่าน 1-1 ถึง 1-3) | Space Dungeon | MintoDog | https://opengameart.org/content/space-dungeon |
+| `BGM/Boss1_SpaceBossBattle.ogg` | บอสแมพ 1 (Echo Commander) | Space Boss Battle | MintoDog | https://opengameart.org/content/space-boss-battle |
+| `BGM/Map2_TranceAdventure.ogg` | แมพ 2 (ด่าน 2-1, 2-2) | Trance Adventure | MintoDog | https://opengameart.org/content/trance-adventure |
+| `BGM/Boss2_HeavyBossBattle2.ogg` | บอสแมพ 2 (Ancient Entborn) | Heavy Boss Battle 2 | MintoDog | https://opengameart.org/content/heavy-boss-battle-2 |
+| `BGM/FinalBoss_EpicBossBattle.wav` | บอสสุดท้าย (Architect of Collapse) | Boss Battle Music (Epic Boss Battle) | Juhani Junkala | https://opengameart.org/content/boss-battle-music |
+
+เพลงประจำแมพผูกที่ช่อง `backgroundMusic` ของ `Assets/Data/Map/MapData_*.asset` เล่นโดย `MapBackgroundMusic` เพลงเมนูเล่นโดย `MenuMusic`
 
 ## การจับคู่เสียงกับเหตุการณ์ในเกม
 

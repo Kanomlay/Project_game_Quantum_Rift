@@ -24,6 +24,7 @@ Public domain (CC0) sounds from OpenGameArt.org
 "Fantasy Sound Effects (Tinysized SFX)" by Vehicle
 "25 CC0 bang / firework SFX" by rubberduck
 "50 CC0 Sci-Fi SFX" by rubberduck
+"100 CC0 metal and wood SFX" by rubberduck
 
 
 <color=#8CEBFF>MONSTER AND BOSS VOICES</color>
@@ -55,6 +56,21 @@ https://creativecommons.org/licenses/by/3.0/
 
 Changes to all of the above: converted to 44.1 kHz mono,
 trimmed, some shortened, loudness evened out.
+
+
+<color=#8CEBFF>MUSIC</color>
+
+"Cosmic Journey" from "Cosmic Journey, Space-themed Music Pack"
+by David KBD
+https://davidkbd.itch.io/cosmic-journey-space-themed-music-pack
+Licensed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+No changes were made.
+
+Public domain (CC0) music from OpenGameArt.org
+"Space Dungeon", "Space Boss Battle", "Trance Adventure"
+and "Heavy Boss Battle 2" by MintoDog
+"Epic Boss Battle" by Juhani Junkala
 
 
 <color=#8CEBFF>FONTS</color>

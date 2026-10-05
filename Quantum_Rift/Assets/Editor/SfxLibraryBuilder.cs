@@ -173,6 +173,11 @@ public static class SfxLibraryBuilder
         new Row(SfxId.ArchitectVoiceHurt, "SpacePain02", 0.6f, 1f, 0.05f, 2f),              // ตัดเหลือ 0.7 วิ ร้องได้ไม่ถี่กว่า 2 วิ
         new Row(SfxId.ArchitectVoiceTransform, "SpaceAlert02", 0.9f, 1f, 0f, 1f),
         new Row(SfxId.ArchitectVoiceDeath, "SpaceDeath00", 0.95f, 1f, 0f, 1f),
+
+        // ของในแมพ: กล่องทำลายได้และกำแพงในห้องใช้เสียงเดียวกัน / หีบสมบัติ
+        new Row(SfxId.PropHit, "MetalHit05", 0.6f, 1f, 0.08f, 0.06f),
+        new Row(SfxId.PropBreak, "MetalSheet05", 0.8f, 1f, 0.06f, 0.06f),
+        new Row(SfxId.ChestOpen, "Keys01", 0.7f, 1f, 0.03f, 0.1f),
     };
 
     // เสียงโจมตีของอาวุธแต่ละชิ้น (ชื่อไฟล์ WeaponData) อาวุธที่ไม่อยู่ในตารางใช้เสียงกลางของชนิดนั้น

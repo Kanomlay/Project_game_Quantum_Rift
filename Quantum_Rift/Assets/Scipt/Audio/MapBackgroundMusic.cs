@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 // อยู่กับ MapManager: เปลี่ยนแมพยังใช้ตัวเล่นเดิม แต่กลับเมนูแล้วเพลงหยุดตามฉาก
-// ไม่เลือกเพลงจาก isBossRoom เพราะบอสทั่วไปต้องใช้เพลงธีมเดิมของแมพ
+// เพลงมาจาก MapData.backgroundMusic ของแต่ละด่าน (ไม่เดาจาก isBossRoom) ห้องบอสจะมีเพลงของตัวเองหรือใช้เพลงเดิมของแมพก็ได้
 [DisallowMultipleComponent]
 public sealed class MapBackgroundMusic : MonoBehaviour
 {

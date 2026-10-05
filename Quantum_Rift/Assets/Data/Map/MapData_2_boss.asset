@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapData
   mapName: Map 2-BossRoom
   mapPrefab: {fileID: 4409379168855331426, guid: 35f02c22cc6d207468b8b650fe3aa4b8, type: 3}
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: 273b5c2457f94c90bc0f21d46e4af34d, type: 3}
   spawnPosition: {x: 0, y: 0}
   possibleEvents: []
   chestLoot: {fileID: 11400000, guid: 2083c12ab71d8d44fa8502aef31aff76, type: 2}

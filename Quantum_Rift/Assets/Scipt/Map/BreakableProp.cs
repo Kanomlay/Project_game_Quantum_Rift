@@ -46,11 +46,13 @@ public sealed class BreakableProp : MonoBehaviour, IBreakable
         if (health > 0f)
         {
             ImpactSparks.Spawn(transform.position, new Color(.7f,.85f,.9f), 3, Vector2.up);
+            Sfx.PlayAt(SfxId.PropHit, transform.position);
             return;
         }
         broken = true;
         Vector2 center = display.bounds.center; // เก็บก่อนปิดภาพ
         ImpactSparks.Spawn(transform.position, new Color(.75f,.9f,1f), 7, Vector2.up);
+        Sfx.PlayAt(SfxId.PropBreak, transform.position);
         foreach (var visual in GetComponentsInChildren<Renderer>()) visual.enabled = false;
         if (blockers != null)
             foreach (var blocker in blockers) if (blocker != null) blocker.enabled = false;

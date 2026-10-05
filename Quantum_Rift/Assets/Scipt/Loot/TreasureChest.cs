@@ -126,6 +126,7 @@ public sealed class TreasureChest : MonoBehaviour
         opened = true;
         openedAt = Time.time;
         ShowSprite(openSprite);
+        Sfx.PlayAt(SfxId.ChestOpen, transform.position);
         if (Loot != null && Loot.bossChest)
         {
             EchoFx.Flash(transform.position + Vector3.up * 0.6f, Gold, 5f, 0.5f);

@@ -69,14 +69,14 @@ public static class MapBgmPlayChecks
                     Check(source == previousSource && Object.FindObjectsByType<MapBackgroundMusic>(FindObjectsSortMode.None).Length == 1, "one music player across maps " + mapIndex);
                     Check(source.loop && source.spatialBlend == 0f && !source.playOnAwake && !source.ignoreListenerVolume, "loop 2D and master-volume settings " + mapIndex);
                     Check(source.isPlaying && Mathf.Abs(source.volume - music.musicVolume) < .01f, "track playing after fade " + mapIndex);
-                    if (mapIndex == 1 || mapIndex == 2 || mapIndex == 3 || mapIndex == 5 || mapIndex == 6)
+                    if (mapIndex > 0 && MapBgmInstaller.SongFor(mapIndex) == MapBgmInstaller.SongFor(mapIndex - 1))
                         Check(source.time > previousTime, "same-theme transition does not restart track " + mapIndex);
                     mapIndex++;
                     if (mapIndex < MapBgmInstaller.MapNames.Length) { step = 1; break; }
                     Time.timeScale = 0; music.PlayMap(AssetDatabase.LoadAssetAtPath<MapData>(MapBgmInstaller.MapPath("MapData_1_1")));
                     step = 3; waitUntil = EditorApplication.timeSinceStartup + 1.4; break;
                 case 3:
-                    Check(music.PlaybackSource.clip.name == "Map1_Spaceship" && Mathf.Abs(music.PlaybackSource.volume - music.musicVolume) < .01f, "fade completes while paused");
+                    Check(music.PlaybackSource.clip.name == "Map1_SpaceDungeon" && Mathf.Abs(music.PlaybackSource.volume - music.musicVolume) < .01f, "fade completes while paused");
                     Time.timeScale = 1;
                     music.PlayMap(null); step = 4; waitUntil = EditorApplication.timeSinceStartup + .8; break;
                 case 4:
@@ -84,7 +84,7 @@ public static class MapBgmPlayChecks
                     music.PlayMap(manager.CurrentMap); music.PlayMap(AssetDatabase.LoadAssetAtPath<MapData>(MapBgmInstaller.MapPath("MapData_2_1")));
                     step = 5; waitUntil = EditorApplication.timeSinceStartup + 1.4; break;
                 case 5:
-                    Check(music.PlaybackSource.clip.name == "Map2_Forest", "rapid requests end on newest theme");
+                    Check(music.PlaybackSource.clip.name == "Map2_TranceAdventure", "rapid requests end on newest theme");
                     SceneManager.LoadScene("MainMenu"); step = 6; waitUntil = EditorApplication.timeSinceStartup + 1; break;
                 case 6:
                     Check(Object.FindFirstObjectByType<MapBackgroundMusic>() == null, "returning to menu removes gameplay music");

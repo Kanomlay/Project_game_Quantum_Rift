@@ -1019,6 +1019,27 @@ MonoBehaviour:
     pitch: 1
     pitchJitter: 0
     minInterval: 1
+  - id: 125
+    clips:
+    - {fileID: 8300000, guid: f9a5bd8a20b5e674fb7f9dcf26a1912d, type: 3}
+    volume: 0.6
+    pitch: 1
+    pitchJitter: 0.08
+    minInterval: 0.06
+  - id: 126
+    clips:
+    - {fileID: 8300000, guid: fca0ddeb63f09e747b66d9ce666173b4, type: 3}
+    volume: 0.8
+    pitch: 1
+    pitchJitter: 0.06
+    minInterval: 0.06
+  - id: 127
+    clips:
+    - {fileID: 8300000, guid: ea096c172d00c614bb895c2737af61c3, type: 3}
+    volume: 0.7
+    pitch: 1
+    pitchJitter: 0.03
+    minInterval: 0.1
   weapons:
   - weapon: {fileID: 11400000, guid: 5a372fe4666406d46a5a279cf409da65, type: 2}
     attack: 17

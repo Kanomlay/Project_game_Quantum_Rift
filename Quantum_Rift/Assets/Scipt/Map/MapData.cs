@@ -6,7 +6,7 @@ public class MapData : ScriptableObject
     [Header("ข้อมูลด่าน (Map Info)")]
     public string mapName; 
     public GameObject mapPrefab; 
-    [Header("เพลงประจำแมพ (บอสทั่วไปใช้เพลงเดียวกับแมพ)")]
+    [Header("เพลงประจำแมพ (ด่านที่ใส่เพลงเดียวกันเล่นต่อเนื่อง ไม่เริ่มใหม่)")]
     public AudioClip backgroundMusic;
     
     [Header("จุดเกิดของฮีโร่ (Spawn Point)")]

@@ -38,6 +38,7 @@ public sealed class BreakableWallCell : MonoBehaviour, IBreakable
         }
         walls.Wear(cell, health / walls.cellHealth);
         ImpactSparks.Spawn(Center, walls.debrisColor, 4, Vector2.up, 3.5f);
+        Sfx.PlayAt(SfxId.PropHit, Center);
         StopAllCoroutines();
         StartCoroutine(Shake());
     }
@@ -59,6 +60,7 @@ public sealed class BreakableWallCell : MonoBehaviour, IBreakable
         if (box != null) box.enabled = false;
         walls.Crumble(cell);
         ImpactSparks.Spawn(Center, walls.debrisColor, 14, Vector2.zero, 4.5f);
+        Sfx.PlayAt(SfxId.PropBreak, Center);
         CameraFollow.Shake(byPlayer ? 0.08f : 0.05f, 0.12f);
         if (byPlayer)
         {

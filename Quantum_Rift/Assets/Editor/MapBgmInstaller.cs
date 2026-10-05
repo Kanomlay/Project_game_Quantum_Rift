@@ -5,10 +5,12 @@ using UnityEngine;
 public static class MapBgmInstaller
 {
     public static readonly string[] MapNames = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_boss", "MapData_boss" };
-    public static readonly string[] Songs = { "Map1_Spaceship", "Map2_Forest", "FinalBoss_Architect" };
+    // เพลงชุดที่มีสิทธิ์ใช้ (ดู Assets/Audio/CREDITS.md): ด่านย่อยของแมพเดียวกันใช้เพลงเดียวกัน ห้องบอสมีเพลงของตัวเอง
+    public static readonly string[] Songs = { "Map1_SpaceDungeon.ogg", "Boss1_SpaceBossBattle.ogg", "Map2_TranceAdventure.ogg", "Boss2_HeavyBossBattle2.ogg", "FinalBoss_EpicBossBattle.wav" };
+    static readonly int[] SongOfMap = { 0, 0, 0, 1, 2, 2, 3, 4 }; // ตามลำดับ MapNames
     public static string MapPath(string name) => "Assets/Data/Map/" + name + ".asset";
-    public static string ClipPath(int index) => "Assets/Audio/BGM/" + Songs[index] + ".ogg";
-    public static int SongFor(int mapIndex) => mapIndex < 4 ? 0 : mapIndex < 7 ? 1 : 2;
+    public static string ClipPath(int index) => "Assets/Audio/BGM/" + Songs[index];
+    public static int SongFor(int mapIndex) => SongOfMap[mapIndex];
 
     [MenuItem("Tools/Quantum Rift/Install Map Background Music")]
     public static void Install()
@@ -39,12 +41,12 @@ public static class MapBgmInstaller
         }
         AssetDatabase.SaveAssets();
         Verify();
-        Debug.Log("MAP_BGM_INSTALL_COMPLETE maps=8 clips=3");
+        Debug.Log("MAP_BGM_INSTALL_COMPLETE maps=8 clips=" + Songs.Length);
     }
 
     public static void Verify()
     {
-        var finalClip = AssetDatabase.LoadAssetAtPath<AudioClip>(ClipPath(2));
+        var finalClip = AssetDatabase.LoadAssetAtPath<AudioClip>(ClipPath(Songs.Length - 1));
         int finalUses = 0;
         foreach (var guid in AssetDatabase.FindAssets("t:MapData"))
         {

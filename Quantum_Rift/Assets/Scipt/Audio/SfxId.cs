@@ -55,4 +55,7 @@ public enum SfxId
     EntbornVoiceAttack, EntbornVoiceHurt, EntbornVoiceWeak, EntbornVoiceDeath, EntbornWoodCreak, EntbornWoodBreak,
     // Architect of Collapse
     ArchitectVoiceIntro, ArchitectVoiceAttack, ArchitectVoiceHurt, ArchitectVoiceTransform, ArchitectVoiceDeath,
+
+    // ของในแมพ: กล่องทำลายได้และกำแพงในห้อง (ใช้เสียงเดียวกัน) / หีบสมบัติ
+    PropHit, PropBreak, ChestOpen,
 }
