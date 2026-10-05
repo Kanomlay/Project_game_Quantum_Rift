@@ -25,6 +25,7 @@ public sealed class CinematicDirector : MonoBehaviour
     GameObject root,portraitPanel;
     CanvasGroup visibility;
     Image background,portrait,accentLine,progressBar;
+    Sprite progressSprite;
     TMP_Text eyebrow,title,body,pageLabel,nextLabel,skipLabel;
     Button nextButton,skipButton;
     RectTransform content,bossReveal;
@@ -33,7 +34,11 @@ public sealed class CinematicDirector : MonoBehaviour
     static void ResetStatics(){Instance=null;closedFrame=-1;}
     void Awake(){Instance=this;if(library==null)library=Resources.Load<CinematicLibrary>("CinematicLibrary");}
     void OnDisable(){Cancel();if(Instance==this)Instance=null;}
-    void OnDestroy(){if(root!=null)Destroy(root);}
+    void OnDestroy()
+    {
+        if(root!=null)Destroy(root);
+        if(progressSprite!=null)Destroy(progressSprite);
+    }
     public void Advance(){if(open&&Time.unscaledTime-openedAt>.2f)advance=true;}
     public void Skip(){if(open&&Time.unscaledTime-openedAt>.2f)skip=true;}
     void Update()
@@ -200,7 +205,13 @@ public sealed class CinematicDirector : MonoBehaviour
         pageLabel=Label(content,"Page",new Vector2(-425,-238),new Vector2(480,48),22,new Color32(169,175,195,255));
         nextButton=MakeButton(content,"Next",new Vector2(480,-238),new Vector2(300,56),out nextLabel);nextButton.onClick.AddListener(Advance);
         skipButton=MakeButton(root.transform,"Skip",new Vector2(500,385),new Vector2(330,58),out skipLabel);skipButton.onClick.AddListener(Skip);
-        progressBar=Box(content,"BossCountdown",new Vector2(0,-190),new Vector2(1270,4),Color.cyan);progressBar.sprite=Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");progressBar.type=Image.Type.Filled;progressBar.fillMethod=Image.FillMethod.Horizontal;
+        progressBar=Box(content,"BossCountdown",new Vector2(0,-190),new Vector2(1270,4),Color.cyan);
+        // สร้าง sprite สำหรับแถบสีเอง เพื่อใช้ได้ทั้ง Editor และเกมที่ build ทุกเครื่อง
+        var white=Texture2D.whiteTexture;
+        progressSprite=Sprite.Create(white,new Rect(0,0,white.width,white.height),new Vector2(.5f,.5f));
+        progressSprite.name="CinematicCountdown";
+        progressBar.sprite=progressSprite;
+        progressBar.type=Image.Type.Filled;progressBar.fillMethod=Image.FillMethod.Horizontal;
         root.SetActive(false);
     }
     static RectTransform Rect(Transform parent,string name,Vector2 pos,Vector2 size)
