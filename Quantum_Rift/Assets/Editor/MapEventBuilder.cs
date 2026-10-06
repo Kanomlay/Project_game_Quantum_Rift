@@ -14,10 +14,10 @@ public static class MapEventBuilder
     const string PropSortingLayer = "object"; // ชั้นเดียวกับของตกแต่งในแมพ
 
     // แมพ 1 เป็นเรืออวกาศ แมพ 2 เป็นป่า ร้านค้าจึงคนละ prefab กัน
-    static readonly string[] SpaceshipMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3" };
-    static readonly string[] ForestMaps = { "MapData_2_1", "MapData_2_2" };
-    static readonly string[] SpaceshipMapPrefabs = { "map_1", "map_1_2", "map_1_3" };
-    static readonly string[] ForestMapPrefabs = { "Map_2", "Map_2_2" };
+    static readonly string[] SpaceshipMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_4", "MapData_1_5" };
+    static readonly string[] ForestMaps = { "MapData_2_1", "MapData_2_2", "MapData_2_3", "MapData_2_4", "MapData_2_5" };
+    static readonly string[] SpaceshipMapPrefabs = { "map_1", "map_1_2", "map_1_3", "ExpandedStages/Map_1_4", "ExpandedStages/Map_1_5" };
+    static readonly string[] ForestMapPrefabs = { "Map_2", "Map_2_2", "ExpandedStages/Map_2_3", "ExpandedStages/Map_2_4", "ExpandedStages/Map_2_5" };
 
     [MenuItem("Tools/Quantum Rift/Setup Map Events")]
     public static void Build()
@@ -119,7 +119,7 @@ public static class MapEventBuilder
             bool changed = false;
             foreach (var room in root.GetComponentsInChildren<RoomController>(true))
             {
-                if (room.canHostEvent) continue;
+                if (room.canHostEvent || room.GetComponentInChildren<MapPortal>(true) != null) continue; // ห้องทางออกไม่รับร้านค้า
                 room.canHostEvent = true;
                 changed = true;
             }

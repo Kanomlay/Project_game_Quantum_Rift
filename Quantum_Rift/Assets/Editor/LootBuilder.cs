@@ -23,7 +23,7 @@ public static class LootBuilder
     const string BossMapOne = "MapData_1_bossroom";
     const string BossMapTwo = "MapData_2_boss";
     const string MapFolder = "Assets/Data/Map";
-    static readonly string[] ChestMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_boss" };
+    static readonly string[] ChestMaps = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_4", "MapData_1_5", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_3", "MapData_2_4", "MapData_2_5", "MapData_2_boss" };
 
     [MenuItem("Tools/Quantum Rift/Setup Chest Loot (กล่องสมบัติ เงิน ขวดยา)")]
     public static void Setup()

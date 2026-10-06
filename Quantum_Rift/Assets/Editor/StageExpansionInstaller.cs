@@ -67,11 +67,18 @@ public static class StageExpansionInstaller
                 if(!encounterMap.TryGetValue(old,out var data))
                 {
                     string suffix=old.name.Contains("Exit")?"Exit":"Room";
-                    data=Copy<RoomEncounterData>(AssetDatabase.GetAssetPath(old),$"Assets/Data/Map/RoomData/Map {key.Replace('_','-')} - {suffix}.asset");
-                    data.minMonsters=stage>=5?4:3;data.maxMonsters=stage>=4?5:4;
-                    data.minWaves=data.maxWaves=3;
-                    data.leaderChance=suffix=="Exit"?1:Mathf.Min(.55f,.35f+.1f*(stage-3));
-                    EditorUtility.SetDirty(data);encounterMap.Add(old,data);
+                    string dataPath=$"Assets/Data/Map/RoomData/Map {key.Replace('_','-')} - {suffix}.asset";
+                    bool fresh=AssetDatabase.LoadAssetAtPath<RoomEncounterData>(dataPath)==null;
+                    data=Copy<RoomEncounterData>(AssetDatabase.GetAssetPath(old),dataPath);
+                    // ตั้งตัวเลขเฉพาะตอนสร้างไฟล์ครั้งแรก หลังจากนั้นปรับที่ตาราง Maps ใน Map1MonsterBuilder / Map2MonsterBuilder
+                    if(fresh)
+                    {
+                        data.minMonsters=stage>=5?4:3;data.maxMonsters=stage>=4?5:4;
+                        data.minWaves=data.maxWaves=3;
+                        data.leaderChance=suffix=="Exit"?1:Mathf.Min(.55f,.35f+.1f*(stage-3));
+                        EditorUtility.SetDirty(data);
+                    }
+                    encounterMap.Add(old,data);
                 }
                 room.roomData=data;
             }

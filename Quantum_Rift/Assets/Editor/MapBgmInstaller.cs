@@ -4,10 +4,10 @@ using UnityEngine;
 
 public static class MapBgmInstaller
 {
-    public static readonly string[] MapNames = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_boss", "MapData_boss" };
+    public static readonly string[] MapNames = { "MapData_1_1", "MapData_1_2", "MapData_1_3", "MapData_1_4", "MapData_1_5", "MapData_1_bossroom", "MapData_2_1", "MapData_2_2", "MapData_2_3", "MapData_2_4", "MapData_2_5", "MapData_2_boss", "MapData_boss" };
     // เพลงชุดที่มีสิทธิ์ใช้ (ดู Assets/Audio/CREDITS.md): ด่านย่อยของแมพเดียวกันใช้เพลงเดียวกัน ห้องบอสมีเพลงของตัวเอง
     public static readonly string[] Songs = { "Map1_SpaceDungeon.ogg", "Boss1_SpaceBossBattle.ogg", "Map2_TranceAdventure.ogg", "Boss2_HeavyBossBattle2.ogg", "FinalBoss_EpicBossBattle.wav" };
-    static readonly int[] SongOfMap = { 0, 0, 0, 1, 2, 2, 3, 4 }; // ตามลำดับ MapNames
+    static readonly int[] SongOfMap = { 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 3, 4 }; // ตามลำดับ MapNames
     public static string MapPath(string name) => "Assets/Data/Map/" + name + ".asset";
     public static string ClipPath(int index) => "Assets/Audio/BGM/" + Songs[index];
     public static int SongFor(int mapIndex) => SongOfMap[mapIndex];
@@ -41,7 +41,7 @@ public static class MapBgmInstaller
         }
         AssetDatabase.SaveAssets();
         Verify();
-        Debug.Log("MAP_BGM_INSTALL_COMPLETE maps=8 clips=" + Songs.Length);
+        Debug.Log("MAP_BGM_INSTALL_COMPLETE maps=" + MapNames.Length + " clips=" + Songs.Length);
     }
 
     public static void Verify()

@@ -85,7 +85,7 @@ public static class ExpandedStageLayoutInstaller
     static Tilemap NewTiles(Transform parent,string name,string layer,Material material,bool solid)
     {
         var go=new GameObject(name,typeof(Tilemap),typeof(TilemapRenderer));go.transform.SetParent(parent,false);
-        var r=go.GetComponent<TilemapRenderer>();r.sortingLayerName=layer;r.sortingOrder=solid?0:-1;r.sharedMaterial=material;
+        var r=go.GetComponent<TilemapRenderer>();r.sortingLayerName=layer;r.sortingOrder=0;r.sharedMaterial=material;
         if(solid)go.AddComponent<TilemapCollider2D>();return go.GetComponent<Tilemap>();
     }
     static Tile SolidTile(Tile source,string theme,int index)
@@ -207,8 +207,10 @@ public static class ExpandedStageLayoutInstaller
     {
         var plan=Plans[m];bool forest=m>=2;var layout=Group(parent,$"Layout_{v}_{plan.name}_{(v==0?"Courtyards":v==1?"Galleries":"Crossroads")}").gameObject;
         layout.AddComponent<Grid>().cellSize=new Vector3(Cell,Cell,0);
-        var floor=NewTiles(layout.transform,"Floor_Unified64","ground",t.floorMaterial,false);
-        var wall=NewTiles(layout.transform,"Bulkheads_Unified64","object",t.wallMaterial,true);
+        // ชั้นการวาดและสีพื้นเท่าแมพเดิมของธีมเดียวกัน: พื้นชั้น bg ย้อมหม่น กำแพงชั้น wall (ใต้มอน/หีบ/ของในห้องที่อยู่ชั้น object)
+        var floor=NewTiles(layout.transform,"Floor_Unified64","bg",t.floorMaterial,false);
+        floor.color=forest?new Color(.87f,.94f,.91f):new Color(.72f,.76f,.82f);
+        var wall=NewTiles(layout.transform,"Bulkheads_Unified64","wall",t.wallMaterial,true);
         var centers=plan.centers.Select(p=>new Vector2Int(Mathf.RoundToInt(p.x*(v==1?1.12f:v==2?.95f:1)),Mathf.RoundToInt(p.y*(v==1?.97f:v==2?1.1f:1)))).ToArray();
         var shapes=new List<RoomShape>();var walk=new HashSet<Vector3Int>();
         for(int id=0;id<centers.Length;id++)

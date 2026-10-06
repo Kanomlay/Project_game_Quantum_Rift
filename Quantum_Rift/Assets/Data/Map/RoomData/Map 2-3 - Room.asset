@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f14191813d1e2294c9b9b57643be503a, type: 2}
   - {fileID: 11400000, guid: 0008fdb92ae011c4bb592fde352c73f3, type: 2}
   minMonsters: 3
-  maxMonsters: 4
+  maxMonsters: 5
   minWaves: 3
   maxWaves: 3
   nextWaveWhenAlive: 1
@@ -26,5 +26,5 @@ MonoBehaviour:
   leaderMonsters:
   - {fileID: 11400000, guid: 8bb318b375fc81b44b5ecdbe8cba3672, type: 2}
   - {fileID: 11400000, guid: b168268e707ff2a4eb5f9d6b78673402, type: 2}
-  leaderChance: 0.35
+  leaderChance: 0.4
   possibleWeaponDrops: []

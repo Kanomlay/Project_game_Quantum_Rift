@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-// ตรวจแมพจริงทั้งแปดแบบไม่บันทึกฉากหรือค่าตั้งเสียงของผู้เล่น
+// ตรวจแมพจริงทุกด่านแบบไม่บันทึกฉากหรือค่าตั้งเสียงของผู้เล่น
 [InitializeOnLoad]
 public static class MapBgmPlayChecks
 {
@@ -28,7 +28,7 @@ public static class MapBgmPlayChecks
     static void Changed(PlayModeStateChange state)
     {
         if (!SessionState.GetBool(Key, false) || state != PlayModeStateChange.EnteredPlayMode) return;
-        step = 0; mapIndex = 0; checks = 0; deadline = EditorApplication.timeSinceStartup + 150;
+        step = 0; mapIndex = 0; checks = 0; deadline = EditorApplication.timeSinceStartup + 300; // 13 ด่าน ด่านละราว 10 วินาที
         waitUntil = EditorApplication.timeSinceStartup + 4;
         savedVolume = AudioListener.volume;
         AudioListener.volume = 0f; // ไม่เล่นเสียงออกลำโพงระหว่างชุดทดสอบ

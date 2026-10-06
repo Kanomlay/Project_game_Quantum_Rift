@@ -88,6 +88,16 @@ public static class Map2MonsterBuilder
         ("Assets/Prefab/Map_2_2.prefab",
             new Tier { Asset = "Map 2-2 - Room", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 0.35f },
             new Tier { Asset = "Map 2-2 - Exit", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
+        // 2-3 ถึง 2-5 ไล่ขึ้นทีละขั้น: ระลอกละได้ถึง 5 ตัว แล้วอย่างน้อย 4 ตัว หัวหน้าหน่วยแทรกบ่อยขึ้น
+        ("Assets/Prefab/ExpandedStages/Map_2_3.prefab",
+            new Tier { Asset = "Map 2-3 - Room", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 0.4f },
+            new Tier { Asset = "Map 2-3 - Exit", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
+        ("Assets/Prefab/ExpandedStages/Map_2_4.prefab",
+            new Tier { Asset = "Map 2-4 - Room", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 0.45f },
+            new Tier { Asset = "Map 2-4 - Exit", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
+        ("Assets/Prefab/ExpandedStages/Map_2_5.prefab",
+            new Tier { Asset = "Map 2-5 - Room", Pool = Commons, Min = 4, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 0.55f },
+            new Tier { Asset = "Map 2-5 - Exit", Pool = Commons, Min = 4, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
     };
 
     [MenuItem("Tools/Quantum Rift/Setup Monster/Map 2 Monsters + Rooms (มอนแมพป่า)")]
@@ -113,6 +123,6 @@ public static class Map2MonsterBuilder
             Map1MonsterBuilder.AssignRooms(mapPrefab, Map1MonsterBuilder.BuildTier(room, data), Map1MonsterBuilder.BuildTier(exit, data));
 
         AssetDatabase.SaveAssets();
-        Debug.Log("ติดตั้งมอนสเตอร์แมพ 2 ครบ 5 ตัว และใส่ชุดมอนสเตอร์ให้ทุกห้องในแมพ 2-1 / 2-2 แล้ว");
+        Debug.Log("ติดตั้งมอนสเตอร์แมพ 2 ครบ 5 ตัว และใส่ชุดมอนสเตอร์ให้ทุกห้องในแมพ 2-1 ถึง 2-5 แล้ว");
     }
 }

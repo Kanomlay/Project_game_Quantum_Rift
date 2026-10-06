@@ -80,6 +80,7 @@ public static class Map1MonsterBuilder
 
     // ความยากไล่ขึ้นตามด่าน: 1-1 ปูพื้นด้วยตัวช้า ๆ 2 ระลอก, 1-2 เริ่มมี Echo Stalker และหัวหน้าหน่วยแทรก,
     // 1-3 กองใหญ่ขึ้นเป็น 3 ระลอก ห้องทางออกมีหัวหน้าหน่วยคุมระลอกสุดท้ายทุกครั้ง
+    // 1-4 ระลอกละได้ถึง 5 ตัว, 1-5 อย่างน้อย 4 ตัว หัวหน้าหน่วยแทรกบ่อยขึ้นทีละขั้นก่อนเจอบอส
     static readonly (string mapPrefab, Tier room, Tier exit)[] Maps =
     {
         ("Assets/Prefab/map_1.prefab",
@@ -91,6 +92,12 @@ public static class Map1MonsterBuilder
         ("Assets/Prefab/map_1_3.prefab",
             new Tier { Asset = "Map 1-3 - Room", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 0.35f },
             new Tier { Asset = "Map 1-3 - Exit", Pool = Commons, Min = 3, Max = 4, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
+        ("Assets/Prefab/ExpandedStages/Map_1_4.prefab",
+            new Tier { Asset = "Map 1-4 - Room", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 0.45f },
+            new Tier { Asset = "Map 1-4 - Exit", Pool = Commons, Min = 3, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
+        ("Assets/Prefab/ExpandedStages/Map_1_5.prefab",
+            new Tier { Asset = "Map 1-5 - Room", Pool = Commons, Min = 4, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 0.55f },
+            new Tier { Asset = "Map 1-5 - Exit", Pool = Commons, Min = 4, Max = 5, Waves = 3, Leaders = Leaders, LeaderChance = 1f }),
     };
 
     [MenuItem("Tools/Quantum Rift/Setup Monster/Map 1 Monsters + Rooms (ตาราง 1.6–1.7)")]
@@ -117,7 +124,7 @@ public static class Map1MonsterBuilder
         SetupPhaseSoldierStance();
 
         AssetDatabase.SaveAssets();
-        Debug.Log("ติดตั้งมอนสเตอร์แมพ 1 ครบ 5 ตัว และใส่ชุดมอนสเตอร์ให้ทุกห้องในแมพ 1-1 / 1-2 / 1-3 แล้ว");
+        Debug.Log("ติดตั้งมอนสเตอร์แมพ 1 ครบ 5 ตัว และใส่ชุดมอนสเตอร์ให้ทุกห้องในแมพ 1-1 ถึง 1-5 แล้ว");
     }
 
     // ตั้งแค่ชุดมอนสเตอร์ประจำห้อง (จำนวน/ระลอก/หัวหน้าหน่วย) ของ 1-1 / 1-2 / 1-3 ตามตาราง Maps

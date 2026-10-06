@@ -24,7 +24,13 @@ public static class RandomRoomObjectsBuilder
         "Assets/Prefab/map_1_3.prefab",
         "Assets/Prefab/Map_2.prefab",
         "Assets/Prefab/Map_2_2.prefab",
+        "Assets/Prefab/ExpandedStages/Map_1_4.prefab",
+        "Assets/Prefab/ExpandedStages/Map_1_5.prefab",
+        "Assets/Prefab/ExpandedStages/Map_2_3.prefab",
+        "Assets/Prefab/ExpandedStages/Map_2_4.prefab",
+        "Assets/Prefab/ExpandedStages/Map_2_5.prefab",
     };
+    static readonly string[] WallTileFolder = { "Assets/Data/Map/Map1-Unified-v2/", "Assets/Data/Map/Map2-Forest-v1/" };
     const string ShapesPath = "Assets/Data/Map/WallShapes.asset";
     const string PileFolder = "Assets/Prefab/MapObjects/Spaceship/Piles";
     const float PileStep = 1.25f; // กล่องในกองห่างกันหนึ่งช่องตาราง
@@ -104,7 +110,7 @@ public static class RandomRoomObjectsBuilder
         foreach (var map in root.GetComponentsInChildren<Tilemap>(true))
         {
             if (!map.name.StartsWith("Bulkheads")) continue;
-            (main, accent) = PickWallTiles(map);
+            (main, accent) = PickWallTiles(map, forest);
             if (main != null) break;
         }
         if (main == null) throw new InvalidOperationException($"{path}: หาภาพกำแพงไม่เจอ");
@@ -192,12 +198,17 @@ public static class RandomRoomObjectsBuilder
         return rows;
     }
 
-    static (TileBase main, TileBase accent) PickWallTiles(Tilemap wallMap)
+    static (TileBase main, TileBase accent) PickWallTiles(Tilemap wallMap, bool forest)
     {
         var used = new TileBase[wallMap.GetUsedTilesCount()];
         wallMap.GetUsedTilesNonAlloc(used);
         TileBase main = used.FirstOrDefault(t => t != null && MainWall.Contains(t.name));
         TileBase accent = used.FirstOrDefault(t => t != null && AccentWall.Contains(t.name));
+        // ด่าน 1-4, 1-5, 2-3 ถึง 2-5 ขอบแมพใช้ tile ที่มี collider ในตัว (Data/Map/ExpandedStages) ห้ามเอามาทำกำแพงทุบได้
+        // ไม่งั้นทุบแตกแล้วยังเดินผ่านไม่ได้ จึงใช้ tile ต้นฉบับของธีม (ไม่มี collider) เหมือนแมพเดิม
+        int theme = forest ? 1 : 0;
+        if (main == null) main = AssetDatabase.LoadAssetAtPath<TileBase>(WallTileFolder[theme] + MainWall[theme] + ".asset");
+        if (accent == null) accent = AssetDatabase.LoadAssetAtPath<TileBase>(WallTileFolder[theme] + AccentWall[theme] + ".asset");
         return (main ?? used.FirstOrDefault(t => t != null), accent);
     }
 }

@@ -7,10 +7,11 @@ using UnityEngine.Tilemaps;
 using System.IO;
 using Object=UnityEngine.Object;
 
-// จัดภาพประตูและพื้นที่ชนให้พอดีช่องทางเดิน โดยรักษาขนาดเสาปลายและอนิเมชันเดิม
+// จัดภาพประตูและพื้นที่ชนให้พอดีช่องทางเดิน ภาพประตูวาดทั้งภาพสัดส่วนเดิม ขนาดเท่าประตูแมพเดิม (ไม่ยืดช่วงกลาง)
 public static class GateFitInstaller
 {
-    const float PostScale=.4f;
+    // สเกลเดียวกับประตูใน map_1_3 / Map_2_2: ภาพกว้าง 8 หน่วย = ราว 3.1 หน่วยในฉาก คร่อมทางเดิน 2 ช่องพอดี
+    static float GateScale(bool forest)=>forest?.38392857f:.39522058f;
     static readonly string[] Keys={"1_4","1_5","2_3","2_4","2_5"};
     static string Output {get{var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-gateOutput");return i<0?Path.GetFullPath("../GateFitPreviews"):args[i+1];}}
     static Sprite[] Frames(bool forest)
@@ -39,14 +40,14 @@ public static class GateFitInstaller
     {
         gate.frames=Frames(forest);gate.transform.position=center;
         var parent=gate.transform.parent!=null?gate.transform.parent.lossyScale:Vector3.one;
-        gate.transform.localScale=new Vector3(PostScale/Mathf.Abs(parent.x),PostScale/Mathf.Abs(parent.y),1);
-        var display=gate.GetComponent<SpriteRenderer>();display.drawMode=SpriteDrawMode.Sliced;
+        float scale=GateScale(forest);
+        gate.transform.localScale=new Vector3(scale/Mathf.Abs(parent.x),scale/Mathf.Abs(parent.y),1);
+        // วาดทั้งภาพแบบแมพเดิม: ยืดเฉพาะช่วงกลาง (Sliced) แล้วบานประตูถูกดึงจนผิดสัดส่วน
+        var display=gate.GetComponent<SpriteRenderer>();display.drawMode=SpriteDrawMode.Simple;
         // เสาประตูอยู่บนขอบกำแพง ภาพต้องวาดเหนือไทล์กำแพง ไม่ถูกไทล์รากไม้บังจนเหลือเพียงปลายเถา
         display.sortingLayerName="object";display.sortingOrder=2;
-        float border=(gate.frames[0].border.x+gate.frames[0].border.z)/gate.frames[0].pixelsPerUnit;
-        display.size=new Vector2(passageWidth/PostScale+border,gate.frames[0].rect.height/gate.frames[0].pixelsPerUnit);
         // collider กั้นเฉพาะช่องเดิน ไม่รวมเสาที่ทับบนกำแพง และใช้จุดศูนย์กลางเดียวกับภาพ
-        var box=gate.GetComponent<BoxCollider2D>();box.offset=Vector2.zero;box.size=new Vector2(passageWidth/PostScale,.55f/PostScale);
+        var box=gate.GetComponent<BoxCollider2D>();box.offset=Vector2.zero;box.size=new Vector2(passageWidth/scale,.55f/scale);
         gate.SetClosed(gate.initiallyClosed,true);
     }
     [MenuItem("Tools/Quantum Rift/Fit New Stage and Tutorial Doors")]
@@ -104,8 +105,8 @@ public static class GateFitInstaller
                     {
                         var r=gate.GetComponent<SpriteRenderer>();var box=gate.GetComponent<BoxCollider2D>();
                         if(gate.frames.Length!=7||gate.frames.Any(s=>s==null||s.pivot!=s.rect.size*.5f||s.border.x==0))throw new Exception("Invalid sliced frames "+gate.name);
-                        if(r.drawMode!=SpriteDrawMode.Sliced||Mathf.Abs(gate.transform.lossyScale.x-PostScale)>.001f)throw new Exception("Post scale changed");
-                        if(Mathf.Abs(box.size.x*PostScale-2.5f)>.001f||box.offset!=Vector2.zero)throw new Exception("Blocker does not span two-cell opening");
+                        if(r.drawMode!=SpriteDrawMode.Simple||Mathf.Abs(gate.transform.lossyScale.x-GateScale(key.StartsWith("2_")))>.001f)throw new Exception("Gate scale changed");
+                        if(Mathf.Abs(box.size.x*Mathf.Abs(gate.transform.lossyScale.x)-2.5f)>.001f||box.offset!=Vector2.zero)throw new Exception("Blocker does not span two-cell opening");
                         if(!floor.HasTile(floor.WorldToCell(gate.transform.position)))throw new Exception("Gate is not on corridor floor");
                         foreach(float side in new[]{-1f,1f})
                         {
