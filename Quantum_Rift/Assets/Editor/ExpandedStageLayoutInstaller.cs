@@ -213,12 +213,7 @@ public static class ExpandedStageLayoutInstaller
         var shapes=new List<RoomShape>();var walk=new HashSet<Vector3Int>();
         for(int id=0;id<centers.Length;id++)
         {
-            var shape=new RoomShape{center=centers[id],hx=8+(id+v)%3,hy=7+(id+v*2)%3,kind=forest?1+(id+v)%3:(id+v)%2};
-            if(id==0){shape.hx=shape.hy=5;shape.kind=forest?2:1;}
-            if(m==1&&id==6){shape.hx=11;shape.hy=9;shape.kind=v==2?3:1;}
-            if(m==4&&id==6){shape.hx=12;shape.hy=11;shape.kind=2;}
-            if(v==1&&id%3==1){shape.hx=6;shape.hy=10;shape.kind=forest?2:0;}
-            if(v==2&&id%3==2){shape.hx=10;shape.hy=6;shape.kind=3;}
+            var shape=ShapeFor(m,v,id,centers[id]);
             shapes.Add(shape);
             for(int x=-shape.hx;x<=shape.hx;x++)for(int y=-shape.hy;y<=shape.hy;y++)
                 if(shape.Includes(x,y))walk.Add(new Vector3Int(shape.center.x+x,shape.center.y+y,0));
@@ -238,7 +233,7 @@ public static class ExpandedStageLayoutInstaller
             var a=centers[edge.x];var b=centers[edge.y];
             if(a.x!=b.x&&a.y!=b.y)throw new Exception("Non-orthogonal authored connection");
             for(int x=Mathf.Min(a.x,b.x);x<=Mathf.Max(a.x,b.x);x++)for(int y=Mathf.Min(a.y,b.y);y<=Mathf.Max(a.y,b.y);y++)
-                for(int side=-1;side<=1;side++)walk.Add(new Vector3Int(x+(a.x==b.x?side:0),y+(a.y==b.y?side:0),0));
+                for(int side=0;side<2;side++)walk.Add(new Vector3Int(x+(a.x==b.x?side:0),y+(a.y==b.y?side:0),0));
         }
         foreach(var p in walk)
         {
@@ -257,6 +252,37 @@ public static class ExpandedStageLayoutInstaller
         AddCorridorTraps(layout,shapes,plan.links,t,floor,wall,m,v);
         floor.CompressBounds();wall.CompressBounds();return layout;
     }
+    static Vector2Int[] CentersFor(int m,int v)=>Plans[m].centers.Select(p=>new Vector2Int(Mathf.RoundToInt(p.x*(v==1?1.12f:v==2?.95f:1)),Mathf.RoundToInt(p.y*(v==1?.97f:v==2?1.1f:1)))).ToArray();
+    static RoomShape ShapeFor(int m,int v,int id,Vector2Int center)
+    {
+        bool forest=m>=2;var s=new RoomShape{center=center,hx=8+(id+v)%3,hy=7+(id+v*2)%3,kind=forest?1+(id+v)%3:(id+v)%2};
+        if(id==0){s.hx=s.hy=5;s.kind=forest?2:1;}
+        if(m==1&&id==6){s.hx=11;s.hy=9;s.kind=v==2?3:1;}
+        if(m==4&&id==6){s.hx=12;s.hy=11;s.kind=2;}
+        if(v==1&&id%3==1){s.hx=6;s.hy=10;s.kind=forest?2:0;}
+        if(v==2&&id%3==2){s.hx=10;s.hy=6;s.kind=3;}return s;
+    }
+    // ใช้ mask เดียวกับตัวสร้าง แต่แก้ไทล์ของ prefab เดิมได้โดยไม่สร้างห้อง/พร็อพใหม่
+    public static HashSet<Vector3Int> TwoCellWalk(int m,int v)
+    {
+        var centers=CentersFor(m,v);var cells=new HashSet<Vector3Int>();
+        for(int id=0;id<centers.Length;id++)
+        {
+            var s=ShapeFor(m,v,id,centers[id]);
+            for(int x=-s.hx;x<=s.hx;x++)for(int y=-s.hy;y<=s.hy;y++)if(s.Includes(x,y))cells.Add(new Vector3Int(s.center.x+x,s.center.y+y,0));
+        }
+        foreach(var edge in Plans[m].links)
+        {
+            var a=centers[edge.x];var b=centers[edge.y];
+            for(int x=Mathf.Min(a.x,b.x);x<=Mathf.Max(a.x,b.x);x++)for(int y=Mathf.Min(a.y,b.y);y<=Mathf.Max(a.y,b.y);y++)
+                for(int side=0;side<2;side++)cells.Add(new Vector3Int(x+(a.x==b.x?side:0),y+(a.y==b.y?side:0),0));
+        }
+        return cells;
+    }
+    public static (Vector3Int cell,bool vertical)[] CorridorProbes(int m,int v)
+    {
+        var centers=CentersFor(m,v);return Plans[m].links.Select(e=>(new Vector3Int(Mathf.RoundToInt((centers[e.x].x+centers[e.y].x)*.5f),Mathf.RoundToInt((centers[e.x].y+centers[e.y].y)*.5f),0),centers[e.x].x==centers[e.y].x)).ToArray();
+    }
     static Vector2[] Outline(RoomShape s,float inset)
     {
         float x=(s.hx+.5f-inset)*Cell,y=(s.hy+.5f-inset)*Cell;
@@ -270,12 +296,13 @@ public static class ExpandedStageLayoutInstaller
         if(from.room==null)return;
         bool vertical=from.center.x!=to.center.x;int sign=vertical?Math.Sign(to.center.x-from.center.x):Math.Sign(to.center.y-from.center.y);
         var gate=Object.Instantiate(t.gate,from.room.transform);gate.name=$"Gate_{a}_To_{b}";
-        gate.transform.localPosition=vertical?new Vector3(sign*(from.hx+.5f)*Cell,0,0):new Vector3(0,sign*(from.hy+.5f)*Cell,0);
+        gate.transform.localPosition=vertical?new Vector3(sign*(from.hx+1f)*Cell,0,0):new Vector3(0,sign*(from.hy+1f)*Cell,0);
+        // ทางเดินใช้ช่องด้านข้าง 0 และ 1 จึงเลื่อนประตูครึ่งช่องให้อยู่กลางพื้นทั้งสองช่อง
+        gate.transform.localPosition+=(vertical?Vector3.up:Vector3.right)*(Cell*.5f);
         gate.transform.localRotation=Quaternion.Euler(0,0,vertical?90:0);
         var anim=gate.GetComponent<AnimatedRoomGate>();anim.initiallyClosed=false;
-        float scale=3*Cell/anim.frames[0].bounds.size.x;gate.transform.localScale=Vector3.one*scale;
-        var box=gate.GetComponent<BoxCollider2D>();box.offset=Vector2.zero;box.size=new Vector2(3*Cell/scale,.55f/scale);
-        gate.SetActive(true);anim.SetClosed(false,true);
+        gate.SetActive(true);
+        GateFitInstaller.Fit(anim,gate.transform.position,2*Cell,AssetDatabase.GetAssetPath(anim.frames[0].texture).Contains("Map2-Forest"));
         var list=(from.room.doors??Array.Empty<GameObject>()).ToList();list.Add(gate);from.room.doors=list.ToArray();
     }
     static void AddProps(GameObject layout,List<RoomShape> shapes,Templates t,int m,int v)
@@ -302,7 +329,7 @@ public static class ExpandedStageLayoutInstaller
             if(strips==3)break;var a=shapes[link.x];var b=shapes[link.y];
             var p=new Vector2Int(Mathf.RoundToInt((a.center.x+b.center.x)*.5f),Mathf.RoundToInt((a.center.y+b.center.y)*.5f));
             if(shapes.Any(s=>s.Includes(p.x-s.center.x,p.y-s.center.y)))continue;
-            for(int side=-1;side<=0;side++)
+            for(int side=0;side<1;side++) // กับดักหนึ่งช่อง อีกช่องยังเดินอ้อมได้
             {
                 var cell=new Vector3Int(p.x+(a.center.x==b.center.x?side:0),p.y+(a.center.y==b.center.y?side:0),0);
                 if(!floor.HasTile(cell)||walls.HasTile(cell))continue;

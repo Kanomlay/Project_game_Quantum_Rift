@@ -101,7 +101,8 @@ public static class StageExpansionInstaller
         var walls=Tilemap(root.transform,"Bulkheads_Unified64","object",true);
         var walk=new HashSet<Vector3Int>();
         for(int bay=0;bay<4;bay++)for(int x=-4;x<=4;x++)for(int y=-4;y<=4;y++)walk.Add(new Vector3Int(bay*12+x,y,0));
-        for(int x=4;x<=32;x++)for(int y=-1;y<=1;y++)walk.Add(new Vector3Int(x,y,0));
+        // เชื่อมพื้นที่ฝึกทั้งสี่ด้วยทางเดินสองช่อง โดยไม่ลดพื้นที่ภายในห้องฝึก
+        for(int x=4;x<=32;x++)for(int y=0;y<2;y++)walk.Add(new Vector3Int(x,y,0));
         foreach(var p in walk)ground.SetTile(p,p.y==0&&p.x%3==0?conduit:floor);
         foreach(var p in walk)foreach(var offset in new[]{Vector3Int.up,Vector3Int.down,Vector3Int.left,Vector3Int.right})if(!walk.Contains(p+offset))walls.SetTile(p+offset,wall);
         var tutorial=root.AddComponent<TutorialDirector>();tutorial.loot=map.chestLoot;
@@ -135,8 +136,8 @@ public static class StageExpansionInstaller
         var doors=new List<GameObject>();
         foreach(int side in new[]{-1,1})
         {
-            var gate=Object.Instantiate(template.gameObject,room.transform);gate.name=side<0?"Gate_2_To_1":"Gate_2_To_3";gate.transform.localPosition=new Vector3(side*4.5f*cell,.5f*cell,0);gate.transform.rotation=Quaternion.Euler(0,0,90);gate.GetComponent<AnimatedRoomGate>().initiallyClosed=false;doors.Add(gate);
-            var gateScale=gate.transform.lossyScale;var blocker=gate.GetComponent<BoxCollider2D>();blocker.offset=Vector2.zero;blocker.size=new Vector2(3*cell/Mathf.Abs(gateScale.x),.45f/Mathf.Abs(gateScale.y));
+            var gate=Object.Instantiate(template.gameObject,room.transform);gate.name=side<0?"Gate_2_To_1":"Gate_2_To_3";gate.transform.localPosition=new Vector3((side<0?-4.5f:5.5f)*cell,cell,0);gate.transform.rotation=Quaternion.Euler(0,0,90);gate.GetComponent<AnimatedRoomGate>().initiallyClosed=false;doors.Add(gate);
+            GateFitInstaller.Fit(gate.GetComponent<AnimatedRoomGate>(),gate.transform.position,2*cell,false);
         }
         tutorial.combatRoom.doors=doors.ToArray();
         var portal=source.mapPrefab.GetComponentInChildren<MapPortal>(true);
