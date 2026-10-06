@@ -19,5 +19,6 @@ MonoBehaviour:
   possibleEvents:
   - {fileID: 11400000, guid: 9e3f89712ec554840b9e82a6b7ffcb2f, type: 2}
   chestLoot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
-  nextMap: {fileID: 11400000, guid: 57906349bc8c62f459788ef408f0ccac, type: 2}
+  nextMap: {fileID: 11400000, guid: 669f1584bfc401f4892724c73d438ed3, type: 2}
   isBossRoom: 0
+  isTutorial: 0

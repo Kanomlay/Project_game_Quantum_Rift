@@ -23,6 +23,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnTutorialClicked()
     {
+        MapManager.startOverride=null;
+        Time.timeScale=1f;PauseManager.isGamePaused=false;
         SceneManager.LoadScene("TutorialScene");
     }
 

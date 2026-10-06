@@ -21,6 +21,8 @@ public class MapData : ScriptableObject
     [Header("การเชื่อมโยงด่าน (Progression)")]
     public MapData nextMap; 
     public bool isBossRoom;
+    [Header("สนามฝึกสอน (ไม่รับพรหรือบันทึกว่าจบรอบจริง)")]
+    public bool isTutorial;
 
     // ห้องทดสอบของคอนโซลทดสอบ (สร้างตอนเล่นเท่านั้น ไม่มีไฟล์): ห้องไม่มีมอนเกิดเอง ออกทางประตูแล้วไม่ได้พร
     [System.NonSerialized] public bool isTestLab;

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca00dc606258847ad637796d83d938, type: 3}
+  m_Name: MapData_2_3
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  mapName: Map 2-3
+  mapPrefab: {fileID: 5816553234696213029, guid: a957b8fa5c2242e408800be64e5ff3b7, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 06820f9fa7654f48ad32f512da96d06d, type: 3}
+  spawnPosition: {x: 0.625, y: 0.625}
+  possibleEvents:
+  - {fileID: 11400000, guid: 9e3f89712ec554840b9e82a6b7ffcb2f, type: 2}
+  chestLoot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
+  nextMap: {fileID: 11400000, guid: c46c52677fb31f5478d5483245ff0d1a, type: 2}
+  isBossRoom: 0
+  isTutorial: 0

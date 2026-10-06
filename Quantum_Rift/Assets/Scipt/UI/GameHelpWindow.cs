@@ -39,7 +39,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     public static GameHelpWindow Instance { get; private set; }
     static int closedFrame = -1;
     public static bool IsOpen => Instance != null && Instance.panel != null && Instance.panel.activeSelf;
-    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame || CinematicDirector.BlocksGameplayInput;
+    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame || CinematicDirector.BlocksGameplayInput || TutorialDirector.IsCompleting;
     public int CurrentPage { get; private set; }
     bool ownsPause;
     bool previousPaused;

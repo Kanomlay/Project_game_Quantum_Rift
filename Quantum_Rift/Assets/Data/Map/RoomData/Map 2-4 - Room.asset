@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e9f7da5d99f3a4d9a5e7af46d82e36, type: 3}
+  m_Name: Map 2-4 - Room
+  m_EditorClassIdentifier: Assembly-CSharp::RoomEncounterData
+  monstersToSpawn: []
+  possibleMonsters:
+  - {fileID: 11400000, guid: 5dc21ae621dbc014da3e9f73b334c868, type: 2}
+  - {fileID: 11400000, guid: f14191813d1e2294c9b9b57643be503a, type: 2}
+  - {fileID: 11400000, guid: 0008fdb92ae011c4bb592fde352c73f3, type: 2}
+  minMonsters: 3
+  maxMonsters: 5
+  minWaves: 3
+  maxWaves: 3
+  nextWaveWhenAlive: 1
+  waveDelay: 0.6
+  leaderMonsters:
+  - {fileID: 11400000, guid: 8bb318b375fc81b44b5ecdbe8cba3672, type: 2}
+  - {fileID: 11400000, guid: b168268e707ff2a4eb5f9d6b78673402, type: 2}
+  leaderChance: 0.45
+  possibleWeaponDrops: []

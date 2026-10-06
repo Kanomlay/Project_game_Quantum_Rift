@@ -70,7 +70,7 @@ public class MapManager : MonoBehaviour
     private void ProceedTo(MapData next)
     {
         if (loading || BlessingManager.IsChoosing) return;
-        if (currentMap != null && currentMap.isTestLab) { LoadMap(next); return; } // ออกจากห้องทดสอบไม่ได้พร
+        if (currentMap != null && (currentMap.isTestLab||currentMap.isTutorial)) { LoadMap(next); return; }
         if (BlessingManager.Instance != null && BlessingManager.Instance.OfferChoice(() => LoadMap(next))) return;
         LoadMap(next);
     }
@@ -95,7 +95,7 @@ public class MapManager : MonoBehaviour
             if (currentMap.isTestLab)
                 foreach (var room in currentMapInstance.GetComponentsInChildren<RoomController>(true)) room.roomData = null;
             // สุ่มเหตุการณ์พิเศษของแมพนี้ (ร้านค้า ฯลฯ) หนึ่งอย่างต่อการเข้าหนึ่งครั้ง
-            MapEventDirector.PlaceEvent(currentMapInstance, currentMap);
+            if(!currentMap.isTutorial)MapEventDirector.PlaceEvent(currentMapInstance, currentMap);
         }
         
         if (player != null)
@@ -125,7 +125,7 @@ public class MapManager : MonoBehaviour
         if(!openingConsidered)
         {
             openingConsidered=true;
-            if(currentMap==firstMap&&!currentMap.isTestLab)yield return cinematics.PlayOpening();
+            if(currentMap==firstMap&&!currentMap.isTestLab&&!currentMap.isTutorial)yield return cinematics.PlayOpening();
         }
     }
     public void GoToNextMap()

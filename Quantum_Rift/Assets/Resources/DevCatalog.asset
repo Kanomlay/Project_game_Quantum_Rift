@@ -49,6 +49,12 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
     map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Map 2-BossRoom"
     boss: 1
+  - data: {fileID: 11400000, guid: f484ad594edecfc44a64d7d26ad47fc6, type: 2}
+    map: "\u0E40\u0E08\u0E2D\u0E17\u0E35\u0E48 Tutorial / \u0E2A\u0E19\u0E32\u0E21\u0E1D\u0E36\u0E01"
+    boss: 0
+  - data: {fileID: 11400000, guid: 1a5d80801e17fd24a9db9a34d8072e6d, type: 2}
+    map: 
+    boss: 0
   weapons:
   - {fileID: 11400000, guid: 8966a3abd470b3144920c47277cf8c26, type: 2}
   - {fileID: 11400000, guid: 20b36cdcea5467b4cb2530649595139f, type: 2}
@@ -92,11 +98,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 692a024dc5e76e64a85dc97882b4cbcb, type: 2}
   - {fileID: 11400000, guid: 3212100821d769e4fb04c52c17f34beb, type: 2}
   - {fileID: 11400000, guid: 59f861cd60d50dc41b21e7cc04b5a706, type: 2}
+  - {fileID: 11400000, guid: 6d555a16f9ad1d749a1fc5fa3f7679f6, type: 2}
+  - {fileID: 11400000, guid: fb43d4d8b5b6e1e46b64f1dbd03d7e69, type: 2}
   - {fileID: 11400000, guid: bd88113ea26639b4ba33b795bb73bb25, type: 2}
   - {fileID: 11400000, guid: 0da5f1f2845df4642840ccd26ffbe411, type: 2}
   - {fileID: 11400000, guid: b809ce7d65e628543a2b4832d988a2c7, type: 2}
+  - {fileID: 11400000, guid: 669f1584bfc401f4892724c73d438ed3, type: 2}
+  - {fileID: 11400000, guid: c46c52677fb31f5478d5483245ff0d1a, type: 2}
+  - {fileID: 11400000, guid: 59c35214d46b0b6409f5218ab7d21709, type: 2}
   - {fileID: 11400000, guid: 57906349bc8c62f459788ef408f0ccac, type: 2}
   - {fileID: 11400000, guid: 0fd8c6262a817654ea237f919e5447de, type: 2}
+  - {fileID: 11400000, guid: 2ae36b1ea026f7241b0cca14ba593055, type: 2}
   chests:
   - {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
   - {fileID: 11400000, guid: d46505f7dd9205449b72c435df5fe8eb, type: 2}

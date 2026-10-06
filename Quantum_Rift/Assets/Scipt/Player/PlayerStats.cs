@@ -90,6 +90,8 @@ public class PlayerStats : MonoBehaviour
     private float maxCooldownE;
     private float currentCooldownQ = 0f;
     private float currentCooldownE = 0f;
+    // สนามฝึกฟังเฉพาะการใช้สกิลสำเร็จ ไม่ใช่แค่กดปุ่มตอนพลังงานไม่พอ
+    public event System.Action<string> SkillUsed;
 
     [Header("ระบบอมตะ (I-Frames)")]
     public float iframeDuration = 1.0f;
@@ -350,6 +352,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
             Sfx.Play(activeSkillQ.CastSound);
             activeSkillQ.ActivateSkill(this.gameObject); 
             currentCooldownQ = maxCooldownQ;
+            SkillUsed?.Invoke("Q");
         }
     }
 
@@ -361,6 +364,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
             Sfx.Play(activeSkillE.CastSound);
             activeSkillE.ActivateSkill(this.gameObject);
             currentCooldownE = maxCooldownE;
+            SkillUsed?.Invoke("E");
         }
     }
 

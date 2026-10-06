@@ -43,7 +43,7 @@ public class SummaryManager : MonoBehaviour
     {
         if(CinematicDirector.Instance!=null)CinematicDirector.Instance.Cancel();
         var map=MapManager.instance!=null?MapManager.instance.CurrentMap:null;
-        if(map!=null&&!map.isTestLab&&(!isWin||map.nextMap==null))CinematicProgress.MarkRunFinished();
+        if(map!=null&&!map.isTestLab&&!map.isTutorial&&(!isWin||map.nextMap==null))CinematicProgress.MarkRunFinished();
         if (summaryPanel == null)
         {
             Debug.LogWarning("SummaryManager ยังไม่ได้ลาก Summary Panel ใส่ใน Inspector เลยไม่มีหน้าสรุปให้แสดง");
