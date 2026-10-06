@@ -7,12 +7,29 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject characterSelectUI;
     public GameObject characterDetailUI;
+    // สนามฝึกจบแล้วกด "เลือกอาชีพ เริ่มเกมจริง": กลับมาฉากเมนูแล้วเปิดหน้าเลือกอาชีพทันที (ใช้ครั้งเดียว)
+    public static bool openCharacterSelectOnLoad;
+    // ปุ่มสนามฝึกวางอยู่ใต้ Canvas ตรง ๆ (ไม่ได้อยู่ในหน้าเมนูหลัก) ให้เห็นเฉพาะตอนหน้าเมนูหลักเปิดอยู่
+    GameObject tutorialButton;
 
     void Start()
     {
         if (mainMenuUI != null) mainMenuUI.SetActive(true);
         if (characterSelectUI != null) characterSelectUI.SetActive(false);
         if (characterDetailUI != null) characterDetailUI.SetActive(false);
+        var button = mainMenuUI != null && mainMenuUI.transform.parent != null ? mainMenuUI.transform.parent.Find("TutorialButton") : null;
+        if (button != null) tutorialButton = button.gameObject;
+        if (openCharacterSelectOnLoad)
+        {
+            openCharacterSelectOnLoad = false;
+            if (mainMenuUI != null && characterSelectUI != null) OnNewGameClicked();
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (tutorialButton != null && mainMenuUI != null && tutorialButton.activeSelf != mainMenuUI.activeSelf)
+            tutorialButton.SetActive(mainMenuUI.activeSelf);
     }
 
     public void OnNewGameClicked()

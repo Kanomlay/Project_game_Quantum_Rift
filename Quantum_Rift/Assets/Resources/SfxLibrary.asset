@@ -1088,6 +1088,16 @@ MonoBehaviour:
   - weapon: {fileID: 11400000, guid: 578b7e2110cb60846a7e5424f7ecc53d, type: 2}
     attack: 13
   monsters:
+  - monster: {fileID: 11400000, guid: 1a5d80801e17fd24a9db9a34d8072e6d, type: 2}
+    shot: 0
+    attackVoice: 96
+    hurtVoice: 97
+    deathVoice: 98
+  - monster: {fileID: 11400000, guid: f484ad594edecfc44a64d7d26ad47fc6, type: 2}
+    shot: 0
+    attackVoice: 96
+    hurtVoice: 97
+    deathVoice: 98
   - monster: {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
     shot: 0
     attackVoice: 0

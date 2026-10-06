@@ -212,6 +212,9 @@ public static class SfxLibraryBuilder
         { "Mutated-Heavy", new[] { SfxId.VoiceHeavyAttack, SfxId.VoiceHeavyHurt, SfxId.VoiceHeavyDeath } },
         { "Phase-Soldier", new[] { SfxId.VoiceSoldierAttack, SfxId.VoiceSoldierHurt, SfxId.VoiceSoldierDeath } },
         { "Rift_Walker", new[] { SfxId.VoiceWorkerAttack, SfxId.VoiceWorkerHurt, SfxId.VoiceWorkerDeath } }, // Rift-Drained Worker
+        // สนามฝึก (Data/Map): หุ่นฝึกและศัตรูฝึกเป็นสำเนาของ Rift-Drained Worker ใช้เสียงร้องชุดเดียวกัน
+        { "TutorialDummy", new[] { SfxId.VoiceWorkerAttack, SfxId.VoiceWorkerHurt, SfxId.VoiceWorkerDeath } },
+        { "TutorialEnemy", new[] { SfxId.VoiceWorkerAttack, SfxId.VoiceWorkerHurt, SfxId.VoiceWorkerDeath } },
         { "Rootlings", new[] { SfxId.VoiceRootlingAttack, SfxId.VoiceRootlingHurt, SfxId.VoiceRootlingDeath } },
         { "Woodmine", new[] { SfxId.VoiceWoodmineAttack, SfxId.VoiceWoodmineHurt, SfxId.VoiceWoodmineDeath } },
         { "Zero-Husk", new[] { SfxId.VoiceHuskAttack, SfxId.VoiceHuskHurt, SfxId.None } }, // ระเบิดตัวเอง ไม่มีเสียงร้องตอนตาย

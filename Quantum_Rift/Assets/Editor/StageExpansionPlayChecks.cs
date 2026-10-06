@@ -14,7 +14,7 @@ using Object=UnityEngine.Object;
 public static class StageExpansionPlayChecks
 {
     const string Key="QuantumRift.StageExpansionChecks";
-    static int step,index,checks,pick;
+    static int step,index,checks,pick,coinsBeforePurchase;
     static double wait,deadline;
     static MapManager manager;
     static TutorialDirector tutorial;
@@ -126,11 +126,23 @@ public static class StageExpansionPlayChecks
                     Check(tutorial.combatRoom.IsCleared&&tutorial.CurrentLesson==TutorialDirector.Lesson.Chest,"defeating all enemies advances to reward lesson");
                     Check(tutorial.combatRoom.doors.All(d=>!d.GetComponent<AnimatedRoomGate>().IsClosed),"practice gates reopen");var chest=tutorial.combatRoom.GetComponentInChildren<TreasureChest>();Check(chest!=null,"clear produces real reward chest");Move(chest.transform.position);Next(11,1.4f);break;
                 case 11:
-                    Check(tutorial.CurrentLesson==TutorialDirector.Lesson.Exit&&tutorial.portalVisual.activeSelf,"opening chest reveals training exit");Move(tutorial.exitPoint.position);Check(tutorial.TryUseExit(),"exit requires completed lessons and proximity");Next(12);break;
+                    Check(tutorial.CurrentLesson==TutorialDirector.Lesson.Shop&&tutorial.Shop!=null&&tutorial.BuffShop!=null&&!tutorial.portalVisual.activeSelf,"opening chest starts the random-event shop lesson with both vendors");
+                    Check(hero.currentCurrency>=TutorialDirector.TrainingCoins,"shop lesson grants training coins");Move(tutorial.exitPoint.position);Check(!tutorial.TryUseExit(),"exit stays locked until one purchase");
+                    // ซื้อผ่านหน้าร้านจริง: ช่องแรกของร้านอาวุธคือขวดยาเลือด
+                    coinsBeforePurchase=hero.currentCurrency;ShopWindow.Open(tutorial.Shop.windowPrefab,tutorial.Shop);ShopWindow.Active.Buy(0);Next(19,.3f);break;
+                case 19:
+                    Check(tutorial.Bought&&hero.currentCurrency==coinsBeforePurchase-tutorial.Shop.potionPrice&&tutorial.CurrentLesson==TutorialDirector.Lesson.Shop,"purchase spends coins and the lesson waits while the shop window is open");
+                    ShopWindow.Active.Close();Next(20,.3f);break;
+                case 20:
+                    Check(tutorial.CurrentLesson==TutorialDirector.Lesson.Exit&&tutorial.portalVisual.activeSelf,"buying one item reveals training exit");Move(tutorial.exitPoint.position);Check(tutorial.TryUseExit(),"exit requires completed lessons and proximity");Next(12);break;
                 case 12:
                     Check(TutorialDirector.IsCompleting&&Time.timeScale==0&&GameHelpWindow.BlocksGameplayInput,"completion freezes combat and blocks click-through");
                     Check(PlayerPrefs.GetInt(CinematicProgress.WatchedKey)==0&&PlayerPrefs.GetInt(CinematicProgress.CompletedKey)==0,"finishing training does not mark campaign completed");
-                    tutorial.StartRealGame();Next(13,4.5f);break;
+                    tutorial.StartRealGame();Next(18,1.2f);break;
+                case 18:
+                    var picker=Object.FindFirstObjectByType<MainMenuController>();
+                    Check(SceneManager.GetActiveScene().name=="MainMenu"&&picker!=null&&picker.characterSelectUI.activeSelf&&!picker.mainMenuUI.activeSelf,"finishing training opens class selection instead of skipping it");
+                    GameManager.selectedCharacter=AssetDatabase.LoadAssetAtPath<CharacterData>("Assets/Data/Character/Hero/นักรบ.asset");SceneManager.LoadScene("GameScene");Next(13,4.5f);break;
                 case 13:
                     manager=MapManager.instance;hero=Object.FindFirstObjectByType<PlayerStats>();if(manager==null||manager.IsLoading)return;
                     Check(manager.CurrentMap.name=="MapData_1_1"&&hero.currentCurrency==0&&hero.runDamageBonus==0&&BlessingManager.Instance.Owned.Count==0,"real campaign starts fresh with no training gains");

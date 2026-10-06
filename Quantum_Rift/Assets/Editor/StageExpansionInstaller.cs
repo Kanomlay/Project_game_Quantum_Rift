@@ -104,8 +104,9 @@ public static class StageExpansionInstaller
         solidWall.colliderType=Tile.ColliderType.Grid;EditorUtility.SetDirty(solidWall);wall=solidWall;
         float cell=floor.sprite.bounds.size.x;
         var root=new GameObject("TutorialTrainingMap",typeof(Grid));root.GetComponent<Grid>().cellSize=new Vector3(cell,cell,1);
-        var ground=Tilemap(root.transform,"Floor_Unified64","ground",false);
-        var walls=Tilemap(root.transform,"Bulkheads_Unified64","object",true);
+        // ชั้นการวาดและสีพื้นเท่าแมพเดิมธีมยาน: พื้นชั้น bg ย้อมหม่น กำแพงชั้น wall
+        var ground=Tilemap(root.transform,"Floor_Unified64","bg",false);ground.color=new Color(.72f,.76f,.82f);
+        var walls=Tilemap(root.transform,"Bulkheads_Unified64","wall",true);
         var walk=new HashSet<Vector3Int>();
         for(int bay=0;bay<4;bay++)for(int x=-4;x<=4;x++)for(int y=-4;y<=4;y++)walk.Add(new Vector3Int(bay*12+x,y,0));
         // เชื่อมพื้นที่ฝึกทั้งสี่ด้วยทางเดินสองช่อง โดยไม่ลดพื้นที่ภายในห้องฝึก
@@ -118,6 +119,8 @@ public static class StageExpansionInstaller
         tutorial.pickupPoint=Point(root.transform,"PotionsAndCoin",new Vector2(14*cell,cell));
         tutorial.exitPoint=Point(root.transform,"RiftExit",new Vector2(36*cell,0));
         tutorial.cratePrefab=Load<GameObject>("Assets/Prefab/MapObjects/Spaceship/BreakableWall.prefab");
+        // บทร้านค้า (เหตุการณ์สุ่ม): ร้านอาวุธของด่านจริง เสกตอนถึงบท ร้านบัพตามมาเอง
+        tutorial.shopPrefab=Load<GameObject>("Assets/Prefab/Shop/ShopSpaceship.prefab");
         if(tutorial.cratePrefab.GetComponent<BreakableProp>()==null)throw new Exception("Training crate has no BreakableProp");
         var worker=AssetDatabase.FindAssets("t:MonsterData",new[]{"Assets/Data"}).Select(g=>Load<MonsterData>(AssetDatabase.GUIDToAssetPath(g))).First(m=>m.monsterPrefab!=null&&m.monsterPrefab.name.StartsWith("Rift-Drained"));
         const string dummyPath="Assets/Data/Map/TutorialDummy.asset";
@@ -151,7 +154,7 @@ public static class StageExpansionInstaller
         tutorial.portalVisual=Object.Instantiate(portal.gameObject,root.transform);tutorial.portalVisual.name="TutorialRiftExit";tutorial.portalVisual.transform.position=tutorial.exitPoint.position;Object.DestroyImmediate(tutorial.portalVisual.GetComponent<MapPortal>());tutorial.portalVisual.SetActive(false);
         var bgTemplate=source.mapPrefab.GetComponentInChildren<WorldFlowBackdrop>(true);
         if(bgTemplate!=null)Object.Instantiate(bgTemplate.gameObject,root.transform);
-        string[] signs={"01 · MOVEMENT / ATTACK","02 · SUPPLIES","03 · COMBAT","04 · RIFT EXIT"};
+        string[] signs={"01 · MOVEMENT / ATTACK","02 · SUPPLIES","03 · COMBAT","04 · SHOP / RIFT EXIT"};
         for(int i=0;i<4;i++)
         {
             var sign=Point(root.transform,"StationSign_"+i,new Vector2(i*12*cell,3.1f*cell)).gameObject.AddComponent<TextMeshPro>();sign.text=signs[i];sign.fontSize=2.1f;sign.alignment=TextAlignmentOptions.Center;sign.rectTransform.sizeDelta=new Vector2(10*cell,2);sign.color=QuantumUiSkin.Cyan;sign.GetComponent<MeshRenderer>().sortingLayerName="Effect";
@@ -167,7 +170,7 @@ public static class StageExpansionInstaller
     }
     static Tilemap Tilemap(Transform parent,string name,string layer,bool collision)
     {
-        var go=new GameObject(name,typeof(Tilemap),typeof(TilemapRenderer));go.transform.SetParent(parent,false);var renderer=go.GetComponent<TilemapRenderer>();renderer.sortingLayerName=layer;renderer.sortingOrder=collision?-1:0;if(collision)go.AddComponent<TilemapCollider2D>();return go.GetComponent<Tilemap>();
+        var go=new GameObject(name,typeof(Tilemap),typeof(TilemapRenderer));go.transform.SetParent(parent,false);var renderer=go.GetComponent<TilemapRenderer>();renderer.sortingLayerName=layer;renderer.sortingOrder=0;if(collision)go.AddComponent<TilemapCollider2D>();return go.GetComponent<Tilemap>();
     }
     static void ConnectMenu()
     {
@@ -178,6 +181,8 @@ public static class StageExpansionInstaller
             // ปุ่มแยก ไม่ย้ายปุ่มเมนูเดิมหรือคู่มือ
             var canvas=menu.mainMenuUI.GetComponentInParent<Canvas>();
             var go=new GameObject("TutorialButton",typeof(RectTransform),typeof(Image),typeof(Button));go.layer=5;go.transform.SetParent(canvas.transform,false);
+            // ถัดจากหน้าเมนูหลัก หน้าเลือกอาชีพ/ตั้งค่าที่อยู่หลังจากนี้จึงวาดทับปุ่มได้ (MainMenuController ซ่อนปุ่มเมื่อออกจากเมนูหลักด้วย)
+            go.transform.SetSiblingIndex(menu.mainMenuUI.transform.GetSiblingIndex()+1);
             var rect=(RectTransform)go.transform;rect.anchorMin=rect.anchorMax=rect.pivot=Vector2.one;rect.anchoredPosition=new Vector2(-34,-32);rect.sizeDelta=new Vector2(260,65);
             var image=go.GetComponent<Image>();image.color=QuantumUiSkin.Surface;existing=go.GetComponent<Button>();existing.targetGraphic=image;
             var label=new GameObject("Label",typeof(RectTransform),typeof(TextMeshProUGUI));label.layer=5;label.transform.SetParent(go.transform,false);var lr=(RectTransform)label.transform;lr.anchorMin=Vector2.zero;lr.anchorMax=Vector2.one;lr.offsetMin=lr.offsetMax=Vector2.zero;

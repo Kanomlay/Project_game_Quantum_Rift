@@ -2368,9 +2368,9 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1096051565
-  m_SortingLayer: 4
-  m_SortingOrder: -1
+  m_SortingLayerID: 2074330283
+  m_SortingLayer: 3
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2499,6 +2499,8 @@ MonoBehaviour:
   portalVisual: {fileID: 8094099157287908967}
   combatRoom: {fileID: 2594501646684038984}
   loot: {fileID: 11400000, guid: 4420a09c36d41ae419e6387f9569d2d5, type: 2}
+  shopPrefab: {fileID: 8774950107016189731, guid: b562717ea3cd1284193d312f483802e5, type: 3}
+  shopOffset: {x: -1.6, y: -3.6}
 --- !u!1 &4402816865614534573
 GameObject:
   m_ObjectHideFlags: 0
@@ -6683,7 +6685,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.72, g: 0.76, b: 0.82, a: 1}
   m_Origin: {x: -4, y: -4, z: 0}
   m_Size: {x: 45, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -6750,8 +6752,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1172099445
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -7072,7 +7074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "04 \xB7 RIFT EXIT"
+  m_text: "04 \xB7 SHOP / RIFT EXIT"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}
   m_sharedMaterial: {fileID: -6380878020808279092, guid: dc05c4054d5a360419e2a4733075e8c1, type: 2}

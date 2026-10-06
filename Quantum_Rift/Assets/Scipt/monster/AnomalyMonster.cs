@@ -39,7 +39,10 @@ public sealed class AnomalyMonster : MonoBehaviour
 
     public static bool Roll(MonsterData data, int anomaliesSoFar) =>
         data != null && data.monsterPrefab != null && data.monsterPrefab.GetComponent<BossHealthHudLink>() == null
-        && anomaliesSoFar < MaxPerRoom && Random.value < Chance;
+        && anomaliesSoFar < MaxPerRoom && !InTutorial && Random.value < Chance;
+
+    // สนามฝึก: ศัตรูฝึกต้องเป็นตัวธรรมดาเสมอ
+    static bool InTutorial => MapManager.instance != null && MapManager.instance.CurrentMap != null && MapManager.instance.CurrentMap.isTutorial;
 
     public static Kind RandomKind() => (Kind)Random.Range(0, 3);
 
