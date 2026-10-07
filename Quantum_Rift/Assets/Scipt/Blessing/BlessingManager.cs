@@ -224,6 +224,25 @@ public sealed class BlessingManager : MonoBehaviour
         if (!OfferChoice(null)) Debug.Log($"ไม่มีพรให้เลือกแล้ว (มี {owned.Count}/{maxBlessings} อัปครบทุกอัน)");
     }
 
+    // ---------- เล่นต่อจากเซฟ (RunSave) ----------
+
+    // คืนพรที่บันทึกไว้ให้ถึงระดับเดิม เดินผ่านขั้นอัปเกรดปกติทีละระดับ (ค่าของพรเปลี่ยนตามระดับในสำเนา) ไม่เด้งเอฟเฟกต์ช่องพร
+    public void RestoreSaved(string blessingName, int level)
+    {
+        if (all == null) return;
+        BlessingData source = null;
+        foreach (var blessing in all)
+            if (blessing != null && blessing.name == blessingName) { source = blessing; break; }
+        if (source == null) return;
+        int slot = Take(new BlessingOffer(source, 1, null));
+        if (slot < 0) return;
+        var have = owned[slot];
+        int wanted = Mathf.Clamp(level, 1, have.MaxLevel);
+        for (int step = 0; step < have.MaxLevel && LevelOf(have) < wanted; step++)
+            Take(new BlessingOffer(have, LevelOf(have) + 1, have));
+        if (hud != null) hud.Refresh(this);
+    }
+
     // ---------- คอนโซลทดสอบ (DevConsole) ----------
 
     // ใส่พรให้ถึงระดับที่ต้องการทันที (มีอยู่แล้วระดับสูงกว่า = ถอดออกแล้วใส่ใหม่) คืนข้อความถ้าใส่ไม่ได้ ใส่ได้คืน null

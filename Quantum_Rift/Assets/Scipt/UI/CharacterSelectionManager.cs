@@ -94,6 +94,9 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public void StartGame()
     {
+        // ยังมีเซฟค้าง (เข้าหน้านี้จากสนามฝึก ไม่ได้ผ่านปุ่มเริ่มเกมที่ถามไปแล้ว): ถามก่อนเริ่มรอบใหม่ทับเซฟ
+        if (ContinueMenu.AskBeforeNewGame(StartGame)) return;
+
         // 1. ส่งข้อมูล Data ตัวละครที่กำลังโชว์อยู่บนจอ ไปเก็บไว้ที่ GameManager
         GameManager.selectedCharacter = allCharacters[currentIndex]; 
 

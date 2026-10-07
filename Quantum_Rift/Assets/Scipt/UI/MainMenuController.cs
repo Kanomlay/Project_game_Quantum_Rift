@@ -19,6 +19,7 @@ public class MainMenuController : MonoBehaviour
         if (characterDetailUI != null) characterDetailUI.SetActive(false);
         var button = mainMenuUI != null && mainMenuUI.transform.parent != null ? mainMenuUI.transform.parent.Find("TutorialButton") : null;
         if (button != null) tutorialButton = button.gameObject;
+        ContinueMenu.Attach(this); // มีเซฟค้าง: ปุ่ม "เล่นต่อ" และถามยืนยันก่อนเริ่มเกมใหม่ทับเซฟ
         if (openCharacterSelectOnLoad)
         {
             openCharacterSelectOnLoad = false;

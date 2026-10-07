@@ -46,6 +46,13 @@ public class MapManager : MonoBehaviour
 
         MapData start = startOverride != null ? startOverride : firstMap;
         startOverride = null;
+        // เล่นต่อจากเซฟ (RunSave): เริ่มที่แมพที่บันทึกไว้ ไม่เล่นฉากเปิดเรื่องซ้ำ
+        MapData saved = RunSave.ResumeMap(firstMap);
+        if (saved != null)
+        {
+            start = saved;
+            openingConsidered = true;
+        }
         if (start != null)
         {
             // ด่านแรกยังไม่มีอะไรให้ค่อยๆ มืด ถ้าปล่อยให้เฟดตามปกติจะเห็นฉากเปล่าแว็บนึงก่อนแมพโหลด
@@ -116,6 +123,9 @@ public class MapManager : MonoBehaviour
             if (crates != null && !currentMap.isBossRoom) crates.Spawn(currentMap.spawnPosition);
             MiniMapHUD.Show(hud, currentMapInstance, player != null ? player.transform : null);
         }
+        // บันทึกอัตโนมัติ: สถานะตอนเพิ่งเข้าแมพ (รอ 1 เฟรมให้ตัวละครตั้งค่าเริ่มต้นหรือรับค่าจากเซฟเสร็จก่อน จอยังมืดอยู่)
+        yield return null;
+        RunSave.Capture(currentMap, player);
         yield return new WaitForSeconds(1.5f);
         if (hud != null && hud.transitionCanvas != null) 
         {

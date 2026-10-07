@@ -26,6 +26,7 @@ public class SummaryManager : MonoBehaviour
 
     // PauseManager ใช้เช็คว่ากำลังโชว์หน้าสรุปอยู่ไหม จะได้ไม่ให้กด ESC หนีหน้าสรุปไปเล่นต่อ
     public bool IsShowing => summaryPanel != null && summaryPanel.activeSelf;
+    public float ElapsedSeconds => Time.time - startTime; // เวลาเล่นของรอบนี้ (รวมช่วงก่อนออกเกม ถ้าเล่นต่อจากเซฟ)
 
     void Awake()
     {
@@ -37,13 +38,19 @@ public class SummaryManager : MonoBehaviour
         if (summaryPanel != null) summaryPanel.SetActive(false);
         startTime = Time.time;
         enemiesDefeatedCount = 0;
+        // เล่นต่อจากเซฟ: เวลาเล่นและจำนวนมอนนับต่อจากที่บันทึกไว้
+        if (RunSave.ResumeStats(out float elapsed, out int kills))
+        {
+            startTime -= elapsed;
+            enemiesDefeatedCount = kills;
+        }
     }
 
     public void ShowSummary(bool isWin, string nextMapName)
     {
         if(CinematicDirector.Instance!=null)CinematicDirector.Instance.Cancel();
         var map=MapManager.instance!=null?MapManager.instance.CurrentMap:null;
-        if(map!=null&&!map.isTestLab&&!map.isTutorial&&(!isWin||map.nextMap==null))CinematicProgress.MarkRunFinished();
+        if(map!=null&&!map.isTestLab&&!map.isTutorial&&(!isWin||map.nextMap==null)){CinematicProgress.MarkRunFinished();RunSave.Delete();} // รอบนี้จบแล้ว (ตาย/เคลียร์เกม) ไม่มีอะไรให้เล่นต่อ
         if (summaryPanel == null)
         {
             Debug.LogWarning("SummaryManager ยังไม่ได้ลาก Summary Panel ใส่ใน Inspector เลยไม่มีหน้าสรุปให้แสดง");
@@ -54,7 +61,7 @@ public class SummaryManager : MonoBehaviour
         Time.timeScale = 0f; 
         PauseManager.isGamePaused = true; 
 
-        float timePlayed = Time.time - startTime;
+        float timePlayed = ElapsedSeconds;
         int minutes = Mathf.FloorToInt(timePlayed / 60F);
         int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
         SetText(timeText, string.Format("{0:00}:{1:00}", minutes, seconds));

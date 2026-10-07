@@ -139,3 +139,10 @@ public static class DevCatalogBuilder
     static DevCatalog.Placeable Placeable(string label, GameObject prefab) =>
         new DevCatalog.Placeable { label = label, prefab = prefab };
 }
+
+// ตอน Build ก็เติมรายชื่อใหม่ด้วย: ระบบเล่นต่อจากเซฟ (RunSave) หาอาชีพ อาวุธ และแมพจากรายชื่อนี้ในตัวเกมจริง
+sealed class DevCatalogBuildRefresh : UnityEditor.Build.IPreprocessBuildWithReport
+{
+    public int callbackOrder => 0;
+    public void OnPreprocessBuild(UnityEditor.Build.Reporting.BuildReport report) => DevCatalogBuilder.Refresh(false);
+}

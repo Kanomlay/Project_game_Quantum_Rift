@@ -166,6 +166,29 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         currentHP = maxHP;
         currentEnergy = maxEnergy;
         UpdateAllHUD(); 
+        RunSave.RestorePlayer(this); // เล่นต่อจากเซฟ: เขียนทับค่าเริ่มต้นข้างบนด้วยค่าที่บันทึกไว้
+    }
+
+    // ---- ใช้โดยระบบเซฟ (RunSave) ----
+
+    public int CurrentWeaponSlot => currentWeaponIndex;
+
+    // ค่าตอนเข้าแมพที่บันทึกไว้: เลือด พลังงาน เหรียญ โบนัสจากร้าน และอาวุธสองช่อง
+    public void RestoreRun(float savedMaxHP, float savedHP, int savedMaxEnergy, int savedEnergy, int coins, int damageBonus,
+                           WeaponData first, WeaponData second, int slot)
+    {
+        maxHP = Mathf.Max(1f, savedMaxHP);
+        currentHP = Mathf.Clamp(savedHP, 0.1f, maxHP);
+        maxEnergy = Mathf.Max(0, savedMaxEnergy);
+        currentEnergy = Mathf.Clamp(savedEnergy, 0, maxEnergy);
+        currentCurrency = Mathf.Max(0, coins);
+        runDamageBonus = damageBonus;
+        weapon1 = first;
+        weapon2 = second;
+        currentWeaponIndex = (slot == 2 && weapon2 != null) || weapon1 == null ? 2 : 1;
+        EquipCurrentWeapon();
+        if (hud != null) hud.UpdateCurrency(currentCurrency);
+        UpdateAllHUD();
     }
 
     void Update()
@@ -263,6 +286,7 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
     private void Die()
     {
         isDead = true;
+        RunSave.EndRun(); // ตายแล้วเซฟของรอบนี้ใช้ไม่ได้ทันที ไม่รอหน้าสรุป (ปิดเกมระหว่างท่าตายก็เล่นต่อไม่ได้)
         Sfx.Play(SfxId.PlayerDeath);
 
         // ตัวละครชุดใหม่มีท่าตายมาให้ ส่วนตัวเก่าที่ไม่มีสคริปต์นี้ก็แค่ข้ามไป

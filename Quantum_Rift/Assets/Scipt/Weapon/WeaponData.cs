@@ -26,7 +26,7 @@ public enum WeaponSpecial
     ChargeWave,  // หอกไอออน-X: กดค้าง chargeTime วินาทีแล้วปล่อย แทงพร้อมคลื่นพลัง
     Ricochet,    // ธนูยิงกระจาย: ยิงหลายลูกเป็นพัด ลูกธนูชิ่งกำแพงได้ bounces ครั้ง
     Explosive,   // เครื่องยิงจรวด: กระสุนระเบิดเป็นวง ทำดาเมจพื้นที่
-    GroundPulse  // ค้อนควอนตัม: ทุบแล้วเกิดวงพลังที่พื้น ทำดาเมจพื้นที่ต่อเนื่อง specialDuration วินาที
+    GroundPulse  // ค้อนควอนตัม: กดค้างง้างครบ chargeTime แล้วทุบ เกิดวงพลังที่พื้น ทำดาเมจพื้นที่ต่อเนื่อง specialDuration วินาที
 }
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Game Data/Weapon Data")]

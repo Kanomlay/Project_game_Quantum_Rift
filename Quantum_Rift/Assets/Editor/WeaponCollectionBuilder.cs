@@ -71,7 +71,7 @@ public static class WeaponCollectionBuilder
                         Configure = d => { d.chargeTime = 1f; d.specialScale = 2.6f; d.specialRadius = 0.9f; d.specialSpeed = 13f; d.specialRange = 9f; } },
         new MeleeSpec { Name = "Quantum Hammer", Thai = "ค้อนควอนตัม", Folder = "23-quantum-hammer", Type = WeaponType.Hammer, Rarity = WeaponRarity.Legendary,
                         Scale = 1.3f, Grip = new Vector2(40f, 64f), AttackX = 140f, Range = 2.3f, Damage = 20f, Speed = 0.7f, Energy = 5,
-                        Special = WeaponSpecial.GroundPulse, Description = "ทุบแล้วเกิดวงพลัง ทำความเสียหายพื้นที่ต่อเนื่อง 0.5 วินาที",
+                        Special = WeaponSpecial.GroundPulse, Description = "กดค้างชาร์จ 1 วินาทีแล้วทุบ เกิดวงพลัง ทำความเสียหายพื้นที่ต่อเนื่อง 0.5 วินาที",
                         Configure = d => { d.specialDuration = 0.5f; d.specialDamage = 5f; d.specialRadius = 1.7f; d.specialScale = 2.1f; } },
     };
 
