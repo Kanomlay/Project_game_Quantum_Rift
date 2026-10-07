@@ -39,7 +39,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     public static GameHelpWindow Instance { get; private set; }
     static int closedFrame = -1;
     public static bool IsOpen => Instance != null && Instance.panel != null && Instance.panel.activeSelf;
-    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame || CinematicDirector.BlocksGameplayInput || TutorialDirector.IsCompleting;
+    public static bool BlocksGameplayInput => IsOpen || Time.frameCount == closedFrame || CinematicDirector.BlocksGameplayInput || TutorialDirector.IsCompleting || MonsterCollectionWindow.BlocksGameplayInput;
     public int CurrentPage { get; private set; }
     bool ownsPause;
     bool previousPaused;
@@ -76,7 +76,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     }
     bool CanOpen(bool fromShop)
     {
-        if (CinematicDirector.BlocksGameplayInput || (!fromShop && ShopWindow.IsOpen) || BlessingManager.IsChoosing) return false;
+        if (MonsterCollectionWindow.IsOpen || CinematicDirector.BlocksGameplayInput || (!fromShop && ShopWindow.IsOpen) || BlessingManager.IsChoosing) return false;
         if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen) return false;
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return false;
         if (pauseGameplay)

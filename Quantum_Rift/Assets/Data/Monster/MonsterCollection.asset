@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4afe741e06c9448887e5a8123f254c, type: 3}
+  m_Name: MonsterCollection
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterCollectionLibrary
+  entries:
+  - data: {fileID: 11400000, guid: 22ffcc03da5362342b6bb59348475b76, type: 2}
+    prefab: {fileID: 3353223158399157029, guid: ad39d759e6b49a2439e708d7c29ef492, type: 3}
+    portrait: {fileID: -225398027633850233, guid: 8ea5ed30e5f0f3c4baabe7a7d443a8ec, type: 3}
+    name: Echo Stalker
+    stageThai: Map 1-1
+    stageEnglish: Map 1-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 9df185cafd23ad84cbc789f503df27ab, type: 2}
+    prefab: {fileID: 2829459923509744322, guid: f39526f61c861004b9b37e96060d8375, type: 3}
+    portrait: {fileID: -6017390421494023330, guid: 74bb4cc9b46424646873916e92298165, type: 3}
+    name: Flux Jaw
+    stageThai: Map 1-1
+    stageEnglish: Map 1-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 543334e2ab04e2d4abb159194385a0cf, type: 2}
+    prefab: {fileID: 2568266002243045659, guid: 0c8b7a051fd3bf34ba199ae8bab3c2db, type: 3}
+    portrait: {fileID: 8151335894887483761, guid: 3535e16558ba14049a0b4cfeb6e45f72, type: 3}
+    name: Phase Soldier
+    stageThai: Map 1-1
+    stageEnglish: Map 1-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 67899a0dc53d21045bdf6de2b55b6312, type: 2}
+    prefab: {fileID: 4280153679698805599, guid: 84c852119bd1a2042a8f61a044ae6ddf, type: 3}
+    portrait: {fileID: 6728101932235257614, guid: d0aaea45366067147876d8f8e0e67394, type: 3}
+    name: Rift-Drained Worker
+    stageThai: Map 1-1
+    stageEnglish: Map 1-1
+    boss: 0
+  - data: {fileID: 11400000, guid: a9db39b11cd20e3479b0882d35284cc5, type: 2}
+    prefab: {fileID: 4632906966567590585, guid: 7bd9802d46df7574182a376b622488c9, type: 3}
+    portrait: {fileID: -3327031152089419074, guid: 3ba03d34e19f8504cb632d50d4480161, type: 3}
+    name: Mutated Heavy
+    stageThai: Map 1-2
+    stageEnglish: Map 1-2
+    boss: 0
+  - data: {fileID: 11400000, guid: 5dc21ae621dbc014da3e9f73b334c868, type: 2}
+    prefab: {fileID: 1065894279948854239, guid: 269469711175c0849a3abc3a2b081613, type: 3}
+    portrait: {fileID: 2808146458243349246, guid: 208ff9c8ea5efed4f933a4477318971d, type: 3}
+    name: Dimensional Wolf
+    stageThai: Map 2-1
+    stageEnglish: Map 2-1
+    boss: 0
+  - data: {fileID: 11400000, guid: b168268e707ff2a4eb5f9d6b78673402, type: 2}
+    prefab: {fileID: 6918760524044544206, guid: 6f473b7f8681c5c40b39966ed3989564, type: 3}
+    portrait: {fileID: -7283994306875830920, guid: 5ab349fba948fcb408695ce572a31361, type: 3}
+    name: Forest Wraith
+    stageThai: Map 2-1
+    stageEnglish: Map 2-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 0008fdb92ae011c4bb592fde352c73f3, type: 2}
+    prefab: {fileID: 3952137234939995416, guid: 4b4ec846be33e0749afd3959f70f6130, type: 3}
+    portrait: {fileID: -2040791299992771969, guid: 2ef1e9bb1aadc7f4281782733139fb38, type: 3}
+    name: Rootlings
+    stageThai: Map 2-1
+    stageEnglish: Map 2-1
+    boss: 0
+  - data: {fileID: 11400000, guid: f14191813d1e2294c9b9b57643be503a, type: 2}
+    prefab: {fileID: 851731996290770163, guid: 90323e3fc1e87354b9237c9e23e64900, type: 3}
+    portrait: {fileID: -5811754655862087333, guid: 6e45289dab716ee4db0434ebbf0e1d8d, type: 3}
+    name: Woodmine
+    stageThai: Map 2-1
+    stageEnglish: Map 2-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 8bb318b375fc81b44b5ecdbe8cba3672, type: 2}
+    prefab: {fileID: 9144554780087110031, guid: d78c5747b19d2634981f79978c51ca0a, type: 3}
+    portrait: {fileID: -6371944353702339822, guid: b45f98be58a868f4c8d40b2a06a8b1d3, type: 3}
+    name: Zero Husk
+    stageThai: Map 2-1
+    stageEnglish: Map 2-1
+    boss: 0
+  - data: {fileID: 11400000, guid: 27ea86aeea61ef8448ca22ccf8b5a707, type: 2}
+    prefab: {fileID: 766217442127868141, guid: e4f4760682b0e5243a8193d4dbc5fe09, type: 3}
+    portrait: {fileID: -1489070251, guid: 9aa1f256dd20e424f98abdfc373a8e71, type: 3}
+    name: Echo Commander
+    stageThai: Map 1 - BossRoom
+    stageEnglish: Map 1 - BossRoom
+    boss: 1
+  - data: {fileID: 11400000, guid: 3c02e05fef08d184592b23d0b870a063, type: 2}
+    prefab: {fileID: 6781510104032678745, guid: f0ba95358412afa40bfa1c45c8dfe8ef, type: 3}
+    portrait: {fileID: 225094627, guid: b8f0230a083bd5f479c014cf7dc10b75, type: 3}
+    name: Ancient Entborn
+    stageThai: Map 2-BossRoom
+    stageEnglish: Map 2-BossRoom
+    boss: 1
+  - data: {fileID: 0}
+    prefab: {fileID: 7668448617302832106, guid: 2e6d70e5d7322a64d94984d20a037a44, type: 3}
+    portrait: {fileID: -771983925, guid: 5409a58eabb4be24f80eace0918f75cf, type: 3}
+    name: The Architect of Collapse
+    stageThai: Map 3-BossRoom
+    stageEnglish: Map 3-BossRoom
+    boss: 1

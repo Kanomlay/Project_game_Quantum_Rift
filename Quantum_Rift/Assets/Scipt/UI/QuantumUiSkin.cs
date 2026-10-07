@@ -153,7 +153,8 @@ public static class QuantumUiSkin
         for(int i=0;i<panel.childCount;i++)
         {
             var child=panel.GetChild(i);
-            if(child.gameObject.activeSelf && child.name.StartsWith("Room_"))Frame(child,2);
+            // รูปห้องใช้ไอคอนรูปทรงจริง ไม่วางกรอบสี่เหลี่ยมทับไอคอน
+            if(child.gameObject.activeSelf && child.name.StartsWith("Room_")&&child.GetComponent<MapRoomIcon>()==null)Frame(child,2);
         }
         var inset=panel.Find("Inset");
         if(inset!=null)foreach(Transform child in inset)

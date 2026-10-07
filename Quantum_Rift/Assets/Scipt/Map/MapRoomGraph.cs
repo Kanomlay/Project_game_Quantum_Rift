@@ -5,6 +5,7 @@ using UnityEngine;
 // Read authored door connections; never invent a link between nearby rooms.
 public sealed class MapRoomGraph
 {
+    public enum RoomKind { Start, Combat, Shop, Exit, Boss, Empty }
     public sealed class Node
     {
         public int id;
@@ -13,6 +14,22 @@ public sealed class MapRoomGraph
         public Collider2D[] areas;
         public bool visited;
         public bool hasExitPortal;
+        public bool hasBoss;
+        public RoomKind kind;
+        public void RefreshKind()
+        {
+            // แสดงร้านจริงที่สุ่มลงห้อง ไม่เปิดเผยร้านที่ไม่ได้สุ่มมา
+            if(room!=null&&room.GetComponentInChildren<ShopClickable>(true)!=null){kind=RoomKind.Shop;return;}
+            var encounter=room!=null?room.roomData:null;
+            bool boss=hasBoss||(room!=null&&room.GetComponentInChildren<ArchitectBossHealth>(true)!=null);
+            if(encounter!=null&&encounter.monstersToSpawn!=null)
+                foreach(var data in encounter.monstersToSpawn)if(data!=null&&data.monsterPrefab!=null&&
+                    (data.monsterPrefab.GetComponent<EchoCommanderBoss>()!=null||data.monsterPrefab.GetComponent<AncientEntbornBoss>()!=null))boss=true;
+            bool combat=encounter!=null&&new[]{encounter.monstersToSpawn,encounter.possibleMonsters}.Any(a=>a!=null&&a.Any(m=>m!=null));
+            // ห้องทางออกที่กำลังสู้แสดงหัวกะโหลกพร้อมป้ายวาร์ปเล็ก เคลียร์แล้วกลับเป็นรูปวาร์ป
+            bool fighting=combat&&room!=null&&room.HasStarted&&!room.IsCleared;
+            kind=boss?RoomKind.Boss:fighting?RoomKind.Combat:hasExitPortal?RoomKind.Exit:room==null?RoomKind.Start:combat&&!room.IsSafeRoom?RoomKind.Combat:RoomKind.Empty;
+        }
         public bool Contains(Vector2 point)
         {
             if (room == null) return Mathf.Abs(point.x-center.x)<5f && Mathf.Abs(point.y-center.y)<5f;
@@ -41,6 +58,12 @@ public sealed class MapRoomGraph
                 areas=room.GetComponents<Collider2D>(),visited=room.HasBeenVisited });
             fallback++;
         }
+        // สนามบอสสุดท้ายใช้ระบบสนามเฉพาะ ไม่มี RoomController จึงเพิ่มห้องบอสเสมือนหนึ่งห้อง
+        if(nodes.Count==0)
+        {
+            var soloBoss=map.GetComponentInChildren<ArchitectBossHealth>(true);
+            if(soloBoss!=null)nodes.Add(new Node{id=0,center=soloBoss.transform.position,areas=new Collider2D[0],hasBoss=true});
+        }
         if(links.Any(e=>e.x==0 || e.y==0))
         {
             var spawn=map.GetComponentsInChildren<Transform>(false).FirstOrDefault(t=>t.name=="PlayerSpawn");
@@ -67,6 +90,13 @@ public sealed class MapRoomGraph
             int a=nodes.FindIndex(n=>n.id==link.x), b=nodes.FindIndex(n=>n.id==link.y);
             if(a>=0 && b>=0) edges.Add(new Vector2Int(a,b));
         }
+        // บอสสุดท้ายวางได้ทั้งใต้ห้องและเป็นพี่น้องของห้อง เลือกห้องที่ตรงตำแหน่งจริง
+        foreach(var boss in map.GetComponentsInChildren<ArchitectBossHealth>(true))
+        {
+            var layout=map.GetComponent<MapLayoutRandomizer>();if(layout!=null&&layout.layouts.Any(l=>l!=null&&boss.transform.IsChildOf(l.transform)&&!l.activeInHierarchy))continue;
+            var owner=boss.GetComponentInParent<RoomController>();var node=nodes.FirstOrDefault(n=>owner!=null&&n.room==owner)??nodes.OrderBy(n=>Vector2.Distance(n.center,boss.transform.position)).FirstOrDefault();if(node!=null)node.hasBoss=true;
+        }
+        foreach(var node in nodes)node.RefreshKind();
     }
     public int Observe(Vector2 position)
     {
