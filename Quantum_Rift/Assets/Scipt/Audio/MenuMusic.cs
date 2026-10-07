@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 // เพลงหน้าเมนูหลัก: สร้างตัวเองตอนเริ่มเกม ไม่ต้องวางอะไรในฉาก เล่นเฉพาะในฉากเมนูหลัก
 // เข้าฉากอื่น (เล่นเกม) ค่อย ๆ เบาลงจนหยุด แล้วเพลงประจำแมพ (MapBackgroundMusic) รับช่วงต่อ กลับมาเมนูเริ่มเล่นใหม่ตั้งแต่ต้น
-// ไฟล์เพลงอยู่ใน Resources/Music โหลดด้วยชื่อ ความดังรวมใช้ AudioListener.volume ของหน้าตั้งค่าเหมือนเสียงอื่น
+// ไฟล์เพลงอยู่ใน Resources/Music โหลดด้วยชื่อ ความดังรวมใช้ AudioListener.volume ของหน้าตั้งค่า คูณด้วยแถบเสียงเพลง (GameAudio.MusicVolume)
 public sealed class MenuMusic : MonoBehaviour
 {
     const string ClipPath = "Music/Menu_CosmicJourney";
@@ -13,7 +13,7 @@ public sealed class MenuMusic : MonoBehaviour
 
     static MenuMusic instance;
     AudioSource source;
-    float target;
+    bool inMenu;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     static void Boot()
@@ -45,15 +45,17 @@ public sealed class MenuMusic : MonoBehaviour
     void Apply(string sceneName)
     {
         bool menu = sceneName == MenuScene;
-        target = menu ? Volume : 0f;
+        inMenu = menu;
         if (menu && !source.isPlaying) source.Play();
     }
 
     void Update()
     {
+        float target = inMenu ? Volume * GameAudio.MusicVolume : 0f; // แถบเสียงเพลงในหน้าตั้งค่า เลื่อนแล้วตามทันที
         if (Mathf.Approximately(source.volume, target))
         {
-            if (target <= 0f && source.isPlaying) source.Stop(); // หยุดจริง กลับมาเมนูจะได้เริ่มเพลงใหม่
+            // ออกจากเมนูแล้วหยุดจริง กลับมาเมนูจะได้เริ่มเพลงใหม่ (แถบเสียงเพลงเป็น 0 ในเมนูไม่หยุด เพลงเดินเงียบ ๆ ต่อ)
+            if (!inMenu && source.isPlaying) source.Stop();
             return;
         }
         // เฟดด้วยเวลาจริง: ตอนเปลี่ยนฉากเกมอาจหยุดเวลาอยู่ (หน้าสรุปผล / หยุดเกม)

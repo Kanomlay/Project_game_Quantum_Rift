@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// หน้าตั้งค่า: ความดังเสียง กับ ภาษา
+// หน้าตั้งค่า: ความดังเสียง (ทั้งหมด / เพลง / เอฟเฟกต์) กับ ภาษา
 // วางไว้ได้ทั้งฉากเมนูหลักและฉากเกม เปิดจากปุ่ม Settings ของหน้านั้นๆ
 public class SettingsMenu : MonoBehaviour
 {
@@ -38,6 +38,7 @@ public class SettingsMenu : MonoBehaviour
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
+        SettingsAudioRows.Attach(this);     // แถบเสียงเพลง / เสียงเอฟเฟกต์ ต่อจากแถบเสียงทั้งหมด (ต้องมาก่อนแถวที่ต่อท้ายแถวภาษา)
         DevConsoleSettingsRow.Attach(this); // แถวเปิด/ปิดคอนโซลทดสอบ ต่อท้ายแถวภาษา
         CreditsWindow.Attach(this);         // แถวเครดิต (เสียง CC BY ต้องให้เครดิตในเกม)
         RefreshLabels();
@@ -51,6 +52,8 @@ public class SettingsMenu : MonoBehaviour
             return;
         }
 
+        // หน้าตั้งค่าอยู่ก่อนหน้าหยุดเกมในลำดับของฉาก ถ้าไม่ดึงขึ้นมาจะถูกหน้าหยุดเกมวาดทับและกดอะไรไม่ได้
+        settingsPanel.transform.SetAsLastSibling();
         settingsPanel.SetActive(true);
         RefreshLabels();
     }

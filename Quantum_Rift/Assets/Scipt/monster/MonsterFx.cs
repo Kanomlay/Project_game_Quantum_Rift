@@ -123,6 +123,9 @@ public sealed class MonsterFx : MonoBehaviour
 
     public void Dissolve(float k) => dissolve = Mathf.Clamp01(k);
 
+    static int created;
+    readonly float batchBreaker = (++created % 4096) * 0.000002f; // ไม่เกิน 0.008 หน่วย
+
     void LateUpdate()
     {
         if (view == null) return;
@@ -133,7 +136,10 @@ public sealed class MonsterFx : MonoBehaviour
         {
             view.GetPropertyBlock(block);
             float lift = (hop * BobHeight + hoverLift) / Mathf.Max(0.01f, Mathf.Abs(transform.lossyScale.y));
-            block.SetVector(SquashId, new Vector4(pose.x * kick.x, pose.y * kick.y, 0f, lift));
+            // batchBreaker: ค่าเลื่อนภาพเฉพาะตัว (เล็กจนมองไม่เห็น) ให้ค่าในบล็อกของแต่ละตัวไม่ซ้ำกัน
+            // ถ้ามอนชนิดเดียวกันสองตัวมีค่าเหมือนกันทุกช่อง (เช่น ตายพร้อมกันในการฟันครั้งเดียว: ท่า/วาบ/ยุบตัวเท่ากันหมด)
+            // Unity จะรวมวาดเป็นก้อนเดียวในพิกัดโลก แล้ว _Squash จะยืด/ยุบรอบจุด (0,0) ของฉากแทนรอบตัวมอน ภาพเลยเด้งไปไกลแล้วค่อยกลับมา
+            block.SetVector(SquashId, new Vector4(pose.x * kick.x, pose.y * kick.y, batchBreaker, lift));
             block.SetColor(FlashColorId, flashColor);
             block.SetFloat(FlashAmountId, flashStrength * Mathf.Clamp01(flash * 1.5f)); // ขาวเต็มช่วงแรกแล้วค่อยจาง
             block.SetFloat(DissolveId, dissolve);

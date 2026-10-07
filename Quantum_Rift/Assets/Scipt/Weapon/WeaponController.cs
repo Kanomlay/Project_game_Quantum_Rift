@@ -41,6 +41,19 @@ public class WeaponController : MonoBehaviour
     private bool bladeEdgeUp;        // ฟันขึ้นต้องพลิกดาบเอาคมขึ้น
 
     private float AttackInterval => 1f / Mathf.Max(0.01f, currentWeaponData.attackSpeed);
+
+    // คูลดาวน์หลังโจมตี (ไม่นับช่วงรอลองใหม่ตอนพลังงานไม่พอ) ตัวบอกบนไอคอนอาวุธของ HUD (WeaponCooldownDisplay) อ่านจากตรงนี้
+    private float cooldownEndsAt;
+    public float CooldownLength { get; private set; }
+    public float CooldownRemaining => currentWeaponData != null ? Mathf.Max(0f, cooldownEndsAt - Time.time) : 0f;
+    private WeaponCooldownDisplay cooldownDisplay;
+
+    private void StartCooldown()
+    {
+        CooldownLength = AttackInterval;
+        nextAttackTime = Time.time + CooldownLength;
+        cooldownEndsAt = nextAttackTime;
+    }
     private float ComboWindow => AttackInterval * 1.5f;
     private const float RestAngle = 0f; // ท่าพัก = ปลายดาบชี้ตรงไปทางเมาส์
 
@@ -78,6 +91,12 @@ public class WeaponController : MonoBehaviour
         baseScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), transform.localScale.z);
         owner = GetComponentInParent<PlayerStats>();
         mover = GetComponentInParent<PlayerMovement>();
+        cooldownDisplay = WeaponCooldownDisplay.Create(this);
+    }
+
+    void OnDestroy()
+    {
+        if (cooldownDisplay != null) Destroy(cooldownDisplay.gameObject);
     }
 
     void Update()
@@ -262,14 +281,14 @@ public class WeaponController : MonoBehaviour
         if (ranged)
         {
             FireRanged();
-            nextAttackTime = Time.time + AttackInterval;
+            StartCooldown();
             return;
         }
 
         if (IsSpear)
         {
             StartThrust(false);
-            nextAttackTime = Time.time + AttackInterval;
+            StartCooldown();
             return;
         }
 
@@ -278,7 +297,7 @@ public class WeaponController : MonoBehaviour
             // กดรัวจนท่าก่อนหน้ายังหดกลับไม่สุด ให้ดึงกรงเล็บกลับที่แล้วตีข้างใหม่เลย
             if (clawRoutine != null) StopCoroutine(clawRoutine);
             clawRoutine = StartCoroutine(ClawStrikeRoutine(currentClaws));
-            nextAttackTime = Time.time + AttackInterval;
+            StartCooldown();
             return;
         }
 
@@ -309,7 +328,7 @@ public class WeaponController : MonoBehaviour
             nextSwingDownward = !nextSwingDownward;
         }
 
-        nextAttackTime = Time.time + AttackInterval;
+        StartCooldown();
     }
 
     // ดาบ/กระบอง/ค้อน ฟันหรือทุบ, กรงเล็บ/มีดคู่ตะปบสลับมือ, หอกแทงตรง
@@ -515,7 +534,7 @@ public class WeaponController : MonoBehaviour
         if (currentWeaponAnim != null) currentWeaponAnim.SetTrigger("Attack");
         StopRoutine(ref meleeRoutine);
         meleeRoutine = StartCoroutine(SmashRoutine(false));
-        nextAttackTime = Time.time + AttackInterval;
+        StartCooldown();
     }
 
     // ---------- แทง (หอก) ----------
@@ -619,7 +638,7 @@ public class WeaponController : MonoBehaviour
             return;
         }
         StartThrust(full);
-        nextAttackTime = Time.time + AttackInterval;
+        StartCooldown();
     }
 
     private void TintWeapon(Color color)
@@ -767,7 +786,7 @@ public class WeaponController : MonoBehaviour
 
         WeaponData firedWith = currentWeaponData;
         rangedRoutine = StartCoroutine(frames.PlayRelease(() => SpawnProjectile(firedWith)));
-        nextAttackTime = Time.time + AttackInterval;
+        StartCooldown();
     }
 
     private void SpawnProjectile(WeaponData data)

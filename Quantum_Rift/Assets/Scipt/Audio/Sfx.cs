@@ -9,7 +9,7 @@ using UnityEngine.UI;
 //   - แต่ละครั้งสุ่มคลิป (ไม่ซ้ำคลิปเดิมติดกัน) และสุ่มระดับเสียงเล็กน้อย เสียงจะได้ไม่ซ้ำจนน่ารำคาญ
 //   - PlayAt = เสียงในฉาก: เบาลงตามระยะจากกล้อง ไกลเกินจอไปมากไม่ได้ยิน
 //   - คลิกปุ่ม UI ทุกปุ่มมีเสียงเอง (เช็คจากสิ่งที่เมาส์กดโดน ไม่ต้องไปผูกทีละปุ่ม)
-// ความดังรวมใช้ AudioListener.volume ของหน้าตั้งค่า
+// ความดังรวมใช้ AudioListener.volume ของหน้าตั้งค่า คูณด้วยแถบเสียงเอฟเฟกต์ (GameAudio.SfxVolume) ตอนเริ่มเล่น
 public sealed class Sfx : MonoBehaviour
 {
     const int Voices = 20;
@@ -75,7 +75,7 @@ public sealed class Sfx : MonoBehaviour
 
         var source = instance.FreeSource();
         source.clip = clip;
-        source.volume = Mathf.Clamp01(entry.volume * volume);
+        source.volume = Mathf.Clamp01(entry.volume * volume) * GameAudio.SfxVolume; // แถบเสียงเอฟเฟกต์ในหน้าตั้งค่า
         source.pitch = Mathf.Max(0.1f, entry.pitch * pitch * (1f + Random.Range(-entry.pitchJitter, entry.pitchJitter)));
         source.Play();
     }

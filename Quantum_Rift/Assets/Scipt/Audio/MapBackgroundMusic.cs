@@ -12,6 +12,8 @@ public sealed class MapBackgroundMusic : MonoBehaviour
     AudioClip requested;
     Coroutine transition;
     public AudioSource PlaybackSource => source;
+    // ความดังเป้าหมาย = ค่าของเพลงประจำแมพ × แถบเสียงเพลงในหน้าตั้งค่า
+    float TargetVolume => musicVolume * GameAudio.MusicVolume;
 
     void Awake()
     {
@@ -44,7 +46,7 @@ public sealed class MapBackgroundMusic : MonoBehaviour
         if (clip != null)
         {
             source.Play();
-            yield return FadeTo(musicVolume);
+            yield return FadeTo(TargetVolume);
         }
         transition = null;
     }
@@ -60,6 +62,12 @@ public sealed class MapBackgroundMusic : MonoBehaviour
             yield return null;
         }
         source.volume = target;
+    }
+
+    // เลื่อนแถบเสียงเพลงระหว่างเล่น: ปรับตามทันที (ช่วงเฟดเปลี่ยนเพลงปล่อยให้เฟดจบก่อน)
+    void Update()
+    {
+        if (transition == null && source != null && source.clip != null) source.volume = TargetVolume;
     }
 
     void OnDisable()
