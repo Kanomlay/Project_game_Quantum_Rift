@@ -646,7 +646,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
 
         Vector2 aim = Aim();
         for (int i = 0; i < count; i++) beams.Add(MakeBeam());
-        Sfx.Play(SfxId.BossLaserCharge);
+        Sfx.PlayFor(SfxId.BossLaserCharge, laserWarning, fromEnd: true); // เสียงชาร์จจบพร้อมลำแสงออก
         // เตือน: ไล่ตามผู้เล่นช่วงแรก แล้วล็อกทิศให้เวลาหลบ ประกายดูดเข้าประตูมิติ
         float nextCharge = 0f;
         for (float t = 0f; t < laserWarning; t += Time.deltaTime)
@@ -669,7 +669,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         ClearMarks();
 
         CameraFollow.Shake(0.15f, 0.25f);
-        Sfx.Play(SfxId.BossLaserBeam);
+        Sfx.PlayFor(SfxId.BossLaserBeam, laserActive + 2f / LaserFps);  // เสียงลำแสงดังเท่าที่ลำแสงอยู่บนจอ
         bool hit = false;
         for (float t = 0f; t < laserActive; t += Time.deltaTime)
         {
@@ -1158,7 +1158,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             }
 
             float warn = Enraged ? gridWarning * 0.85f : gridWarning;
-            Sfx.Play(SfxId.BossLaserCharge);
+            Sfx.PlayFor(SfxId.BossLaserCharge, warn, fromEnd: true);
             float width = (laserHitRadius + 0.25f) * 2f;
             for (float t = 0f; t < warn; t += Time.deltaTime)
             {
@@ -1176,7 +1176,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             }
             ClearMarks();
             foreach (var portal in portals) if (portal != null) portal.Flare(0.25f);
-            Sfx.Play(SfxId.BossLaserBeam);
+            Sfx.PlayFor(SfxId.BossLaserBeam, laserActive + 2f / LaserFps);
             CameraFollow.Shake(0.2f, 0.25f);
 
             bool hit = false;

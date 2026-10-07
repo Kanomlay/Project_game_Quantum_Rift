@@ -25,10 +25,60 @@ public sealed class BlessingCardView : MonoBehaviour, IPointerEnterHandler, IPoi
     Color tint = Color.white;
     float appearAt;
     bool hovered;
+    bool arranged;
+
+    // จัดช่วงบนของการ์ดใหม่ตอนเล่น (ไม่แก้ฉาก): ของเดิมไอคอน ชื่อพร และแถบหมวดซ้อนกัน ชื่อพรโดนแถบหมวดทับครึ่งล่าง
+    // การ์ดสูง 460 (กลางการ์ด = 0): ไอคอน 94..202 · ชื่อ 42..92 · แถบหมวด -10..38 · คำอธิบาย -96..-12 · เส้นคั่น -101 · ข้อจำกัด -222..-106
+    // การ์ดอัปเกรดมีข้อความเยอะสุด (คำอธิบาย 3–4 บรรทัด + ข้อจำกัด + "ตอนนี้: ...") กล่องข้อจำกัดจึงสูงขึ้นและย่อตัวอักษรได้มากขึ้น ล้นจริง ๆ ตัดด้วย …
+    void Arrange()
+    {
+        if (arranged) return;
+        arranged = true;
+        if (icon != null) Place(icon.rectTransform, 148f, new Vector2(108f, 108f));
+        if (nameText != null)
+        {
+            Place(nameText.rectTransform, 67f, new Vector2(nameText.rectTransform.sizeDelta.x, 50f));
+            nameText.textWrappingMode = TextWrappingModes.NoWrap; // ชื่อยาวให้ย่อตัวอักษรลงในบรรทัดเดียว ไม่ขึ้นบรรทัดใหม่ไปทับแถบหมวด
+        }
+        const float CategoryY = 14f;
+        if (categoryText != null) Place(categoryText.rectTransform, CategoryY, categoryText.rectTransform.sizeDelta);
+        var plate = transform.Find("__Plate_Category") as RectTransform;
+        if (plate != null) Place(plate, CategoryY, plate.sizeDelta);
+
+        if (abilityText != null)
+        {
+            Place(abilityText.rectTransform, -54f, new Vector2(abilityText.rectTransform.sizeDelta.x, 84f));
+            Fit(abilityText, 17f);
+        }
+        var divider = transform.Find("Divider") as RectTransform;
+        if (divider != null) Place(divider, -101f, divider.sizeDelta);
+        const float LimitY = -164f;
+        var limitPlate = transform.Find("__Plate_Limit") as RectTransform;
+        if (limitPlate != null) Place(limitPlate, LimitY, new Vector2(limitPlate.sizeDelta.x, 116f));
+        if (limitText != null)
+        {
+            Place(limitText.rectTransform, LimitY, new Vector2(limitText.rectTransform.sizeDelta.x, 106f));
+            Fit(limitText, 14f);
+        }
+    }
+
+    static void Fit(TMP_Text text, float minSize)
+    {
+        text.enableAutoSizing = true;
+        text.fontSizeMin = Mathf.Min(text.fontSizeMin, minSize);
+        text.overflowMode = TextOverflowModes.Ellipsis;
+    }
+
+    static void Place(RectTransform rect, float y, Vector2 size)
+    {
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, y);
+        rect.sizeDelta = size;
+    }
 
     public void Show(BlessingOffer offer, int index, float delay)
     {
         if (group == null) group = GetComponent<CanvasGroup>();
+        Arrange();
         var data = offer.data;
         bool thai = LanguageSettings.IsThai;
         tint = offer.IsUpgrade ? UpgradeColor : BlessingData.CategoryColor(data.category);
@@ -43,7 +93,7 @@ public sealed class BlessingCardView : MonoBehaviour, IPointerEnterHandler, IPoi
         {
             Set(nameText, $"{data.DisplayName}  Lv.{offer.level}", Color.Lerp(tint, Color.white, 0.45f));
             Set(categoryText, thai ? $"อัปเกรด Lv.{offer.level - 1} → Lv.{offer.level}" : $"UPGRADE Lv.{offer.level - 1} → Lv.{offer.level}", tint);
-            limit += $"\n<color=#9AA0B8>{(thai ? "ตอนนี้" : "Now")}: {offer.current.Ability}</color>";
+            limit += $"\n<size=90%><color=#9AA0B8>{(thai ? "ตอนนี้" : "Now")}: {offer.current.Ability}</color></size>";
         }
         else
         {

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -58,18 +59,47 @@ public sealed class Sfx : MonoBehaviour
         }
     }
 
-    public static void Play(SfxId id, float volume = 1f, float pitch = 1f)
+    public static void Play(SfxId id, float volume = 1f, float pitch = 1f) => Begin(id, volume, pitch);
+
+    // เล่นแค่ seconds วินาทีแล้วเฟดออก ใช้กับเสียงที่ยาวกว่าภาพ (เลเซอร์บอส: ไฟล์ 3.4 วิ ภาพชาร์จ/ยิงไม่ถึง 1 วิ)
+    // fromEnd = เล่นช่วงท้ายของไฟล์แทนช่วงต้น ให้จุดดังสุดตรงกับตอนจบ (เสียงชาร์จที่ไต่ขึ้นเรื่อย ๆ ต้องพีคตอนลำแสงออก)
+    public static void PlayFor(SfxId id, float seconds, bool fromEnd = false, float volume = 1f)
     {
-        if (id == SfxId.None || instance == null || Library == null) return;
+        var source = Begin(id, volume, 1f);
+        if (source == null || source.clip == null) return;
+        float length = source.clip.length / Mathf.Max(0.1f, source.pitch);
+        if (seconds >= length) return; // สั้นกว่าที่ขออยู่แล้ว เล่นจนจบเอง
+        if (fromEnd) source.time = Mathf.Clamp(source.clip.length - seconds * source.pitch, 0f, source.clip.length - 0.01f);
+        instance.StartCoroutine(instance.CutAfter(source, source.clip, seconds));
+    }
+
+    const float CutFade = 0.12f; // เฟดออกสั้น ๆ ไม่ให้เสียงขาดห้วน
+    IEnumerator CutAfter(AudioSource source, AudioClip clip, float seconds)
+    {
+        // นับด้วยเวลาในเกม: ท่าบอสหยุดตามการหยุดภาพ/หยุดเกม เสียงก็รอด้วย
+        for (float t = 0f; t < seconds - CutFade; t += Time.deltaTime) yield return null;
+        float start = source.volume;
+        for (float t = 0f; t < CutFade; t += Time.unscaledDeltaTime)
+        {
+            if (source.clip != clip || !source.isPlaying) yield break; // ช่องนี้ถูกเสียงอื่นใช้ไปแล้ว
+            source.volume = start * (1f - t / CutFade);
+            yield return null;
+        }
+        if (source.clip == clip && source.isPlaying) source.Stop();
+    }
+
+    static AudioSource Begin(SfxId id, float volume, float pitch)
+    {
+        if (id == SfxId.None || instance == null || Library == null) return null;
         var entry = Library.Find(id);
-        if (entry == null || entry.clips == null || entry.clips.Length == 0) return;
+        if (entry == null || entry.clips == null || entry.clips.Length == 0) return null;
         float now = Time.unscaledTime;
-        if (now - entry.lastPlayed < entry.minInterval) return;
+        if (now - entry.lastPlayed < entry.minInterval) return null;
 
         int pick = Random.Range(0, entry.clips.Length);
         if (entry.clips.Length > 1 && pick == entry.lastClip) pick = (pick + 1) % entry.clips.Length;
         var clip = entry.clips[pick];
-        if (clip == null) return;
+        if (clip == null) return null;
         entry.lastPlayed = now;
         entry.lastClip = pick;
 
@@ -78,6 +108,7 @@ public sealed class Sfx : MonoBehaviour
         source.volume = Mathf.Clamp01(entry.volume * volume) * GameAudio.SfxVolume; // แถบเสียงเอฟเฟกต์ในหน้าตั้งค่า
         source.pitch = Mathf.Max(0.1f, entry.pitch * pitch * (1f + Random.Range(-entry.pitchJitter, entry.pitchJitter)));
         source.Play();
+        return source;
     }
 
     // เสียงที่เกิดในฉาก (มอน บอส กับดัก): เบาลงตามระยะจากกล้อง
