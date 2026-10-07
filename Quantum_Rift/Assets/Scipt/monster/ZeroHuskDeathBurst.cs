@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class ZeroHuskDeathBurst:MonoBehaviour
 {
     public Sprite[] frames;
-    public float radius=2.2f,damage=2f,burnSeconds=3.8f;
+    public float radius=2.2f,damage=2f,burnSeconds=2f; // เอกสาร 1.3.7: เผาไหม้ 2 วินาที
     public bool Exploded {get;private set;}
     public IEnumerator Play(Transform player)
     {

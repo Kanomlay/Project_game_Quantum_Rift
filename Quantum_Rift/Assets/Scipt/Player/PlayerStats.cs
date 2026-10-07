@@ -18,28 +18,41 @@ public class PlayerStats : MonoBehaviour
         currentEnergy=Mathf.Clamp(currentEnergy+Mathf.Max(0,offer.energyDelta),0,maxEnergy);
         UpdateAllHUD();return true;
     }
-    float burningUntil;
+    // เผาไหม้ (เอกสาร 1.3.7): พลังชีวิตลดต่อเนื่อง 1 หน่วยต่อวินาที เป็นเวลา 2 วินาที = โดน 2 ครั้ง รวม 2 หน่วย
+    // หักเลือดตรง ๆ เหมือนพิษ ไม่ติดเฟรมอมตะ/เกราะ จึงครบจำนวนเสมอ โดนซ้ำระหว่างติดไฟ = ต่อเวลาใหม่ ไม่ซ้อนแรงขึ้น
+    // ตัวละครอมส้มตลอดช่วงที่ติดไฟ (ย้อมทุกเฟรม ไม่ให้เอฟเฟกต์อื่นล้างสีระหว่างทาง) ครบเวลาแล้วกลับสีเดิม ถ้ายังติดพิษอยู่กลับเป็นสีพิษ
+    const float BurnTick = 1f;
+    static readonly Color BurnTint = new Color(1f, 0.6f, 0.25f);
+    int burnTicksLeft;
     Coroutine burningRoutine;
+    public bool IsBurning => !isDead && burnTicksLeft > 0;
     public void ApplyBurn(float seconds,float damage=1f)
     {
         if(isDead || seconds<=0)return;
-        burningUntil=Mathf.Max(burningUntil,Time.time+seconds);
+        burnTicksLeft=Mathf.Max(burnTicksLeft,Mathf.Max(1,Mathf.RoundToInt(seconds/BurnTick)));
         if(burningRoutine==null)burningRoutine=StartCoroutine(BurnRoutine(damage));
     }
     IEnumerator BurnRoutine(float damage)
     {
-        while(!isDead && Time.time<burningUntil)
+        while(!isDead && burnTicksLeft>0)
         {
-            yield return new WaitForSeconds(1.2f);
-            if(!isDead && Time.time<=burningUntil)
+            for(float t=0f;t<BurnTick && !isDead;t+=Time.deltaTime)
             {
-                TakeDamage(damage);
-                var flame=new GameObject("BurningEmber");flame.transform.SetParent(transform,false);
-                var r=flame.AddComponent<SpriteRenderer>();r.sprite=sr!=null?sr.sprite:null;r.flipX=sr!=null&&sr.flipX; // หันตามตัวละคร
-                r.color=new Color(1f,.35f,.1f,.55f);r.sortingLayerName="Effect";Destroy(flame,.18f);
+                if(sr!=null)sr.color=BurnTint;
+                yield return null;
             }
+            if(isDead)break;
+            burnTicksLeft--;
+            currentHP=Mathf.Max(DevCheats.GodMode?1f:0f,currentHP-damage);
+            if(hud!=null)hud.UpdateHP(currentHP,maxHP);
+            DamageNumbers.Spawn(DamageNumbers.Above(sr,transform.position),damage,DamageNumbers.Kind.Player);
+            var flame=new GameObject("BurningEmber");flame.transform.SetParent(transform,false);
+            var r=flame.AddComponent<SpriteRenderer>();r.sprite=sr!=null?sr.sprite:null;r.flipX=sr!=null&&sr.flipX; // หันตามตัวละคร
+            r.color=new Color(1f,.35f,.1f,.55f);r.sortingLayerName="Effect";Destroy(flame,.18f);
+            if(currentHP<=0f){Die();break;}
         }
-        burningRoutine=null;
+        burnTicksLeft=0;burningRoutine=null;
+        if(sr!=null && !isDead)sr.color=IsPoisoned?PoisonTint:Color.white;
     }
 
     // พิษ (แมพป่า ตามเอกสาร 1.3.7): เสียเลือดทีละนิดทุก 1 วินาที ไม่ติดอมตะ ไม่กะพริบ ไม่ผลัก
@@ -72,7 +85,7 @@ public class PlayerStats : MonoBehaviour
             ImpactSparks.Spawn(SkillCombat.BodyCenter(gameObject), PoisonBubbles, 4, Vector2.up, 2f, 40f);
             if (currentHP <= 0f) { Die(); break; }
         }
-        if (sr != null && !isDead) sr.color = Color.white;
+        if (sr != null && !isDead && !IsBurning) sr.color = Color.white;
         poisonPerTick = 0f;
         poisonRoutine = null;
     }
