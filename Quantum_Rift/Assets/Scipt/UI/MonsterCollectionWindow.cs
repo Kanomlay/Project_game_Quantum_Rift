@@ -39,6 +39,38 @@ public sealed class MonsterCollectionWindow : MonoBehaviour
         if(hud==null)hud=FindFirstObjectByType<HUDManager>();
         return hud==null||hud.transitionCanvas==null||!hud.transitionCanvas.gameObject.activeInHierarchy||hud.transitionCanvas.alpha<=.01f;
     }
+    // ปุ่มเปิดคอลเลกชัน จัดตอนเล่น (ไม่แก้ฉาก): แยกชั้นวาดของปุ่มลงไปอยู่ใต้หน้าคู่มือ (30000) หน้าต่างคอลเลกชันเองยังอยู่ชั้นเดิม
+    // สูงเท่าและวางชิดขวาปุ่มคู่มือ ในเกม/สนามฝึกเหลือแค่ไอคอนกะโหลก เมนูหลักยังมีข้อความ จัดใหม่เมื่อขนาดจอเปลี่ยน
+    const int EntrySortingOrder=29990;
+    Vector2 arrangedFor;
+    void LateUpdate()
+    {
+        var screen=new Vector2(Screen.width,Screen.height);
+        if(entryButton==null||arrangedFor==screen)return;
+        var own=GetComponent<Canvas>();var help=GameHelpWindow.Instance!=null?GameHelpWindow.Instance:FindFirstObjectByType<GameHelpWindow>();
+        if(own==null||own.scaleFactor<=0)return;
+        arrangedFor=screen;
+        var layer=entryButton.GetComponent<Canvas>();
+        if(layer==null){layer=entryButton.gameObject.AddComponent<Canvas>();entryButton.gameObject.AddComponent<GraphicRaycaster>();}
+        layer.overrideSorting=true;layer.sortingOrder=EntrySortingOrder;
+        var button=(RectTransform)entryButton.transform;var icon=button.Find("SkullIcon") as RectTransform;
+        if(help!=null&&help.entryButton!=null)
+        {
+            // สองหน้านี้ใช้ฐานจอคนละขนาด (1600 กับ 1920) จึงวัดปุ่มคู่มือเป็นพิกเซลจริงแล้วแปลงเป็นหน่วยของ Canvas นี้
+            var corners=new Vector3[4];((RectTransform)help.entryButton.transform).GetWorldCorners(corners);
+            float scale=own.scaleFactor,height=(corners[2].y-corners[0].y)/scale;
+            button.anchorMin=button.anchorMax=button.pivot=Vector2.zero;
+            button.anchoredPosition=new Vector2(corners[2].x/scale+14,corners[0].y/scale);
+            button.sizeDelta=new Vector2(pauseGameplay?height:button.sizeDelta.x,height);
+        }
+        if(entryLabel!=null)entryLabel.gameObject.SetActive(!pauseGameplay);
+        if(icon!=null)
+        {
+            // ไอคอนกะโหลกวาดขนาดตายตัว (ราว 32) จึงขยายด้วย scale
+            icon.anchoredPosition=pauseGameplay?Vector2.zero:new Vector2(-button.sizeDelta.x*.5f+34,0);
+            icon.localScale=Vector3.one*(pauseGameplay?button.sizeDelta.y*.58f/32f:1.15f);
+        }
+    }
     void Update()
     {
         if(entryButton!=null)entryButton.interactable=IsOpen||CanOpen();
