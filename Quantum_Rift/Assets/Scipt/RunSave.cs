@@ -41,7 +41,26 @@ public static class RunSave
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetState() { resuming = null; }
 
-    static string FilePath => Path.Combine(Application.persistentDataPath, FileName);
+    // คอนโซลทดสอบ: ระหว่างทดสอบอ่าน/เขียนไฟล์แยก เซฟจริงของผู้เล่นไม่โดนทับหรือลบ (จำข้ามฉากและข้ามการกด Play)
+    const string TestFileName = "run-save.test.json";
+    const string TestKey = "quantumrift.devconsole.testsave";
+    public static bool UseTestFile
+    {
+        get => PlayerPrefs.GetInt(TestKey, 0) == 1 && DevConsole.Enabled;
+        set { PlayerPrefs.SetInt(TestKey, value ? 1 : 0); PlayerPrefs.Save(); }
+    }
+
+    static string FilePath => Path.Combine(Application.persistentDataPath, UseTestFile ? TestFileName : FileName);
+
+    // คอนโซลทดสอบ: บรรทัดสรุปของเซฟที่ใช้อยู่
+    public static string DebugSummary()
+    {
+        var d = Read();
+        if (d == null) return File.Exists(FilePath) ? "มีไฟล์เซฟแต่ใช้เล่นต่อไม่ได้" : "ไม่มีเซฟ";
+        return $"{d.character} · {d.map} · เลือด {d.currentHP:0.#}/{d.maxHP:0.#} · พลังงาน {d.currentEnergy}/{d.maxEnergy} · " +
+               $"เหรียญ {d.currency} · อาวุธ {d.weapon1}/{(string.IsNullOrEmpty(d.weapon2) ? "-" : d.weapon2)} · " +
+               $"พร {(d.blessings != null ? d.blessings.Count : 0)} · ฆ่ามอน {d.kills}";
+    }
 
     // ---------- เมนูหลัก ----------
 

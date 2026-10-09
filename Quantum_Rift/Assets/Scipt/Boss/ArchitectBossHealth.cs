@@ -69,6 +69,17 @@ public sealed class ArchitectBossHealth : MonoBehaviour
         else if(secondForm)arena.SetPhase(CurrentHealth/maxHealth<=enragedThreshold?3:2);
         return true;
     }
+    // คอนโซลทดสอบ: เข้าฉากแกนกลางถล่มทันที (ต้องอยู่ร่าง 2 แล้ว) คืนข้อความถ้าทำไม่ได้ ทำได้คืน null
+    public string ForceLastStandForTesting()
+    {
+        if(!fighting||IsDefeated)return "Architect ยังไม่เริ่มสู้ (เดินเข้าสนามก่อน)";
+        if(IsTransforming||!secondForm)return "Architect ยังไม่ถึงร่าง 2";
+        if(Invulnerable&&CurrentHealth<=0)return "อยู่ในฉากแกนกลางอยู่แล้ว";
+        if(InterceptDeath==null)return "บอสตัวนี้ไม่มีฉากแกนกลาง";
+        Invulnerable=false;CurrentHealth=0;RefreshBar();
+        return InterceptDeath()?null:"เข้าฉากแกนกลางไม่ได้ (แกนแตกไปแล้ว)";
+    }
+    public bool SecondForm=>secondForm;
     void Die()
     {
         StopAllCoroutines();IsDefeated=true;IsTransforming=false;fighting=false;hitbox.enabled=false;

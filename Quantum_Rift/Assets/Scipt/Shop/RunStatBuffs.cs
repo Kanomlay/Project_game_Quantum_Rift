@@ -20,6 +20,6 @@ public static class RunStatBuffs
     public static float Damage(float value,PlayerStats owner=null)
     {
         if(owner==null){var go=GameObject.FindGameObjectWithTag("Player");if(go!=null)owner=go.GetComponent<PlayerStats>();}
-        return Mathf.Max(0,(value+(owner!=null?owner.runDamageBonus:0))*BlessingManager.DamageScale); // พรก้าวพ้นรอยแยกระดับ 3
+        return Mathf.Max(0,(value+(owner!=null?owner.runDamageBonus:0))*BlessingManager.DamageScale*DevCheats.DamageScale); // พรก้าวพ้นรอยแยกระดับ 3
     }
 }

@@ -37,7 +37,8 @@ public sealed class DevConsole : MonoBehaviour
         }
     }
 
-    static readonly string[] Tabs = { "มอน", "บอส", "อาวุธ", "ไอเทม", "พร", "ผู้เล่น", "แมพ", "เสียง" };
+    static readonly string[] Tabs = { "มอน", "บอส", "อาวุธ", "ไอเทม", "พร", "ผู้เล่น", "แมพ", "เสียง", "ทดสอบ" };
+    static readonly float[] DamageScales = { 1f, 5f, 20f, 9999f };
     static readonly int[] Counts = { 1, 3, 5, 10 };
     static readonly float[] BossHealthSteps = { 1f, 0.75f, 0.6f, 0.5f, 0.3f, 0.25f, 0.1f, 0.01f };
     static readonly float[] TimeScales = { 0.25f, 0.5f, 1f, 2f };
@@ -86,7 +87,11 @@ public sealed class DevConsole : MonoBehaviour
             else Open();
             return;
         }
+        Hotkeys();
         if (!IsOpen) return;
+        // แมพเปลี่ยนเสร็จแล้ว (วาร์ป/เดินผ่านประตู): วาดแท็บใหม่ ปุ่มแมพปัจจุบันและสถานะจะได้ไม่ค้างของแมพเก่า
+        var shownNow = MapManager.instance.CurrentMap;
+        if (shownNow != shownMap && !MapManager.instance.IsLoading && !placement.Active) Rebuild();
         if (placement.Active)
         {
             // ระหว่างวาง ESC/คลิกขวาเลิกวางอย่างเดียว คอนโซลยังเปิดอยู่
@@ -145,6 +150,7 @@ public sealed class DevConsole : MonoBehaviour
     {
         if (ui == null) return;
         float scrolled = keepScroll ? ui.Scrolled : 0f;
+        shownMap = MapManager.instance != null ? MapManager.instance.CurrentMap : null;
         ui.Clear();
         if (catalog == null) ui.Note("ยังไม่มีรายชื่อของให้เสก");
         else
@@ -157,7 +163,8 @@ public sealed class DevConsole : MonoBehaviour
                 case 4: BuildBlessings(); break;
                 case 5: BuildPlayer(); break;
                 case 6: BuildMaps(); break;
-                default: BuildSounds(); break;
+                case 7: BuildSounds(); break;
+                default: BuildTesting(); break;
             }
         ui.Restore(scrolled);
     }
@@ -868,6 +875,282 @@ public sealed class DevConsole : MonoBehaviour
             return "วาง" + item.label;
         };
         BeginPlacement(spec);
+    }
+
+    // ---------- แท็บทดสอบ: ทางลัดสำหรับไล่ทดสอบทั้งเกม ----------
+
+    MapData shownMap;
+
+    // ปุ่มลัดใช้ได้แม้คอนโซลปิดอยู่ (กดคีย์แม่นกว่าคลิกปุ่ม) F1 = คู่มือ F2 = คอนโซล เลี่ยง F10-F12 ที่ระบบ/Editor ใช้
+    static readonly string[] HotkeyHelp =
+    {
+        "F3 ไม่ตาย", "F4 ดาเมจ x1/x5/x20/ตีทีเดียวตาย", "F5 หยุด AI", "F6 ความเร็วเกม",
+        "F7 ฆ่ามอนในห้อง", "F8 วาร์ปไปเป้าถัดไป", "F9 บอสสุดท้าย: แปลงร่าง → ฉากแกนกลาง",
+        "Shift+F3 แกนเหลือ 1", "Shift+F4 แมพถัดไป", "Shift+F5 โหลดแมพนี้ใหม่", "Shift+F6 เติมเลือด/พลังงาน",
+        "Shift+F7 ตายทันที", "Shift+F8 บันทึกเดี๋ยวนี้", "Shift+F9 ลบเซฟ",
+    };
+
+    void Hotkeys()
+    {
+        bool shift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        if (!shift)
+        {
+            if (Input.GetKeyDown(KeyCode.F3)) { DevCheats.GodMode = !DevCheats.GodMode; Done($"ไม่ตาย: {OnOff(DevCheats.GodMode)}"); }
+            else if (Input.GetKeyDown(KeyCode.F4)) { DevCheats.DamageScale = Next(DamageScales, DevCheats.DamageScale); Done("ดาเมจผู้เล่น " + DamageLabel(DevCheats.DamageScale)); }
+            else if (Input.GetKeyDown(KeyCode.F5)) { DevCheats.FreezeMonsters = !DevCheats.FreezeMonsters; Done($"หยุด AI มอน/บอส: {OnOff(DevCheats.FreezeMonsters)}"); }
+            else if (Input.GetKeyDown(KeyCode.F6)) { DevCheats.SetTimeScale(Next(TimeScales, DevCheats.TimeScale)); Done($"ความเร็วเกม x{DevCheats.TimeScale}"); }
+            else if (Input.GetKeyDown(KeyCode.F7)) KillRoomMonsters();
+            else if (Input.GetKeyDown(KeyCode.F8)) TeleportToNextTarget();
+            else if (Input.GetKeyDown(KeyCode.F9)) AdvanceArchitect();
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.F3)) SetCoreHealth(1f);
+        else if (Input.GetKeyDown(KeyCode.F4)) WarpNext();
+        else if (Input.GetKeyDown(KeyCode.F5)) { if (MapManager.instance.CurrentMap != null) Warp(MapManager.instance.CurrentMap); }
+        else if (Input.GetKeyDown(KeyCode.F6)) Refill();
+        else if (Input.GetKeyDown(KeyCode.F7)) { var p = Player; if (p != null && !p.isDead) { Close(); p.Kill(); } }
+        else if (Input.GetKeyDown(KeyCode.F8)) SaveNow();
+        else if (Input.GetKeyDown(KeyCode.F9)) { RunSave.Delete(); Done("ลบเซฟแล้ว" + SaveTag()); }
+    }
+
+    static string OnOff(bool on) => on ? "เปิด" : "ปิด";
+    static string DamageLabel(float scale) => scale >= 9999f ? "ตีทีเดียวตาย" : "x" + scale;
+    static string SaveTag() => RunSave.UseTestFile ? " (เซฟทดสอบ)" : " (เซฟจริง)";
+
+    static float Next(float[] steps, float current)
+    {
+        for (int i = 0; i < steps.Length; i++)
+            if (Mathf.Approximately(steps[i], current)) return steps[(i + 1) % steps.Length];
+        return steps[0];
+    }
+
+    void Done(string text)
+    {
+        Say(text);
+        if (IsOpen) Rebuild();
+    }
+
+    void BuildTesting()
+    {
+        var manager = MapManager.instance;
+        var current = manager != null ? manager.CurrentMap : null;
+        var room = CurrentRoom();
+        ui.Note($"ตอนนี้: {(current != null ? current.mapName : "-")} · ห้อง {(room != null ? room.name : "-")}" +
+                (room != null ? $" (มอนเหลือ {room.AliveMonstersCount}{(room.IsCleared ? " เคลียร์แล้ว" : "")})" : ""));
+
+        ui.Section("ดาเมจของผู้เล่น");
+        var grid = ui.Grid(4);
+        foreach (float scale in DamageScales)
+        {
+            float wanted = scale;
+            Radio(grid, DamageLabel(scale), Mathf.Approximately(DevCheats.DamageScale, scale), () =>
+            {
+                DevCheats.DamageScale = wanted;
+                Say("ดาเมจผู้เล่น " + DamageLabel(wanted));
+            });
+        }
+        ui.Note("คูณดาเมจทุกแบบของผู้เล่น (อาวุธ สกิล พร) รวมตอนตีกล่อง กำแพง และแกนบอส");
+
+        ui.Section("ข้ามการต่อสู้");
+        grid = ui.Grid(2);
+        ui.Button(grid, "ฆ่ามอนในห้องนี้", DevConsoleUI.DangerColor, KillRoomMonsters);
+        ui.Button(grid, "เติมเลือด/พลังงาน", DevConsoleUI.ButtonColor, Refill);
+        ui.Note("ห้องที่มีมอนหลายระลอก กดซ้ำจนกว่าห้องจะเคลียร์");
+
+        ui.Section("วาร์ปผู้เล่น (ในแมพนี้)");
+        grid = ui.Grid(2);
+        ui.Button(grid, "ไปเป้าถัดไป", DevConsoleUI.OnColor, TeleportToNextTarget);
+        ui.Button(grid, "ไปหาบอส / แกน", DevConsoleUI.BossColor, () => TeleportTo(BossSpot(), "บอส"));
+        ui.Button(grid, "ไปห้องที่ยังไม่เคลียร์", DevConsoleUI.ButtonColor, () => TeleportTo(NextRoomSpot(), "ห้องที่ยังไม่เคลียร์"));
+        ui.Button(grid, "ไปประตูออก", DevConsoleUI.ButtonColor, () => TeleportTo(PortalSpot(), "ประตูออก"));
+        ui.Note("เป้าถัดไป = แกนบอส > บอส > ห้องที่ยังไม่เคลียร์ > ประตูออก");
+
+        ui.Section("แมพ");
+        grid = ui.Grid(2);
+        ui.Button(grid, "แมพถัดไป", DevConsoleUI.ButtonColor, WarpNext);
+        ui.Button(grid, "โหลดแมพนี้ใหม่", DevConsoleUI.ButtonColor, () => { if (current != null) Warp(current); });
+
+        ui.Section("บอสตัวสุดท้าย (Architect)");
+        grid = ui.Grid(1);
+        ui.Button(grid, "ขั้นถัดไป: แปลงร่าง → ฉากแกนกลางถล่ม", DevConsoleUI.BossColor, AdvanceArchitect);
+        grid = ui.Grid(2);
+        ui.Button(grid, "เลือดแกนเหลือ 1", DevConsoleUI.ButtonColor, () => SetCoreHealth(1f));
+        ui.Button(grid, "เลือดแกนเต็ม", DevConsoleUI.ButtonColor, () => SetCoreHealth(float.MaxValue));
+        ui.Note("ต้องเดินเข้าสนามให้บอสเริ่มสู้ก่อน แกนเหลือ 1 แล้วตีอีกครั้ง = แกนแตก (ดูทางชนะ) ปล่อยให้หมดเวลา = บอสกลับมา");
+
+        ui.Section("เซฟ");
+        ui.Note((RunSave.UseTestFile ? "เซฟทดสอบ: " : "เซฟจริง: ") + RunSave.DebugSummary());
+        grid = ui.Grid(1);
+        Toggle(grid, "ใช้เซฟทดสอบ (ไม่แตะเซฟจริง)", () => RunSave.UseTestFile, on => RunSave.UseTestFile = on);
+        grid = ui.Grid(2);
+        ui.Button(grid, "บันทึกเดี๋ยวนี้", DevConsoleUI.ButtonColor, SaveNow);
+        ui.Button(grid, "ลบเซฟ", DevConsoleUI.DangerColor, () => { RunSave.Delete(); Done("ลบเซฟแล้ว" + SaveTag()); });
+        ui.Note("เปิดเซฟทดสอบแล้ว เกมอ่าน/เขียนไฟล์แยกทั้งในเมนูหลักและในเกม จนกว่าจะปิด เซฟจริงอยู่ครบ");
+
+        ui.Section("ปุ่มลัด (ใช้ได้แม้ปิดคอนโซล)");
+        ui.Note(string.Join("\n", HotkeyHelp));
+    }
+
+    void KillRoomMonsters()
+    {
+        var room = CurrentRoom();
+        int killed = 0;
+        foreach (var monster in FindObjectsByType<MonsterController>(FindObjectsSortMode.None))
+        {
+            if (!monster.IsAlive || IsBoss(monster)) continue;
+            if (room != null && monster.currentRoom != null && monster.currentRoom != room) continue;
+            monster.SelfDestruct();
+            killed++;
+        }
+        Done(killed > 0 ? $"ฆ่ามอน {killed} ตัว" : "ไม่มีมอนในห้องนี้");
+    }
+
+    void Refill()
+    {
+        var hero = Player;
+        if (hero == null || hero.isDead) { Say("ยังไม่มีผู้เล่น (หรือตายแล้ว)"); return; }
+        hero.Heal(hero.maxHP);
+        hero.RestoreEnergy(hero.maxEnergy);
+        Done("เติมเลือดและพลังงานเต็ม");
+    }
+
+    void WarpNext()
+    {
+        var current = MapManager.instance != null ? MapManager.instance.CurrentMap : null;
+        if (current == null || current.nextMap == null) { Say("ไม่มีแมพถัดไป (ด่านสุดท้ายแล้ว)"); return; }
+        Warp(current.nextMap);
+    }
+
+    void SaveNow()
+    {
+        var manager = MapManager.instance;
+        var hero = Player;
+        if (manager == null || hero == null) { Say("ยังไม่มีผู้เล่น"); return; }
+        RunSave.Capture(manager.CurrentMap, hero.gameObject);
+        Done("บันทึกแล้ว" + SaveTag() + ": " + RunSave.DebugSummary());
+    }
+
+    // Architect: ร่าง 1 → ตั้งเลือดให้แปลงร่าง, ร่าง 2 → เข้าฉากแกนกลางถล่มทันที (ไม่ต้องไล่ตีให้เลือดหมด)
+    void AdvanceArchitect()
+    {
+        var architect = LiveArchitect();
+        if (architect == null) { Say("ไม่มี Architect ในแมพนี้ (วาร์ปไปห้องบอสแมพ 3)"); return; }
+        if (!architect.SecondForm)
+        {
+            Done(architect.SetHealthForTesting(0.5f) ? "Architect กำลังแปลงร่าง กดอีกครั้งหลังแปลงเสร็จเพื่อเข้าฉากแกนกลาง"
+                                                    : "Architect ยังไม่เริ่มสู้ (เดินเข้าสนามก่อน) หรือกำลังแปลงร่างอยู่");
+            return;
+        }
+        Done(architect.ForceLastStandForTesting() ?? "เข้าฉากแกนกลางถล่ม: ร่างเงาลอยเหนือบ่อกลางห้อง ตีให้แตกใน 10 วินาที");
+    }
+
+    void SetCoreHealth(float value)
+    {
+        var core = FindFirstObjectByType<ArchitectCore>();
+        if (core == null) { Say("แกนยังไม่เปิด (เข้าฉากแกนกลางก่อน)"); return; }
+        core.SetHealthForTesting(value);
+        Done($"เลือดแกน {core.Health:0.#}/{core.MaxHealth:0.#}");
+    }
+
+    // ---------- วาร์ปผู้เล่นในแมพ ----------
+
+    void TeleportToNextTarget()
+    {
+        Vector2? spot = BossSpot();
+        string what = "บอส";
+        if (!spot.HasValue) { spot = NextRoomSpot(); what = "ห้องที่ยังไม่เคลียร์"; }
+        if (!spot.HasValue) { spot = PortalSpot(); what = "ประตูออก"; }
+        TeleportTo(spot, what);
+    }
+
+    void TeleportTo(Vector2? spot, string what)
+    {
+        var hero = Player;
+        if (hero == null || hero.isDead) { Say("ยังไม่มีผู้เล่น (หรือตายแล้ว)"); return; }
+        if (!spot.HasValue) { Say("ไม่เจอ" + what + "ในแมพนี้"); return; }
+        hero.transform.position = spot.Value;
+        var body = hero.GetComponent<Rigidbody2D>();
+        if (body != null) { body.position = spot.Value; body.linearVelocity = Vector2.zero; }
+        Done("วาร์ปไป" + what);
+    }
+
+    // ยืนใต้เป้าเล็กน้อย: แกนกลาง (ถ้าเปิดอยู่) ก่อน แล้วค่อยบอสที่ยังไม่ตาย
+    Vector2? BossSpot()
+    {
+        var core = FindFirstObjectByType<ArchitectCore>();
+        if (core != null) return (Vector2)core.transform.position + Vector2.down * 2.2f;
+        var architect = LiveArchitect();
+        if (architect != null)
+        {
+            var body = architect.hitbox != null && architect.hitbox.enabled ? (Vector2)architect.hitbox.bounds.center : (Vector2)architect.transform.position;
+            return body + Vector2.down * 2.5f;
+        }
+        foreach (var boss in LiveBosses()) return (Vector2)boss.transform.position + Vector2.down * 2.5f;
+        return null;
+    }
+
+    Vector2? NextRoomSpot()
+    {
+        var root = MapManager.instance != null ? MapManager.instance.CurrentMapRoot : null;
+        var hero = Player;
+        if (root == null || hero == null) return null;
+        var here = CurrentRoom();
+        Vector2? best = null;
+        float nearest = float.MaxValue;
+        foreach (var room in root.GetComponentsInChildren<RoomController>(false))
+        {
+            if (room.IsCleared || room == here) continue;
+            foreach (var area in room.GetComponents<Collider2D>())
+            {
+                if (!area.isTrigger || !area.enabled) continue;
+                float distance = Vector2.Distance(area.bounds.center, hero.transform.position);
+                if (distance < nearest) { nearest = distance; best = area.bounds.center; }
+                break;
+            }
+        }
+        return best;
+    }
+
+    Vector2? PortalSpot()
+    {
+        var root = MapManager.instance != null ? MapManager.instance.CurrentMapRoot : null;
+        if (root == null) return null;
+        foreach (var portal in root.GetComponentsInChildren<MapPortal>(false))
+        {
+            var area = portal.GetComponent<Collider2D>();
+            return area != null ? (Vector2)area.bounds.center : (Vector2)portal.transform.position;
+        }
+        return null;
+    }
+
+    // ---------- แถบสถานะ: ขึ้นเมื่อมีสูตรเปิดอยู่ (ตัวอักษรระบบ จึงใช้อังกฤษ) ----------
+
+    GUIStyle stripStyle;
+
+    void OnGUI()
+    {
+        if (!Enabled || MapManager.instance == null) return;
+        var parts = new List<string>();
+        if (DevCheats.GodMode) parts.Add("GOD");
+        if (!Mathf.Approximately(DevCheats.DamageScale, 1f)) parts.Add(DevCheats.DamageScale >= 9999f ? "DMG ONE-HIT" : "DMG x" + DevCheats.DamageScale);
+        if (DevCheats.FreezeMonsters) parts.Add("AI OFF");
+        if (!Mathf.Approximately(DevCheats.TimeScale, 1f)) parts.Add("SPEED x" + DevCheats.TimeScale);
+        if (DevCheats.InfiniteEnergy) parts.Add("ENERGY");
+        if (DevCheats.NoSkillCooldown) parts.Add("NO CD");
+        if (RunSave.UseTestFile) parts.Add("TEST SAVE");
+        if (parts.Count == 0) return;
+        var map = MapManager.instance.CurrentMap;
+        string text = "DEV  |  " + (map != null ? map.name : "-") + "  |  " + string.Join("  |  ", parts);
+        if (stripStyle == null)
+            stripStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
+        stripStyle.fontSize = Mathf.Max(11, Screen.height / 54);
+        float width = Mathf.Min(Screen.width * 0.6f, 900f), height = stripStyle.fontSize + 10f;
+        var box = new Rect((Screen.width - width) * 0.5f, Screen.height - height - 4f, width, height);
+        GUI.color = new Color(0f, 0f, 0f, 0.6f);
+        GUI.DrawTexture(box, Texture2D.whiteTexture);
+        GUI.color = new Color(1f, 0.85f, 0.35f);
+        GUI.Label(box, text, stripStyle);
+        GUI.color = Color.white;
     }
 
     // ---------- แท็บเสียง ----------

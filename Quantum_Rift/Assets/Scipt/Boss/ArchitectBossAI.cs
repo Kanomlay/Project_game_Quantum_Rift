@@ -327,12 +327,12 @@ public sealed class ArchitectBossAI : MonoBehaviour
         if (!introDone)
         {
             introDone = true;
-            yield return Held(Intro());
+            yield return Intro(); // ท่าเปิดตัว/คลั่งล็อกบอสเป็นอมตะระหว่างเล่น ไม่ค้างตามหยุด AI ไม่งั้นบอสอมตะค้างจนกว่าจะปิดหยุด AI
         }
         if (Enraged && !rageShown)
         {
             rageShown = true;
-            yield return Held(Rage());
+            yield return Rage();
         }
         while (true)
         {
@@ -1414,9 +1414,10 @@ public sealed class ArchitectBossAI : MonoBehaviour
                 EchoFx.DriftGhost(view, Random.insideUnitCircle.normalized * 4f, 0.35f, 0.5f, Violet);
             }
             bool glitch = t < glitchUntil || Mathf.PerlinNoise(t * 9f, 0f) > 0.72f;
-            float solid = Mathf.Lerp(0.3f, 0.85f, k) * Mathf.Lerp(0.55f, 1f, core.Health / core.MaxHealth);
-            dissolve = Mathf.Clamp(1f - solid + (glitch ? 0.25f : 0f) + 0.06f * Mathf.Sin(t * 7f), 0.1f, 0.92f);
-            Glow(Color.Lerp(Violet, RageRed, k), 0.45f);
+            // ต้องดูออกว่าเป็นบอสตั้งแต่วินาทีแรก (ทดสอบแล้วสลายมากไปจะเหลือแค่ก้อนสีพร่า ๆ) จึงเริ่มที่ค่อนข้างชัด
+            float solid = Mathf.Lerp(0.62f, 0.92f, k) * Mathf.Lerp(0.72f, 1f, core.Health / core.MaxHealth);
+            dissolve = Mathf.Clamp(1f - solid + (glitch ? 0.15f : 0f) + 0.04f * Mathf.Sin(t * 7f), 0.05f, 0.7f);
+            Glow(Color.Lerp(Violet, RageRed, k), 0.3f);
             if (view != null)
                 view.transform.localPosition = rest + new Vector3(glitch ? Random.Range(-0.08f, 0.08f) : 0f, 0.12f * Mathf.Sin(t * 2.5f), 0f);
             float d = Mathf.Lerp(12f, coreRadius * 2f, k);

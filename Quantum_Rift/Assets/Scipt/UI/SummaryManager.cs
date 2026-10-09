@@ -73,9 +73,11 @@ public class SummaryManager : MonoBehaviour
 
         // หัวเรื่องเปลี่ยนตามผลที่ได้ จึงแปลตรงนี้เอง ใช้ LocalizedText ไม่ได้เพราะข้อความไม่ตายตัว
         // ชนะแล้วถึงจะมีด่านต่อไปให้ไป ตายแล้วเหลือแค่ปุ่มกลับเมนู
-        if (LanguageSettings.IsThai) SetText(titleText, isWin ? "ผ่านด่านแล้ว!" : "เกมโอเวอร์");
-        else SetText(titleText, isWin ? "Stage Cleared!" : "Game Over!");
-        if (nextSectorBox != null) nextSectorBox.SetActive(isWin);
+        // ชนะด่านสุดท้าย = เคลียร์เกม ไม่มีด่านถัดไปให้บอก
+        bool cleared = isWin && map != null && map.nextMap == null;
+        if (LanguageSettings.IsThai) SetText(titleText, cleared ? "เคลียร์เกมแล้ว!" : isWin ? "ผ่านด่านแล้ว!" : "เกมโอเวอร์");
+        else SetText(titleText, cleared ? "Game Cleared!" : isWin ? "Stage Cleared!" : "Game Over!");
+        if (nextSectorBox != null) nextSectorBox.SetActive(isWin && !cleared);
         if (continueButton != null) continueButton.SetActive(isWin&&map!=null&&map.nextMap!=null);
         if (isWin) SetText(nextSectorText, nextMapName);
     }

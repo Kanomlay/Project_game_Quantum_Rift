@@ -40,6 +40,12 @@ public sealed class ArchitectCore : MonoBehaviour, IBreakable
         return core;
     }
 
+    // คอนโซลทดสอบ: ตั้งเลือดแกน (เหลือ 1 = ตีอีกครั้งเดียวแตก)
+    public void SetHealthForTesting(float value)
+    {
+        if (!IsBroken) Health = Mathf.Clamp(value, 1f, MaxHealth);
+    }
+
     public void TakeDamage(float amount)
     {
         if (IsBroken || amount <= 0f) return;

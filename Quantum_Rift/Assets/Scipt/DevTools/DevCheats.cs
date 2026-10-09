@@ -11,6 +11,7 @@ public static class DevCheats
     public static bool NoSkillCooldown;  // สกิล Q/E ใช้ซ้ำได้ทันที
     public static bool FreezeMonsters;   // มอนและบอสทุกตัวยืนนิ่ง ไม่เดิน ไม่เริ่มท่าใหม่ (ยังโดนตี เซ ตายได้)
     public static float TimeScale = 1f;  // ความเร็วเกม (ดูท่าบอสช้า ๆ)
+    public static float DamageScale = 1f; // ตัวคูณดาเมจของผู้เล่นทุกแบบ (RunStatBuffs.Damage) ไว้ข้ามการต่อสู้ตอนทดสอบ
 
     public static void SetTimeScale(float scale)
     {
@@ -33,6 +34,7 @@ public static class DevCheats
     public static void ResetAll()
     {
         GodMode = InfiniteEnergy = NoSkillCooldown = FreezeMonsters = false;
+        DamageScale = 1f;
         SetTimeScale(1f);
     }
 }
