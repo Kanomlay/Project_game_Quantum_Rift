@@ -89,6 +89,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     {
         data=monsterData;target=player;animator=GetComponent<Animator>();
         body=GetComponent<Rigidbody2D>();display=GetComponent<SpriteRenderer>();
+        restMass=body!=null?body.mass:1f;
         owner=GetComponent<MonsterController>();
         nav=new MonsterNavigator(transform,owner){CanBreakWalls=breakWalls};
     }
@@ -397,8 +398,14 @@ public sealed class MonsterCombatActions : MonoBehaviour
         IsAttacking=false;attack=null;
     }
 
+    // มอนเป็นตัวฟิสิกส์ที่ชนกันเอง (ไม่ยืนซ้อนกัน) ตัวที่พุ่งด้วยความเร็วจึงเคยชนเพื่อนกระเด็นไถลไปไม่หยุด แก้สองชั้น:
+    // 1) ระหว่างพุ่ง ตัวพุ่งเบาลงมาก ชนเพื่อนแล้วโดนกั้นเหมือนชนกำแพง ส่งแรงให้เพื่อนแทบไม่ได้
+    // 2) มอนที่ไม่ได้พุ่งและไม่ได้โดนกระแทกจากผู้เล่น ไม่เก็บความเร็วที่ได้จากการถูกชนไว้ (เดินด้วย MovePosition ไม่ใช้ความเร็วอยู่แล้ว)
+    bool dashing;float restMass=1f;
+    void Dash(bool on){dashing=on;if(body!=null)body.mass=on?Mathf.Max(.0001f,restMass*.001f):restMass;}
     void FixedUpdate()
     {
+        if(body!=null&&!dashing&&(owner==null||!owner.IsKnockedBack))body.linearVelocity=Vector2.zero;
         if(body!=null&&move.sqrMagnitude>0&&!IsAttacking)
             body.MovePosition(body.position+move*BlessingManager.MonsterSpeedFactor(body.position)*Time.fixedDeltaTime); // สนามชะลอระดับ 3
     }
@@ -417,12 +424,14 @@ public sealed class MonsterCombatActions : MonoBehaviour
             Sfx.PlayAt(SfxId.MonLunge,transform.position);
             // Echo Stalker พุ่งเข้าหาช่วงง้างท่า แล้วค่อยฟันที่เฟรมกระทบ (ชนกำแพงก็หยุดเองเพราะใช้ความเร็ว)
             // ถึงตัวผู้เล่นแล้วหยุด ไม่พุ่งทะลุไปซ้อนทับ
+            Dash(true);
             for(float t=0f;t<impact;t+=Time.deltaTime)
             {
                 bool arrived=target!=null&&Vector2.Distance(transform.position,target.position)<=lungeStopDistance;
                 body.linearVelocity=arrived?Vector2.zero:aim*lungeSpeed;
                 yield return null;
             }
+            Dash(false);
             body.linearVelocity=Vector2.zero;
         }
         else yield return new WaitForSeconds(impact);
@@ -451,6 +460,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         yield return new WaitForSeconds(.25f);
         Sfx.PlayAt(SfxId.MonPounce,transform.position);
         bool hit=false;
+        Dash(true);
         for(float elapsed=0;elapsed<.32f;elapsed+=Time.deltaTime)
         {
             if(target==null)break;
@@ -462,7 +472,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
             {Hit(target.GetComponent<PlayerStats>(),AttackDamage,transform.position);MeleeImpacts++;hit=true;Sfx.PlayAt(SfxId.MonBite,transform.position);}
             yield return null;
         }
-        body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
+        Dash(false);body.linearVelocity=Vector2.zero;yield return new WaitForSeconds(.13f);IsAttacking=false;attack=null;
     }
 
     void ReleaseProjectile()
@@ -521,6 +531,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
         attack=null;IsAttacking=false;
         EndBurrow();
         if(warningMarker!=null){Destroy(warningMarker);warningMarker=null;}
+        Dash(false);
         if(body!=null)body.linearVelocity=Vector2.zero; // หยุดพุ่งถ้าโดนตีกลางท่า
         if(animator!=null)
         {

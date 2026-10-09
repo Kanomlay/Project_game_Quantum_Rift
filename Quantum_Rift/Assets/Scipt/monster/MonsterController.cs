@@ -13,7 +13,8 @@ public class MonsterController : MonoBehaviour
     protected SpriteRenderer sr; 
     protected Rigidbody2D rb; 
     protected float nextAttackTime = 0f;
-    protected bool isKnockedBack = false;     
+    protected bool isKnockedBack = false;
+    public bool IsKnockedBack => isKnockedBack; // ช่วงนี้ความเร็วเป็นของแรงกระแทก MonsterCombatActions ไม่ล้างทิ้ง     
     protected bool isDying = false; // เลือดหมดแล้ว กำลังเล่นท่าตาย ห้ามเดิน/โจมตี
     protected MonsterNavigator navigator; // เดินอ้อมเสา/กำแพง (ตัวที่มี MonsterCombatActions ใช้ของตัวเอง)
 
