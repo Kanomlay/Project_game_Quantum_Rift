@@ -925,8 +925,12 @@ public sealed class ArchitectBossAI : MonoBehaviour
         var mark = slashMarks.Count > 0 ? slashMarks[0] : null;
         if (mark == null) mark = EchoSlashTelegraph.Show(center, Vector2.right, slashRadius, 360f, SlashAt, SlashRed);
         else mark.transform.position = center; // จุดตกจริงอาจสั้นกว่าที่คาด (เฟรมสุดท้ายของการพุ่ง)
+        // วงเตือนต้องอยู่ในรายการจนกว่าจะฟันลง บอสตายหรือถูกขัดระหว่างรอ วงจะได้ถูกเก็บไปด้วย (เดิมหลุดรายการแล้วค้างบนพื้น)
+        foreach (var other in slashMarks) if (other != null && other != mark) Destroy(other.gameObject);
         slashMarks.Clear();
+        slashMarks.Add(mark);
         yield return Wait(SlashAt);
+        slashMarks.Remove(mark);
         Sfx.Play(SfxId.ArchitectSlash);
         if (mark != null) mark.Strike();
         if (player != null && (PlayerCenter - center).sqrMagnitude <= slashRadius * slashRadius)
