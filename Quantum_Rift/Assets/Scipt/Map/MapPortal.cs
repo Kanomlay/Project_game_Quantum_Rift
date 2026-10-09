@@ -51,7 +51,9 @@ public class MapPortal : MonoBehaviour
             if (prompt.gameObject.activeSelf != near)
             {
                 prompt.gameObject.SetActive(near);
-                if (near) prompt.text = LanguageSettings.IsThai ? $"[{useKey}] ไปด่านถัดไป" : $"[{useKey}] Next stage";
+                if (near) prompt.text = LastStage
+                    ? (LanguageSettings.IsThai ? $"[{useKey}] ออกจากรอยแยก" : $"[{useKey}] Leave the rift")
+                    : (LanguageSettings.IsThai ? $"[{useKey}] ไปด่านถัดไป" : $"[{useKey}] Next stage");
             }
             if (near) prompt.transform.localPosition = PromptLocal(0.06f * Mathf.Sin(Time.time * 4f));
         }
@@ -62,6 +64,10 @@ public class MapPortal : MonoBehaviour
         if (prompt != null) prompt.gameObject.SetActive(false);
         MapManager.instance.GoToNextMap();
     }
+
+    // ด่านสุดท้ายไม่มีด่านถัดไป ประตูพาออกจากรอยแยก (จบเกม)
+    private static bool LastStage => MapManager.instance != null && MapManager.instance.CurrentMap != null &&
+                                     MapManager.instance.CurrentMap.nextMap == null;
 
     private bool PlayerNear()
     {

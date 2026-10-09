@@ -1368,9 +1368,17 @@ public sealed class ArchitectBossAI : MonoBehaviour
         if (view != null) view.transform.localPosition = rest;
 
         Vector2 heart = HeartSpot;
+        // ร่างเงาลอยเหนือบ่อกลางห้องตลอดช่วงแกนเปิด ผู้เล่นจะได้เห็นว่าบอสไปอยู่ตรงไหนและต้องตีตรงนั้น
+        Vector2 hover = heart + Vector2.up * 1.6f;
+        float nextGhost = 0f;
         for (float t = 0f; t < 0.8f; t += Time.deltaTime)
         {
             dissolve = t / 0.8f;
+            if (t >= nextGhost) // เงาร่างลอยเป็นสายจากจุดที่ยืนเข้าไปหาบ่อ ให้ตามองตามไป
+            {
+                nextGhost += 0.1f;
+                EchoFx.DriftGhost(view, (hover - Core) / 0.3f, 0.5f, 0.6f, Violet, -0.3f);
+            }
             if (Random.value < 0.7f)
             {
                 Vector2 from = Core + Random.insideUnitCircle * 2f;
@@ -1379,6 +1387,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             yield return null;
         }
         dissolve = 1f;
+        transform.position += (Vector3)(hover - Core);
 
         if (coreLeft <= 0f) coreLeft = coreHealth;
         core = ArchitectCore.Open(heart, coreRadius, coreLeft, coreHealth, arena != null && arena.core != null ? arena.core.transform : null);
@@ -1387,9 +1396,25 @@ public sealed class ArchitectBossAI : MonoBehaviour
         var timer = FloorMark(ProceduralSprites.ThinRing, 3);
         timer.transform.position = heart;
         float angle = Random.Range(0f, 360f), next = 0.4f, nextRing = 1.2f;
+        float seenCore = core.Health, glitchUntil = 0f;
         for (float t = 0f; t < coreTime && core != null && !core.IsBroken; t += Time.deltaTime)
         {
             float k = t / coreTime;
+            // ร่างเงา (ร่างจริงของบอสในสภาพกำลังสลาย): ยิ่งใกล้หมดเวลายิ่งชัดขึ้นจนกลับมาเป็นตัวจริง ยิ่งแกนโดนตียิ่งจาง
+            // กะพริบขาดหายเป็นช่วง ๆ และสะดุ้งขาวทุกครั้งที่แกนโดนตี
+            if (core.Health < seenCore)
+            {
+                seenCore = core.Health;
+                glitchUntil = t + 0.15f;
+                Flash(Color.white, 1f, 0.12f);
+                EchoFx.DriftGhost(view, Random.insideUnitCircle.normalized * 4f, 0.35f, 0.5f, Violet);
+            }
+            bool glitch = t < glitchUntil || Mathf.PerlinNoise(t * 9f, 0f) > 0.72f;
+            float solid = Mathf.Lerp(0.3f, 0.85f, k) * Mathf.Lerp(0.55f, 1f, core.Health / core.MaxHealth);
+            dissolve = Mathf.Clamp(1f - solid + (glitch ? 0.25f : 0f) + 0.06f * Mathf.Sin(t * 7f), 0.1f, 0.92f);
+            Glow(Color.Lerp(Violet, RageRed, k), 0.45f);
+            if (view != null)
+                view.transform.localPosition = rest + new Vector3(glitch ? Random.Range(-0.08f, 0.08f) : 0f, 0.12f * Mathf.Sin(t * 2.5f), 0f);
             float d = Mathf.Lerp(12f, coreRadius * 2f, k);
             timer.transform.localScale = new Vector3(d, d * 0.6f, 1f);
             Color c = Color.Lerp(Cyan, RageRed, k);
@@ -1409,6 +1434,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             yield return null;
         }
         ClearMarks();
+        if (view != null) view.transform.localPosition = rest;
         coreLeft = core != null ? core.Health : 0f;
         bool broken = core != null && core.IsBroken;
         if (core != null) core.Close();
@@ -1419,6 +1445,9 @@ public sealed class ArchitectBossAI : MonoBehaviour
         {
             coreBroken = true;
             coreRunning = false;
+            for (int i = 0; i < 6; i++) // ร่างเงาแตกกระจายไปพร้อมแกน
+                EchoFx.DriftGhost(view, Quaternion.Euler(0f, 0f, 60f * i) * Vector2.right * 6f, 0.6f, 0.6f, Violet);
+            dissolve = 1f;
             EchoFx.Flash(heart, Color.white, 12f, 0.8f);
             EchoFx.Shockwave(heart, Violet, 12f, 1.2f);
             if (orbFrames != null && orbFrames.Length > 3) EchoFx.Shards(orbFrames[3], heart, 16, 7f, 1f);
@@ -1428,15 +1457,14 @@ public sealed class ArchitectBossAI : MonoBehaviour
         }
 
         // ไม่ทัน: หัวใจปิด ร่างกลับมาจากหัวใจ
-        transform.position = (Vector3)(heart - (Core - (Vector2)transform.position));
-        if (anim != null) anim.speed = 1f;
+        if (anim != null) anim.speed = 1f; // ร่างเงาที่ลอยอยู่เหนือบ่อกลับมาเป็นตัวจริงตรงนั้นเลย
         EchoFx.Flash(heart, RageRed, 8f, 0.6f);
         EchoFx.Shockwave(heart, RageRed, 8f, 0.8f);
         CameraFollow.Shake(0.4f, 0.5f);
         PushPlayer(6f, 11f);
         for (float t = 0f; t < 0.8f; t += Time.deltaTime)
         {
-            dissolve = 1f - t / 0.8f;
+            dissolve = Mathf.Min(dissolve, 1f - t / 0.8f);
             yield return null;
         }
         dissolve = 0f;

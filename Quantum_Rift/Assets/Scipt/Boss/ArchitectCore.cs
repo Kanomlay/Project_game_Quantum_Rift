@@ -14,7 +14,7 @@ public sealed class ArchitectCore : MonoBehaviour, IBreakable
 
     Transform heart;
     Vector3 heartScale;
-    SpriteRenderer glow;
+    SpriteRenderer glow, pointer;
     float flash, age;
 
     public static ArchitectCore Open(Vector2 at, float radius, float health, float maxHealth, Transform heart)
@@ -29,10 +29,13 @@ public sealed class ArchitectCore : MonoBehaviour, IBreakable
 
         var body = go.AddComponent<CircleCollider2D>();
         body.isTrigger = true;
-        body.radius = radius;
+        // ครอบทั้งบ่อและร่างเงาบอสที่ลอยอยู่เหนือบ่อ (ผู้เล่นมักตีที่ตัวบอส) ตัวชนเดียว การโจมตีครั้งเดียวจึงไม่นับซ้ำ
+        body.radius = radius + 0.8f;
+        body.offset = Vector2.up * 0.8f;
 
         core.glow = EchoFx.Layer(go.transform, "CoreGlow", ProceduralSprites.Glow, SortingLayer.NameToID("Effect"), 3, Color.clear);
         core.glow.transform.localScale = Vector3.one * radius * 3f;
+        core.pointer = EchoFx.Layer(null, "CorePointer", ProceduralSprites.Sector(24f), SortingLayer.NameToID("Effect"), 60, Color.clear);
         EchoFx.Shockwave(at, Violet, radius * 3f, 0.5f);
         return core;
     }
@@ -64,6 +67,29 @@ public sealed class ArchitectCore : MonoBehaviour, IBreakable
             Color c = Color.Lerp(Violet, Color.white, flash);
             glow.color = new Color(c.r, c.g, c.b, 0.35f + 0.3f * beat + 0.3f * flash);
         }
+        PointAt(pointer, transform.position, beat, Violet);
+    }
+
+    // เป้าอยู่นอกจอ: ลิ่มที่ขอบจอชี้ไปหา (ห้องบอสกว้างกว่าจอ) เข้ามาในจอแล้วหายไป ประตูออกหลังชนะ (CoreRiftPortal) ใช้ด้วย
+    public static void PointAt(SpriteRenderer pointer, Vector2 target, float beat, Color color)
+    {
+        var cam = Camera.main;
+        if (pointer == null || cam == null || !cam.orthographic) return;
+        const float Margin = 1.3f;
+        Vector2 center = cam.transform.position, to = target - center;
+        float halfH = cam.orthographicSize, halfW = halfH * cam.aspect;
+        if (Mathf.Abs(to.x) < halfW && Mathf.Abs(to.y) < halfH)
+        {
+            pointer.color = Color.clear;
+            return;
+        }
+        float fit = Mathf.Min((halfW - Margin) / Mathf.Max(0.001f, Mathf.Abs(to.x)), (halfH - Margin) / Mathf.Max(0.001f, Mathf.Abs(to.y)));
+        var t = pointer.transform;
+        t.position = center + to * fit;
+        // ลิ่มของ Sector บานไปทาง +X จึงหมุนกลับหลังให้ปลายแหลมชี้ไปหาเป้า
+        t.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(to.y, to.x) * Mathf.Rad2Deg + 180f);
+        t.localScale = Vector3.one * (1.5f + 0.3f * beat);
+        pointer.color = new Color(color.r, color.g, color.b, 0.75f + 0.25f * beat);
     }
 
     public void Close()
@@ -74,6 +100,7 @@ public sealed class ArchitectCore : MonoBehaviour, IBreakable
 
     void OnDestroy()
     {
+        if (pointer != null) Destroy(pointer.gameObject);
         if (heart != null) heart.localScale = heartScale;
     }
 }

@@ -61,7 +61,7 @@ public sealed class LivingBossArena : MonoBehaviour
     void Update()
     {
         if(IsFighting&&(participant==null||participant.isDead||participant.currentHP<=0))EndBattle(false);
-        if(core!=null)
+        if(core!=null&&!riftOpen)
         {
             float pulse=IsFighting?.88f+.12f*Mathf.Sin(Time.time*(1.5f+CurrentPhase)):1f;
             core.color=new Color(pulse,1,pulse,1);
@@ -73,8 +73,22 @@ public sealed class LivingBossArena : MonoBehaviour
         if(cycle!=null){StopCoroutine(cycle);cycle=null;}
         Safe();
         if(entranceGate!=null)entranceGate.SetClosed(false);
+        if(victory)OpenRift();
         if(exitPortal!=null)exitPortal.SetActive(victory);
         if(!victory&&boss!=null)boss.CancelFight();
+    }
+    // ชนะแล้วบ่อกลางห้อง (ที่บอสสลายเข้าไปและแกนเพิ่งแตก) กลายเป็นประตูมิติออกจากรอยแยก
+    // ย้ายจุดกด F ของประตูเดิมมาไว้ที่บ่อและถอดภาพประตูเดิมออก ภาพประตูใหม่ = CoreRiftPortal ทำตอนเล่น ไม่แก้ prefab ของแมพ
+    bool riftOpen;
+    void OpenRift()
+    {
+        if(riftOpen||core==null||exitPortal==null)return;riftOpen=true;
+        var portal=exitPortal.GetComponent<MapPortal>();var area=exitPortal.GetComponent<CircleCollider2D>();
+        Vector2 offset=area!=null?Vector2.Scale(area.offset,exitPortal.transform.lossyScale):Vector2.zero; // ประตูวัดระยะจากกลางตัวชน
+        exitPortal.transform.position=core.transform.position-(Vector3)offset;
+        foreach(var view in exitPortal.GetComponentsInChildren<SpriteRenderer>(true))view.sprite=null;
+        if(portal!=null){portal.useRange=3f;portal.promptHeight=offset.y+2.6f;}
+        CoreRiftPortal.Open(core);
     }
     void Safe(){if(zones!=null)foreach(var zone in zones)if(zone!=null)zone.SetState(ArenaHazardZone.State.Safe);}
     void OnDisable(){IsFighting=false;if(cycle!=null)StopCoroutine(cycle);cycle=null;Safe();}
