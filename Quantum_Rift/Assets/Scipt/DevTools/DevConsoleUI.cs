@@ -190,6 +190,7 @@ public sealed class DevConsoleUI
 
     // เลื่อนไปแล้วแค่ไหน (เก็บไว้ตอนสร้างแท็บเดิมใหม่ จะได้ไม่เด้งกลับขึ้นบนสุดทุกครั้งที่กดปุ่ม)
     public float Scrolled => content.anchoredPosition.y;
+    public void ScrollBy(float delta) => Restore(Scrolled + delta); // เลื่อนด้วยคีย์บอร์ด (PageUp/PageDown)
 
     public void Clear()
     {

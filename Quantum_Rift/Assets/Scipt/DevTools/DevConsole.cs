@@ -75,6 +75,17 @@ public sealed class DevConsole : MonoBehaviour
 
     void Update()
     {
+        // End = ถ่ายภาพหน้าจอเกม (Shift+End = ละเอียดสองเท่า) ใช้ได้ทุกฉาก
+        if (Enabled && Input.GetKeyDown(KeyCode.End))
+            Screenshot(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? 2 : 1);
+        // Home = สลับเซฟทดสอบ/เซฟจริง ใช้ได้ทั้งในเมนูหลักและในเกม (ค่านี้จำข้ามการกด Play จึงต้องสลับกลับได้จากทุกที่)
+        // ไม่ใช้ Shift+F2: เครื่อง HP OMEN ใช้คีย์นั้นเปิดหน้าต่างซ้อนทับของตัวเอง
+        if (Enabled && Input.GetKeyDown(KeyCode.Home))
+        {
+            RunSave.UseTestFile = !RunSave.UseTestFile;
+            Done("ใช้" + (RunSave.UseTestFile ? "เซฟทดสอบ (ไม่แตะเซฟจริง)" : "เซฟจริง") + ": " + RunSave.DebugSummary());
+            ContinueMenu.RefreshNow();
+        }
         // มีเฉพาะในฉากเกม (มี MapManager) เมนูหลักกด F2 ไม่มีอะไรเกิดขึ้น
         if (!Enabled || MapManager.instance == null)
         {
@@ -99,6 +110,8 @@ public sealed class DevConsole : MonoBehaviour
             else TickPlacement();
         }
         else if (Input.GetKeyDown(KeyCode.Escape)) Close();
+        else if (Input.GetKeyDown(KeyCode.PageDown)) ui.ScrollBy(420f);
+        else if (Input.GetKeyDown(KeyCode.PageUp)) ui.ScrollBy(-420f);
     }
 
     // สูตรที่ต้องทำทุกเฟรม ทำหลังระบบเกม (หักพลังงาน/เริ่มคูลดาวน์/HitStop คืนความเร็ว) จะได้ทับทีหลัง
@@ -887,7 +900,8 @@ public sealed class DevConsole : MonoBehaviour
         "F3 ไม่ตาย", "F4 ดาเมจ x1/x5/x20/ตีทีเดียวตาย", "F5 หยุด AI", "F6 ความเร็วเกม",
         "F7 ฆ่ามอนในห้อง", "F8 วาร์ปไปเป้าถัดไป", "F9 บอสสุดท้าย: แปลงร่าง → ฉากแกนกลาง",
         "Shift+F3 แกนเหลือ 1", "Shift+F4 แมพถัดไป", "Shift+F5 โหลดแมพนี้ใหม่", "Shift+F6 เติมเลือด/พลังงาน",
-        "Shift+F7 ตายทันที", "Shift+F8 บันทึกเดี๋ยวนี้", "Shift+F9 ลบเซฟ",
+        "Shift+F7 ตายทันที", "Shift+F8 บันทึกเดี๋ยวนี้", "Shift+F9 ลบเซฟ", "Home สลับเซฟทดสอบ/เซฟจริง (ใช้ในเมนูหลักได้)",
+        "PageUp/PageDown เลื่อนรายการในคอนโซล", "End ถ่ายภาพหน้าจอเกม (Shift+End ละเอียดสองเท่า)",
     };
 
     void Hotkeys()
@@ -1127,20 +1141,43 @@ public sealed class DevConsole : MonoBehaviour
 
     GUIStyle stripStyle;
 
+    // ---------- ถ่ายภาพหน้าจอ ----------
+
+    // ถ่ายจากภาพที่เกมเรนเดอร์จริง (ความละเอียดของจอเกม เช่น 1920x1080) ไม่ใช่ถ่ายจากหน้าต่าง Unity ที่ถูกย่อจนเบลอ
+    // HUD อยู่ในภาพตามปกติ แถบสถานะของคอนโซลทดสอบถูกซ่อนช่วงถ่าย คอนโซลที่เปิดอยู่จะติดในภาพ (ปิดก่อนถ้าไม่ต้องการ)
+    // ไฟล์อยู่ในโฟลเดอร์ Screenshots ข้างโฟลเดอร์ Assets (นอกโปรเจกต์ที่ Unity import และไม่เข้า git)
+    int hideStripUntil = -1;
+    public static string LastScreenshot { get; private set; }
+
+    void Screenshot(int scale)
+    {
+        string folder = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.dataPath), "Screenshots");
+        System.IO.Directory.CreateDirectory(folder);
+        var map = MapManager.instance != null ? MapManager.instance.CurrentMap : null;
+        string name = (map != null ? map.name : SceneManager.GetActiveScene().name) + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_fff", System.Globalization.CultureInfo.InvariantCulture) + ".png";
+        LastScreenshot = System.IO.Path.Combine(folder, name);
+        hideStripUntil = Time.frameCount + 3; // ไฟล์ถูกเขียนตอนจบเฟรม เผื่อไว้อีกสองเฟรม
+        ScreenCapture.CaptureScreenshot(LastScreenshot, scale);
+        Debug.Log($"[คอนโซลทดสอบ] ถ่ายภาพหน้าจอ {Screen.width * scale}x{Screen.height * scale}: {LastScreenshot}");
+    }
+
     void OnGUI()
     {
-        if (!Enabled || MapManager.instance == null) return;
+        if (!Enabled || Time.frameCount <= hideStripUntil) return;
+        // เมนูหลัก: ขึ้นเฉพาะตอนใช้เซฟทดสอบ (ปุ่มเล่นต่อจะอิงไฟล์ทดสอบ ไม่ใช่เซฟจริง ต้องเห็นว่าเปิดค้างอยู่)
+        bool inGame = MapManager.instance != null;
+        if (!inGame && !RunSave.UseTestFile) return;
         var parts = new List<string>();
-        if (DevCheats.GodMode) parts.Add("GOD");
+        if (inGame && DevCheats.GodMode) parts.Add("GOD");
         if (!Mathf.Approximately(DevCheats.DamageScale, 1f)) parts.Add(DevCheats.DamageScale >= 9999f ? "DMG ONE-HIT" : "DMG x" + DevCheats.DamageScale);
         if (DevCheats.FreezeMonsters) parts.Add("AI OFF");
         if (!Mathf.Approximately(DevCheats.TimeScale, 1f)) parts.Add("SPEED x" + DevCheats.TimeScale);
         if (DevCheats.InfiniteEnergy) parts.Add("ENERGY");
         if (DevCheats.NoSkillCooldown) parts.Add("NO CD");
-        if (RunSave.UseTestFile) parts.Add("TEST SAVE");
+        if (RunSave.UseTestFile) parts.Add("TEST SAVE (Home = real save)");
         if (parts.Count == 0) return;
-        var map = MapManager.instance.CurrentMap;
-        string text = "DEV  |  " + (map != null ? map.name : "-") + "  |  " + string.Join("  |  ", parts);
+        var map = inGame ? MapManager.instance.CurrentMap : null;
+        string text = "DEV  |  " + (inGame ? (map != null ? map.name : "-") : "MENU") + "  |  " + string.Join("  |  ", parts);
         if (stripStyle == null)
             stripStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
         stripStyle.fontSize = Mathf.Max(11, Screen.height / 54);

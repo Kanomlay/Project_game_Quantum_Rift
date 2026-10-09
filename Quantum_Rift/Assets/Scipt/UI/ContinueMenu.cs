@@ -53,6 +53,13 @@ public sealed class ContinueMenu : MonoBehaviour
 
     void OnEnable() { Refresh(); }
 
+    // คอนโซลทดสอบสลับไฟล์เซฟ: เช็คปุ่มเล่นต่อใหม่ทันที
+    public static void RefreshNow()
+    {
+        var view = FindFirstObjectByType<ContinueMenu>();
+        if (view != null) view.Refresh();
+    }
+
     void Refresh()
     {
         if (continueButton == null) return;

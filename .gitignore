@@ -192,3 +192,5 @@ crashlytics-build.properties
 # Mac file setting
 
 .DS_Store
+# ภาพหน้าจอจากคอนโซลทดสอบ (ปุ่ม End)
+/Quantum_Rift/Screenshots/

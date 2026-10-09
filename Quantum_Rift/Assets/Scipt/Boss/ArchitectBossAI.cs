@@ -1392,6 +1392,14 @@ public sealed class ArchitectBossAI : MonoBehaviour
         }
         dissolve = 1f;
         transform.position += (Vector3)(hover - Core);
+        // ร่างเงาต้องเป็นท่ายืนปกติ: เลือดหมดกลางท่าพุ่ง ภาพค้างอยู่ที่เฟรมออร่าพุ่ง (ทดสอบแล้วเห็นเป็นกลุ่มควันม่วง ดูไม่ออกว่าเป็นบอส)
+        if (Form == 2 && formTwo != null && anim != null)
+        {
+            anim.speed = 1f;
+            formTwo.PlayIdle();
+            anim.Update(0f);
+            transform.position += (Vector3)(hover - Core); // ท่าเปลี่ยนแล้วจัดให้อยู่เหนือบ่ออีกครั้ง
+        }
 
         if (coreLeft <= 0f) coreLeft = coreHealth;
         core = ArchitectCore.Open(heart, coreRadius, coreLeft, coreHealth, arena != null && arena.core != null ? arena.core.transform : null);
