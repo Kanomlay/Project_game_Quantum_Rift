@@ -23,10 +23,13 @@ public class SummaryManager : MonoBehaviour
 
     public static int enemiesDefeatedCount = 0;
     private float startTime;
+    bool finalResultHandled; // หน้าสรุปอาจถูกเรียกซ้ำ ไม่เพิ่มประวัติรอบเดียวกันสองครั้ง
+    float finalElapsed;
+    int finalKills, finalCoins;
 
     // PauseManager ใช้เช็คว่ากำลังโชว์หน้าสรุปอยู่ไหม จะได้ไม่ให้กด ESC หนีหน้าสรุปไปเล่นต่อ
     public bool IsShowing => summaryPanel != null && summaryPanel.activeSelf;
-    public float ElapsedSeconds => Time.time - startTime; // เวลาเล่นของรอบนี้ (รวมช่วงก่อนออกเกม ถ้าเล่นต่อจากเซฟ)
+    public float ElapsedSeconds => finalResultHandled ? finalElapsed : Time.time - startTime; // ไม่รวมเวลารอท่าตายหลังจบรอบ
 
     void Awake()
     {
@@ -46,11 +49,27 @@ public class SummaryManager : MonoBehaviour
         }
     }
 
+    // ตอนตายเรียกก่อนลบเซฟและเล่นท่าตาย ตอนชนะเรียกจากหน้าสรุป ใช้จุดเดียวป้องกันผลซ้ำ
+    public void RecordFinalResult(bool isWin, MapData map, PlayerStats player = null)
+    {
+        if (map != null && !map.isTestLab && !map.isTutorial && (!isWin || map.nextMap == null) && !finalResultHandled)
+        {
+            finalElapsed = ElapsedSeconds;
+            finalKills = enemiesDefeatedCount;
+            if (player == null) player = FindFirstObjectByType<PlayerStats>();
+            finalCoins = player != null ? player.currentCurrency : 0;
+            finalResultHandled = true;
+            RunHistory.RecordFinished(map, isWin, GameManager.selectedCharacter, finalElapsed, finalKills, finalCoins);
+            CinematicProgress.MarkRunFinished();
+            RunSave.Delete(); // ลบเซฟเล่นต่อหลังบันทึกประวัติแล้ว ประวัติอยู่คนละไฟล์
+        }
+    }
+
     public void ShowSummary(bool isWin, string nextMapName)
     {
         if(CinematicDirector.Instance!=null)CinematicDirector.Instance.Cancel();
         var map=MapManager.instance!=null?MapManager.instance.CurrentMap:null;
-        if(map!=null&&!map.isTestLab&&!map.isTutorial&&(!isWin||map.nextMap==null)){CinematicProgress.MarkRunFinished();RunSave.Delete();} // รอบนี้จบแล้ว (ตาย/เคลียร์เกม) ไม่มีอะไรให้เล่นต่อ
+        RecordFinalResult(isWin, map);
         if (summaryPanel == null)
         {
             Debug.LogWarning("SummaryManager ยังไม่ได้ลาก Summary Panel ใส่ใน Inspector เลยไม่มีหน้าสรุปให้แสดง");
@@ -66,10 +85,11 @@ public class SummaryManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
         SetText(timeText, string.Format("{0:00}:{1:00}", minutes, seconds));
 
-        SetText(enemiesDefeatedText, enemiesDefeatedCount.ToString());
+        SetText(enemiesDefeatedText, (finalResultHandled ? finalKills : enemiesDefeatedCount).ToString());
 
         PlayerStats player = FindObjectOfType<PlayerStats>();
-        if (player != null) SetText(rewardText, player.currentCurrency.ToString());
+        if (finalResultHandled) SetText(rewardText, finalCoins.ToString());
+        else if (player != null) SetText(rewardText, player.currentCurrency.ToString());
 
         // หัวเรื่องเปลี่ยนตามผลที่ได้ จึงแปลตรงนี้เอง ใช้ LocalizedText ไม่ได้เพราะข้อความไม่ตายตัว
         // ชนะแล้วถึงจะมีด่านต่อไปให้ไป ตายแล้วเหลือแค่ปุ่มกลับเมนู

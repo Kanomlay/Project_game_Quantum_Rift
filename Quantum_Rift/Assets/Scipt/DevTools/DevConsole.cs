@@ -47,6 +47,7 @@ public sealed class DevConsole : MonoBehaviour
             bool enabled = value && Unlocked;
             PlayerPrefs.SetInt(EnabledKey, enabled ? 1 : 0);
             PlayerPrefs.Save();
+            if (enabled) RunHistory.MarkTestRun(); // เปิดแล้วปิดสูตรก่อนจบรอบก็ไม่นับเป็นสถิติจริง
             if (!enabled)
             {
                 DevCheats.ResetAll();

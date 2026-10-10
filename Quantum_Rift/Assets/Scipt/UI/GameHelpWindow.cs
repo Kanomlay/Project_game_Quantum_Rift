@@ -78,6 +78,7 @@ public sealed class GameHelpWindow : MonoBehaviour
     }
     bool CanOpen(bool fromShop)
     {
+        if (RunHistoryWindow.IsOpen) return false; // F1 ไม่เปิดคู่มือซ้อนหน้าประวัติ
         if (MonsterCollectionWindow.IsOpen || CinematicDirector.BlocksGameplayInput || (!fromShop && ShopWindow.IsOpen) || BlessingManager.IsChoosing) return false;
         if (SettingsMenu.instance != null && SettingsMenu.instance.IsOpen) return false;
         if (SummaryManager.instance != null && SummaryManager.instance.IsShowing) return false;

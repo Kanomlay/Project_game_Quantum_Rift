@@ -21,6 +21,7 @@ public class MainMenuController : MonoBehaviour
         if (button != null) tutorialButton = button.gameObject;
         ContinueMenu.Attach(this); // มีเซฟค้าง: ปุ่ม "เล่นต่อ" และถามยืนยันก่อนเริ่มเกมใหม่ทับเซฟ
         DevConsoleLogoUnlock.Attach(this); // โลโก้เดิมคลิก 5 ครั้งจึงเห็นตัวเลือกคอนโซลทดสอบ
+        RunHistoryWindow.Attach(this); // ปุ่มประวัติมุมซ้ายล่าง ไม่ย้ายปุ่มเมนูเดิม
         if (openCharacterSelectOnLoad)
         {
             openCharacterSelectOnLoad = false;

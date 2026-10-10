@@ -33,13 +33,21 @@ public static class RunSave
         public List<BlessingEntry> blessings = new List<BlessingEntry>();
         public float elapsed; // เวลาเล่นสะสม (หน้าสรุป)
         public int kills;
+        public string historyId; // รหัสรอบเดิมเมื่อเล่นต่อ เพื่อไม่บันทึกผลซ้ำ
+        public bool historyExcluded; // รอบที่เคยใช้โหมดทดสอบไม่ติดสถิติ แม้ปิดสูตรแล้ว
     }
 
     // เซฟที่กำลังเล่นต่อ: ตั้งตอนกดปุ่มเล่นต่อ อยู่จนแมพแรกโหลดเสร็จ ระหว่างนั้น MapManager/PlayerStats/SummaryManager มาหยิบส่วนของตัวเอง
     static Data resuming;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetState() { resuming = null; }
+    static void ResetState()
+    {
+        resuming = null;
+#if UNITY_EDITOR
+        testStorageDirectory = null;
+#endif
+    }
 
     // คอนโซลทดสอบ: ระหว่างทดสอบอ่าน/เขียนไฟล์แยก เซฟจริงของผู้เล่นไม่โดนทับหรือลบ (จำข้ามฉากและข้ามการกด Play)
     const string TestFileName = "run-save.test.json";
@@ -50,7 +58,20 @@ public static class RunSave
         set { PlayerPrefs.SetInt(TestKey, value ? 1 : 0); PlayerPrefs.Save(); }
     }
 
-    static string FilePath => Path.Combine(Application.persistentDataPath, UseTestFile ? TestFileName : FileName);
+#if UNITY_EDITOR
+    static string testStorageDirectory; // เฉพาะการตรวจในสำเนา ไม่แตะเซฟจริง
+#endif
+    static string StorageDirectory
+    {
+        get
+        {
+#if UNITY_EDITOR
+            if (!string.IsNullOrEmpty(testStorageDirectory)) return testStorageDirectory;
+#endif
+            return Application.persistentDataPath;
+        }
+    }
+    static string FilePath => Path.Combine(StorageDirectory, UseTestFile ? TestFileName : FileName);
 
     // คอนโซลทดสอบ: บรรทัดสรุปของเซฟที่ใช้อยู่
     public static string DebugSummary()
@@ -84,6 +105,7 @@ public static class RunSave
         var data = Read();
         if (data == null) return false;
         GameManager.selectedCharacter = Find(DevCatalog.Load().characters, data.character);
+        RunHistory.ForgetActiveRun(); // เล่นต่อเซฟที่เลือกอยู่ ไม่ใช้รหัสค้างจากรอบก่อนหน้า
         resuming = data;
         return true;
     }
@@ -133,11 +155,16 @@ public static class RunSave
     // MapManager หลังโหลดแมพเสร็จ: บันทึกสถานะตอนเข้าแมพ (แมพจริงเท่านั้น)
     public static void Capture(MapData map, GameObject playerObject)
     {
+        var resumeHistory = resuming;
         resuming = null; // แมพแรกของการเล่นต่อโหลดเสร็จ ทุกระบบหยิบค่าไปครบแล้ว
+        if (map != null && map.isTestLab) RunHistory.MarkTestRun();
         if (map == null || map.isTutorial || map.isTestLab || playerObject == null) return;
         var player = playerObject.GetComponent<PlayerStats>();
         var character = GameManager.selectedCharacter;
         if (player == null || player.isDead || character == null) return; // เปิดฉากเกมตรง ๆ ใน Editor ไม่มีอาชีพให้จำ
+
+        RunHistory.EnsureActiveRun(resumeHistory != null ? resumeHistory.historyId : null,
+                                   resumeHistory != null && resumeHistory.historyExcluded);
 
         var data = new Data
         {
@@ -155,6 +182,8 @@ public static class RunSave
             weaponSlot = player.CurrentWeaponSlot,
             elapsed = SummaryManager.instance != null ? SummaryManager.instance.ElapsedSeconds : 0f,
             kills = SummaryManager.enemiesDefeatedCount,
+            historyId = RunHistory.ActiveId,
+            historyExcluded = RunHistory.Excluded,
         };
         var blessings = BlessingManager.Instance;
         if (blessings != null)
@@ -168,11 +197,22 @@ public static class RunSave
     {
         var map = MapManager.instance != null ? MapManager.instance.CurrentMap : null;
         if (map == null || map.isTutorial || map.isTestLab) return;
+        // PlayerStats เรียกทันทีที่ตาย ต้องบันทึกก่อนลบเซฟ ไม่รอท่าตาย/หน้าสรุป
+        if (SummaryManager.instance != null)
+        {
+            SummaryManager.instance.RecordFinalResult(false, map);
+            return;
+        }
+        var player = UnityEngine.Object.FindFirstObjectByType<PlayerStats>();
+        RunHistory.RecordFinished(map, false, GameManager.selectedCharacter, 0, SummaryManager.enemiesDefeatedCount,
+                                  player != null ? player.currentCurrency : 0);
+        CinematicProgress.MarkRunFinished();
         Delete();
     }
 
     public static void Delete()
     {
+        RunHistory.ForgetActiveRun(); // ลบเฉพาะสถานะรอบปัจจุบัน ไม่ลบไฟล์ประวัติ
         try
         {
             if (File.Exists(FilePath)) File.Delete(FilePath);
@@ -185,15 +225,36 @@ public static class RunSave
 
     // ---------- ไฟล์ ----------
 
-    static void Write(Data data)
+    // อัปเดตเฉพาะธงรอบทดสอบของเซฟรหัสเดียวกัน โดยไม่แตะค่าตัวละครหรือเซฟรอบอื่น
+    public static void PersistHistoryExclusion(string historyId)
+    {
+        if (string.IsNullOrEmpty(historyId)) return;
+        foreach (string name in new[] { FileName, TestFileName })
+        {
+            string path = Path.Combine(StorageDirectory, name);
+            try
+            {
+                if (!File.Exists(path)) continue;
+                var data = JsonUtility.FromJson<Data>(File.ReadAllText(path));
+                if (data == null || data.version != Version || data.historyId != historyId || data.historyExcluded) continue;
+                data.historyExcluded = true;
+                Write(data, path);
+            }
+            catch (Exception error) { Debug.LogWarning("บันทึกสถานะรอบทดสอบไม่ได้: " + error.Message); }
+        }
+    }
+
+    static void Write(Data data, string path = null)
     {
         try
         {
+            path = path ?? FilePath;
             // เขียนไฟล์ชั่วคราวก่อนแล้วค่อยสลับ ปิดเกมกลางคันจะได้ไม่เหลือไฟล์เซฟครึ่ง ๆ กลาง ๆ
-            string temp = FilePath + ".tmp";
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            string temp = path + ".tmp";
             File.WriteAllText(temp, JsonUtility.ToJson(data, true));
-            if (File.Exists(FilePath)) File.Delete(FilePath);
-            File.Move(temp, FilePath);
+            if (File.Exists(path)) File.Delete(path);
+            File.Move(temp, path);
         }
         catch (Exception error)
         {
