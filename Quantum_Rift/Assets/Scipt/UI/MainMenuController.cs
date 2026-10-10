@@ -20,6 +20,7 @@ public class MainMenuController : MonoBehaviour
         var button = mainMenuUI != null && mainMenuUI.transform.parent != null ? mainMenuUI.transform.parent.Find("TutorialButton") : null;
         if (button != null) tutorialButton = button.gameObject;
         ContinueMenu.Attach(this); // มีเซฟค้าง: ปุ่ม "เล่นต่อ" และถามยืนยันก่อนเริ่มเกมใหม่ทับเซฟ
+        DevConsoleLogoUnlock.Attach(this); // โลโก้เดิมคลิก 5 ครั้งจึงเห็นตัวเลือกคอนโซลทดสอบ
         if (openCharacterSelectOnLoad)
         {
             openCharacterSelectOnLoad = false;

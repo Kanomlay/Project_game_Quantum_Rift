@@ -39,8 +39,8 @@ public class SettingsMenu : MonoBehaviour
         }
 
         SettingsAudioRows.Attach(this);     // แถบเสียงเพลง / เสียงเอฟเฟกต์ ต่อจากแถบเสียงทั้งหมด (ต้องมาก่อนแถวที่ต่อท้ายแถวภาษา)
-        DevConsoleSettingsRow.Attach(this); // แถวเปิด/ปิดคอนโซลทดสอบ ต่อท้ายแถวภาษา
         CreditsWindow.Attach(this);         // แถวเครดิต (เสียง CC BY ต้องให้เครดิตในเกม)
+        DevConsoleSettingsRow.Attach(this); // สร้างแถวทดสอบเมื่อปลดล็อกเท่านั้น อยู่ท้ายสุดเหมือนกันก่อน/หลังโหลดฉากใหม่
         RefreshLabels();
     }
 

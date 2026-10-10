@@ -8,12 +8,14 @@ using UnityEngine.SceneManagement;
 // ของที่วางในฉาก (มอน บอส ของดรอป กล่อง ร้าน กับดัก) กดปุ่มแล้วขึ้นการ์ดตัวอย่าง คลิกในฉากเพื่อวาง (DevPlacement)
 // ไม่ต้องวางอะไรในฉาก: สร้างตัวเองตอนเริ่มเกม (อยู่ข้ามฉาก) สร้างหน้าต่างจากโค้ดตอนเปิดครั้งแรก
 // รายชื่อของอ่านจาก Resources/DevCatalog (Editor เติมให้เองทุกครั้งที่กด Play)
+// คลิกโลโก้เมนูหลัก 5 ครั้งเพื่อปลดล็อกก่อนเห็นแถวตั้งค่า ค่าเริ่มต้นปิดและไม่เปิดอัตโนมัติตอนปลดล็อก
 // ปิดได้ในหน้าตั้งค่า (แถว "คอนโซลทดสอบ") ปิดแล้วกด F2 ไม่ขึ้น และสูตรที่เปิดค้างไว้กลับเป็นปกติ
 // F1 เป็นของหน้าคู่มือการเล่น (GameHelpWindow)
 public sealed class DevConsole : MonoBehaviour
 {
     public const KeyCode ToggleKey = KeyCode.F2;
     const string EnabledKey = "quantumrift.devconsole";
+    const string UnlockedKey = "quantumrift.devconsole.unlocked";
     const string TabKey = "quantumrift.devconsole.tab";
 
     public static DevConsole Instance { get; private set; }
@@ -24,16 +26,33 @@ public sealed class DevConsole : MonoBehaviour
     public static bool Placing => IsOpen && Instance.placement != null && Instance.placement.Active;
     static int closedFrame = -1;
 
+    public static bool Unlocked => PlayerPrefs.GetInt(UnlockedKey, 0) == 1;
+    public static event Action AccessChanged;
+
+    // จำการปลดล็อกข้ามการเปิดเกม แต่การปลดล็อกไม่เท่ากับอนุญาตเปิดสูตรทันที
+    // ค่าที่เคยเปิดไว้ก่อนมีระบบล็อกจะใช้ไม่ได้ จนคลิกโลโก้ครบและเปิดสวิตช์อีกครั้ง
+    public static void UnlockFromLogo()
+    {
+        if (Unlocked) return;
+        PlayerPrefs.SetInt(UnlockedKey, 1);
+        Enabled = false;
+        Debug.Log("ปลดล็อกคอนโซลทดสอบแล้ว เปิดใช้งานได้จากหน้าตั้งค่า (ค่าเริ่มต้นปิด)");
+    }
+
     public static bool Enabled
     {
-        get => PlayerPrefs.GetInt(EnabledKey, 1) == 1;
+        get => Unlocked && PlayerPrefs.GetInt(EnabledKey, 0) == 1;
         set
         {
-            PlayerPrefs.SetInt(EnabledKey, value ? 1 : 0);
+            bool enabled = value && Unlocked;
+            PlayerPrefs.SetInt(EnabledKey, enabled ? 1 : 0);
             PlayerPrefs.Save();
-            if (value) return;
-            DevCheats.ResetAll();
-            if (Instance != null) Instance.Close();
+            if (!enabled)
+            {
+                DevCheats.ResetAll();
+                if (Instance != null) Instance.Close();
+            }
+            AccessChanged?.Invoke();
         }
     }
 
@@ -61,6 +80,7 @@ public sealed class DevConsole : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     static void Boot()
     {
+        if (!Enabled) DevCheats.ResetAll(); // กันสูตรเก่าค้างเมื่อปิดการโหลดโดเมนใน Unity
         if (Instance != null) return;
         var go = new GameObject("DevConsole");
         DontDestroyOnLoad(go);
@@ -130,6 +150,7 @@ public sealed class DevConsole : MonoBehaviour
 
     void Open()
     {
+        if (!Enabled || MapManager.instance == null) return; // กันการเรียกตรงข้ามระบบล็อกด้วย
         catalog = DevCatalog.Load();
         if (ui == null) ui = new DevConsoleUI(transform, "คอนโซลทดสอบ", Tabs, index => SelectTab(index, true), Close);
         ui.Visible = true;

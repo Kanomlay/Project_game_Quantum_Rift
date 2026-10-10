@@ -1371,6 +1371,7 @@ GameObject:
   - component: {fileID: 294888386}
   - component: {fileID: 294888388}
   - component: {fileID: 294888387}
+  - component: {fileID: 294888389}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1419,7 +1420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 534189cbf50a0f843ba5547d0b5d5b56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34ae08f74c277614f88da5f4c8fba136, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1437,6 +1438,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294888385}
   m_CullTransparentMesh: 1
+--- !u!114 &294888389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294888385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5a96cb5e7c4c3d8391972644a526d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuBackgroundAnimation
+  display: {fileID: 294888387}
+  frames:
+  - {fileID: 21300000, guid: 34ae08f74c277614f88da5f4c8fba136, type: 3}
+  - {fileID: 21300000, guid: 1de14b96960872d4dbb6059afc9abcb2, type: 3}
+  - {fileID: 21300000, guid: 71fe18e49f3ef954dbab700b9b16f802, type: 3}
+  - {fileID: 21300000, guid: 82850efc6f0950040934027a12813edc, type: 3}
+  - {fileID: 21300000, guid: 99ca4892d1ea81842a5621fc5979c49f, type: 3}
+  - {fileID: 21300000, guid: a70cf1a68c13b604aa0ad70fafb47320, type: 3}
+  - {fileID: 21300000, guid: 88201bbc2a92d1646b02dc37fe8e973a, type: 3}
+  frameSeconds: 0.18
 --- !u!1 &357432398
 GameObject:
   m_ObjectHideFlags: 0
