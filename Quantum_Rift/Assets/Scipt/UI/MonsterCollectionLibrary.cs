@@ -14,6 +14,8 @@ public sealed class MonsterCollectionLibrary : ScriptableObject
         public bool boss;
         public float Health=>data!=null?data.maxHealth:prefab.GetComponent<ArchitectBossHealth>().maxHealth;
         public float Damage=>data!=null?data.attackDamage:prefab.GetComponent<ArchitectBossAI>().damage;
+        // บอสสุดท้ายมีสองค่าจริง แสดงทั้งสองร่างแทนเลขเดียวที่ทำให้เข้าใจผิด
+        public string DamageText=>prefab!=null&&prefab.GetComponent<ArchitectBossAI>() is ArchitectBossAI ai?$"{ai.damage:0.##} / {ai.phaseTwoDamage:0.##}":$"{Damage:0.##}";
         public float Speed=>data!=null?data.moveSpeed:prefab.GetComponent<ArchitectBossAI>().speedOne;
         public float Cooldown=>data!=null?data.attackCooldown:prefab.GetComponent<ArchitectBossAI>().spiralCooldown;
         // ค่าจริงอ่านจาก Data และคอมโพเนนต์ของ prefab ทุกครั้ง ไม่คัดลอกตัวเลขมาค้างไว้ในคู่มือ
@@ -34,6 +36,7 @@ public sealed class MonsterCollectionLibrary : ScriptableObject
             else if(architect!=null)
             {
                 var health=prefab.GetComponent<ArchitectBossHealth>();
+                lines.Add(th?$"ดาเมจร่างแรก {architect.damage:0.##} / ร่างสอง {architect.phaseTwoDamage:0.##} ต่อครั้ง":$"Damage per hit: first form {architect.damage:0.##} / second form {architect.phaseTwoDamage:0.##}.");
                 lines.Add(th?$"เปลี่ยนร่างเมื่อเลือดเหลือ {health.phaseTwoThreshold*100:0}% และคลั่งที่ {health.enragedThreshold*100:0}%":$"Transforms at {health.phaseTwoThreshold*100:0}% HP; enrages at {health.enragedThreshold*100:0}%.");
                 lines.Add(th?"ร่างแรกยิงกระสุนหมุนวนและเลเซอร์ ร่างสองวาร์ปพุ่งชนและส่งคลื่นเคียว":"First form: spiral shots and lasers. Second form: warp dashes and scythe waves.");
                 lines.Add(th?"ช่วงจบต้องทำลายแกนกลาง มิฉะนั้นบอสจะคืนร่าง":"Destroy the exposed core at the end or the boss reforms.");

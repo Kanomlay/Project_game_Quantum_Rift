@@ -20801,7 +20801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbbc8a1623f8874f9974dd0187a907f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArchitectBossAI
-  damage: 2
+  damage: 5
+  phaseTwoDamage: 2
   speedOne: 1.5
   speedTwo: 2.25
   spiralCooldown: 5
@@ -20881,7 +20882,6 @@ MonoBehaviour:
   collapseEvery: 8
   collapseShrink: {x: 2.5, y: 1.5}
   collapseWarning: 2
-  collapseDamage: 1
   coreHealth: 60
   coreTime: 10
   coreRadius: 1.3

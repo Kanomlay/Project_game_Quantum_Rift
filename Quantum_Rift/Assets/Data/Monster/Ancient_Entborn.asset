@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: Ancient Entborn
   monsterPrefab: {fileID: 6781510104032678745, guid: f0ba95358412afa40bfa1c45c8dfe8ef, type: 3}
   maxHealth: 320
-  attackDamage: 2
+  attackDamage: 4
   moveSpeed: 0.9
   attackRange: 2.4
   attackCooldown: 4

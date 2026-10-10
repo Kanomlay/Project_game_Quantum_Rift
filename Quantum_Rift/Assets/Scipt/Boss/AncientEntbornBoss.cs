@@ -524,7 +524,8 @@ public class AncientEntbornBoss : MonsterController
         Sfx.Play(SfxId.EntbornStomp);
         EchoFx.Shockwave(transform.position, RootColor, stompRadius * Size, 0.35f);
         ImpactSparks.Spawn(transform.position, Dirt, 16, Vector2.up, 4.5f, 160f);
-        if (Vector2.Distance(player.position, transform.position) <= stompRadius * Size) HitPlayer(myData.attackDamage * 0.5f, 9f);
+        // ท่ากระทืบใช้ดาเมจเต็มตามตาราง เช่นเดียวกับเลเซอร์และกระโดดทับ
+        if (Vector2.Distance(player.position, transform.position) <= stompRadius * Size) HitPlayer(myData.attackDamage, 9f);
         yield return new WaitForSeconds(0.7f - StompImpact);
         nextStomp = Time.time + stompCooldown * CooldownScale;
         // เฟส 2 ขึ้นไป: ต่อเลเซอร์ทันที ผู้เล่นที่วิ่งหนีรากเจอลำแสงรออยู่
@@ -581,7 +582,7 @@ public class AncientEntbornBoss : MonsterController
         if (player != null && Vector2.Distance(player.position, spot) <= radius)
         {
             bool landed = playerStats != null && playerStats.CanTakeHit;
-            HitPlayer(myData.attackDamage * 0.5f, 4f);
+            HitPlayer(myData.attackDamage, 4f);
             if (landed && poisonSeconds > 0f) playerStats.ApplyPoison(poisonSeconds, poisonDamage);
         }
     }

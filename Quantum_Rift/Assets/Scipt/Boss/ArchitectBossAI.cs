@@ -4,7 +4,7 @@ using UnityEngine;
 
 // บอสสุดท้าย (แมพ 3 รังมิติ) ตามตาราง 1.8: The Architect of Collapse
 // ความสามารถตามเอกสาร: 1. วาร์ปพุ่งชนผู้เล่นด้วยความเร็วสูง  2. ยิงกระสุนเวทมนตร์หมุนวนต่อเนื่อง
-// เลือด 500/500 = หลอดเดียว 1000 แปลงร่างที่ 50% ความเร็ว 100/150 ระยะหน่วง 5/2 ดาเมจ 2
+// เลือด 500/500 = หลอดเดียว 1000 แปลงร่างที่ 50% ความเร็ว 100/150 ดาเมจร่างแรก 5 / ร่างสอง 2
 //
 //   เปิดตัว: คำราม คลื่นกระแทก (อมตะสั้น ๆ)
 //   ร่าง 1 "แกนเนื้อ" (100–50%) ลอยช้า ๆ รักษาระยะห่าง
@@ -33,7 +33,8 @@ using UnityEngine;
 public sealed class ArchitectBossAI : MonoBehaviour
 {
     [Header("ตาราง 1.8 (ร่าง 1 / ร่าง 2)")]
-    [Min(0f)] public float damage = 2f;
+    [Min(0f)] public float damage = 5f; // เก็บชื่อเดิมเพื่อรักษาค่าอ้างอิงใน prefab: ดาเมจร่างแรก
+    [Min(0f)] public float phaseTwoDamage = 2f;
     [Min(0f)] public float speedOne = 1.5f;       // ความเร็ว 100 (สเกลเดียวกับมอนตัวอื่น ×1.5/100)
     [Min(0f)] public float speedTwo = 2.25f;      // ความเร็ว 150
     [Min(0.1f)] public float spiralCooldown = 5f; // ระยะหน่วง 5: กระสุนหมุนวน (ร่าง 1)
@@ -107,7 +108,6 @@ public sealed class ArchitectBossAI : MonoBehaviour
     [Min(1f)] public float collapseEvery = 8f;
     public Vector2 collapseShrink = new Vector2(2.5f, 1.5f); // ขอบหดเข้าต่อครั้ง (ต่อด้าน)
     [Min(0.1f)] public float collapseWarning = 2f;
-    [Min(0f)] public float collapseDamage = 1f;
 
     [Header("ฉากจบ: แกนกลางถล่ม")]
     [Min(1f)] public float coreHealth = 60f;
@@ -197,6 +197,8 @@ public sealed class ArchitectBossAI : MonoBehaviour
     Color flashColor = Color.white, glowColor = Color.white;
 
     int Form => health.phaseTwo != null && health.phaseTwo.activeSelf ? 2 : 1;
+    // เลเซอร์ พุ่งชน ฟัน คลื่น กระสุน และพื้นถล่ม ใช้ค่าตามร่างเดียวกัน ไม่มีตัวคูณตอนคลั่ง
+    public float AttackDamage => health != null && Form == 2 ? phaseTwoDamage : damage;
     bool Enraged => Form == 2 && arena != null && arena.CurrentPhase >= 3;
     float HealthFraction => health.CurrentHealth / Mathf.Max(1f, health.maxHealth);
     float Speed => Form == 2 ? speedTwo : speedOne;
@@ -679,7 +681,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
             if (!hit && AnyBeamHits(aim))
             {
                 hit = true; // ยิงครั้งหนึ่งโดนได้ครั้งเดียว
-                HurtPlayer(player, damage, Core, Knockback);
+                HurtPlayer(player, AttackDamage, Core, Knockback);
             }
             if (Mathf.Repeat(t, 0.08f) < Time.deltaTime)
                 for (int i = 0; i < beams.Count; i++)
@@ -912,7 +914,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     bool DashHit(bool already, Vector2 before)
     {
         if (already || player == null || SegmentDistance(PlayerCenter, before, Core) > dashHitRadius) return false;
-        HurtPlayer(player, damage, before, Knockback * 1.4f);
+        HurtPlayer(player, AttackDamage, before, Knockback * 1.4f);
         return true;
     }
 
@@ -934,7 +936,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         Sfx.Play(SfxId.ArchitectSlash);
         if (mark != null) mark.Strike();
         if (player != null && (PlayerCenter - center).sqrMagnitude <= slashRadius * slashRadius)
-            HurtPlayer(player, damage, center, Knockback);
+            HurtPlayer(player, AttackDamage, center, Knockback);
         EchoFx.Shockwave(center, Violet, slashRadius, 0.35f);
         ImpactSparks.Spawn(center, Violet, 12, Vector2.zero, 6f);
         CameraFollow.Shake(0.2f, 0.15f);
@@ -1196,7 +1198,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
                     Vector2 offset = PlayerCenter - origins[i];
                     Vector2 side = new Vector2(-dir.y, dir.x);
                     if (Vector2.Dot(offset, side) < 0f) side = -side;
-                    HurtPlayer(player, damage, PlayerCenter - side, Knockback);
+                    HurtPlayer(player, AttackDamage, PlayerCenter - side, Knockback);
                 }
                 yield return null;
             }
@@ -1326,7 +1328,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         nextVoidHit = Time.time + 1f;
         Vector2 inward = (safe.center - at).normalized;
         ImpactSparks.Spawn(at, Violet, 6, inward, 3f);
-        HurtPlayer(player, collapseDamage, at - inward, 6f);
+        HurtPlayer(player, AttackDamage, at - inward, 6f);
     }
 
     void StopCollapse()
@@ -1535,7 +1537,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
         {
             float angle = baseAngle + (i - (count - 1) / 2f) * waveSpread;
             Vector2 dir = Quaternion.Euler(0f, 0f, angle) * Vector2.right;
-            ArchitectOrb.Fire(waveFrames, 2, 4, Core + dir * 1.2f, dir * waveSpeed, damage, waveHitRadius, waveScale,
+            ArchitectOrb.Fire(waveFrames, 2, 4, Core + dir * 1.2f, dir * waveSpeed, AttackDamage, waveHitRadius, waveScale,
                               4f, true, Knockback, Violet, playerBody, transform);
         }
         ImpactSparks.Spawn(Core + aim * 1.2f, Violet, 6, aim, 4f, 40f);
@@ -1674,7 +1676,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     void FireOrb(Vector2 at, float angle, float speed, float scale = 1f)
     {
         Vector2 dir = Quaternion.Euler(0f, 0f, angle) * Vector2.right;
-        ArchitectOrb.Fire(orbFrames, 0, 6, at, dir * speed, damage, orbHitRadius * scale, orbScale * scale, orbLife, false,
+        ArchitectOrb.Fire(orbFrames, 0, 6, at, dir * speed, AttackDamage, orbHitRadius * scale, orbScale * scale, orbLife, false,
                           Knockback * 0.6f, Violet, playerBody, transform);
     }
 

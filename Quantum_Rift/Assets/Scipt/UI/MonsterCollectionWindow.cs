@@ -46,7 +46,8 @@ public sealed class MonsterCollectionWindow : MonoBehaviour
     void LateUpdate()
     {
         var screen=new Vector2(Screen.width,Screen.height);
-        if(entryButton==null||arrangedFor==screen)return;
+        // หน้าเมนูที่รวมกับคู่มือซ่อนปุ่มเดี่ยวไว้ ไม่จัดตำแหน่งปุ่มที่ถูกซ่อนซ้ำ
+        if(entryButton==null||!entryButton.gameObject.activeInHierarchy||arrangedFor==screen)return;
         var own=GetComponent<Canvas>();var help=GameHelpWindow.Instance!=null?GameHelpWindow.Instance:FindFirstObjectByType<GameHelpWindow>();
         if(own==null||own.scaleFactor<=0)return;
         arrangedFor=screen;
@@ -107,7 +108,7 @@ public sealed class MonsterCollectionWindow : MonoBehaviour
         entryLabel.text=th?"มอนสเตอร์":"BESTIARY";closeLabel.text=th?"ปิด [Esc]":"CLOSE [Esc]";
         nameLabel.text=entry.name;stageLabel.text=(entry.boss?(th?"บอส  ·  ":"BOSS  ·  "):(th?"มอนสเตอร์  ·  ":"ENEMY  ·  "))+(th?entry.stageThai:entry.stageEnglish);
         healthLabel.text=(th?"เลือดสูงสุด":"MAX HP")+$"\n<color=#A3EDF4>{entry.Health:0.##}</color>";
-        damageLabel.text=(th?"ดาเมจพื้นฐาน":"BASE DAMAGE")+$"\n<color=#FFB5A3>{entry.Damage:0.##}</color>";
+        damageLabel.text=(th?"ดาเมจพื้นฐาน":"BASE DAMAGE")+$"\n<color=#FFB5A3>{entry.DamageText}</color>";
         speedLabel.text=(th?"ความเร็วเดิน":"MOVE SPEED")+$"\n<color=#DBC0FF>{entry.Speed:0.##}</color>";
         cooldownLabel.text=(th?"คูลดาวน์พื้นฐาน":"COOLDOWN")+$"\n<color=#FFDA8C>{entry.Cooldown:0.##} {(th?"วิ":"s")}</color>";
         abilities.text=entry.Abilities(th);

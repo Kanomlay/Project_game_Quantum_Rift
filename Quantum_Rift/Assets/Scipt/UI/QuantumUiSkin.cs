@@ -81,7 +81,9 @@ public static class QuantumUiSkin
         Panel(window,32);
         var inner=window.Find("Inner");if(inner!=null)inner.GetComponent<Image>().color=Ink;
         Panel(window.Find("Sidebar"),7);
-        Button(help.entryButton,12);Button(help.closeButton,8);Button(help.languageButton,8);
+        // ปุ่มคู่มือเมนูมีภาพสถานะม่วงชุดเดียวกับ START ห้ามทาผิวกรอบคู่มือทับ
+        if(!help.menuButtonSkin)Button(help.entryButton,12);
+        Button(help.closeButton,8);Button(help.languageButton,8);
         Button(help.previousButton,8);Button(help.nextButton,8);
         foreach(var tab in help.tabs)Button(tab,5);
         for(int i=0;i<3;i++)

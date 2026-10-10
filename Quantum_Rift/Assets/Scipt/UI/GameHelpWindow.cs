@@ -29,6 +29,8 @@ public sealed class GameHelpWindow : MonoBehaviour
     }
 
     public bool pauseGameplay;
+    [Header("ปุ่มคู่มือหน้าเมนูใช้กรอบเดียวกับปุ่มเริ่มเกม")]
+    public bool menuButtonSkin;
     public GameObject panel;
     public Button entryButton, closeButton, previousButton, nextButton, languageButton;
     public TMP_Text entryLabel, entryHint, title, summary, footer, statusLabel, closeLabel, languageLabel;
@@ -177,7 +179,8 @@ public sealed class GameHelpWindow : MonoBehaviour
         var page = pages[CurrentPage];
         title.text = page.title.Value;
         summary.text = page.summary.Value;
-        entryLabel.text = pauseGameplay ? "?" : th ? "?  คู่มือการเล่น" : "?  HOW TO PLAY";
+        if(menuButtonSkin&&shopContext==null&&CurrentPage==0)summary.text=th?"เปิดด้วยปุ่มคู่มือการเล่นหรือ F1 · เลือกมอนสเตอร์เพื่อดูข้อมูลศัตรู":"Use HOW TO PLAY or F1 · choose MONSTERS for enemy details";
+        entryLabel.text = pauseGameplay ? "?" : menuButtonSkin ? (th ? "คู่มือการเล่น" : "HOW TO PLAY") : th ? "?  คู่มือการเล่น" : "?  HOW TO PLAY";
         entryHint.text = th ? "F1 · คู่มือ" : "F1 · HELP";
         closeLabel.text = shopContext != null ? (th ? "กลับร้าน [Esc]" : "SHOP [Esc]") : th ? "ปิด  [Esc]" : "CLOSE  [Esc]";
         languageLabel.text = th ? "TH / EN" : "EN / TH";

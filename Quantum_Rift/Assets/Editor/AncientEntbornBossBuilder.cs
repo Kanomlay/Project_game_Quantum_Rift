@@ -5,7 +5,7 @@ using UnityEngine;
 
 // ติดตั้งบอสประจำแมพ 2 (Ancient Entborn) ให้พร้อมสู้ แบบเดียวกับ BossBuilder ของแมพ 1
 // (AncientEntbornBuilder ของเพื่อนสร้างภาพ/คลิป/prefab ส่วนไฟล์นี้ใส่ AI และผูกกับห้องบอส):
-// 1. MonsterData ตามตาราง 1.8 (เลือด 320 ดาเมจ 2 หน่วงโจมตี 4 ความเร็ว 60 → 0.9 สเกลเดียวกับมอนตัวอื่น)
+// 1. MonsterData ตามตาราง 1.8 (เลือด 320 ดาเมจ 4 ความเร็ว 60 → 0.9 สเกลเดียวกับมอนตัวอื่น)
 // 2. prefab บอสที่เพื่อนทำภาพ/Animator ไว้: เติมฟิสิกส์ collider layer และ AncientEntbornBoss (ไม่แตะ Animator)
 // 3. ห้องบอสแมพ 2 เสกบอสตัวนี้ (โหมดจัดฉาก) และตั้ง MapData_2_boss เป็นห้องบอส (จบแล้วขึ้นหน้าสรุปแบบแมพ 1)
 // สั่งซ้ำได้: ขนาด collider และตัวเลขท่าที่ปรับเองใน prefab จะไม่ถูกทับ
@@ -43,7 +43,7 @@ public static class AncientEntbornBossBuilder
         }
         data.monsterName = "Ancient Entborn";
         data.maxHealth = 320f;
-        data.attackDamage = 2f;
+        data.attackDamage = 4f; // ดาเมจตามขอบเขต ไม่สลับกับคอลัมน์หน่วงโจมตี
         data.attackCooldown = 4f;
         data.moveSpeed = 60f * 1.5f / 100f;
         data.attackRange = 2.4f;
