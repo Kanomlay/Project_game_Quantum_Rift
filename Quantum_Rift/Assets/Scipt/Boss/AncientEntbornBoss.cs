@@ -204,7 +204,7 @@ public class AncientEntbornBoss : MonsterController
         bool walking = distance > preferredDistance && !Rooted;
         if (anim != null) anim.SetBool("isWalking", walking);
         if (!walking) return;
-        Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * Time.deltaTime
+        Vector2 step = navigator.DirectionTo(player.position) * myData.WalkSpeed * Time.deltaTime
                        * BlessingManager.MonsterSpeedFactor(transform.position);
         transform.position += (Vector3)step;
     }

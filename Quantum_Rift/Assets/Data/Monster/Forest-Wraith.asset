@@ -16,7 +16,7 @@ MonoBehaviour:
   monsterPrefab: {fileID: 6918760524044544206, guid: 6f473b7f8681c5c40b39966ed3989564, type: 3}
   maxHealth: 100
   attackDamage: 1
-  moveSpeed: 1.5
+  moveSpeed: 100
   attackRange: 1.8
   attackCooldown: 1.5
   packMin: 1

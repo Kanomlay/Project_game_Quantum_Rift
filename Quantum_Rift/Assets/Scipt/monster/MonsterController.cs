@@ -134,7 +134,7 @@ public class MonsterController : MonoBehaviour
             {
                 anim.SetBool("isWalking", true);
                 anim.ResetTrigger("Attack");
-                Vector2 step = navigator.DirectionTo(player.position) * myData.moveSpeed * SpeedScale * Time.deltaTime
+                Vector2 step = navigator.DirectionTo(player.position) * myData.WalkSpeed * SpeedScale * Time.deltaTime
                                * BlessingManager.MonsterSpeedFactor(transform.position); // สนามชะลอระดับ 3
                 transform.position += (Vector3)step;
             }

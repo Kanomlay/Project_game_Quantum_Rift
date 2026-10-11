@@ -126,7 +126,7 @@ public static class StageExpansionInstaller
         const string dummyPath="Assets/Data/Map/TutorialDummy.asset";
         tutorial.dummyData=Copy<MonsterData>(AssetDatabase.GetAssetPath(worker),dummyPath);tutorial.dummyData.maxHealth=80;tutorial.dummyData.moveSpeed=0;tutorial.dummyData.attackDamage=0;EditorUtility.SetDirty(tutorial.dummyData);
         const string practicePath="Assets/Data/Map/TutorialEnemy.asset";
-        var practice=Copy<MonsterData>(AssetDatabase.GetAssetPath(worker),practicePath);practice.maxHealth=12;practice.attackDamage=.25f;practice.moveSpeed=.8f;EditorUtility.SetDirty(practice);
+        var practice=Copy<MonsterData>(AssetDatabase.GetAssetPath(worker),practicePath);practice.maxHealth=12;practice.attackDamage=.25f;practice.moveSpeed=53.33f;EditorUtility.SetDirty(practice);
         const string roomPath="Assets/Data/Map/RoomData/Tutorial Combat.asset";
         var encounter=AssetDatabase.LoadAssetAtPath<RoomEncounterData>(roomPath);if(encounter==null){encounter=ScriptableObject.CreateInstance<RoomEncounterData>();AssetDatabase.CreateAsset(encounter,roomPath);}
         encounter.monstersToSpawn=new[]{practice,practice};EditorUtility.SetDirty(encounter);

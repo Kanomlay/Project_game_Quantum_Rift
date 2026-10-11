@@ -20803,8 +20803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArchitectBossAI
   damage: 5
   phaseTwoDamage: 2
-  speedOne: 1.5
-  speedTwo: 2.25
+  speedOne: 100
+  speedTwo: 150
   spiralCooldown: 2
   dashCooldown: 2
   orbFrames:

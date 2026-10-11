@@ -109,7 +109,7 @@ public sealed class MonsterCollectionWindow : MonoBehaviour
         nameLabel.text=entry.name;stageLabel.text=(entry.boss?(th?"บอส  ·  ":"BOSS  ·  "):(th?"มอนสเตอร์  ·  ":"ENEMY  ·  "))+(th?entry.stageThai:entry.stageEnglish);
         healthLabel.text=(th?"เลือดสูงสุด":"MAX HP")+$"\n<color=#A3EDF4>{entry.Health:0.##}</color>";
         damageLabel.text=(th?"ดาเมจพื้นฐาน":"BASE DAMAGE")+$"\n<color=#FFB5A3>{entry.DamageText}</color>";
-        speedLabel.text=(th?"ความเร็วเดิน":"MOVE SPEED")+$"\n<color=#DBC0FF>{entry.Speed:0.##}</color>";
+        speedLabel.text=(th?"ความเร็วเดิน":"MOVE SPEED")+$"\n<color=#DBC0FF>{entry.SpeedText(th)}</color>";
         cooldownLabel.text=(th?"คูลดาวน์พื้นฐาน":"COOLDOWN")+$"\n<color=#FFDA8C>{entry.Cooldown:0.##} {(th?"วิ":"s")}</color>";
         abilities.text=entry.Abilities(th);
         // ข้อมูลยาวเลื่อนได้ ไม่ย่อฟอนต์จนอ่านยากหรือตัดความสามารถทิ้ง

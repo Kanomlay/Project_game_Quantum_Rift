@@ -35,8 +35,8 @@ public sealed class ArchitectBossAI : MonoBehaviour
     [Header("ตาราง 1.8 (ร่าง 1 / ร่าง 2)")]
     [Min(0f)] public float damage = 5f; // เก็บชื่อเดิมเพื่อรักษาค่าอ้างอิงใน prefab: ดาเมจร่างแรก
     [Min(0f)] public float phaseTwoDamage = 2f;
-    [Min(0f)] public float speedOne = 1.5f;       // ความเร็ว 100 (สเกลเดียวกับมอนตัวอื่น ×1.5/100)
-    [Min(0f)] public float speedTwo = 2.25f;      // ความเร็ว 150
+    [Min(0f)] public float speedOne = 100f;       // ความเร็วตามตาราง 1.8 แปลงเป็นหน่วย/วินาทีด้วย MonsterData.SpeedUnit
+    [Min(0f)] public float speedTwo = 150f;
     [Min(0.1f)] public float spiralCooldown = 2f; // ระยะหน่วง 2 ตามตาราง 1.8: กระสุนหมุนวน (ร่าง 1)
     [Min(0.1f)] public float dashCooldown = 2f;   // ระยะหน่วง 2: วาร์ปพุ่งชน (ร่าง 2)
 
@@ -206,7 +206,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     public float AttackDamage => health != null && Form == 2 ? phaseTwoDamage : damage;
     bool Enraged => Form == 2 && arena != null && arena.CurrentPhase >= 3;
     float HealthFraction => health.CurrentHealth / Mathf.Max(1f, health.maxHealth);
-    float Speed => Form == 2 ? speedTwo : speedOne;
+    float Speed => (Form == 2 ? speedTwo : speedOne) * MonsterData.SpeedUnit;
     SpriteRenderer View => Form == 2 ? viewTwo : viewOne;
     Animator Anim => Form == 2 ? animTwo : animOne;
     // กลางลำตัว: ร่าง 1 ภาพ pivot กลาง ร่าง 2 pivot ที่เท้า ตัวสูง ~2.9 หน่วยภาพ

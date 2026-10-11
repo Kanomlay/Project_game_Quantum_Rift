@@ -40,7 +40,7 @@ public static class BossBuilder
         data.monsterName = "Echo Commander";
         data.maxHealth = 500f;
         data.attackDamage = 2f;
-        data.moveSpeed = 1.65f;
+        data.moveSpeed = 110f; // ค่าตามตาราง 1.8
         data.attackRange = 1.8f;
         data.attackCooldown = 2f;
 

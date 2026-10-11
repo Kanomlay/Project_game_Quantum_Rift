@@ -17,6 +17,8 @@ public sealed class MonsterCollectionLibrary : ScriptableObject
         // บอสสุดท้ายมีสองค่าจริง แสดงทั้งสองร่างแทนเลขเดียวที่ทำให้เข้าใจผิด
         public string DamageText=>prefab!=null&&prefab.GetComponent<ArchitectBossAI>() is ArchitectBossAI ai?$"{ai.damage:0.##} / {ai.phaseTwoDamage:0.##}":$"{Damage:0.##}";
         public float Speed=>data!=null?data.moveSpeed:prefab.GetComponent<ArchitectBossAI>().speedOne;
+        // ค่าตามตารางขอบเขต: บอสสุดท้ายแสดงทั้งสองร่าง ตัวที่ไม่เดินแสดงว่าไม่มี
+        public string SpeedText(bool th)=>prefab!=null&&prefab.GetComponent<ArchitectBossAI>() is ArchitectBossAI ai?$"{ai.speedOne:0.##} / {ai.speedTwo:0.##}":Speed<=0f?(th?"ไม่มี":"None"):$"{Speed:0.##}";
         public float Cooldown=>data!=null?data.attackCooldown:prefab.GetComponent<ArchitectBossAI>().spiralCooldown;
         // ค่าจริงอ่านจาก Data และคอมโพเนนต์ของ prefab ทุกครั้ง ไม่คัดลอกตัวเลขมาค้างไว้ในคู่มือ
         public string Abilities(bool th)

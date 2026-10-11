@@ -83,7 +83,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     // ค่าจาก MonsterData คูณตัวคูณเฉพาะตัว (มอนผิดเพี้ยน)
     float Cooldown=>data.attackCooldown*(owner!=null?owner.AttackCooldownScale:1f);
     float AttackDamage=>data.attackDamage*(owner!=null?owner.AttackScale:1f);
-    float MoveSpeed=>data.moveSpeed*(owner!=null?owner.SpeedScale:1f);
+    float MoveSpeed=>data.WalkSpeed*(owner!=null?owner.SpeedScale:1f);
 
     public void Initialize(MonsterData monsterData, Transform player)
     {

@@ -22,9 +22,6 @@ public static class Map1MonsterBuilder
     internal const string SortingReferencePrefab = "Assets/Prefab/Monster/Rift-Drained Worker_0.prefab";
     internal const string EnemyLayerName = "Enemy";
 
-    // ความเร็วในเอกสารเป็นคนละหน่วยกับในเกม เทียบจาก Rift-Drained Worker ที่เอกสารเขียน 100
-    // แต่ในเกมเดินที่ 1.5 หน่วย/วินาที (ตัวที่เล่นได้จริงตัวแรก) จึงคูณ 0.015 ทุกตัว
-    const float SpeedScale = 1.5f / 100f;
 
     // พอร์ทัลออกด่านวางไว้กลางห้องสุดท้ายของแต่ละผัง ใช้หาห้องทางออก (ค่าเดียวกับ MapEventDirector)
     const float PortalRoomRadius = 3f;
@@ -160,7 +157,7 @@ public static class Map1MonsterBuilder
         }
 
         data.monsterName = spec.Name;
-        data.moveSpeed = spec.Speed * SpeedScale;
+        data.moveSpeed = spec.Speed; // ค่าตามเอกสาร แปลงหน่วยตอนเดินด้วย MonsterData.WalkSpeed
         data.maxHealth = spec.Health;
         data.attackCooldown = spec.Cooldown;
         data.attackDamage = spec.Damage;
