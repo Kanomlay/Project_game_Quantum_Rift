@@ -8,7 +8,7 @@ using UnityEngine;
 //
 //   เปิดตัว: คำราม คลื่นกระแทก (อมตะสั้น ๆ)
 //   ร่าง 1 "แกนเนื้อ" (100–50%) ลอยช้า ๆ รักษาระยะห่าง
-//     กระสุนหมุนวน — กางหนวด ยิงลูกเวทมนตร์เป็นเกลียว 3 แขนหมุนรอบตัว (หน่วง 5 วินาที ตามเอกสาร)
+//     กระสุนหมุนวน — กางหนวด ยิงลูกเวทมนตร์เป็นเกลียว 3 แขนหมุนรอบตัว (หน่วง 2 วินาที ตามเอกสาร ตาราง 1.8)
 //     เลเซอร์     — แถบเตือนบนพื้นไล่ตามผู้เล่นแล้วล็อก ลำแสงพุ่งจากประตูมิติหน้าตัว (ต่ำกว่า 75% = 3 สายกางพัด)
 //     วงแหวน      — ยิงเป็นวงมีช่องหลบ 2–3 ระลอก ปิดท้ายยิงตรงใส่ผู้เล่น 3 นัด
 //   แปลงร่าง (50%): เลือดล็อกที่ 50% จนแปลงเสร็จ ตีไม่เข้า กระสุนสลาย ผลักผู้เล่นออก
@@ -37,7 +37,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     [Min(0f)] public float phaseTwoDamage = 2f;
     [Min(0f)] public float speedOne = 1.5f;       // ความเร็ว 100 (สเกลเดียวกับมอนตัวอื่น ×1.5/100)
     [Min(0f)] public float speedTwo = 2.25f;      // ความเร็ว 150
-    [Min(0.1f)] public float spiralCooldown = 5f; // ระยะหน่วง 5: กระสุนหมุนวน (ร่าง 1)
+    [Min(0.1f)] public float spiralCooldown = 2f; // ระยะหน่วง 2 ตามตาราง 1.8: กระสุนหมุนวน (ร่าง 1)
     [Min(0.1f)] public float dashCooldown = 2f;   // ระยะหน่วง 2: วาร์ปพุ่งชน (ร่าง 2)
 
     [Header("ภาพ (ตัวสร้างใส่ให้)")]
@@ -49,6 +49,10 @@ public sealed class ArchitectBossAI : MonoBehaviour
     [Header("การเดิน / จังหวะ")]
     [Min(1f)] public float keepDistanceOne = 6.5f;
     [Min(1f)] public float keepDistanceTwo = 4f;
+    // ระยะหน่วงโจมตีตามเอกสารขอบเขต ตาราง 1.8: ตัวบอสพัก 2 วินาทีหลังจบท่าของตัวเองทุกครั้ง ทุกร่าง
+    // ระหว่างพักยังมีแรงกดดันจากกลไกของสนาม (หัวใจรังมิติยิงกระสุน ห้องพังทลาย) และของที่ยิงค้างไว้ ซึ่งไม่ใช่การโจมตีของตัวบอส
+    // actionGapOne/Two/Rage เป็นค่าพักแบบเดิม เก็บไว้ไม่ให้ค่าใน prefab หาย ไม่ได้ใช้แล้ว
+    [Min(0.1f)] public float attackRest = 2f;
     [Min(0.1f)] public float actionGapOne = 1.2f;
     [Min(0.1f)] public float actionGapTwo = 0.7f;
     [Min(0.1f)] public float actionGapRage = 0.4f;
@@ -182,6 +186,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     readonly List<EchoSlashTelegraph> slashMarks = new List<EchoSlashTelegraph>(); // วงแดงจุดฟันปลายทางวาร์ป
     float coreLeft;
     bool coreRunning, coreBroken;
+    bool resting; // ตัวบอสอยู่ในช่วงพักหลังจบท่า (ระยะหน่วง 2 วินาที)
 
     // เส้นพุ่งของวาร์ป (ตัวจริงหรือร่างหลอก)
     sealed class DashLine
@@ -320,7 +325,8 @@ public sealed class ArchitectBossAI : MonoBehaviour
         if (transforming) EndTransform();
 
         if (Enraged && !rageShown && brain != null) Interrupt(); // เข้าคลั่งทันที ไม่รอท่าเดิมจบ
-        if (Enraged && rageShown && !DevCheats.FreezeMonsters) HeartTick();
+        // หัวใจรังมิติกลางห้อง: ร่าง 2 ยิงเฉพาะช่วงที่ตัวบอสพัก ตอนคลั่งยิงตลอดและถี่ขึ้นช่วงพัก
+        if (Form == 2 && (!Enraged || rageShown) && !DevCheats.FreezeMonsters) HeartTick();
         if (brain == null) brain = StartCoroutine(Brain());
     }
 
@@ -338,13 +344,14 @@ public sealed class ArchitectBossAI : MonoBehaviour
         }
         while (true)
         {
-            float gap = Form == 1 ? actionGapOne : Enraged ? actionGapRage : actionGapTwo;
-            float until = Mathf.Max(Time.time + gap, graceUntil);
+            float until = Mathf.Max(Time.time + attackRest, graceUntil);
+            resting = true;
             do
             {
                 if (!DevCheats.FreezeMonsters) Drift();
                 yield return null;
             } while (Time.time < until || DevCheats.FreezeMonsters); // คอนโซลทดสอบ: หยุด AI = ลอยนิ่ง ไม่เริ่มท่าใหม่
+            resting = false;
             yield return NextMove();
         }
     }
@@ -412,6 +419,7 @@ public sealed class ArchitectBossAI : MonoBehaviour
     {
         if (brain != null) StopCoroutine(brain);
         brain = null;
+        resting = false;
         DestroyBeams();
         ClearMarks();
         if (animOne != null) animOne.speed = 1f;
@@ -508,7 +516,9 @@ public sealed class ArchitectBossAI : MonoBehaviour
     void HeartTick()
     {
         if (health.Invulnerable || Time.time < nextHeart) return;
-        nextHeart = Time.time + heartInterval;
+        bool rage = Enraged;
+        if (!rage && !resting) return;
+        nextHeart = Time.time + heartInterval * (rage && resting ? 0.5f : 1f);
         heartAngle += 17f;
         for (int i = 0; i < 2; i++)
             FireOrb(HeartSpot, heartAngle + 180f * i, heartOrbSpeed, 0.9f);

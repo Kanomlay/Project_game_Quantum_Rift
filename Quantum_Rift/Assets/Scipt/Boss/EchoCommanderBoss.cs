@@ -125,6 +125,19 @@ public class EchoCommanderBoss : MonsterController
         if (distance <= riftStepDistance) farSince = -1f;
         else if (farSince < 0f) farSince = Time.time;
 
+        if (Time.time < restUntil)
+        {
+            // พักหลังจบท่า: ในระยะฟันก็ยืนหันหน้ารอ (ไม่ตกไปใช้ท่าฟันโดนทันทีของมอนปกติ) นอกระยะเดินตามปกติ
+            if (distance <= myData.attackRange)
+            {
+                if (anim != null) anim.SetBool("isWalking", false);
+                FacePlayer();
+                return;
+            }
+            base.Update();
+            return;
+        }
+
         if (Time.time >= nextSummonTime && CanSummon())
         {
             StartCoroutine(Cast(SummonRoutine()));
@@ -171,6 +184,39 @@ public class EchoCommanderBoss : MonsterController
         yield return PausedWhileHeld(move);
         if (anim != null) anim.speed = 1f;
         isCasting = false;
+        restUntil = Time.time + AttackRest;
+        // ช่วงคลั่ง: ระหว่างที่ตัวบอสพัก ร่างเสียงสะท้อนโผล่มายิงแทน (เว้นระยะ ไม่ออกทุกครั้งที่พัก)
+        if (enraged && echoCount > 0 && Time.time >= nextRestEcho && !isDying)
+        {
+            nextRestEcho = Time.time + 4f;
+            StartCoroutine(RestEchoVolley());
+        }
+    }
+
+    // ระยะหน่วงโจมตีตามเอกสารขอบเขต ตาราง 1.8 (2 วินาที): หลังจบท่าของตัวเองทุกครั้ง บอสไม่เริ่มท่าใหม่จนครบเวลา
+    // เท่ากันทั้งช่วงปกติและช่วงคลั่ง ระหว่างพักบอสยังเดินตามผู้เล่น ลูกน้องที่เรียกไว้ยังโจมตีต่อ
+    private float restUntil, nextRestEcho;
+    private readonly List<EchoCommanderEcho> restEchoes = new List<EchoCommanderEcho>();
+    private float AttackRest => myData != null && myData.attackCooldown > 0f ? myData.attackCooldown : 2f;
+
+    private IEnumerator RestEchoVolley()
+    {
+        if (player == null) yield break;
+        int before = echoes.Count;
+        SpawnEchoes();
+        for (int i = echoes.Count - 1; i >= before; i--) { restEchoes.Add(echoes[i]); echoes.RemoveAt(i); } // แยกจากร่างของท่ายิง
+        yield return new WaitForSeconds(EchoCommanderEcho.AppearTime);
+        if (player == null) yield break;
+        foreach (var echo in restEchoes) if (echo != null) echo.Shoot(player.position);
+        yield return new WaitForSeconds(shootWindup);
+        Sfx.Play(SfxId.BossBullets);
+        foreach (var echo in restEchoes)
+        {
+            if (echo == null) continue;
+            FireFan(echo.BodyCenter + Vector2.up * (MuzzleHeight - bodyOffset.y), echoProjectiles, 40f);
+            echo.Vanish();
+        }
+        restEchoes.Clear();
     }
 
     // ---------- ท่าฟัน ----------
@@ -552,6 +598,8 @@ public class EchoCommanderBoss : MonsterController
         if (slashTelegraph != null) Destroy(slashTelegraph.gameObject);
         foreach (var echo in echoes) if (echo != null) echo.Vanish();
         echoes.Clear();
+        foreach (var echo in restEchoes) if (echo != null) echo.Vanish();
+        restEchoes.Clear();
         foreach (var portal in portals) if (portal != null) portal.Close();
         portals.Clear();
         if (sr != null) sr.color = Color.white;

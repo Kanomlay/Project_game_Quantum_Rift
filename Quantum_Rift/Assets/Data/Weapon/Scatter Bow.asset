@@ -30,10 +30,8 @@ MonoBehaviour:
   projectileLifetime: 10
   projectileCount: 3
   spreadAngle: 12
-  abilityDescription: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39 3 \u0E25\u0E39\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E31\u0E14
-    \u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E0A\u0E34\u0E48\u0E07\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E44\u0E14\u0E49
-    3 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E44\u0E21\u0E48\u0E08\u0E33\u0E01\u0E31\u0E14\u0E23\u0E30\u0E22\u0E30"
-  abilityDescriptionEnglish: Fires 3 arrows in a fan. Arrows bounce off walls 3 times with no range limit
+  abilityDescription: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E18\u0E19\u0E39 3 \u0E25\u0E39\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E31\u0E14 \u0E25\u0E39\u0E01\u0E18\u0E19\u0E39\u0E0A\u0E34\u0E48\u0E07\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E44\u0E14\u0E49 1 \u0E04\u0E23\u0E31\u0E49\u0E07 \u0E44\u0E21\u0E48\u0E08\u0E33\u0E01\u0E31\u0E14\u0E23\u0E30\u0E22\u0E30"
+  abilityDescriptionEnglish: Fires 3 arrows in a fan. Arrows bounce off walls once with no range limit
   specialEffectPrefab: {fileID: 0}
   special: 3
   specialFrames:
@@ -48,4 +46,4 @@ MonoBehaviour:
   specialDuration: 0.5
   comboCount: 3
   chargeTime: 1
-  bounces: 3
+  bounces: 1

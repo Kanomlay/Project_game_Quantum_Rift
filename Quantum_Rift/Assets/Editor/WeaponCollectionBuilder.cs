@@ -124,9 +124,9 @@ public static class WeaponCollectionBuilder
             Damage = 10f, AttackSpeed = 1.2f, EnergyCost = 2 } },
 
         new RangedInfo { Thai = "ธนูยิงกระจาย", Rarity = WeaponRarity.Legendary, Special = WeaponSpecial.Ricochet,
-            Description = "ยิงลูกธนู 3 ลูกเป็นพัด ลูกธนูชิ่งกำแพงได้ 3 ครั้ง ไม่จำกัดระยะ",
+            Description = "ยิงลูกธนู 3 ลูกเป็นพัด ลูกธนูชิ่งกำแพงได้ 1 ครั้ง ไม่จำกัดระยะ", // ชิ่ง 1 ครั้งตามเอกสารขอบเขต ตาราง 1.5
             // ไม่จำกัดระยะ: บินจนชนศัตรูหรือชนกำแพงครบจำนวนชิ่ง (อายุ 10 วิ = ระยะ 150 หน่วย ไว้กันหลุดออกนอกแมพเท่านั้น)
-            Configure = d => { d.projectileCount = 3; d.spreadAngle = 12f; d.bounces = 3; d.projectileLifetime = 10f; d.specialScale = 0.45f; },
+            Configure = d => { d.projectileCount = 3; d.spreadAngle = 12f; d.bounces = 1; d.projectileLifetime = 10f; d.specialScale = 0.45f; },
             Spec = new StarterWeaponBuilder.RangedSpec {
             Name = "Scatter Bow", Folder = "20-scatter-bow", Type = WeaponType.Bow,
             Idle = F("weapon-01.png", 95f, 64f), Attack = new[] { F("weapon-02.png", 100f, 64f), F("weapon-03.png", 100f, 64f) },
@@ -344,7 +344,7 @@ public static class WeaponCollectionBuilder
         switch (weapon)
         {
             case "Rift Sword": return "Every 3rd slash releases an energy wave";
-            case "Scatter Bow": return "Fires 3 arrows in a fan. Arrows bounce off walls 3 times with no range limit";
+            case "Scatter Bow": return "Fires 3 arrows in a fan. Arrows bounce off walls once with no range limit";
             case "Ion Spear X": return "Hold 1 second to charge, then release an energy wave";
             case "Rocket Launcher": return "Rockets explode in a circle, dealing area damage";
             case "Quantum Hammer": return "Hold 1 second to charge, then smash to create a pulse that deals area damage for 0.5 seconds";

@@ -141,6 +141,10 @@ public class AncientEntbornBoss : MonsterController
     // ตัวบอสขยายได้ใน prefab ท่าที่อิงขนาดตัว (ลำแสง/คลื่นกระแทก) ขยายตาม
     float Size => Mathf.Max(0.1f, Mathf.Abs(transform.lossyScale.y));
     protected override DamageNumbers.Kind HitKind =>Rooted ? DamageNumbers.Kind.Armored : DamageNumbers.Kind.Enemy;
+    // พักหลังจบท่า = ระยะหน่วงโจมตีในข้อมูลมอน (เอกสารขอบเขต ตาราง 1.8: 2 วินาที) เท่ากันทุกเฟส ไม่มีข้อมูลมอนถึงใช้ actionGap
+    // ตั้งแต่เฟส 2 ระหว่างที่ตัวบอสพัก รากใต้ดินของสนามยังแทงไล่ผู้เล่นเป็นระยะ (มีวงเตือนก่อน) เฟสคลั่งถี่ขึ้น บอสจึงไม่โล่งเกินไป
+    float nextRestRoot;
+    float ActionGap => myData != null && myData.attackCooldown > 0f ? myData.attackCooldown : actionGap;
     float CooldownScale => phase >= 3 ? rageCooldownScale : phase == 2 ? 0.85f : 1f;
     float Side => sr != null && sr.flipX ? -1f : 1f;
     Vector2 Muzzle => (Vector2)transform.position + Vector2.Scale(new Vector2(muzzle.x * Side, muzzle.y), transform.lossyScale);
@@ -185,6 +189,11 @@ public class AncientEntbornBoss : MonsterController
             if (distance <= laserRange && Time.time >= nextLaser) { StartCoroutine(Cast(Laser())); return; }
             if (distance <= stompRange && Time.time >= nextStomp) { StartCoroutine(Cast(Stomp())); return; }
         }
+        if (phase >= 2 && Time.time < nextAction && Time.time >= nextRestRoot)
+        {
+            nextRestRoot = Time.time + (phase >= 3 ? 0.8f : 1.2f);
+            StartCoroutine(RootAt(player.position, rootWarning, rootRadius, rootScale, 0f));
+        }
         Walk(distance);
     }
 
@@ -208,7 +217,8 @@ public class AncientEntbornBoss : MonsterController
         yield return PausedWhileHeld(move);
         if (anim != null) anim.speed = 1f;
         isCasting = false;
-        nextAction = Time.time + actionGap * CooldownScale;
+        nextAction = Time.time + ActionGap;
+        nextRestRoot = Time.time + 0.5f;
     }
 
     // ---------- เปิดตัว ----------

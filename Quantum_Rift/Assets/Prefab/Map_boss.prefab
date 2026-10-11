@@ -20805,7 +20805,7 @@ MonoBehaviour:
   phaseTwoDamage: 2
   speedOne: 1.5
   speedTwo: 2.25
-  spiralCooldown: 5
+  spiralCooldown: 2
   dashCooldown: 2
   orbFrames:
   - {fileID: 1143584355, guid: 39f8b455be0a5244f9c4a3c8588ba463, type: 3}

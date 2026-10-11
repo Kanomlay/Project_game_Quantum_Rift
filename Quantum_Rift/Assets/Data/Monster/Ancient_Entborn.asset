@@ -18,6 +18,6 @@ MonoBehaviour:
   attackDamage: 4
   moveSpeed: 0.9
   attackRange: 2.4
-  attackCooldown: 4
+  attackCooldown: 2
   packMin: 1
   packMax: 1

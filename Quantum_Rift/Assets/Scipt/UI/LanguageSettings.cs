@@ -24,7 +24,7 @@ public static class LanguageSettings
         {
             if (!loaded)
             {
-                current = (GameLanguage)PlayerPrefs.GetInt(PrefsKey, (int)GameLanguage.English);
+                current = (GameLanguage)PlayerPrefs.GetInt(PrefsKey, (int)GameLanguage.Thai); // เปิดเกมครั้งแรกเป็นไทย (ขอบเขต 1.3.1) เคยเลือกภาษาไว้แล้วใช้ค่านั้น
                 loaded = true;
             }
             return current;

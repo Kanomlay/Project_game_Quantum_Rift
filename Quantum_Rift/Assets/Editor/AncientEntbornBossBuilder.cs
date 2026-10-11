@@ -44,7 +44,7 @@ public static class AncientEntbornBossBuilder
         data.monsterName = "Ancient Entborn";
         data.maxHealth = 320f;
         data.attackDamage = 4f; // ดาเมจตามขอบเขต ไม่สลับกับคอลัมน์หน่วงโจมตี
-        data.attackCooldown = 4f;
+        data.attackCooldown = 2f; // ระยะหน่วง 2 ตามเอกสารขอบเขต ตาราง 1.8
         data.moveSpeed = 60f * 1.5f / 100f;
         data.attackRange = 2.4f;
 
