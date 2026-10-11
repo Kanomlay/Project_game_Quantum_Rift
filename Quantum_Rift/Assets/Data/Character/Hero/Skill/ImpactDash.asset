@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: ImpactDash
   m_EditorClassIdentifier: Assembly-CSharp::ImpactDashSkill
   skillName: "\u0E1E\u0E38\u0E48\u0E07\u0E0A\u0E19\u0E01\u0E23\u0E30\u0E41\u0E17\u0E01"
+  skillNameEnglish: Impact Dash
   skillIcon: {fileID: 21300000, guid: a40d2ab1622b44147ada017ef6f5461e, type: 3}
   cooldown: 5
   energyCost: 0
   Description: "\u0E1E\u0E38\u0E48\u0E07\u0E44\u0E1B\u0E17\u0E32\u0E07\u0E40\u0E21\u0E32\u0E2A\u0E4C
     \u0E2D\u0E21\u0E15\u0E30\u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E1E\u0E38\u0E48\u0E07
     \u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E35\u0E48\u0E02\u0E27\u0E32\u0E07\u0E17\u0E32\u0E07\u0E42\u0E14\u0E19\u0E14\u0E32\u0E40\u0E21\u0E08\u0E41\u0E25\u0E30\u0E01\u0E23\u0E30\u0E40\u0E14\u0E47\u0E19"
+  DescriptionEnglish: Dash toward the cursor. Invincible while dashing. Enemies in the way take damage and are knocked back
   effectFrames:
   - {fileID: 21300000, guid: b25cfce26bf71b5498ef5a399c130524, type: 3}
   - {fileID: 21300000, guid: 3418458fd188e064c96e544c989062af, type: 3}

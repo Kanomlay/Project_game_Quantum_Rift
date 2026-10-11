@@ -3,11 +3,16 @@ using UnityEngine;
 public abstract class SkillData : ScriptableObject
 {
     [Header("ข้อมูลพื้นฐานสกิล")]
-    public string skillName;
+    public string skillName;        // ชื่อไทย (ตามเอกสารขอบเขต ตาราง 1.1)
+    public string skillNameEnglish;
     public Sprite skillIcon;
     public float cooldown;
     public int energyCost;
     public string Description;
+    public string DescriptionEnglish;
+    // ชื่อ/คำอธิบายตามภาษาที่ตั้งไว้ (ช่องอังกฤษว่าง = ใช้ไทย)
+    public string DisplayName => LanguageSettings.IsThai || string.IsNullOrEmpty(skillNameEnglish) ? skillName : skillNameEnglish;
+    public string DescriptionText => LanguageSettings.IsThai || string.IsNullOrEmpty(DescriptionEnglish) ? Description : DescriptionEnglish;
 
     [Header("ภาพเอฟเฟกต์ (7 เฟรมจาก QuantumRift-Hero-Skills-v1)")]
     public Sprite[] effectFrames;

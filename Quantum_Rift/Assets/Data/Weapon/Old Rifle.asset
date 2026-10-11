@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Old Rifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E1B\u0E37\u0E19\u0E44\u0E23\u0E40\u0E1F\u0E34\u0E25\u0E40\u0E01\u0E48\u0E32"
+  weaponNameEnglish: Old Rifle
   weaponIcon: {fileID: 21300000, guid: 132be180b973bc74bbbe53b3b8534a53, type: 3}
   weaponPrefab: {fileID: 6700681813695965299, guid: df3f49ee31956d74e8d8712638524bbe, type: 3}
   weaponType: 1
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

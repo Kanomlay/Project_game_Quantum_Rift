@@ -7,14 +7,14 @@ public static class RunStatBuffs
     public static List<ShopOffer> Stock(int ceiling)
     {
         int floor=Mathf.Max(50,ceiling);bool large=Random.value<.5f;
-        var result=new List<ShopOffer>{Offer("ยาเสริมชีวิต",5,0,0,floor+30),
-            Offer("ยาแกนพลังงาน",0,large?100:50,0,floor+(large?90:40)),Offer("ยาเสริมพลังโจมตี",0,0,2,floor+70)};
+        var result=new List<ShopOffer>{Offer("ยาเสริมชีวิต","Vitality Tonic",5,0,0,floor+30),
+            Offer("ยาแกนพลังงาน","Energy Core Tonic",0,large?100:50,0,floor+(large?90:40)),Offer("ยาเสริมพลังโจมตี","Power Tonic",0,0,2,floor+70)};
         int roll=Random.Range(0,3);
-        result.Add(roll==0?Offer("สัญญาเขี้ยวแดง",-3,0,6,floor+110,true):
-            roll==1?Offer("สัญญาเลือดอสูร",12,-30,0,floor+110,true):Offer("สัญญาแกนร้าว",-3,150,0,floor+110,true));return result;
+        result.Add(roll==0?Offer("สัญญาเขี้ยวแดง","Red Fang Pact",-3,0,6,floor+110,true):
+            roll==1?Offer("สัญญาเลือดอสูร","Demon Blood Pact",12,-30,0,floor+110,true):Offer("สัญญาแกนร้าว","Cracked Core Pact",-3,150,0,floor+110,true));return result;
     }
-    static ShopOffer Offer(string name,int hp,int energy,int damage,int price,bool risky=false)
-        =>new ShopOffer(ShopOffer.Kind.RunBuff,price){buffName=name,hpDelta=hp,energyDelta=energy,damageDelta=damage,risky=risky};
+    static ShopOffer Offer(string name,string english,int hp,int energy,int damage,int price,bool risky=false)
+        =>new ShopOffer(ShopOffer.Kind.RunBuff,price){buffName=name,buffNameEnglish=english,hpDelta=hp,energyDelta=energy,damageDelta=damage,risky=risky};
     public static bool CanApply(PlayerStats player,ShopOffer offer)=>player!=null && !player.isDead &&
         player.maxHP+offer.hpDelta>=1 && player.maxEnergy+offer.energyDelta>=10;
     public static float Damage(float value,PlayerStats owner=null)

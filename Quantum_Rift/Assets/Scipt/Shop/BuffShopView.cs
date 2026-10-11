@@ -6,7 +6,8 @@ public sealed class BuffShopView:MonoBehaviour
 {
     ShopWindow window;
     TMP_FontAsset font;
-    TMP_Text money,message;
+    TMP_Text money,message,shopTitle;
+    readonly TMP_Text[] kinds=new TMP_Text[4];
     readonly TMP_Text[] titles=new TMP_Text[4],details=new TMP_Text[4],prices=new TMP_Text[4];
     readonly Button[] buttons=new Button[4];
     readonly Image[] icons=new Image[4];
@@ -41,7 +42,7 @@ public sealed class BuffShopView:MonoBehaviour
     {
         gameObject.AddComponent<Image>().color=Red;
         Rect("Inner",transform,Vector2.zero,new Vector2(1108,648),Ink);
-        Label("Title",transform,new Vector2(-20,268),new Vector2(760,55),"ร้านบัพเลือดสนธยา",34,new Color(1,.65f,.5f));
+        shopTitle=Label("Title",transform,new Vector2(-20,268),new Vector2(760,55),"",34,new Color(1,.65f,.5f));
         money=Label("Money",transform,new Vector2(0,219),new Vector2(900,36),"",22,Color.yellow);
         var close=Button("Close",transform,new Vector2(508,281),new Vector2(62,52),()=>window.Close());
         Label("X",close.transform,Vector2.zero,new Vector2(50,45),"X",25,Color.white);
@@ -50,7 +51,7 @@ public sealed class BuffShopView:MonoBehaviour
         for(int i=0;i<4;i++)
         {
             int index=i;var card=Rect("Offer"+i,transform,new Vector2(-405+270*i,5),new Vector2(250,368),i==3?new Color(.24f,.075f,.12f):new Color(.16f,.08f,.1f));
-            Label("Kind",card,new Vector2(0,151),new Vector2(230,36),i==3?"ข้อเสนอมีข้อเสีย":"บัพประจำรอบ",18,i==3?new Color(1,.4f,.3f):Color.gray);
+            kinds[i]=Label("Kind",card,new Vector2(0,151),new Vector2(230,36),"",18,i==3?new Color(1,.4f,.3f):Color.gray);
             icons[i]=Rect("Icon",card,new Vector2(0,92),new Vector2(70,70)).gameObject.AddComponent<Image>();icons[i].preserveAspect=true;icons[i].raycastTarget=false;
             var info=Button("ItemHelp",card,new Vector2(98,95),new Vector2(38,42),()=>window.OpenOfferHelp(index));
             Label("Question",info.transform,Vector2.zero,new Vector2(36,45),"?",22,Color.white);
@@ -63,12 +64,16 @@ public sealed class BuffShopView:MonoBehaviour
     }
     public void Refresh(ShopClickable shop,PlayerStats player)
     {
-        money.text=$"เหรียญ { (player!=null?player.currentCurrency:0) }   |   ซื้อได้รายการละ 1 ครั้ง";
+        // ข้อความทั้งหน้าตามภาษาที่ตั้งไว้ ตั้งใหม่ทุกครั้งที่เปิดร้าน
+        bool th=LanguageSettings.IsThai;int coins=player!=null?player.currentCurrency:0;
+        shopTitle.text=th?"ร้านบัพเลือดสนธยา":"TWILIGHT BLOOD BUFF SHOP";
+        money.text=th?$"เหรียญ {coins}   |   ซื้อได้รายการละ 1 ครั้ง":$"Coins {coins}   |   Each offer can be bought once";
         for(int i=0;i<4;i++)
         {
+            kinds[i].text=i==3?(th?"ข้อเสนอมีข้อเสีย":"Risky offer"):(th?"บัพประจำรอบ":"Run buff");
             var offer=shop.Stock[i];titles[i].text=offer.DisplayName;details[i].text=offer.Describe(shop.itemPool).Replace(" หน่วย","");
             icons[i].sprite=offer.Icon(shop.itemPool);icons[i].color=offer.risky?new Color(1,.3f,.3f):Color.white;
-            prices[i].text=offer.sold?"ขายแล้ว":offer.price+" เหรียญ";
+            prices[i].text=offer.sold?(th?"ขายแล้ว":"SOLD"):offer.price+(th?" เหรียญ":" coins");
             buttons[i].interactable=!offer.sold && player!=null && !player.isDead;
             details[i].color=offer.sold?Color.gray:Color.white;
         }

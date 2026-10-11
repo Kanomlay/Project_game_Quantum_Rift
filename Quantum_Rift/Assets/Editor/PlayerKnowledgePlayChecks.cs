@@ -89,7 +89,7 @@ public static class PlayerKnowledgePlayChecks
                         for(int i=0;i<selection.allCharacters.Count;i++)
                         {
                             var card=selection.characterContainer.GetComponentsInChildren<CharacterBoxUI>().Single();var data=selection.allCharacters[i];var weapon=data.characterPrefab.GetComponent<PlayerStats>().weapon1;
-                            Check(card.StarterWeapon==weapon&&card.starterWeaponIcon.sprite==weapon.weaponIcon,"starter weapon correct "+data.name);Check(card.starterWeaponName.text==weapon.weaponName,"starter weapon name correct "+data.name);Fits(card.gameObject,"hero "+data.name+" lang "+lang);selection.NextCharacter();
+                            Check(card.StarterWeapon==weapon&&card.starterWeaponIcon.sprite==weapon.weaponIcon,"starter weapon correct "+data.name);Check(card.starterWeaponName.text==weapon.DisplayName,"starter weapon name correct "+data.name);Fits(card.gameObject,"hero "+data.name+" lang "+lang);selection.NextCharacter();
                         }
                     }
                     LanguageSettings.Current=GameLanguage.Thai;PlayerKnowledgeInstaller.Capture(Camera(),"starter-play.png",1280,720);

@@ -309,7 +309,10 @@ public static class StarterWeaponBuilder
         var prefab = BuildWeaponPrefab(spec, idle, attack, reference);
 
         var data = LoadOrCreate<WeaponData>($"{DataFolder}/{spec.Name}.asset");
-        data.weaponName = spec.Name;
+        // ชื่อไทยตามเอกสารขอบเขต ตาราง 1.2 ชื่ออังกฤษ = ชื่อไฟล์
+        data.weaponName = spec.Name == "Rusty Sword" ? "ดาบขึ้นสนิม" : spec.Name == "Rusty Bow" ? "ธนูขึ้นสนิม"
+                        : spec.Name == "Rusty Pistol" ? "ปืนขึ้นสนิม" : spec.Name == "Rusty Claw" ? "กรงเล็บขึ้นสนิม" : spec.Name;
+        data.weaponNameEnglish = spec.Name;
         data.weaponIcon = idle.sprite;
         data.weaponPrefab = prefab;
         data.weaponType = spec.Type;

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfca8c2b21e4ba44789acda4274466ce, type: 3}
   m_Name: Rusty Sword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: Rusty Sword
+  weaponName: "\u0E14\u0E32\u0E1A\u0E02\u0E36\u0E49\u0E19\u0E2A\u0E19\u0E34\u0E21"
+  weaponNameEnglish: Rusty Sword
   weaponIcon: {fileID: 21300000, guid: 54db34e5b1dbb2d4aa0b47644dd2714f, type: 3}
   weaponPrefab: {fileID: 7777550296153586313, guid: 1dc86d4b3f6598b478a44f5a2342e1e3, type: 3}
   weaponType: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

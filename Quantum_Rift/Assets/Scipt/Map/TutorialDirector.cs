@@ -201,7 +201,7 @@ public sealed class TutorialDirector : MonoBehaviour
             "Approach the training dummy, aim with the mouse, and land a left-click attack. Some weapons cost energy.",
             $"Successfully use both Q and E. Q: {(UsedQ?"DONE":"pending")} / E: {(UsedE?"DONE":"pending")}. Skills have cooldowns.",
             "Attack the marked supply crate until it breaks. Its blue energy motes restore your energy.",
-            "Walk over the coin, health potion and energy potion. Restoration is capped; full bars do not consume potions.",
+            "Walk over the coin, HP Potion and Mana Potion. Restoration is capped; full bars do not consume potions.",
             "Follow the marker into the combat room. Doors close during combat and open after every enemy is defeated.",
             "Approach the reward chest. It contains coins, potions and a random weapon. Press F to pick up a weapon.",
             $"You received {TrainingCoins} training coins. Walk to the shop, press F and buy one item. In real stages the shop is a random event in one room; the red vendor sells run-long buffs.",

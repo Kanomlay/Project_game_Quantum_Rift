@@ -33,7 +33,18 @@ public enum WeaponSpecial
 public class WeaponData : ScriptableObject
 {
     [Header("ข้อมูลพื้นฐาน (Basic Info)")]
-    public string weaponName;
+    public string weaponName;        // ชื่อไทย (ตามเอกสารขอบเขต 1.3.4)
+    public string weaponNameEnglish; // ชื่ออังกฤษ เว้นว่าง = ใช้ชื่อไฟล์ asset
+    // ชื่อ/ความสามารถตามภาษาที่ตั้งไว้ ของที่ผู้เล่นเห็นใช้ตัวนี้ ไม่อ่าน weaponName ตรง ๆ
+    public string DisplayName => NameIn(LanguageSettings.IsThai);
+    public string AbilityText => AbilityIn(LanguageSettings.IsThai);
+    public string NameIn(bool thai)
+    {
+        string english = !string.IsNullOrEmpty(weaponNameEnglish) ? weaponNameEnglish : name;
+        return thai && !string.IsNullOrEmpty(weaponName) ? weaponName : !string.IsNullOrEmpty(english) ? english : weaponName;
+    }
+    public string AbilityIn(bool thai) =>
+        thai || string.IsNullOrEmpty(abilityDescriptionEnglish) ? abilityDescription : abilityDescriptionEnglish;
     public Sprite weaponIcon; 
     public GameObject weaponPrefab;
     public WeaponType weaponType;
@@ -66,7 +77,8 @@ public class WeaponData : ScriptableObject
     public float spreadAngle;                // มุมห่างระหว่างลูก (องศา)
 
     [Header("ความสามารถพิเศษ (Special Ability)")]
-    [TextArea] public string abilityDescription; 
+    [TextArea] public string abilityDescription;
+    [TextArea] public string abilityDescriptionEnglish; 
     public GameObject specialEffectPrefab;
     public WeaponSpecial special;
     public Sprite[] specialFrames;           // เอฟเฟกต์ 3 เฟรมจากชุดภาพอาวุธ

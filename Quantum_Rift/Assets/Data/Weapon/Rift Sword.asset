@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rift Sword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E14\u0E32\u0E1A\u0E1C\u0E48\u0E32\u0E21\u0E34\u0E15\u0E34"
+  weaponNameEnglish: Rift Sword
   weaponIcon: {fileID: 21300000, guid: 3309ebd86e6e620459636388d1afde78, type: 3}
   weaponPrefab: {fileID: 5314120469587230492, guid: 6fbf9a31c02e58249a3e129225bfcd0e, type: 3}
   weaponType: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   spreadAngle: 0
   abilityDescription: "\u0E1F\u0E31\u0E19\u0E04\u0E23\u0E31\u0E49\u0E07\u0E17\u0E35\u0E48
     3 \u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E04\u0E25\u0E37\u0E48\u0E19\u0E1E\u0E25\u0E31\u0E07"
+  abilityDescriptionEnglish: Every 3rd slash releases an energy wave
   specialEffectPrefab: {fileID: 0}
   special: 1
   specialFrames:

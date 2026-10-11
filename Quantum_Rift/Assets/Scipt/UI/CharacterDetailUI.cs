@@ -24,8 +24,8 @@ public class CharacterDetailUI : MonoBehaviour
             nameText.text = data.DisplayName;
             hpText.text = data.maxHealth.ToString();
             energyText.text = data.maxEnergy.ToString();
-            skill1Text.text = data.skill1Name;
-            skill2Text.text = data.skill2Name;
+            skill1Text.text = data.skillQ != null ? data.skillQ.DisplayName : data.skill1Name;
+            skill2Text.text = data.skillE != null ? data.skillE.DisplayName : data.skill2Name;
 
             if (data.characterSprite != null)
             {

@@ -30,8 +30,8 @@ public sealed class ShopSlotView : MonoBehaviour, IPointerEnterHandler, IPointer
         nameText.color = empty ? SoldColor : offer.NameColor;
 
         if (empty) priceText.text = "-";
-        else if (offer.sold) priceText.text = "ขายแล้ว";
-        else priceText.text = $"{offer.price} <size=80%>เหรียญ</size>";
+        else if (offer.sold) priceText.text = LanguageSettings.IsThai ? "ขายแล้ว" : "SOLD";
+        else priceText.text = $"{offer.price} <size=80%>{(LanguageSettings.IsThai ? "เหรียญ" : "coins")}</size>";
         priceText.color = empty || offer.sold ? SoldColor : canAfford ? Affordable : TooExpensive;
 
         buyButton.interactable = !empty && !offer.sold;

@@ -23,7 +23,7 @@ public static class ShopHelpPages
                 S("พลังงานต่อการโจมตี","Energy cost per attack","อาวุธแต่ละชิ้นใช้พลังงานไม่เท่ากัน ถ้าไม่พอจะโจมตีไม่ได้\nเลขพลังงานในรายละเอียดเป็นค่าของอาวุธ ไม่ใช่ราคาซื้อ","Energy cost varies by weapon. You cannot attack without enough energy.\nThe energy stat is the weapon's cost, not its purchase price.",Blue),
                 S("ขวดยาฟื้นฟู ไม่ใช่บัพเพิ่มค่าสูงสุด","Recovery potions do not raise your maximum",
                     $"ร้านนี้: ขวดยาเลือด +{hp:0.#}  ·  ขวดยาพลังงาน +{energy}\nฟื้นฟูไม่เกินค่าสูงสุด ถ้าเต็มแล้วขวดจะวางรอที่พื้น",
-                    $"This shop: HP potion +{hp:0.#}  ·  Energy potion +{energy}\nRestores up to your maximum. At full capacity, the potion waits on the ground.",Green)));
+                    $"This shop: HP Potion +{hp:0.#}  ·  Mana Potion +{energy}\nRestores up to your maximum. At full capacity, the potion waits on the ground.",Green)));
         if(window.HelpStock!=null)for(int i=0;i<window.HelpStock.Count;i++)
         {var offer=window.HelpStock[i];if(offer!=null)result.Add(Offer(offer,pool,i));}
         return result.ToArray();
@@ -37,7 +37,7 @@ public static class ShopHelpPages
         if(o.kind==ShopOffer.Kind.RunBuff)
         {
             string positiveTh=Deltas(o,true,true),positiveEn=Deltas(o,true,false),negativeTh=Deltas(o,false,true),negativeEn=Deltas(o,false,false);
-            return P("บัพ "+(index+1),"Buff "+(index+1),o.DisplayName,o.DisplayName,subTh,subEn,
+            return P("บัพ "+(index+1),"Buff "+(index+1),o.NameIn(true),o.NameIn(false),subTh,subEn,
                 S("ผลที่ได้รับ","Benefits",positiveTh,positiveEn,Green),
                 S(o.risky?"ข้อเสียมีผลทันที":"ไม่มีข้อเสียในข้อเสนอนี้",o.risky?"Immediate drawback":"No drawback on this offer",negativeTh,negativeEn,Red),
                 S("ระยะเวลาและเงื่อนไข","Duration and conditions","มีผลจนจบรอบ ข้ามด่านแล้วยังอยู่ เริ่มเกมใหม่จะรีเซ็ต\nซื้อไม่ได้หากข้อเสียทำให้เลือดหรือพลังงานสูงสุดต่ำเกินไป","Lasts for this run, including later stages. Resets on a new game.\nAn offer is blocked if its penalty would lower maximum stats too far.",Gold));
@@ -46,8 +46,8 @@ public static class ShopHelpPages
         {
             bool isHp=o.kind==ShopOffer.Kind.HpPotion;
             float amount=isHp?(pool!=null?pool.hpRestore:3):(pool!=null?pool.energyRestore:100);
-            string th=isHp?"ขวดยาเลือด":"ขวดยาพลังงาน",en=isHp?"Health potion":"Energy potion";
-            return P(isHp?"ยาเลือด":"ยาพลังงาน",isHp?"HP potion":"Energy potion",th,en,subTh,subEn,
+            string th=o.NameIn(true),en=o.NameIn(false);
+            return P(isHp?"ยาเลือด":"ยาพลังงาน",isHp?"HP Potion":"Mana Potion",th,en,subTh,subEn,
                 S("ค่าฟื้นฟูของขวดนี้","This potion restores",$"{(isHp?"เลือด":"พลังงาน")} +{amount:0.#} หน่วย เมื่อเก็บขวด\nเป็นการฟื้นค่าที่เสียไป ไม่เพิ่มค่าสูงสุด",$"{(isHp?"HP":"Energy")} +{amount:0.#} on pickup.\nRestores a depleted resource; does not increase its maximum.",isHp?Red:Blue),
                 S("ถ้าหลอดเต็มจะเป็นอย่างไร?","What if the bar is full?","ฟื้นฟูได้ไม่เกินค่าสูงสุด\nหากเต็มอยู่ จะยังไม่เก็บขวดจนกว่าค่านั้นจะลดลง","Restoration is capped at your maximum.\nAt full capacity, the potion remains available until the resource drops.",Green),
                 S("ซื้อแล้วรับขวดตรงไหน?","Where does the purchased potion go?","ขวดจะวางใกล้เท้าผู้เล่น และเก็บเมื่อเข้าเงื่อนไข\nปิดคู่มือกลับไปร้าน แล้วกดปุ่มราคาเพื่อซื้อ","The potion drops near your feet and is collected when eligible.\nReturn to the shop and click its price to buy.",Gold));
@@ -58,8 +58,8 @@ public static class ShopHelpPages
         string rarityEn=w.rarity==WeaponRarity.Legendary?"Legendary (gold)":w.rarity==WeaponRarity.Rare?"Rare (blue)":w.rarity==WeaponRarity.Starter?"Starter (white)":"Common (white)";
         var rarityColor=WeaponPickup.RarityColor(w.rarity);
         string abilityTh=string.IsNullOrWhiteSpace(w.abilityDescription)?"ไม่มีคำอธิบายความสามารถพิเศษเพิ่มเติม":w.abilityDescription;
-        string abilityEn=string.IsNullOrWhiteSpace(w.abilityDescription)?"No additional special ability description.":w.abilityDescription;
-        return P("อาวุธ "+Mathf.Max(1,index-1),"Weapon "+Mathf.Max(1,index-1),w.weaponName,w.weaponName,subTh,subEn,
+        string abilityEn=string.IsNullOrWhiteSpace(w.AbilityIn(false))?"No additional special ability description.":w.AbilityIn(false);
+        return P("อาวุธ "+Mathf.Max(1,index-1),"Weapon "+Mathf.Max(1,index-1),w.NameIn(true),w.NameIn(false),subTh,subEn,
             S("ระดับ: "+rarityTh,"Rarity: "+rarityEn,$"ดาเมจพื้นฐาน {w.attackDamage:0.#}  ·  ความเร็ว {w.attackSpeed:0.##} ครั้ง/วินาที\nค่าพื้นฐานนี้ยังไม่รวมบัพหรือพรของผู้เล่น",$"Base damage {w.attackDamage:0.#}  ·  Attack speed {w.attackSpeed:0.##}/s\nBase stats shown here exclude the player's buffs and blessings.",rarityColor),
             S("พลังงานที่ใช้","Energy requirement",$"ใช้พลังงาน {w.energyCost} หน่วยต่อการโจมตี\n{(w.energyCost==0?"อาวุธนี้โจมตีได้โดยไม่เสียพลังงาน":"ต้องมีพลังงานเพียงพอก่อนเริ่มโจมตี")}",$"Energy cost: {w.energyCost} per attack.\n{(w.energyCost==0?"This weapon can attack without spending energy.":"You need enough energy before starting an attack.")}",Blue),
             S("ความสามารถของอาวุธ","Weapon ability",abilityTh,abilityEn,Gold));

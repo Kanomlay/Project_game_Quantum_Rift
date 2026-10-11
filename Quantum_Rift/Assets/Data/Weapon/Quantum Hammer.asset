@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Quantum Hammer
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E04\u0E49\u0E2D\u0E19\u0E04\u0E27\u0E2D\u0E19\u0E15\u0E31\u0E21"
+  weaponNameEnglish: Quantum Hammer
   weaponIcon: {fileID: 21300000, guid: 0eb5de633731ec444a4992037f86df95, type: 3}
   weaponPrefab: {fileID: 5193238447344982505, guid: 1db3c5f3d96764041aca2d27798ff37d, type: 3}
   weaponType: 5
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: "\u0E01\u0E14\u0E04\u0E49\u0E32\u0E07\u0E0A\u0E32\u0E23\u0E4C\u0E08 1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\u0E41\u0E25\u0E49\u0E27\u0E17\u0E38\u0E1A \u0E40\u0E01\u0E34\u0E14\u0E27\u0E07\u0E1E\u0E25\u0E31\u0E07 \u0E17\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22\u0E1E\u0E37\u0E49\u0E19\u0E17\u0E35\u0E48\u0E15\u0E48\u0E2D\u0E40\u0E19\u0E37\u0E48\u0E2D\u0E07 0.5 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35"
+  abilityDescriptionEnglish: Hold 1 second to charge, then smash to create a pulse that deals area damage for 0.5 seconds
   specialEffectPrefab: {fileID: 0}
   special: 5
   specialFrames:

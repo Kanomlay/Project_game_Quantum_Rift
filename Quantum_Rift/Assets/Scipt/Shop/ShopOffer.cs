@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class ShopOffer
 {
     public enum Kind { HpPotion, EnergyPotion, Weapon, RunBuff }
-    public string buffName;
+    public string buffName, buffNameEnglish;
     public int hpDelta,energyDelta,damageDelta;
     public bool risky;
 
@@ -21,12 +21,14 @@ public sealed class ShopOffer
         this.weapon = weapon;
     }
 
-    public string DisplayName => kind switch
+    // ชื่อตามภาษาที่ตั้งไว้ ชื่อขวดยาอังกฤษตามเอกสารขอบเขต 1.3.9.3 (HP Potion / Mana Potion)
+    public string DisplayName => NameIn(LanguageSettings.IsThai);
+    public string NameIn(bool thai) => kind switch
     {
-        Kind.HpPotion => "ขวดยาเลือด",
-        Kind.EnergyPotion => "ขวดยาพลังงาน",
-        Kind.RunBuff => buffName,
-        _ => weapon != null ? weapon.weaponName : "-",
+        Kind.HpPotion => thai ? "ขวดยาเลือด" : "HP Potion",
+        Kind.EnergyPotion => thai ? "ขวดยาพลังงาน" : "Mana Potion",
+        Kind.RunBuff => thai || string.IsNullOrEmpty(buffNameEnglish) ? buffName : buffNameEnglish,
+        _ => weapon != null ? weapon.NameIn(thai) : "-",
     };
 
     public Color NameColor => kind == Kind.Weapon && weapon != null
@@ -44,21 +46,27 @@ public sealed class ShopOffer
     // คำอธิบายตอนชี้เมาส์
     public string Describe(LootTable pool)
     {
+        bool th = LanguageSettings.IsThai;
         switch (kind)
         {
             case Kind.RunBuff:
                 string text="";
-                if(hpDelta!=0)text+=$"เลือดสูงสุด {hpDelta:+0;-0} หน่วย\n";
-                if(energyDelta!=0)text+=$"พลังงานสูงสุด {energyDelta:+0;-0} หน่วย\n";
-                if(damageDelta!=0)text+=$"ดาเมจ {damageDelta:+0;-0} หน่วย\n";
-                return text+"มีผลจนจบรอบการเล่น";
+                if(hpDelta!=0)text+=th?$"เลือดสูงสุด {hpDelta:+0;-0} หน่วย\n":$"Max health {hpDelta:+0;-0}\n";
+                if(energyDelta!=0)text+=th?$"พลังงานสูงสุด {energyDelta:+0;-0} หน่วย\n":$"Max energy {energyDelta:+0;-0}\n";
+                if(damageDelta!=0)text+=th?$"ดาเมจ {damageDelta:+0;-0} หน่วย\n":$"Damage {damageDelta:+0;-0}\n";
+                return text+(th?"มีผลจนจบรอบการเล่น":"Lasts until the run ends");
             case Kind.HpPotion:
-                return $"ฟื้นฟูพลังชีวิต {(pool != null ? pool.hpRestore : 3f):0.#} หน่วยทันที (ไม่เกินค่าสูงสุด)";
+                float hp = pool != null ? pool.hpRestore : 3f;
+                return th ? $"ฟื้นฟูพลังชีวิต {hp:0.#} หน่วยทันที (ไม่เกินค่าสูงสุด)" : $"Restores {hp:0.#} health instantly (up to your maximum)";
             case Kind.EnergyPotion:
-                return $"ฟื้นฟูพลังงาน {(pool != null ? pool.energyRestore : 100)} หน่วยทันที (ไม่เกินค่าสูงสุด)";
+                float energy = pool != null ? pool.energyRestore : 100;
+                return th ? $"ฟื้นฟูพลังงาน {energy:0.#} หน่วยทันที (ไม่เกินค่าสูงสุด)" : $"Restores {energy:0.#} energy instantly (up to your maximum)";
         }
         if (weapon == null) return "";
-        string line = $"ดาเมจ {weapon.attackDamage:0.#} · {weapon.attackSpeed:0.#} ครั้ง/วินาที · พลังงาน {weapon.energyCost}";
-        return string.IsNullOrEmpty(weapon.abilityDescription) ? line : $"{line}\n{weapon.abilityDescription}";
+        string line = th
+            ? $"ดาเมจ {weapon.attackDamage:0.#} · {weapon.attackSpeed:0.#} ครั้ง/วินาที · พลังงาน {weapon.energyCost}"
+            : $"Damage {weapon.attackDamage:0.#} · {weapon.attackSpeed:0.#} hits/sec · Energy {weapon.energyCost}";
+        string ability = weapon.AbilityText;
+        return string.IsNullOrEmpty(ability) ? line : $"{line}\n{ability}";
     }
 }

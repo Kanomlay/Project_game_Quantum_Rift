@@ -23,7 +23,8 @@ public sealed class ShopWindow : MonoBehaviour
     [Tooltip("ชี้เมาส์ที่สินค้าแล้วแสดงรายละเอียดในกล่องล่าง (ปิดไว้ก่อน กล่องล่างแสดงคำแนะนำ/ผลการซื้อเท่านั้น)")]
     public bool showDetailsOnHover = false;
 
-    const string Hint = "คลิกที่ราคาเพื่อซื้อ · ซื้อได้ครั้งละ 1 ชิ้น";
+    static bool Thai => LanguageSettings.IsThai;
+    static string Hint => Thai ? "คลิกที่ราคาเพื่อซื้อ · ซื้อได้ครั้งละ 1 ชิ้น" : "Click a price to buy · 1 item per purchase";
     static readonly Color HintColor = new Color(0.75f, 0.85f, 1f);
     static readonly Color GoodColor = new Color(0.55f, 1f, 0.6f);
     static readonly Color BadColor = new Color(1f, 0.45f, 0.45f);
@@ -70,8 +71,24 @@ public sealed class ShopWindow : MonoBehaviour
         content.SetActive(true);
         if(buffView==null)buffView=BuffShopView.Create(this,content.transform);
         foreach(Transform child in content.transform)child.gameObject.SetActive(child==buffView.transform ? owner!=null&&owner.isBuffShop : owner==null||!owner.isBuffShop);
+        Localize();
         Refresh();
         ShowHint();
+    }
+
+    // ป้ายตายตัวใน prefab ของร้าน (ชื่อร้าน หัวข้อขวดยา/อาวุธ) ตั้งตามภาษาทุกครั้งที่เปิด
+    void Localize()
+    {
+        foreach (var label in content.GetComponentsInChildren<TMP_Text>(true))
+        {
+            if (buffView != null && label.transform.IsChildOf(buffView.transform)) continue;
+            switch (label.name)
+            {
+                case "Title": label.text = Thai ? "ร้านค้ามิติ" : "RIFT SHOP"; break;
+                case "PotionHeader": label.text = Thai ? "ขวดยา" : "POTIONS"; break;
+                case "WeaponHeader": label.text = Thai ? "อาวุธ" : "WEAPONS"; break;
+            }
+        }
     }
 
     public void Close()
@@ -131,7 +148,9 @@ public sealed class ShopWindow : MonoBehaviour
         }
     }
 
-    public void ShowHint() => Say(shop!=null&&shop.isBuffShop?"บัพอยู่จนจบรอบ · ข้อเสียมีผลทันที · เริ่มเกมใหม่จะรีเซ็ต":Hint, HintColor);
+    public void ShowHint() => Say(shop!=null&&shop.isBuffShop
+        ?(Thai?"บัพอยู่จนจบรอบ · ข้อเสียมีผลทันที · เริ่มเกมใหม่จะรีเซ็ต":"Buffs last for the run · Drawbacks apply at once · Reset on a new game")
+        :Hint, HintColor);
     public void HoverEnded() { if (showDetailsOnHover) ShowHint(); } // ไม่ลบข้อความผลการซื้อตอนเลื่อนเมาส์ออก
 
     public void Describe(int index)
@@ -162,11 +181,12 @@ public sealed class ShopWindow : MonoBehaviour
         if (offer == null || offer.sold) return;
         if(player.isDead)return;
         if(offer.kind==ShopOffer.Kind.RunBuff && !RunStatBuffs.CanApply(player,offer))
-        {Say("ซื้อไม่ได้: ข้อเสียทำให้เลือดหรือพลังงานสูงสุดต่ำเกินไป",BadColor);return;}
+        {Say(Thai?"ซื้อไม่ได้: ข้อเสียทำให้เลือดหรือพลังงานสูงสุดต่ำเกินไป":"Can't buy: the drawback would drop max health or energy too low",BadColor);return;}
 
         if (!player.TrySpendCurrency(offer.price))
         {
-            Say($"เงินไม่พอ ต้องใช้ {offer.price} เหรียญ (มี {player.currentCurrency})", BadColor);
+            Say(Thai ? $"เงินไม่พอ ต้องใช้ {offer.price} เหรียญ (มี {player.currentCurrency})"
+                     : $"Not enough coins. Need {offer.price} (you have {player.currentCurrency})", BadColor);
             return;
         }
         offer.sold = true;
@@ -177,12 +197,12 @@ public sealed class ShopWindow : MonoBehaviour
         {
             case ShopOffer.Kind.RunBuff:
                 player.ApplyRunBuff(offer);
-                Say($"ซื้อ{offer.DisplayName}แล้ว\n{offer.Describe(Pool)}",GoodColor);
+                Say((Thai?$"ซื้อ{offer.DisplayName}แล้ว":$"Bought {offer.DisplayName}")+$"\n{offer.Describe(Pool)}",GoodColor);
                 break;
             case ShopOffer.Kind.HpPotion:
             case ShopOffer.Kind.EnergyPotion:
                 DropPotion(offer.kind, parent, feet);
-                Say($"ซื้อ{offer.DisplayName}แล้ว", GoodColor);
+                Say(Thai ? $"ซื้อ{offer.DisplayName}แล้ว" : $"Bought {offer.DisplayName}", GoodColor);
                 break;
             case ShopOffer.Kind.Weapon:
                 var replaced = player.PickUpWeapon(offer.weapon);
@@ -190,9 +210,10 @@ public sealed class ShopWindow : MonoBehaviour
                 {
                     // วางอาวุธเดิมไว้ข้างตัว เปลี่ยนใจก็เดินไปกด F เก็บคืนได้
                     WeaponPickup.Create(replaced, parent, feet + Vector2.down * 0.8f);
-                    Say($"ได้{offer.DisplayName}แล้ว · วาง{replaced.weaponName}ไว้ที่พื้น", GoodColor);
+                    Say(Thai ? $"ได้{offer.DisplayName}แล้ว · วาง{replaced.DisplayName}ไว้ที่พื้น"
+                             : $"Got {offer.DisplayName} · Dropped {replaced.DisplayName} on the floor", GoodColor);
                 }
-                else Say($"ได้{offer.DisplayName}แล้ว · กด R สลับอาวุธ", GoodColor);
+                else Say(Thai ? $"ได้{offer.DisplayName}แล้ว · กด R สลับอาวุธ" : $"Got {offer.DisplayName} · Press R to swap weapons", GoodColor);
                 break;
         }
         Refresh();

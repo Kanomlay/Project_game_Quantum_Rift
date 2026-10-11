@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: ElectromagneticTrap
   m_EditorClassIdentifier: Assembly-CSharp::ElectromagneticTrapSkill
   skillName: "\u0E01\u0E31\u0E1A\u0E14\u0E31\u0E01\u0E41\u0E21\u0E48\u0E40\u0E2B\u0E25\u0E47\u0E01\u0E44\u0E1F\u0E1F\u0E49\u0E32"
+  skillNameEnglish: Electromagnetic Trap
   skillIcon: {fileID: 21300000, guid: fb4991ddbb500ac4f9560d90dbac59e5, type: 3}
   cooldown: 10
   energyCost: 0
   Description: "\u0E27\u0E32\u0E07\u0E01\u0E31\u0E1A\u0E14\u0E31\u0E01\u0E15\u0E23\u0E07\u0E40\u0E21\u0E32\u0E2A\u0E4C
     \u0E28\u0E31\u0E15\u0E23\u0E39\u0E40\u0E02\u0E49\u0E32\u0E43\u0E01\u0E25\u0E49\u0E41\u0E25\u0E49\u0E27\u0E42\u0E14\u0E19\u0E44\u0E1F\u0E1F\u0E49\u0E32\u0E0A\u0E47\u0E2D\u0E15\u0E41\u0E25\u0E30\u0E15\u0E34\u0E14\u0E2A\u0E15\u0E31\u0E19"
+  DescriptionEnglish: Place a trap at the cursor. Enemies that come near are shocked and stunned
   effectFrames:
   - {fileID: 21300000, guid: 37572e2e54290f541aba5018c9328d99, type: 3}
   - {fileID: 21300000, guid: e9dfa52a549e86e4db4525b5c6a2f16d, type: 3}

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: ReflectiveArmor
   m_EditorClassIdentifier: Assembly-CSharp::ReflectiveArmorSkill
   skillName: "\u0E40\u0E01\u0E23\u0E32\u0E30\u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A"
+  skillNameEnglish: Reflective Armor
   skillIcon: {fileID: 21300000, guid: 04def2f5f3da101458eb094ee0421390, type: 3}
   cooldown: 12
   energyCost: 0
   Description: "\u0E01\u0E32\u0E07\u0E40\u0E01\u0E23\u0E32\u0E30\u0E01\u0E31\u0E19\u0E14\u0E32\u0E40\u0E21\u0E08\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14
     4 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E01\u0E31\u0E19\u0E44\u0E14\u0E49\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E44\u0E2B\u0E23\u0E48\u0E2A\u0E30\u0E17\u0E49\u0E2D\u0E19\u0E41\u0E23\u0E07\u0E43\u0E2A\u0E48\u0E28\u0E31\u0E15\u0E23\u0E39\u0E23\u0E2D\u0E1A\u0E15\u0E31\u0E27"
+  DescriptionEnglish: Raise a shield that blocks all damage for 4 seconds. Each blocked hit reflects force onto nearby enemies
   effectFrames:
   - {fileID: 21300000, guid: 97659c1ecef198a44a22079903fb3a3e, type: 3}
   - {fileID: 21300000, guid: 15c47f2899306f5479c4277eaa4a7d1d, type: 3}

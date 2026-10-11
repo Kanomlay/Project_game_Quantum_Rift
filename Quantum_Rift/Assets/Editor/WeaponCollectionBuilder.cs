@@ -183,6 +183,7 @@ public static class WeaponCollectionBuilder
 
         var data = StarterWeaponBuilder.LoadOrCreate<WeaponData>($"{StarterWeaponBuilder.DataFolder}/{spec.Name}.asset");
         data.weaponName = spec.Thai;
+        data.weaponNameEnglish = spec.Name;
         data.weaponIcon = sprite;
         data.weaponPrefab = prefab;
         data.weaponType = spec.Type;
@@ -301,6 +302,7 @@ public static class WeaponCollectionBuilder
 
         var data = StarterWeaponBuilder.LoadOrCreate<WeaponData>($"{StarterWeaponBuilder.DataFolder}/{spec.Name}.asset");
         data.weaponName = info.Thai;
+        data.weaponNameEnglish = spec.Name;
         data.weaponIcon = idle.sprite;
         data.weaponPrefab = prefab;
         data.weaponType = spec.Type;
@@ -336,10 +338,25 @@ public static class WeaponCollectionBuilder
 
     // ---------- ความสามารถพิเศษ ----------
 
+    // คำอธิบายความสามารถภาษาอังกฤษของอาวุธตำนาน (คู่กับ Description ภาษาไทยในรายการข้างบน)
+    static string AbilityEnglish(string weapon, string current)
+    {
+        switch (weapon)
+        {
+            case "Rift Sword": return "Every 3rd slash releases an energy wave";
+            case "Scatter Bow": return "Fires 3 arrows in a fan. Arrows bounce off walls 3 times with no range limit";
+            case "Ion Spear X": return "Hold 1 second to charge, then release an energy wave";
+            case "Rocket Launcher": return "Rockets explode in a circle, dealing area damage";
+            case "Quantum Hammer": return "Hold 1 second to charge, then smash to create a pulse that deals area damage for 0.5 seconds";
+            default: return current ?? "";
+        }
+    }
+
     static void ApplySpecial(WeaponData data, WeaponSpecial special, string folder, string description, Action<WeaponData> configure)
     {
         data.special = special;
         data.abilityDescription = description ?? "";
+        data.abilityDescriptionEnglish = special == WeaponSpecial.None ? "" : AbilityEnglish(data.name, data.abilityDescriptionEnglish);
         data.specialDamage = 0f;
         data.bounces = 0;
         data.specialFrames = special == WeaponSpecial.None

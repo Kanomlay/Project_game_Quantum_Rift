@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ion Blaster
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E1B\u0E37\u0E19\u0E44\u0E2D\u0E2D\u0E2D\u0E19\u0E1A\u0E25\u0E32\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C"
+  weaponNameEnglish: Ion Blaster
   weaponIcon: {fileID: 21300000, guid: 3b63fe65ba5cba74da97566c3227687c, type: 3}
   weaponPrefab: {fileID: 1912316498687795086, guid: ecde61a7ebf45e043b3da316f53fb3ee, type: 3}
   weaponType: 1
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

@@ -27,6 +27,9 @@ public class CharacterBoxUI : MonoBehaviour
     void OnEnable()
     {
         LanguageSettings.Changed += Refresh;
+        // การ์ดที่ซ่อนอยู่ไม่ได้ยินตอนสลับภาษา (เลิกฟังตอนถูกปิด) จึงตั้งข้อความใหม่ทุกครั้งที่กลับมาแสดง
+        // ไม่งั้นป้ายของหน้าเป็นภาษาใหม่ แต่ข้อมูลในการ์ดค้างภาษาเดิม
+        Refresh();
     }
 
     void OnDisable()
@@ -60,15 +63,15 @@ public class CharacterBoxUI : MonoBehaviour
                 : $"HP: {currentData.maxHealth}\nEnergy: {currentData.maxEnergy}\nSPD: {currentData.moveSpeed}";
         }
 
-        // ชื่อทักษะมีเฉพาะภาษาไทยตามเอกสาร ทั้งสองภาษาจึงแสดงข้อความเดียวกันไปก่อน
-        if (skill1Text != null) skill1Text.text = currentData.skill1Name;
-        if (skill2Text != null) skill2Text.text = currentData.skill2Name;
+        // ชื่อสกิลตามภาษาที่ตั้งไว้ จากข้อมูลสกิลตัวจริง (skill1Name/skill2Name ของอาชีพมีแต่ชื่อไทย ใช้เป็นตัวสำรอง)
+        if (skill1Text != null) skill1Text.text = currentData.skillQ != null ? currentData.skillQ.DisplayName : currentData.skill1Name;
+        if (skill2Text != null) skill2Text.text = currentData.skillE != null ? currentData.skillE.DisplayName : currentData.skill2Name;
         ShowSkill(currentData.skillQ, skill1Icon, skill1Info, skill1Description, "Q");
         ShowSkill(currentData.skillE, skill2Icon, skill2Info, skill2Description, "E");
         var weapon=StarterWeapon;
         if(starterWeaponTitle!=null)starterWeaponTitle.text=LanguageSettings.IsThai?"อาวุธเริ่มต้น":"STARTING WEAPON";
         if(starterWeaponIcon!=null){starterWeaponIcon.sprite=weapon!=null?weapon.weaponIcon:null;starterWeaponIcon.enabled=starterWeaponIcon.sprite!=null;starterWeaponIcon.preserveAspect=true;}
-        if(starterWeaponName!=null)starterWeaponName.text=weapon!=null?weapon.weaponName:LanguageSettings.IsThai?"ไม่มีอาวุธ":"No weapon";
+        if(starterWeaponName!=null)starterWeaponName.text=weapon!=null?weapon.DisplayName:LanguageSettings.IsThai?"ไม่มีอาวุธ":"No weapon";
         if(starterWeaponStats!=null)starterWeaponStats.text=weapon==null?"":LanguageSettings.IsThai?
             $"ดาเมจ {weapon.attackDamage:0.##}   ·   พลังงาน {weapon.energyCost}":$"Damage {weapon.attackDamage:0.##}   ·   Energy {weapon.energyCost}";
     }
@@ -78,6 +81,15 @@ public class CharacterBoxUI : MonoBehaviour
         if(info!=null)info.text=skill==null?"":LanguageSettings.IsThai
             ? $"ปุ่ม {key}  ·  พลังงาน {skill.energyCost}  ·  คูลดาวน์ {skill.cooldown:0.#} วินาที"
             : $"{key}  ·  Energy {skill.energyCost}  ·  Cooldown {skill.cooldown:0.#} s";
-        if(description!=null)description.text=skill!=null?skill.Description:"";
+        if(description!=null)
+        {
+            // คำอธิบายอังกฤษยาวกว่าไทย ให้ย่อตัวอักษรลงได้ จะได้ไม่ล้นไปทับบรรทัดพลังงาน/คูลดาวน์
+            if(!description.enableAutoSizing)
+            {
+                description.fontSizeMax=description.fontSize;description.fontSizeMin=description.fontSize*.7f;
+                description.enableAutoSizing=true;description.overflowMode=TextOverflowModes.Ellipsis;
+            }
+            description.text=skill!=null?skill.DescriptionText:"";
+        }
     }
 }

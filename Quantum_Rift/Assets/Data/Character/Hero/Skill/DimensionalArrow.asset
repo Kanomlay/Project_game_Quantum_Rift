@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: DimensionalArrow
   m_EditorClassIdentifier: Assembly-CSharp::DimensionalArrowSkill
   skillName: "\u0E25\u0E39\u0E01\u0E28\u0E23\u0E17\u0E30\u0E25\u0E27\u0E07\u0E21\u0E34\u0E15\u0E34"
+  skillNameEnglish: Dimensional Arrow
   skillIcon: {fileID: 21300000, guid: 5d9daab622f45114a8d2bf410b5a0582, type: 3}
   cooldown: 4
   energyCost: 0
   Description: "\u0E22\u0E34\u0E07\u0E25\u0E39\u0E01\u0E28\u0E23\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19\u0E17\u0E30\u0E25\u0E38\u0E28\u0E31\u0E15\u0E23\u0E39\u0E17\u0E38\u0E01\u0E15\u0E31\u0E27\u0E41\u0E25\u0E30\u0E17\u0E30\u0E25\u0E38\u0E01\u0E33\u0E41\u0E1E\u0E07"
+  DescriptionEnglish: Fire an energy arrow that pierces every enemy and passes through walls
   effectFrames:
   - {fileID: 21300000, guid: 83f716cd575ba4d4da3ade179e5b1252, type: 3}
   - {fileID: 21300000, guid: ebb44107739f8134a9e8910fde78bd5c, type: 3}

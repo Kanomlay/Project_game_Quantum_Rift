@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Nano Baton
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E01\u0E23\u0E30\u0E1A\u0E2D\u0E07\u0E19\u0E32\u0E42\u0E19"
+  weaponNameEnglish: Nano Baton
   weaponIcon: {fileID: 21300000, guid: 844bd05aaf1f78b47a9c69b292bec5a1, type: 3}
   weaponPrefab: {fileID: 5170114005031447729, guid: e339b68a0bfc3cd4f8a2f4af2df77765, type: 3}
   weaponType: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

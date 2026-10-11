@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Reinforced Spear
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E2B\u0E2D\u0E01\u0E40\u0E2A\u0E23\u0E34\u0E21\u0E41\u0E01\u0E23\u0E48\u0E07"
+  weaponNameEnglish: Reinforced Spear
   weaponIcon: {fileID: 21300000, guid: a4f8a0ba52f6d2249a5c6fb8ff1c3707, type: 3}
   weaponPrefab: {fileID: 1785070611712543142, guid: 0e2298a6dbb542847af687af280de797, type: 3}
   weaponType: 4
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

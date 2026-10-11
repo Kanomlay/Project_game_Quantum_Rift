@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: ShadowStep
   m_EditorClassIdentifier: Assembly-CSharp::ShadowStepSkill
   skillName: "\u0E22\u0E48\u0E32\u0E07\u0E01\u0E49\u0E32\u0E27\u0E40\u0E07\u0E32"
+  skillNameEnglish: Shadow Step
   skillIcon: {fileID: 21300000, guid: 4b8d4e053c98df849ae9252fd7d871bb, type: 3}
   cooldown: 6
   energyCost: 0
   Description: "\u0E2B\u0E32\u0E22\u0E15\u0E31\u0E27\u0E44\u0E1B\u0E42\u0E1C\u0E25\u0E48\u0E17\u0E32\u0E07\u0E40\u0E21\u0E32\u0E2A\u0E4C
     \u0E02\u0E49\u0E32\u0E21\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E43\u0E19\u0E41\u0E21\u0E1E\u0E44\u0E14\u0E49\u0E41\u0E15\u0E48\u0E44\u0E21\u0E48\u0E2D\u0E2D\u0E01\u0E19\u0E2D\u0E01\u0E41\u0E21\u0E1E
     \u0E2D\u0E21\u0E15\u0E30\u0E0A\u0E31\u0E48\u0E27\u0E04\u0E23\u0E39\u0E48"
+  DescriptionEnglish: Vanish and reappear at the cursor. Crosses walls inside the map but not out of it. Briefly invincible
   effectFrames:
   - {fileID: 21300000, guid: 8de22360cab750241a84eddfb75d6b6b, type: 3}
   - {fileID: 21300000, guid: ea83d51af0d4cf04c83d7fa30867be19, type: 3}

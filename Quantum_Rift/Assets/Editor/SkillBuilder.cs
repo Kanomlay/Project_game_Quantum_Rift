@@ -17,6 +17,23 @@ public static class SkillBuilder
     const string CharacterFolder = "Assets/Data/Character/Hero";
     const string DroneBulletPrefab = "Assets/Prefab/Weapon/Projectile/Rusty Bullet.prefab";
 
+    // ชื่อและคำอธิบายภาษาอังกฤษของสกิล (คู่กับ Thai / Description ในรายการข้างล่าง)
+    static void English(string id, out string name, out string description)
+    {
+        switch (id)
+        {
+            case "ImpactDash": name = "Impact Dash"; description = "Dash toward the cursor. Invincible while dashing. Enemies in the way take damage and are knocked back"; break;
+            case "ReflectiveArmor": name = "Reflective Armor"; description = "Raise a shield that blocks all damage for 4 seconds. Each blocked hit reflects force onto nearby enemies"; break;
+            case "DimensionalArrow": name = "Dimensional Arrow"; description = "Fire an energy arrow that pierces every enemy and passes through walls"; break;
+            case "ShadowStep": name = "Shadow Step"; description = "Vanish and reappear at the cursor. Crosses walls inside the map but not out of it. Briefly invincible"; break;
+            case "AssaultDrone": name = "Assault Drone"; description = "Deploy a drone that follows you and auto-fires at the nearest enemy for 10 seconds"; break;
+            case "ElectromagneticTrap": name = "Electromagnetic Trap"; description = "Place a trap at the cursor. Enemies that come near are shocked and stunned"; break;
+            case "AbsorbingFangs": name = "Absorbing Fangs"; description = "Bite in front of you. Deals damage and restores health for each enemy hit"; break;
+            case "CellStimulation": name = "Cell Stimulation"; description = "Restore 3 health over 3 seconds and move faster for a short time"; break;
+            default: name = ""; description = ""; break;
+        }
+    }
+
     sealed class Spec
     {
         public string Character;   // ชื่อไฟล์ CharacterData
@@ -114,6 +131,9 @@ public static class SkillBuilder
         skill.skillName = spec.Thai;
         skill.effectOffset = spec.Offset; // ได้จากภาพ ตั้งใหม่ทุกครั้ง
         skill.Description = spec.Description;
+        English(spec.Id, out string englishName, out string englishDescription);
+        skill.skillNameEnglish = englishName;
+        skill.DescriptionEnglish = englishDescription;
         skill.skillIcon = Load<Sprite>($"{ArtFolder}/Icons/{spec.Id}-Icon.png");
         skill.effectFrames = Enumerable.Range(1, 7)
             .Select(i => Load<Sprite>($"{ArtFolder}/{spec.ClassFolder}/{spec.Id}/{spec.Id}_{i:00}.png"))

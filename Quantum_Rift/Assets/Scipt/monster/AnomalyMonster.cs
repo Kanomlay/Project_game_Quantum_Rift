@@ -61,9 +61,12 @@ public sealed class AnomalyMonster : MonoBehaviour
     {
         switch (kind)
         {
-            case Kind.Colossal: return "ตัวใหญ่ 1.35 เท่า เลือด x2.5 ตีแรง x1.5 ทนแรงกระแทก x1.8 เดินช้าลง";
-            case Kind.Frenzied: return "โจมตีไม่มีหน่วง (ยิงไกลหน่วงเหลือ 35%) เดินเร็วขึ้น x1.25";
-            default: return "รับดาเมจครึ่งเดียวจนกว่าจะเซครั้งแรก ทนแรงกระแทก x1.3";
+            case Kind.Colossal: return LanguageSettings.IsThai ? "ตัวใหญ่ 1.35 เท่า เลือด x2.5 ตีแรง x1.5 ทนแรงกระแทก x1.8 เดินช้าลง"
+                                                               : "1.35x size, health x2.5, damage x1.5, poise x1.8, moves slower";
+            case Kind.Frenzied: return LanguageSettings.IsThai ? "โจมตีไม่มีหน่วง (ยิงไกลหน่วงเหลือ 35%) เดินเร็วขึ้น x1.25"
+                                                               : "Attacks with no delay (ranged delay cut to 35%), moves x1.25 faster";
+            default: return LanguageSettings.IsThai ? "รับดาเมจครึ่งเดียวจนกว่าจะเซครั้งแรก ทนแรงกระแทก x1.3"
+                                                    : "Takes half damage until first staggered, poise x1.3";
         }
     }
 

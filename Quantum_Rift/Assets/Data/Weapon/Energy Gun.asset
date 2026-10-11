@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Energy Gun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E1B\u0E37\u0E19\u0E1E\u0E25\u0E31\u0E07\u0E07\u0E32\u0E19"
+  weaponNameEnglish: Energy Gun
   weaponIcon: {fileID: 21300000, guid: 185d95cc57ab3ab43b9c007f18d04c7b, type: 3}
   weaponPrefab: {fileID: 2635740630579184539, guid: 72438a6b0540a254298e5fa4921404bc, type: 3}
   weaponType: 1
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ion Spear X
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E2B\u0E2D\u0E01\u0E44\u0E2D\u0E2D\u0E2D\u0E19-X"
+  weaponNameEnglish: Ion Spear X
   weaponIcon: {fileID: 21300000, guid: 1818ab4f0a660d64da407efd4709e3cd, type: 3}
   weaponPrefab: {fileID: 9219010485169310776, guid: c98bb6856a3729c49ac2e4c3b44ae52e, type: 3}
   weaponType: 4
@@ -31,6 +32,7 @@ MonoBehaviour:
   spreadAngle: 0
   abilityDescription: "\u0E01\u0E14\u0E04\u0E49\u0E32\u0E07\u0E0A\u0E32\u0E23\u0E4C\u0E08
     1 \u0E27\u0E34\u0E19\u0E32\u0E17\u0E35 \u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E04\u0E25\u0E37\u0E48\u0E19\u0E1E\u0E25\u0E31\u0E07"
+  abilityDescriptionEnglish: Hold 1 second to charge, then release an energy wave
   specialEffectPrefab: {fileID: 0}
   special: 2
   specialFrames:

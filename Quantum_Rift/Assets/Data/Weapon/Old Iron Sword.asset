@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Old Iron Sword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E14\u0E32\u0E1A\u0E40\u0E2B\u0E25\u0E47\u0E01\u0E40\u0E01\u0E48\u0E32"
+  weaponNameEnglish: Old Iron Sword
   weaponIcon: {fileID: 21300000, guid: 2b69a39d1888ac146bfb5d9f92adae4b, type: 3}
   weaponPrefab: {fileID: 6717462134916430127, guid: 63d726c2ea61cfe4da6c99813b0ffdfa, type: 3}
   weaponType: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []

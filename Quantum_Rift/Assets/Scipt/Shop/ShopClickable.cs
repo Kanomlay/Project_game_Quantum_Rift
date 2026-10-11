@@ -63,6 +63,14 @@ public sealed class ShopClickable : MonoBehaviour
     void Start() => BuildPrompt();
 
     // ป้าย "[F] ร้านค้า" ลอยเหนือร้าน ขึ้นเมื่อเดินมาใกล้
+    // ป้ายหน้าร้านตามภาษาที่ตั้งไว้ (สลับภาษาระหว่างเล่นแล้วป้ายเปลี่ยนตาม)
+    string PromptText() => $"[{openKey}] " + (LanguageSettings.IsThai
+        ? (isBuffShop ? "ร้านบัพเลือดสนธยา" : "ร้านค้า")
+        : (isBuffShop ? "Twilight Blood Buff Shop" : "Shop"));
+    void RefreshPrompt() { if (prompt != null) prompt.text = PromptText(); }
+    void OnEnable() { LanguageSettings.Changed += RefreshPrompt; RefreshPrompt(); } // ร้านที่ถูกปิดอยู่ไม่ได้ยินตอนสลับภาษา ตั้งใหม่ตอนกลับมาเปิด
+    void OnDisable() { LanguageSettings.Changed -= RefreshPrompt; }
+
     void BuildPrompt()
     {
         var obj = new GameObject("Prompt");
@@ -71,7 +79,7 @@ public sealed class ShopClickable : MonoBehaviour
         obj.transform.localScale = Vector3.one * scale; // ร้านถูกย่อไว้ ป้ายต้องขนาดเท่าป้ายอาวุธ
         obj.transform.localPosition = new Vector3(0f, 2.5f * scale, 0f);
         prompt = obj.AddComponent<TextMeshPro>();
-        prompt.text = $"[{openKey}] "+(isBuffShop?"ร้านบัพเลือดสนธยา":"ร้านค้า");
+        prompt.text = PromptText();
         prompt.fontSize = 3f;
         prompt.alignment = TextAlignmentOptions.Center;
         prompt.color = new Color(1f, 0.87f, 0.35f);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Wooden Bow Mk2
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: "\u0E18\u0E19\u0E39\u0E44\u0E21\u0E49 \u0E23\u0E38\u0E48\u0E19 2"
+  weaponNameEnglish: Wooden Bow Mk2
   weaponIcon: {fileID: 21300000, guid: 030970fd17f8dd94badc841c5eb4ad67, type: 3}
   weaponPrefab: {fileID: 8914885412050028211, guid: d36ff8ec094c2094eaaf4ec3e2acee42, type: 3}
   weaponType: 2
@@ -30,6 +31,7 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 0
   abilityDescription: 
+  abilityDescriptionEnglish: 
   specialEffectPrefab: {fileID: 0}
   special: 0
   specialFrames: []
