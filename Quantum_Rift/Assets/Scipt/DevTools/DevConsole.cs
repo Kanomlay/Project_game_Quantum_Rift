@@ -754,7 +754,7 @@ public sealed class DevConsole : MonoBehaviour
         ui.Section("สถานะผิดปกติ");
         grid = ui.Grid(2);
         PlayerButton(grid, "ติดไฟ 2 วิ", p => p.ApplyBurn(2f), "ติดไฟ 2 วินาที (1 หน่วยต่อวินาที)");
-        PlayerButton(grid, "ติดพิษ 5 วิ", p => p.ApplyPoison(5f, 0.5f), "ติดพิษ 5 วินาที");
+        PlayerButton(grid, "ติดพิษ 5 วิ", p => p.ApplyPoison(5f, 0.5f), "ติดพิษ 5 วินาที (0.5 หน่วยต่อวินาที)");
 
         if (catalog.characters != null && catalog.characters.Length > 0)
         {

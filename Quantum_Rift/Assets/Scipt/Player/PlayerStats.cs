@@ -55,7 +55,8 @@ public class PlayerStats : MonoBehaviour
         if(sr!=null && !isDead)sr.color=IsPoisoned?PoisonTint:Color.white;
     }
 
-    // พิษ (แมพป่า ตามเอกสาร 1.3.7): เสียเลือดทีละนิดทุก 1 วินาที ไม่ติดอมตะ ไม่กะพริบ ไม่ผลัก
+    // พิษ (แมพป่า ตามเอกสาร 1.3.7): เสียเลือดวินาทีละ 0.5 นาน 5 วินาที (รวม 2.5) ไม่ติดอมตะ ไม่กะพริบ ไม่ผลัก
+    // ตัวเลขพิษทุกที่ในเกมเป็นดาเมจต่อวินาที แบบเดียวกับไฟ (ApplyBurn)
     // โดนซ้ำระหว่างติดพิษ = ต่อเวลาใหม่ ไม่ซ้อนแรงขึ้น ตัวละครอมเขียวตลอดที่ติดพิษ
     float poisonedUntil, poisonPerTick;
     Coroutine poisonRoutine;
@@ -63,11 +64,11 @@ public class PlayerStats : MonoBehaviour
     static readonly Color PoisonBubbles = new Color(0.6f, 1f, 0.35f);
     public bool IsPoisoned => !isDead && Time.time < poisonedUntil;
 
-    public void ApplyPoison(float seconds = 5f, float totalDamage = 0.5f)
+    public void ApplyPoison(float seconds = 5f, float damagePerSecond = 0.5f)
     {
-        if (isDead || seconds <= 0f || totalDamage <= 0f) return;
+        if (isDead || seconds <= 0f || damagePerSecond <= 0f) return;
         poisonedUntil = Mathf.Max(poisonedUntil, Time.time + seconds);
-        poisonPerTick = Mathf.Max(poisonPerTick, totalDamage / Mathf.Max(1f, Mathf.Round(seconds)));
+        poisonPerTick = Mathf.Max(poisonPerTick, damagePerSecond);
         if (poisonRoutine == null) poisonRoutine = StartCoroutine(PoisonRoutine());
     }
 
@@ -423,9 +424,9 @@ public event System.Action<float> DamageBlocked; // เกราะกันด�
         if (hud != null) hud.UpdateHP(currentHP, maxHP);
     }
 
-    // แบบเก่า (กับดักเถาวัลย์พิษ StageTrap) นับเป็นดาเมจต่อครั้ง แปลงเป็นดาเมจรวมแล้วใช้ระบบพิษเดียวกัน
+    // แบบเก่า (ดาเมจต่อครั้ง ทุก interval วินาที) แปลงเป็นดาเมจต่อวินาทีแล้วใช้ระบบพิษเดียวกัน
     public void ApplyPoison(float seconds, float damagePerTick, float interval) =>
-        ApplyPoison(seconds, damagePerTick * Mathf.Max(1f, Mathf.Floor(seconds / Mathf.Max(0.1f, interval))));
+        ApplyPoison(seconds, damagePerTick / Mathf.Max(0.1f, interval));
 
     public void GrantInvincibility(float seconds) =>
         invincibleUntil = Mathf.Max(invincibleUntil, Time.time + seconds);

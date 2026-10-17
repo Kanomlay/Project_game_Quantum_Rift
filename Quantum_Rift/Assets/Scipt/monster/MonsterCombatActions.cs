@@ -29,7 +29,7 @@ public sealed class MonsterCombatActions : MonoBehaviour
     public Color projectileTint = Color.white; // ย้อมสีกระสุน ใช้ภาพกระสุนชุดเดียวกันได้หลายตัว (Woodmine ย้อมเขียว)
     [Header("พิษ (มอนแมพป่า) 0 = ไม่ติดพิษ")]
     [Min(0f)] public float poisonSeconds;
-    [Min(0f)] public float poisonDamage = 0.5f; // รวมทั้งช่วง ไม่ใช่ต่อวินาที
+    [Min(0f)] public float poisonDamage = 0.5f; // ดาเมจต่อวินาที (5 วินาที x 0.5 = รวม 2.5)
     [Header("Root: รากแทงขึ้นใต้เท้าผู้เล่น (Rootlings)")]
     public GameObject rootPrefab;          // ภาพรากแทงขึ้น 7 เฟรม (ชุดเดียวกับบอสป่า ย่อลง)
     public float rootScale = 0.4f;

@@ -52,7 +52,7 @@ public class AncientEntbornBoss : MonsterController
     [Min(0.5f)] public float stompRange = 9f;
     [Min(0.5f)] public float stompRadius = 1.9f; // คลื่นกระแทกรอบเท้าตอนกระทืบ (ชิดตัวบอส)
     [Min(0f)] public float poisonSeconds = 5f;
-    [Min(0f)] public float poisonDamage = 0.5f;
+    [Min(0f)] public float poisonDamage = 0.5f; // ดาเมจต่อวินาที
 
     [Header("เฟส 2: กระโดดทับ")]
     [Min(1f)] public float leapCooldown = 9f;

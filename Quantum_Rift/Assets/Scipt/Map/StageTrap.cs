@@ -115,7 +115,7 @@ public sealed class StageTrap : MonoBehaviour
             attacked = true;
             StartCoroutine(VineLash(player.transform.position));
             player.TakeDamage(1f);
-            player.ApplyPoison(5f, 0.5f); // พิษตามเอกสารขอบเขต 1.3.7: 5 วินาที รวม 0.5 หน่วย มาตรฐานเดียวกับมอนและบอส
+            player.ApplyPoison(5f, 0.5f); // พิษตามเอกสารขอบเขต 1.3.7: วินาทีละ 0.5 นาน 5 วินาที (รวม 2.5) มาตรฐานเดียวกับมอนและบอส
         }
     }
 

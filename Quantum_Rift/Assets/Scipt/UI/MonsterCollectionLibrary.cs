@@ -60,7 +60,7 @@ public sealed class MonsterCollectionLibrary : ScriptableObject
                         case MonsterCombatActions.Style.Root:lines.Add(th?$"เรียกรากแทงใต้เท้า มีวงเตือน {actions.rootWarning:0.#} วินาที และมุดดินเมื่อผู้เล่นอยู่ไกล":$"Roots erupt under you after a {actions.rootWarning:0.#} s warning; burrows when you move away.");break;
                         case MonsterCombatActions.Style.Vine:lines.Add(th?$"ฟาดเถาวัลย์เป็นเส้น มีแถบเตือน {actions.vineWarning:0.#} วินาที":$"Line-shaped vine lash with a {actions.vineWarning:0.#} s warning.");break;
                     }
-                    if(actions.poisonSeconds>0)lines.Add(th?$"ติดพิษ {actions.poisonSeconds:0.#} วินาที (ดาเมจรวม {actions.poisonDamage:0.##})":$"Poison lasts {actions.poisonSeconds:0.#} s ({actions.poisonDamage:0.##} total damage).");
+                    if(actions.poisonSeconds>0)lines.Add(th?$"ติดพิษ {actions.poisonSeconds:0.#} วินาที วินาทีละ {actions.poisonDamage:0.##} (รวม {actions.poisonDamage*Mathf.Round(actions.poisonSeconds):0.##})":$"Poison lasts {actions.poisonSeconds:0.#} s, {actions.poisonDamage:0.##} per second ({actions.poisonDamage*Mathf.Round(actions.poisonSeconds):0.##} total).");
                     if(actions.selfDestructAt>0)lines.Add(th?$"เลือดเหลือ {actions.selfDestructAt*100:0}% จะวิ่งเข้าหาระเบิดตัวเอง":$"Starts a suicide rush at {actions.selfDestructAt*100:0}% HP.");
                 }
                 else lines.Add(th?"ไล่ตามและโจมตีระยะประชิด":"Chases you and attacks in melee.");

@@ -40,7 +40,7 @@ public class HUDManager : MonoBehaviour
 
         if (hpText != null)
         {
-            hpText.text = currentHP.ToString("F0") + "/" + maxHP.ToString("F0");
+            hpText.text = currentHP.ToString("0.#") + "/" + maxHP.ToString("0.#"); // ทศนิยม 1 ตำแหน่ง ไม่มีเศษก็ไม่แสดง (8/8, 7.5/8)
         }
     }
     public void UpdateEnergy(int currentEnergy, int maxEnergy)

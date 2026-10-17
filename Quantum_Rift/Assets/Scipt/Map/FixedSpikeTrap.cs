@@ -8,9 +8,9 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     public float warningSeconds = 1.2f;
     public float raisedSeconds = 1.4f;
     public float damage = 1f;
-    // แมพป่า (แมพ 2): หนามที่แทงโดนจริงทำให้ติดพิษด้วย ค่าเดียวกับพิษของมอน (ขอบเขต 1.3.7: 5 วินาที รวม 0.5 หน่วย)
+    // แมพป่า (แมพ 2): หนามที่แทงโดนจริงทำให้ติดพิษด้วย ค่าเดียวกับพิษของมอน (ขอบเขต 1.3.7: วินาทีละ 0.5 นาน 5 วินาที รวม 2.5)
     public float forestPoisonSeconds = 5f;
-    public float forestPoisonDamage = 2.5f;
+    public float forestPoisonDamage = 0.5f; // ต่อวินาที
     public Transform spikes;
     public Renderer warningDisplay;
     public BoxCollider2D damageArea;
