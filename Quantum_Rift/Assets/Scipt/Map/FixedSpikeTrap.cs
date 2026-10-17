@@ -8,6 +8,9 @@ public sealed class FixedSpikeTrap : MonoBehaviour
     public float warningSeconds = 1.2f;
     public float raisedSeconds = 1.4f;
     public float damage = 1f;
+    // แมพป่า (แมพ 2): หนามที่แทงโดนจริงทำให้ติดพิษด้วย ค่าเดียวกับพิษของมอน (ขอบเขต 1.3.7: 5 วินาที รวม 0.5 หน่วย)
+    public float forestPoisonSeconds = 5f;
+    public float forestPoisonDamage = 0.5f;
     public Transform spikes;
     public Renderer warningDisplay;
     public BoxCollider2D damageArea;
@@ -122,9 +125,19 @@ public sealed class FixedSpikeTrap : MonoBehaviour
         if (target == null || target.isDead || CurrentPhase != Phase.Raised || hitCycle == CompletedCycles) return false;
         hitCycle = CompletedCycles;
         bool landed = target.CanTakeHit; // ติดอมตะอยู่ = ไม่กระเด็น ไม่มีเอฟเฟกต์
+        float before = target.currentHP;
         target.TakeDamage(damage);
         if (landed) HitFeedback(target);
+        // ติดพิษเฉพาะเมื่อเลือดลดจริง (เกราะหรือพรกันไว้ = ไม่ติด) เหมือนพิษจากมอน
+        if (target.currentHP < before && IsForest() && forestPoisonSeconds > 0f)
+            target.ApplyPoison(forestPoisonSeconds, forestPoisonDamage);
         return true;
+    }
+
+    bool IsForest()
+    {
+        var features = GetComponentInParent<MapGameplayFeatures>();
+        return features != null && features.theme == MapGameplayFeatures.Theme.LivingForest;
     }
 
     void HitFeedback(PlayerStats target)
@@ -137,9 +150,7 @@ public sealed class FixedSpikeTrap : MonoBehaviour
         if (movement != null) movement.TakeKnockback(feet - away.normalized, HitKnockback);
 
         CameraFollow.Shake(0.1f, 0.15f);
-        var features = GetComponentInParent<MapGameplayFeatures>();
-        bool forest = features != null && features.theme == MapGameplayFeatures.Theme.LivingForest;
-        Color color = forest ? ThornSparks : MetalSparks;
+        Color color = IsForest() ? ThornSparks : MetalSparks;
         ImpactSparks.Spawn(feet, color, 10, Vector2.up, 4.5f, 80f);
         ImpactSparks.Spawn(feet, Color.white, 4, Vector2.up, 3f, 60f);
 
